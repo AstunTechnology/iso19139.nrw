@@ -18,10 +18,10 @@ Natural Resources Wales Metadata Profile
 
 ### Adding the plugin to the source code prior to compiling GeoNetwork
 
-The best approach is to add the plugin as a submodule. Use https://github.com/geonetwork/core-geonetwork/blob/3.12.x/add-schema.sh for automatic deployment:
+The best approach is to add the plugin as a submodule. Use https://github.com/geonetwork/core-geonetwork/blob/4.2.x/add-schema.sh for automatic deployment:
 
 ```
-.\add-schema.sh iso19139.nrw http://github.com/metadata101/iso19139.nrw 3.12.x
+.\add-schema.sh iso19139.nrw http://github.com/astuntechnology/iso19139.nrw 4.2.x
 ```
 
 #### Building the application 
@@ -37,4 +37,4 @@ sudo mvn jetty:run -DschemasCopy=true
 ```
 
 
-Once the application is built `web/target/geonetwork.war` will contain GeoNetwork with the Gemini 2.3 schema plugin included.
+Once the application is built `web/target/geonetwork.war` will contain GeoNetwork with the NRW schema plugin included.
