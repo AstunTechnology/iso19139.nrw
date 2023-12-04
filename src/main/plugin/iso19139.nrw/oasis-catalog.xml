@@ -81,7 +81,7 @@
 
   <!-- nrw -->
   <system systemId="http://naturalresources.wales/nrw/nrw1.xsd"
-      uri="schema/extensions/nrw/nrw.xsd"/>
+      uri="schema/extensions/nrw/nrw1.xsd"/>
 
   <!-- medin -->
   <system systemId="http://medin.org.uk/medin/medin3.xsd"

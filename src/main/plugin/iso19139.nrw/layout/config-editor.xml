@@ -30,6 +30,7 @@
         xmlns:srv="http://www.isotc211.org/2005/srv"
         xmlns:gml="http://www.opengis.net/gml/3.2"
         xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:nrw="http://naturalresources.wales/nrw"
         xsi:noNamespaceSchemaLocation="../../../../../../config-editor.xsd">
 
   <!-- Form field type configuration. Default is text. -->
@@ -51,6 +52,8 @@
     <for name="gmd:specificUsage" use="textarea"/>
     <for name="gmd:userNote" use="textarea"/>
     <for name="gmd:useLimitation" use="textarea"/>
+    <for name="nrw:internalLocationInfo" use="textarea"/>
+    <for name="nrw:internalContactInfo" use="textarea"/>
 
 
     <for name="gco:Distance" use="number"/>
@@ -1118,7 +1121,10 @@
                  del="."/>
           <text ref="resourcelocatorsrv_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
 		        <text ref="resourcelocator_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
-			</section>         
+			</section>   
+      <section name="nrw:internalLocationInfo">
+      <field xpath="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/nrw:internalLocationInfo/gco:CharacterString" del="."/>
+      </section>      
 
 </section>
         <!-- Start dataQualitySection -->

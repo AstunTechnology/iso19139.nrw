@@ -29,6 +29,7 @@
                 xmlns:gml="http://www.opengis.net/gml/3.2"
                 xmlns:srv="http://www.isotc211.org/2005/srv"
                 xmlns:xlink="http://www.w3.org/1999/xlink"
+                xmlns:nrw="http://naturalresources.wales/nrw"
                 version="2.0">
 
 
@@ -48,6 +49,7 @@
       <xsl:copy-of select="gmd:credit" />
       <xsl:copy-of select="gmd:status" />
       <xsl:copy-of select="gmd:pointOfContact" />
+      <xsl:copy-of select="nrw:internalContactInfo" />
       <xsl:copy-of select="gmd:resourceMaintenance" />
       <xsl:copy-of select="gmd:graphicOverview" />
       <xsl:copy-of select="gmd:resourceFormat" />
@@ -216,6 +218,8 @@
       </xsl:if>
       <xsl:message> == applying transfer options template == </xsl:message>
       <xsl:apply-templates select="gmd:transferOptions" />
+      <xsl:message> == applying nrw location info template == </xsl:message>
+      <xsl:copy-of select="nrw:internalLocationInfo" />
 
     </xsl:copy>
 

@@ -27,6 +27,7 @@
         xmlns:gmd="http://www.isotc211.org/2005/gmd"
         xmlns:srv="http://www.isotc211.org/2005/srv" xmlns:gml="http://www.opengis.net/gml/3.2"
         xmlns:gts="http://www.isotc211.org/2005/gts" xmlns:gmx="http://www.isotc211.org/2005/gmx"
+        xmlns:nrw="http://naturalresources.wales/nrw/nrw1.xsd"
         xsi:noNamespaceSchemaLocation="../../../../../../../schema-labels.xsd">
 
   <element name="gmd:MD_ScopeCode">
@@ -3570,4 +3571,14 @@
 <element name="gmx:ML_CompoundCRS">
   <label>Compound CRS</label>
   </element>
+
+  <!-- nrw specific -->
+  <element name="nrw:internalLocationInfo">
+  <label>NRW Internal Location Information</label>
+  </element> 
+
+  <element name="nrw:internalContactInfo">
+  <label>NRW Internal Contact Information</label>
+  </element>
+
   </labels>

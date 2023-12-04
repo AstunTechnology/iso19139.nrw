@@ -13,60 +13,28 @@
 	<xs:import namespace="http://www.opengis.net/gml/3.2" schemaLocation="../../gml/gml.xsd"/>
 	<!-- =========================================================================== -->
 
-	<!-- Define elements for descriptive data quality statement -->
-	<!-- <xs:element name="OS_QualitativeResult" type="osmp:OS_QualitativeResult_Type" substitutionGroup="gmd:AbstractDQ_Result"/>
-	<xs:complexType name="OS_QualitativeResult_Type">
+	<!-- Define element for Internal Location Info element. Extends gmd:distributionInfo -->
+	<xs:element name="internalLocationInfo" type="nrw:internalLocationInfo_Type"/>
+	<xs:complexType name="internalLocationInfo_Type">
 		<xs:complexContent>
-			<xs:extension base="gmd:AbstractDQ_Result_Type">
+			<xs:extension base="gmd:MD_Distribution_Type">
 				<xs:sequence>
-					<xs:element name="statement" type="gco:CharacterString_PropertyType"/>
+					<xs:element name="location" type="gco:CharacterString_PropertyType" minOccurs="0" maxOccurs="1"/>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
 
-	<xs:element name="OS_QualityElement" type="osmp:OS_QualityElement_Type" substitutionGroup="gmd:AbstractDQ_Element"/>
-	<xs:complexType name="OS_QualityElement_Type">
+	<!-- Define element for Internal Contact Info element. Extends gmd:identificationInfo -->
+	<xs:element name="internalContactInfo" type="nrw:internalContactInfo_Type"/>
+	<xs:complexType name="internalContactInfo_Type">
 		<xs:complexContent>
-			<xs:extension base="gmd:AbstractDQ_Element_Type"/>
-		</xs:complexContent>
-	</xs:complexType> -->
-
-	<!-- Define elements for feature instance count -->
-
-	<!-- <xs:element name="OS_FeatureCatalogueDescription" type="osmp:OS_FeatureCatalogueDescription_Type" substitutionGroup="gmd:AbstractMD_ContentInformation"/>
-	<xs:complexType name="OS_FeatureCatalogueDescription_Type">
-		<xs:annotation>
-			<xs:documentation>OS extension of ISO 19115:2003 MD_FeatureCatalogueDescription, in line with 19115-1:2014</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="gmd:AbstractMD_ContentInformation_Type">
+			<xs:extension base="gmd:MD_DataIdentification_Type">
 				<xs:sequence>
-					<xs:element name="featureTypes" type="osmp:OS_FeatureInfo_PropertyType" maxOccurs="unbounded"/>
+					<xs:element name="internalcontact" type="gco:CharacterString_PropertyType" minOccurs="0" maxOccurs="1"/>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
-	</xs:complexType> -->
-
-
-	<!-- <xs:complexType name="OS_FeatureInfo_PropertyType">
-		<xs:sequence>
-			<xs:element name="featureTypeName" type="gco:ScopedName_PropertyType"/>
-			<xs:element name="featureInstanceCount" type="gco:Integer_PropertyType"/>
-			<xs:element name="featureInstanceCountDate" type="gco:Date_PropertyType"/>
-			<xs:element name="featureInstanceCountSource">
-				<xs:simpleType>
-					<xs:annotation>
-						<xs:documentation>Source of record count</xs:documentation>
-					</xs:annotation>
-					<xs:restriction base="xs:string">
-						<xs:enumeration value="Estimated"/>
-						<xs:enumeration value="Calculated from operational database"/>
-					</xs:restriction>
-				</xs:simpleType>
-			</xs:element>
-		</xs:sequence>
-	</xs:complexType> -->
-
+	</xs:complexType>
 
 </xs:schema>

@@ -9,8 +9,9 @@
                  xmlns:gss="http://www.isotc211.org/2005/gss"
                  xmlns:gml="http://www.opengis.net/gml/3.2"
                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                 xmlns:nrw="http://naturalresources.wales/nrw"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                 xsi:schemaLocation="http://www.isotc211.org/2005/gmd http://schemas.opengis.net/csw/2.0.2/profiles/apiso/1.0.0/apiso.xsd">
+                 xsi:schemaLocation="http://www.isotc211.org/2005/gmd http://schemas.opengis.net/csw/2.0.2/profiles/apiso/1.0.0/apiso.xsd http://naturalresources.wales/nrw/nrw1.xsd">
   <gmd:fileIdentifier>
       <gco:CharacterString>b4f6d6c3-a126-4629-8d77-1488370dc118</gco:CharacterString>
   </gmd:fileIdentifier>
@@ -69,10 +70,10 @@
       <gco:DateTime>2020-03-04T16:22:51</gco:DateTime>
   </gmd:dateStamp>
   <gmd:metadataStandardName >
-      <gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/M25/current/GEMINI/">UK GEMINI</gmx:Anchor>
+      <gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/M25/current/GEMINI/">NRW</gmx:Anchor>
   </gmd:metadataStandardName>
   <gmd:metadataStandardVersion >
-      <gco:CharacterString>2.3</gco:CharacterString>
+      <gco:CharacterString>1.0</gco:CharacterString>
   </gmd:metadataStandardVersion>
   <gmd:referenceSystemInfo >
       <gmd:MD_ReferenceSystem>
@@ -91,7 +92,7 @@
          <gmd:citation>
             <gmd:CI_Citation>
                <gmd:title>
-                  <gco:CharacterString>Template for Dataset Metadata in Gemini 2.3 format</gco:CharacterString>
+                  <gco:CharacterString>Template for Dataset Metadata in NRW 1.0 format</gco:CharacterString>
                </gmd:title>
                <gmd:date>
                   <gmd:CI_Date>
@@ -170,6 +171,7 @@
                </gmd:role>
             </gmd:CI_ResponsibleParty>
          </gmd:pointOfContact>
+         <nrw:internalContactInfo><gco:CharacterString>A big dumping ground for NRW internal contact info</gco:CharacterString></nrw:internalContactInfo>
          <gmd:resourceMaintenance>
             <gmd:MD_MaintenanceInformation>
                <gmd:maintenanceAndUpdateFrequency>
@@ -337,6 +339,7 @@
                </gmd:onLine>
             </gmd:MD_DigitalTransferOptions>
          </gmd:transferOptions>
+         <nrw:internalLocationInfo><gco:CharacterString>A big old dumping ground for NRW location info</gco:CharacterString></nrw:internalLocationInfo>
       </gmd:MD_Distribution>
   </gmd:distributionInfo>
   <gmd:dataQualityInfo >
