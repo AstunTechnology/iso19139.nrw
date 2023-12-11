@@ -52,6 +52,7 @@
     <xsl:namespace name="gsr" select="'http://www.isotc211.org/2005/gsr'"/>
     <xsl:namespace name="gmi" select="'http://www.isotc211.org/2005/gmi'"/>
     <xsl:namespace name="gss" select="'http://www.isotc211.org/2005/gss'"/>
+    <xsl:namespace name="nrw" select="'http://naturalresources.wales/nrw'"/>
     <xsl:choose>
       <xsl:when test="$isUsing2005Schema and not($isUsing2007Schema)">
         <xsl:namespace name="gml" select="'http://www.opengis.net/gml'"/>

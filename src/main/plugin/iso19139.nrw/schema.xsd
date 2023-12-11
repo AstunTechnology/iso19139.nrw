@@ -36,4 +36,5 @@
   <xs:include schemaLocation="schema/extensions/medin/medin3.xsd"/>
   <xs:import namespace="http://www.isotc211.org/2005/srv" schemaLocation="schema/srv/srv.xsd"/>
   <xs:import namespace="http://www.isotc211.org/2005/gmx" schemaLocation="schema/gmx/gmx.xsd"/>
+  <xs:import namespace="http://naturalresources.wales/nrw" schemaLocation="schema/extensions/nrw/nrw1.xsd"/>
 </xs:schema>

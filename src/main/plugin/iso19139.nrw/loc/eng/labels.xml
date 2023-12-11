@@ -3574,7 +3574,17 @@
 
   <!-- nrw specific -->
   <element name="nrw:internalLocationInfo">
-  <label>NRW Internal Location Information</label>
+  <label>NRW Internal Location</label>
+  </element> 
+  <element name="nrw:MD_Distribution">
+  <label>NRW Distribution Information</label>
+  </element> 
+  <element name="nrw:Location">
+  <label>NRW Location Information</label>
+  </element> 
+
+  <element name="nrw:InternalContact">
+  <label>NRW Internal Contact</label>
   </element> 
 
   <element name="nrw:internalContactInfo">

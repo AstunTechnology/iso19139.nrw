@@ -889,6 +889,18 @@
 </dataqualitysrv_help>
 <distributionFormat>Add Distribution Format</distributionFormat>
 <parentidentifier>Parent Identifier</parentidentifier>
-<gmd:MD_Metadata xmlns:gmd="http://www.isotc211.org/2005/gmd">Metadata</gmd:MD_Metadata>
-
+<nrwinternallocation_help>
+    <div class="row">
+    <div class="col-xs-offset-2 col-xs-8">
+      <p class="help-block">Text field for unstructured information about NRW internal location</p>
+      </div>
+  </div>
+</nrwinternallocation_help>
+<nrwinternalcontact_help>
+    <div class="row">
+    <div class="col-xs-offset-2 col-xs-8">
+      <p class="help-block">Text field for unstructured information about NRW internal contacts</p>
+      </div>
+  </div>
+</nrwinternalcontact_help>
 </strings>

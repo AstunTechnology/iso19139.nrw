@@ -49,6 +49,7 @@
       <xsl:copy-of select="gmd:credit" />
       <xsl:copy-of select="gmd:status" />
       <xsl:copy-of select="gmd:pointOfContact" />
+      <xsl:message> == applying nrw internal contact info template == </xsl:message>
       <xsl:copy-of select="nrw:internalContactInfo" />
       <xsl:copy-of select="gmd:resourceMaintenance" />
       <xsl:copy-of select="gmd:graphicOverview" />
