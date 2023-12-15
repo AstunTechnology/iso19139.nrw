@@ -236,6 +236,9 @@
   <addContact>Add contact</addContact>
   <addVerticalExtent>Vertical Extent</addVerticalExtent>
 
+  <distributionFormat>Add Distribution Format</distributionFormat>
+  <parentidentifier>Parent Identifier</parentidentifier>
+
   <!-- Custom help for Gemini 2.3 elements, from https://www.agi.org.uk/40-gemini/1062-gemini-datasets-and-data-series-->
 
   <fileidentifier_help>
@@ -308,7 +311,7 @@
       </div>
   </div>
   </metadatacontactsrv_help>
-<hierachylevelname_help>
+<hierarchylevelname_help>
     <div class="row">
     <div class="col-xs-offset-2 col-xs-8">
       <p class="help-block">Conditional, required when Resource type (ISO hierarchyLevel) is not "dataset".</p>
@@ -318,7 +321,7 @@
       </ol>
       </div>
   </div>
-</hierachylevelname_help>
+</hierarchylevelname_help>
 <hierachylevelnamesrv_help>
     <div class="row">
     <div class="col-xs-offset-2 col-xs-8">
@@ -887,20 +890,13 @@
       </div>
   </div>
 </dataqualitysrv_help>
-<distributionFormat>Add Distribution Format</distributionFormat>
-<parentidentifier>Parent Identifier</parentidentifier>
-<nrwinternallocation_help>
+
+<NRW_InternalInfo_help>
     <div class="row">
     <div class="col-xs-offset-2 col-xs-8">
-      <p class="help-block">Text field for unstructured information about NRW internal location</p>
+      <p class="help-block">Section for information about NRW internal contact and location</p>
       </div>
   </div>
-</nrwinternallocation_help>
-<nrwinternalcontact_help>
-    <div class="row">
-    <div class="col-xs-offset-2 col-xs-8">
-      <p class="help-block">Text field for unstructured information about NRW internal contacts</p>
-      </div>
-  </div>
-</nrwinternalcontact_help>
+</NRW_InternalInfo_help>
+
 </strings>

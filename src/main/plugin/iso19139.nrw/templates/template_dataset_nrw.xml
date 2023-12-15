@@ -320,9 +320,16 @@
           </gmd:onLine>
         </gmd:MD_DigitalTransferOptions>
       </gmd:transferOptions>
+      <gmd:distributor>
+      <nrw:NRW_internalInfo>
         <nrw:internalLocationInfo>
-          <gco:CharacterString>A big old dump of information</gco:CharacterString>
+          <gco:CharacterString>A big old dump of location information</gco:CharacterString>
         </nrw:internalLocationInfo>
+        <nrw:internalContactInfo>
+          <gco:CharacterString>A big old dump of contact information</gco:CharacterString>
+        </nrw:internalContactInfo>
+        </nrw:NRW_internalInfo>
+      </gmd:distributor>
     </gmd:MD_Distribution>
   </gmd:distributionInfo>
   <gmd:dataQualityInfo xmlns:nrw="http://naturalresources.wales/nrw" xmlns:gml="http://www.opengis.net/gml/3.2">

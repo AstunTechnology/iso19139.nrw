@@ -49,8 +49,6 @@
       <xsl:copy-of select="gmd:credit" />
       <xsl:copy-of select="gmd:status" />
       <xsl:copy-of select="gmd:pointOfContact" />
-      <xsl:message> == applying nrw internal contact info template == </xsl:message>
-      <xsl:copy-of select="nrw:internalContactInfo" />
       <xsl:copy-of select="gmd:resourceMaintenance" />
       <xsl:copy-of select="gmd:graphicOverview" />
       <xsl:copy-of select="gmd:resourceFormat" />
@@ -219,8 +217,8 @@
       </xsl:if>
       <xsl:message> == applying transfer options template == </xsl:message>
       <xsl:apply-templates select="gmd:transferOptions" />
-      <xsl:message> == applying nrw location info template == </xsl:message>
-      <xsl:copy-of select="nrw:internalLocationInfo" />
+      <xsl:message> == applying nrw internal info == </xsl:message>
+      <xsl:copy-of select="gmd:distributor" />
 
     </xsl:copy>
 

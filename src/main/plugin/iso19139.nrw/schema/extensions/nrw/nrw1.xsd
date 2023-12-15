@@ -19,29 +19,19 @@
 		<xs:documentation>Extensions to hold additional NRW elements</xs:documentation>
 	</xs:annotation>
 
-	<!-- Define element for Internal Contact Info element. Extends gmd:identificationInfo -->
-	<xs:element name="internalContactInfo" minOccurs="0" maxOccurs="1">
-	<xs:annotation>
-		<xs:documentation>Extension to hold NRW Internal Contact Information</xs:documentation>
-	</xs:annotation>
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="gco:CharacterString"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
+	<!-- Define element for Internal NRW Info elements. Extends gmd:distributionInfo -->
 
-  <xs:element name="internalLocationInfo" minOccurs="0" maxOccurs="1">
-	<xs:annotation>
-		<xs:documentation>Extension to hold NRW Internal Location Information</xs:documentation>
-	</xs:annotation>
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="gco:CharacterString"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
+	<xs:element name="NRW_internalInfo" type="nrw:internalLocationInfo_Type" subsitutionGroup="gmd:MD_Distributor"/>
 
+  <xs:complexType name="nrw:internalInfo_Type">
+			<xs:complexContent>
+				<xs:extension base="gmd:MD_Distributor_Type">
+					<xs:sequence>
+						<xs:element name="internalLocationInfo" base="gco:CharacterString_PropertyType" minOccurs="0" maxOccurs="1"/>
+						<xs:element name="internalContactInfo" base="gco:CharacterString_PropertyType" minOccurs="0" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+</xs:complexType>
 
-
-</xs:schema>
+ </xs:schema>

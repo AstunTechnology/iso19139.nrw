@@ -278,7 +278,7 @@
     <name>srv:serviceType</name>
     <name>gmd:report</name>
     <name>gmd:distributionInfo</name>
-    <!-- <name>nrw:internalLocationInfo</name> -->
+    <name>nrw:NRW_internalInfo</name>
   </fieldsWithFieldset>
 
   <multilingualFields>
@@ -454,19 +454,28 @@
       </sidePanel>
 
       <tab id="default" default="true" mode="flat">
-        <!-- <section xpath="/gmd:MD_Metadata/gmd:identificationInfo"/> -->
-        <section xpath="gmd:identificationInfo">
-          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/nrw:internalContactInfo"/>
-        </section>
-        <section xpath="/gmd:MD_Metadata/gmd:referenceSystemInfo"/>
+        <section xpath="/gmd:MD_Metadata/gmd:identificationInfo"/>
+
+        <section xpath="/gmd:MD_Metadata/gmd:referenceSystemInfo" or="referenceSystemInfo" in="/gmd:MD_Metadata"/>
+          <text ref="spatialref_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
+        <text ref="spatialrefsrv_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
+
         <section xpath="/gmd:MD_Metadata/gmd:spatialRepresentationInfo"/>
-        <section xpath="/gmd:MD_Metadata/gmd:distributionInfo">
-          <field xpath="/gmd:MD_Metadata/gmd:distributionInfo/gmd:distributionFormat"/>
-          <field xpath="/gmd:MD_Metadata/gmd:distributionInfo/gmd:transferOptions"/>
-          <field xpath="/gmd:MD_Metadata/gmd:distributionInfo/nrw:internalLocationInfo"/>
-        </section>
+
+        <section xpath="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributionFormat"/>
+        <text ref="distribution_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
+         <text ref="distributionsrv_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
+
+        <section xpath="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions"/>
+          <text ref="distribution_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
+          <text ref="distributionsrv_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
+
+        <section xpath="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor"/>
+        <text ref="NRW_InternalInfo_help"/>
 
         <section xpath="/gmd:MD_Metadata/gmd:dataQualityInfo"/>
+        <text ref="dataquality_help"/>
+
         <section name="gmd:MD_Metadata">
           <field xpath="/gmd:MD_Metadata/gmd:fileIdentifier"/>
           <field xpath="/gmd:MD_Metadata/gmd:language" or="language" in="/gmd:MD_Metadata"/>
@@ -475,6 +484,7 @@
                  in="/gmd:MD_Metadata"/>
           <field xpath="/gmd:MD_Metadata/gmd:hierarchyLevel" or="hierarchyLevel"
                  in="/gmd:MD_Metadata"/>
+          <text ref="hierarchylevelname_help"/>
           <field xpath="/gmd:MD_Metadata/gmd:hierarchyLevelName" or="hierarchyLevelName"
                  in="/gmd:MD_Metadata"/>
           <field xpath="/gmd:MD_Metadata/gmd:dateStamp"/>

@@ -6,6 +6,7 @@
                 xmlns:gml="http://www.opengis.net/gml/3.2"
                 xmlns:xlink="http://www.w3.org/1999/xlink"
                 xmlns:gn="http://www.fao.org/geonetwork"
+                xmlns:nrw="http://naturalresources.wales/nrw"
                 xmlns:gn-fn-core="http://geonetwork-opensource.org/xsl/functions/core"
                 xmlns:gn-fn-metadata="http://geonetwork-opensource.org/xsl/functions/metadata"
                 xmlns:gn-fn-iso19139="http://geonetwork-opensource.org/xsl/functions/profiles/iso19139"
@@ -266,61 +267,6 @@
           <xsl:with-param name="type" select="'data-gn-topiccategory-selector-div'"/>
           <xsl:with-param name="editInfo" select="gn:element"/>
           <xsl:with-param name="parentEditInfo" select="../gn:element"/>
-        </xsl:call-template>
-      </xsl:with-param>
-    </xsl:call-template>
-  </xsl:template>
-
-    <!-- Internal Location Info boxed -->
-  <xsl:template mode="mode-iso19139"
-                match="nrw:internalLocationInfo[$schema='iso19139.nrw']"
-                priority="2200">
-
-    <xsl:param name="schema" select="$schema" required="no"/>
-    <xsl:param name="labels" select="$labels" required="no"/>
-    <xsl:param name="overrideLabel" select="''" required="no"/>
-
-    <xsl:variable name="xpath" select="gn-fn-metadata:getXPath(.)"/>
-    <xsl:variable name="isoType" select="if (../@gco:isoType) then ../@gco:isoType else ''"/>
-
-    <xsl:variable name="labelConfig" select="gn-fn-metadata:getLabel($schema, name(), $labels, name(..), $isoType, $xpath)"/>
-
-    <xsl:variable name="helper" select="gn-fn-metadata:getHelper($labelConfig/helper, .)"/>
-
-    <xsl:variable name="labelConfig">
-      <xsl:choose>
-        <xsl:when test="$overrideLabel != ''">
-          <element>
-            <label><xsl:value-of select="$overrideLabel"/></label>
-          </element>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:copy-of select="$labelConfig"/>
-        </xsl:otherwise>
-      </xsl:choose>
-    </xsl:variable>
-
-    <xsl:variable name="errors">
-      <xsl:if test="$showValidationErrors">
-        <xsl:call-template name="get-errors"/>
-      </xsl:if>
-    </xsl:variable>
-
-    <xsl:call-template name="render-boxed-element">
-      <xsl:with-param name="label" select="$labelConfig"/>
-      <xsl:with-param name="editInfo" select="gn:element"/>
-      <xsl:with-param name="errors" select="$errors"/>
-      <xsl:with-param name="cls" select="local-name()"/>
-      <xsl:with-param name="xpath" select="$xpath"/>
-      <xsl:with-param name="subTreeSnippet">
-        <xsl:call-template name="render-element">
-          <xsl:with-param name="label" select="$labelConfig"/>
-          <xsl:with-param name="value"
-                          select="gco:CharacterString"/>
-          <xsl:with-param name="cls" select="local-name()"/>
-          <xsl:with-param name="xpath" select="$xpath"/>
-          <xsl:with-param name="editInfo" select="gco:CharacterString/gn:element"/>
-          <xsl:with-param name="parentEditInfo" select="gn:element"/>
         </xsl:call-template>
       </xsl:with-param>
     </xsl:call-template>
