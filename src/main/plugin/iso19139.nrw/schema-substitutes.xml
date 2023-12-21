@@ -46,4 +46,8 @@
   <!-- just CoordinateSystemAxis (exclude ML_CoordinateSystemAxis) -->
   <field name="gml:CoordinateSystemAxis">
   </field>
+
+  <field name="gmd:MD_Distributor">
+    <substitute name="nrw:NRW_internalInfo"/>
+  </field>
 </fields>

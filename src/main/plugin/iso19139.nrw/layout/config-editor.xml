@@ -470,7 +470,19 @@
           <text ref="distribution_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
           <text ref="distributionsrv_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
 
-        <section xpath="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor"/>
+        <!-- this works but doesn't give me a plus button to add new elements -->
+        <!-- <section xpath="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor"/> -->
+
+        <!-- this doesn't display anything but the help -->
+        <section xpath="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/nrw:NRW_internalInfo" or="NRW_internalInfo"
+                 in="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor"/>
+
+        <!-- drilling down into the section -->
+        <!-- <section name="nrw:NRW_internalInfo">
+          <field xpath="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/nrw:NRW_internalInfo/nrw:internalLocationInfo"/>
+          <field xpath="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/nrw:NRW_internalInfo/nrw:internalContactInfo"/>
+          <field xpath="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/nrw:NRW_internalInfo/nrw:relatedTitle"/>
+        </section> -->
         <text ref="NRW_InternalInfo_help"/>
 
         <section xpath="/gmd:MD_Metadata/gmd:dataQualityInfo"/>
@@ -522,6 +534,8 @@
         <for name="gmd:date"/>
         <for name="nrw:internalContactInfo"/>
         <for name="nrw:internalLocationInfo"/>
+        <for name="nrw:relatedTitle"/>
+        <for name="nrw:NRW_internalInfo"/>
       </flatModeExceptions>
 
       <!--

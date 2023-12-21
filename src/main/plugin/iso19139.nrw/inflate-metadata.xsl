@@ -218,7 +218,7 @@
       <xsl:message> == applying transfer options template == </xsl:message>
       <xsl:apply-templates select="gmd:transferOptions" />
       <xsl:message> == applying nrw internal info == </xsl:message>
-      <xsl:copy-of select="gmd:distributor" />
+      <xsl:apply-templates select="gmd:distributor" />
 
     </xsl:copy>
 

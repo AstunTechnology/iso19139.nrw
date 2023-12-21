@@ -75,6 +75,11 @@
     <suggest name="gmd:description"/>
   </field>
 
+  <field name="gmd:distributor">
+    <suggest name="nrw:NRW_internalInfo"/>
+    <suggest name="gmd:MD_Distributor"/>
+  </field>
+
   <!-- Add a distribution format / INSPIRE requirement
     <field name="gmd:distributionInfo">
         <suggest name="gmd:MD_Distribution"/>

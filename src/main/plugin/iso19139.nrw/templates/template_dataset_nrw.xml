@@ -155,9 +155,6 @@
           </gmd:role>
         </gmd:CI_ResponsibleParty>
       </gmd:pointOfContact>
-         <nrw:internalContactInfo>
-          <gco:CharacterString>Some internal stuff</gco:CharacterString>
-        </nrw:internalContactInfo>
       <gmd:resourceMaintenance>
         <gmd:MD_MaintenanceInformation>
           <gmd:maintenanceAndUpdateFrequency>
@@ -322,12 +319,9 @@
       </gmd:transferOptions>
       <gmd:distributor>
       <nrw:NRW_internalInfo>
-        <nrw:internalLocationInfo>
-          <gco:CharacterString>A big old dump of location information</gco:CharacterString>
-        </nrw:internalLocationInfo>
-        <nrw:internalContactInfo>
-          <gco:CharacterString>A big old dump of contact information</gco:CharacterString>
-        </nrw:internalContactInfo>
+        <nrw:internalLocationInfo/>
+        <nrw:internalContactInfo/>
+        <nrw:relatedTitle/>
         </nrw:NRW_internalInfo>
       </gmd:distributor>
     </gmd:MD_Distribution>

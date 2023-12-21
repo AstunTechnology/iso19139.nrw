@@ -894,7 +894,12 @@
 <NRW_InternalInfo_help>
     <div class="row">
     <div class="col-xs-offset-2 col-xs-8">
-      <p class="help-block">Section for information about NRW internal contact and location</p>
+      <p class="help-block">Section for information about NRW extended elements:</p>
+      <ol class="help-block">
+        <li>Internal Location Information (optional, single occurrence)</li>
+        <li>Internal Contact Information (optional, single occurrence)</li>
+        <li>Related Title (optional, multiple occurrence)</li>
+      </ol>
       </div>
   </div>
 </NRW_InternalInfo_help>

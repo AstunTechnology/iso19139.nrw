@@ -21,17 +21,75 @@
 
 	<!-- Define element for Internal NRW Info elements. Extends gmd:distributionInfo -->
 
-	<xs:element name="NRW_internalInfo" type="nrw:internalLocationInfo_Type" subsitutionGroup="gmd:MD_Distributor"/>
+	<xs:element name="NRW_internalInfo" type="nrw:NRW_internalInfo_Type" subsitutionGroup="gmd:MD_Distributor"/>
 
-  <xs:complexType name="nrw:internalInfo_Type">
+
+	<xs:complexType name="NRW_internalInfo_Type">
+		<xs:annotation>
+			<xs:documentation>
+				NRW Internal Information
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="gmd:MD_Distributor">
+				<xs:sequence minOccurs="0">
+					<xs:sequence>
+					<xs:element name="internalLocationInfo" type="gco:CharacterString_PropertyType" minOccurs="0" maxOccurs="1"/>
+						<xs:element name="internalContactInfo" type="gco:CharacterString_PropertyType" minOccurs="0" maxOccurs="1"/>
+						<xs:element name="relatedTitle" type="gco:CharacterString_PropertyType" minOccurs="0"/>
+				</xs:sequence>
+				</xs:sequence>
+				<xs:attribute ref="gco:isoType" use="required" fixed="gmd:MD_Distributor"/> 
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="NRW_internalInfo_PropertyType">
+		<xs:sequence>
+		 <xs:element ref="nrw:NRW_internalInfo" minOccurs="1"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="gco:ObjectReference"/>
+		<xs:attribute ref="gco:nilReason"/>
+	</xs:complexType>
+
+ 
+
+  <!-- <xs:complexType name="nrw:internalLocationInfo_Type">
+		<xs:annotation>
+			<xs:documentation>Main parent element for NRW Elements</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="gco:AbstractObject_Type">
+				<xs:sequence>
+					<xs:element name="internalLocationInfo" type="gco:CharacterString_PropertyType" minOccurs="0" maxOccurs="1"/>
+						<xs:element name="internalContactInfo" type="gco:CharacterString_PropertyType" minOccurs="0" maxOccurs="1"/>
+						<xs:element name="relatedTitle" type="gco:CharacterString_PropertyType" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType> -->
+
+
+	 <!-- <xs:complexType name="nrw:internalInfo_Type">
 			<xs:complexContent>
 				<xs:extension base="gmd:MD_Distributor_Type">
 					<xs:sequence>
 						<xs:element name="internalLocationInfo" base="gco:CharacterString_PropertyType" minOccurs="0" maxOccurs="1"/>
 						<xs:element name="internalContactInfo" base="gco:CharacterString_PropertyType" minOccurs="0" maxOccurs="1"/>
+						<xs:element name="relatedTitle" base="gco:CharacterString_PropertyType" minOccurs="0"/>
 					</xs:sequence>
 				</xs:extension>
 			</xs:complexContent>
-</xs:complexType>
+</xs:complexType> -->
+
+<!-- <xs:element name="NRW_internalInfo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="internalLocationInfo" type="gco:CharacterString_PropertyType" minOccurs="0"/>
+        <xs:element name="internalContactInfo" type="gco:CharacterString_PropertyType" minOccurs="0"/>
+        <xs:element name="relatedTitle" type="gco:CharacterString_PropertyType" minOccurs="0"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element> -->
 
  </xs:schema>

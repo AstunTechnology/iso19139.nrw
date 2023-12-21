@@ -3585,4 +3585,8 @@
   <label>NRW Internal Contact</label>
   </element>
 
+  <element name="nrw:relatedTitle">
+  <label>NRW Related Title</label>
+  </element>
+
   </labels>
