@@ -200,7 +200,6 @@
   <xsl:template match="gmd:MD_Distribution">
     <xsl:copy>
       <xsl:copy-of select="@*" />
-      <xsl:message> == applying distribution format template == </xsl:message>
       <xsl:apply-templates select="gmd:distributionFormat" />
 
       <xsl:if test="not(gmd:distributionFormat)" >
@@ -215,10 +214,7 @@
             </gmd:MD_Format>
          </gmd:distributionFormat>
       </xsl:if>
-      <xsl:message> == applying transfer options template == </xsl:message>
       <xsl:apply-templates select="gmd:transferOptions" />
-      <xsl:message> == applying nrw internal info == </xsl:message>
-      <xsl:apply-templates select="gmd:distributor" />
 
     </xsl:copy>
 

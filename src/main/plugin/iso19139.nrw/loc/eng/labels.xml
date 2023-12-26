@@ -3573,8 +3573,8 @@
   </element>
 
   <!-- nrw specific -->
-  <element name="nrw:NRW_internalInfo">
-  <label>NRW Internal Info</label>
+  <element name="nrw:internalInfo">
+  <label>NRW Custom Info</label>
   </element> 
 
   <element name="nrw:internalLocationInfo">
@@ -3587,6 +3587,7 @@
 
   <element name="nrw:relatedTitle">
   <label>NRW Related Title</label>
+   <btnLabel>Add a Related Title</btnLabel>
   </element>
 
   </labels>

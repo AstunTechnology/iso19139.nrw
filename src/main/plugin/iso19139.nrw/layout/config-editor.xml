@@ -441,7 +441,7 @@
   <!-- View configuration -->
   <views>
 
-    <view name="default" default="true" hideTimeInCalendar="true" displayTooltipsMode="true">
+    <view name="default" default="true" hideTimeInCalendar="true">
       <sidePanel>
         <directive data-gn-validation-report="" data-initial-show-errors="true" data-initial-show-successes="false" data-initial-section-states="open"/>
         <directive data-gn-onlinesrc-list=""/>
@@ -471,19 +471,27 @@
           <text ref="distributionsrv_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
 
         <!-- this works but doesn't give me a plus button to add new elements -->
-        <!-- <section xpath="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor"/> -->
-
-        <!-- this doesn't display anything but the help -->
-        <section xpath="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/nrw:NRW_internalInfo" or="NRW_internalInfo"
-                 in="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor"/>
-
-        <!-- drilling down into the section -->
-        <!-- <section name="nrw:NRW_internalInfo">
-          <field xpath="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/nrw:NRW_internalInfo/nrw:internalLocationInfo"/>
-          <field xpath="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/nrw:NRW_internalInfo/nrw:internalContactInfo"/>
-          <field xpath="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/nrw:NRW_internalInfo/nrw:relatedTitle"/>
-        </section> -->
-        <text ref="NRW_InternalInfo_help"/>
+        <section name="nrw:internalInfo">
+          <field del="." xpath="/gmd:MD_Metadata/gmd:contentInfo/nrw:MD_ContentInfo/nrw:internalInfo/nrw:MD_InternalInfo/nrw:internalLocationInfo" or="internalLocationInfo" in="/gmd:MD_Metadata/gmd:contentInfo/nrw:MD_ContentInfo/nrw:internalInfo/nrw:MD_InternalInfo"/>
+          <text ref="NRW_InternalLocationInfo_help"/>
+          <field del="." xpath="/gmd:MD_Metadata/gmd:contentInfo/nrw:MD_ContentInfo/nrw:internalInfo/nrw:MD_InternalInfo/nrw:internalContactInfo" or="internalContactInfo" in="/gmd:MD_Metadata/gmd:contentInfo/nrw:MD_ContentInfo/nrw:internalInfo/nrw:MD_InternalInfo"/>
+          <text ref="NRW_InternalContactInfo_help"/>
+          <field del="." xpath="/gmd:MD_Metadata/gmd:contentInfo/nrw:MD_ContentInfo/nrw:internalInfo/nrw:MD_InternalInfo/nrw:relatedTitle"/>
+           <action type="add"
+                  name="relatedTitle"
+                  or="relatedTitle"
+                  in="/gmd:MD_Metadata/gmd:contentInfo/nrw:MD_ContentInfo/nrw:internalInfo/nrw:MD_InternalInfo">
+            <template>
+              <snippet>
+                <nrw:relatedTitle>
+                  <gco:CharacterString/>
+                </nrw:relatedTitle>
+              </snippet>
+            </template>
+          </action>
+          <text ref="NRW_RelatedTitle_help"/>
+        </section>
+   
 
         <section xpath="/gmd:MD_Metadata/gmd:dataQualityInfo"/>
         <text ref="dataquality_help"/>
@@ -532,10 +540,13 @@
         <for name="gmd:report"/>
         <for name="gmd:lineage"/>
         <for name="gmd:date"/>
+        <for name="gmd:contentInfo"/>
         <for name="nrw:internalContactInfo"/>
         <for name="nrw:internalLocationInfo"/>
         <for name="nrw:relatedTitle"/>
-        <for name="nrw:NRW_internalInfo"/>
+        <for name="nrw:internalInfo"/>
+        <for name="nrw:MD_ContentInfo"/>
+        <for name="nrw:MD_InternalInfo"/>
       </flatModeExceptions>
 
       <!--

@@ -290,6 +290,17 @@
       </gmd:extent>
     </gmd:MD_DataIdentification>
   </gmd:identificationInfo>
+  <gmd:contentInfo>
+    <nrw:MD_ContentInfo>
+      <nrw:internalInfo>
+        <nrw:MD_InternalInfo>
+          <nrw:internalLocationInfo><gco:CharacterString/></nrw:internalLocationInfo>
+          <nrw:internalContactInfo><gco:CharacterString/></nrw:internalContactInfo>
+          <nrw:relatedTitle><gco:CharacterString/></nrw:relatedTitle>
+        </nrw:MD_InternalInfo>
+      </nrw:internalInfo>
+    </nrw:MD_ContentInfo>
+  </gmd:contentInfo>
   <gmd:distributionInfo xmlns:nrw="http://naturalresources.wales/nrw" xmlns:gml="http://www.opengis.net/gml/3.2">
     <gmd:MD_Distribution>
       <gmd:distributionFormat>
@@ -317,14 +328,7 @@
           </gmd:onLine>
         </gmd:MD_DigitalTransferOptions>
       </gmd:transferOptions>
-      <gmd:distributor>
-      <nrw:NRW_internalInfo>
-        <nrw:internalLocationInfo/>
-        <nrw:internalContactInfo/>
-        <nrw:relatedTitle/>
-        </nrw:NRW_internalInfo>
-      </gmd:distributor>
-    </gmd:MD_Distribution>
+      </gmd:MD_Distribution>
   </gmd:distributionInfo>
   <gmd:dataQualityInfo xmlns:nrw="http://naturalresources.wales/nrw" xmlns:gml="http://www.opengis.net/gml/3.2">
     <gmd:DQ_DataQuality>

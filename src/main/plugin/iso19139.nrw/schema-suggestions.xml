@@ -75,10 +75,10 @@
     <suggest name="gmd:description"/>
   </field>
 
-  <field name="gmd:distributor">
+  <!-- <field name="gmd:distributor">
     <suggest name="nrw:NRW_internalInfo"/>
     <suggest name="gmd:MD_Distributor"/>
-  </field>
+  </field> -->
 
   <!-- Add a distribution format / INSPIRE requirement
     <field name="gmd:distributionInfo">
@@ -295,6 +295,25 @@
     <suggest name="gmd:classification"/>
     <suggest name="gmd:useLimitation"/>
   </field> -->
+
+  <!-- <field name="nrw:MD_ContentInfo">
+    <suggest name="nrw:internalInfo"/>
+  </field>
+
+  <field name="nrw:internalInfo">
+    <suggest name="nrw:MD_InternalInfo"/>
+  </field>
+
+  <field name="nrw:MD_InternalInfo">
+    <suggest name="nrw:internalLocationInfo"/>
+    <suggest name="nrw:internalContactInfo"/>
+    <suggest name="nrw:relatedTitle"/>
+  </field>
+
+  <field name="gmd:contentInfo">
+    <suggest name="nrw:MD_ContentInfo"/>
+  </field> -->
+
 
 
 </fields>

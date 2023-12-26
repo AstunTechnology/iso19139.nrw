@@ -891,17 +891,26 @@
   </div>
 </dataqualitysrv_help>
 
-<NRW_InternalInfo_help>
+<NRW_InternalLocationInfo_help>
     <div class="row">
     <div class="col-xs-offset-2 col-xs-8">
-      <p class="help-block">Section for information about NRW extended elements:</p>
-      <ol class="help-block">
-        <li>Internal Location Information (optional, single occurrence)</li>
-        <li>Internal Contact Information (optional, single occurrence)</li>
-        <li>Related Title (optional, multiple occurrence)</li>
-      </ol>
+      <p class="help-block">NRW Internal Location Information (optional, single occurrence)</p>
       </div>
   </div>
-</NRW_InternalInfo_help>
+</NRW_InternalLocationInfo_help>
+<NRW_InternalContactInfo_help>
+    <div class="row">
+    <div class="col-xs-offset-2 col-xs-8">
+      <p class="help-block">NRW Internal Contact Information (optional, single occurrence)</p>
+      </div>
+  </div>
+</NRW_InternalContactInfo_help>
+<NRW_RelatedTitle_help>
+    <div class="row">
+    <div class="col-xs-offset-2 col-xs-8">
+      <p class="help-block">NRW Related Title (optional, multiple occurrence)</p>
+      </div>
+  </div>
+</NRW_RelatedTitle_help>
 
 </strings>

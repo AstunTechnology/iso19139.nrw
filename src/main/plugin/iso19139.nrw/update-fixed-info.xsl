@@ -147,7 +147,6 @@
         <xsl:message>=== Removing empty characterString element ===</xsl:message>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:message>=== Retaining completed characterString element ===</xsl:message>
         <xsl:copy>
           <xsl:apply-templates select="@*|node()"/>
         </xsl:copy>
@@ -162,7 +161,6 @@
         <xsl:message>=== Removing empty URL element ===</xsl:message>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:message>=== Retaining completed URL element ===</xsl:message>
         <xsl:copy>
           <xsl:apply-templates select="@*|node()"/>
         </xsl:copy>
@@ -235,7 +233,6 @@
                                      codeListValue="utf8"/>
         </xsl:when>
         <xsl:otherwise>
-          <xsl:message>==== Copying existing encoding ====</xsl:message>
           <xsl:apply-templates select="gmd:MD_CharacterSetCode"/>
         </xsl:otherwise>
         </xsl:choose>
@@ -280,7 +277,6 @@
                 <xsl:message>=== Removing Empty Coupled Resource ===</xsl:message>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:message>=== Retaining Non-Empty Coupled Resource ===</xsl:message>
                 <xsl:copy>
                     <xsl:apply-templates select="@*|node()"/>
                 </xsl:copy>

@@ -19,12 +19,46 @@
 		<xs:documentation>Extensions to hold additional NRW elements</xs:documentation>
 	</xs:annotation>
 
-	<!-- Define element for Internal NRW Info elements. Extends gmd:distributionInfo -->
+	<!-- Define element for Internal NRW Info elements. Extends gmd:contentInfo -->
 
-	<xs:element name="NRW_internalInfo" type="nrw:NRW_internalInfo_Type" subsitutionGroup="gmd:MD_Distributor"/>
+	<xs:element name="MD_ContentInfo" type="nrw:MD_ContentInfo_Type" subsitutionGroup="gmd:AbstractMD_ContentInformation"/>
+
+	<xs:complexType name="MD_ContentInfo_Type">
+		<xs:complexContent>
+			<xs:extension base="gmd:AbstractMD_ContentInformation_Type">
+				<xs:sequence>
+					<xs:element minOccurs="0" maxOccurs="1" name="internalInfo" type="nrw:MD_InternalInfo_PropertyType"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:element name="MD_InternalInfo" type="nrw:MD_InternalInfo_Type"/>
+
+	<xs:complexType name="MD_InternalInfo_PropertyType">
+		<xs:sequence minOccurs="0">
+			<xs:element ref="nrw:MD_InternalInfo" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+		 <xs:attributeGroup ref="gco:ObjectReference"/>
+    <xs:attribute ref="gco:nilReason"/>
+	</xs:complexType>
+
+	<xs:complexType name="MD_InternalInfo_Type">
+		<xs:complexContent>
+			<xs:extension base="gco:AbstractObject_Type">
+				<xs:sequence>
+					<xs:element minOccurs="0" maxOccurs="1" name="internalLocationInfo" type="gco:CharacterString_PropertyType"/>
+					<xs:element minOccurs="0" maxOccurs="1" name="internalContactInfo" type="gco:CharacterString_PropertyType"/>
+					<xs:element minOccurs="0" maxOccurs="unbounded" name="relatedTitle" type="gco:CharacterString_PropertyType"/>
+				</xs:sequence>		
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	
 
 
-	<xs:complexType name="NRW_internalInfo_Type">
+	<!-- <xs:complexType name="NRW_internalInfo_Type">
 		<xs:annotation>
 			<xs:documentation>
 				NRW Internal Information
@@ -50,7 +84,7 @@
 		</xs:sequence>
 		<xs:attributeGroup ref="gco:ObjectReference"/>
 		<xs:attribute ref="gco:nilReason"/>
-	</xs:complexType>
+	</xs:complexType> -->
 
  
 

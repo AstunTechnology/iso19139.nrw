@@ -31,7 +31,7 @@
            xmlns:nrw="http://naturalresources.wales/nrw"
            elementFormDefault="qualified"
 >
-<!--   <xs:include schemaLocation="schema/gmd/metadataApplication.xsd"/>-->  
+<xs:include schemaLocation="schema/gmd/metadataApplication.xsd"/>
   <xs:include schemaLocation="schema/extensions/nrw/nrw1.xsd"/>
   <xs:include schemaLocation="schema/extensions/medin/medin3.xsd"/>
   <xs:import namespace="http://www.isotc211.org/2005/srv" schemaLocation="schema/srv/srv.xsd"/>
