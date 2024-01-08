@@ -58,6 +58,7 @@
       <xsl:apply-templates select="gmd:metadataStandardVersion"/>
       <xsl:apply-templates select="gmd:referenceSystemInfo"/>
       <xsl:apply-templates select="gmd:identificationInfo"/>
+      <xsl:apply-templates select="gmd:contentInfo"/>
       <xsl:apply-templates select="gmd:distributionInfo"/>
       <xsl:apply-templates select="gmd:dataQualityInfo"/>
 
