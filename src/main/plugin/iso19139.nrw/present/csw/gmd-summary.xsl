@@ -32,8 +32,7 @@
                 exclude-result-prefixes="#all"
                 version="2.0">
 
-  <xsl:param name="displayInfo"/>
-
+ 
   <!-- =================================================================== -->
 
   <!-- Convert ISO profile elements to their base type -->
@@ -61,11 +60,6 @@
       <xsl:apply-templates select="gmd:contentInfo"/>
       <xsl:apply-templates select="gmd:distributionInfo"/>
       <xsl:apply-templates select="gmd:dataQualityInfo"/>
-
-      <!-- GeoNetwork elements added when resultType is equal to results_with_summary -->
-      <xsl:if test="$displayInfo = 'true'">
-        <xsl:copy-of select="$info"/>
-      </xsl:if>
 
     </xsl:element>
   </xsl:template>
@@ -213,7 +207,7 @@
   <!-- =================================================================== -->
 
   <xsl:template match="@*|node()">
-    <xsl:copy>
+    <xsl:copy copy-namespaces="no">
       <xsl:apply-templates select="@*|node()"/>
     </xsl:copy>
   </xsl:template>
