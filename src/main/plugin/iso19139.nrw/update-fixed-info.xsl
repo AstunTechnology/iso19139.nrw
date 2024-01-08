@@ -67,9 +67,9 @@
 
   <!-- remove empty gco:CharacterString child nodes that have been added by inflate-metadata -->
 
-<xsl:template match="nrw:MD_ContentInfo" priority="10">
+<xsl:template match="gmd:contentInfo" priority="10">
         <xsl:choose>
-            <xsl:when test="[not(*)]">
+            <xsl:when test="not(*)">
                 <xsl:message>=== Empty NRW ===</xsl:message>
             </xsl:when>
             <xsl:otherwise>
