@@ -27,6 +27,7 @@
                 xmlns:gco="http://www.isotc211.org/2005/gco"
                 xmlns:gmd="http://www.isotc211.org/2005/gmd"
                 xmlns:gss="http://www.isotc211.org/2005/gss"
+                xmlns:nrw="http://naturalresources.wales/nrw"
                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                 xmlns:xlink="http://www.w3.org/1999/xlink"
                 xmlns:gn-fn-iso19139="http://geonetwork-opensource.org/xsl/functions/profiles/iso19139"
@@ -66,19 +67,19 @@
 
   <!-- remove empty gco:CharacterString child nodes that have been added by inflate-metadata -->
 
-<!-- <xsl:template match="//*[@gco:nilReason]/gco:CharacterString">
+<xsl:template match="nrw:MD_ContentInfo" priority="10">
         <xsl:choose>
-            <xsl:when test="not(text())">
-                <xsl:message>Empty</xsl:message>
+            <xsl:when test="[not(*)]">
+                <xsl:message>=== Empty NRW ===</xsl:message>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:message>Not Empty</xsl:message>
+                <xsl:message>=== Not Empty NRW ===</xsl:message>
                 <xsl:copy>
                     <xsl:apply-templates select="@*|node()"/>
                 </xsl:copy>
             </xsl:otherwise>
         </xsl:choose>
-    </xsl:template> -->
+    </xsl:template>
 
     <!--  Delete empty keyword elements  -->
   <!-- <xsl:template match="//gmd:descriptiveKeywords[./gmd:MD_Keywords/gmd:keyword/@gco:nilReason='missing']">

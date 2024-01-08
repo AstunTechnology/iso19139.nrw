@@ -278,7 +278,8 @@
     <name>srv:serviceType</name>
     <name>gmd:report</name>
     <name>gmd:distributionInfo</name>
-    <name>nrw:NRW_internalInfo</name>
+    <name>nrw:MD_ContentInfo</name>
+    <name>nrw:internalInfo</name>
   </fieldsWithFieldset>
 
   <multilingualFields>
@@ -470,7 +471,7 @@
           <text ref="distribution_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
           <text ref="distributionsrv_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
 
-        <!-- this works but doesn't give me a plus button to add new elements -->
+        <section name="gmd:contentInfo">
         <section name="nrw:internalInfo">
           <field del="." xpath="/gmd:MD_Metadata/gmd:contentInfo/nrw:MD_ContentInfo/nrw:internalInfo/nrw:MD_InternalInfo/nrw:internalLocationInfo" or="internalLocationInfo" in="/gmd:MD_Metadata/gmd:contentInfo/nrw:MD_ContentInfo/nrw:internalInfo/nrw:MD_InternalInfo"/>
           <text ref="NRW_InternalLocationInfo_help"/>
@@ -491,7 +492,7 @@
           </action>
           <text ref="NRW_RelatedTitle_help"/>
         </section>
-   
+        </section>
 
         <section xpath="/gmd:MD_Metadata/gmd:dataQualityInfo"/>
         <text ref="dataquality_help"/>
