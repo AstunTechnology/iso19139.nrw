@@ -23,15 +23,15 @@
   -->
 
 <editor xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xmlns:gn="http://www.fao.org/geonetwork"
-        xmlns:gco="http://www.isotc211.org/2005/gco"
-        xmlns:gmd="http://www.isotc211.org/2005/gmd"
-        xmlns:gmx="http://www.isotc211.org/2005/gmx"
-        xmlns:srv="http://www.isotc211.org/2005/srv"
-        xmlns:gml="http://www.opengis.net/gml/3.2"
-        xmlns:xlink="http://www.w3.org/1999/xlink"
-        xmlns:nrw="http://naturalresources.wales/nrw"
-        xsi:noNamespaceSchemaLocation="../../../../../../config-editor.xsd">
+  xmlns:gn="http://www.fao.org/geonetwork"
+  xmlns:gco="http://www.isotc211.org/2005/gco"
+  xmlns:gmd="http://www.isotc211.org/2005/gmd"
+  xmlns:gmx="http://www.isotc211.org/2005/gmx"
+  xmlns:srv="http://www.isotc211.org/2005/srv"
+  xmlns:gml="http://www.opengis.net/gml/3.2"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  xmlns:nrw="http://naturalresources.wales/nrw"
+  xsi:noNamespaceSchemaLocation="../../../../../../config-editor.xsd">
 
   <!-- Form field type configuration. Default is text. -->
   <fields>
@@ -75,13 +75,8 @@
           </xsl:template>
           Update-fixed-info.xsl already removes gco:Boolean when empty due to nilreason attribute, to avoid xsd errors. No need to change it.
     -->
-    <for name="gco:Boolean"
-         xpath="/gmd:MD_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_DomainConsistency/gmd:result/gmd:DQ_ConformanceResult/gmd:pass"
-         use="data-gn-checkbox-with-nilreason">
-      <directiveAttributes
-        data-tag-name="gmd:pass"
-        data-nilreason="eval#@gco:nilReason"
-        data-labels='{"true": "conformant", "false": "notConformant", "unknown": "notEvaluated"}'/>
+    <for name="gco:Boolean" xpath="/gmd:MD_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_DomainConsistency/gmd:result/gmd:DQ_ConformanceResult/gmd:pass" use="data-gn-checkbox-with-nilreason">
+      <directiveAttributes data-tag-name="gmd:pass" data-nilreason="eval#@gco:nilReason" data-labels='{"true": "conformant", "false": "notConformant", "unknown": "notEvaluated"}'/>
     </for>
 
     <for name="gco:Date" use="data-gn-date-picker"/>
@@ -104,108 +99,44 @@
     <!--
     Enable the following to use subtemplates for extent type.
     <for name="gmd:extent" addDirective="data-gn-directory-entry-selector">
-      <directiveAttributes
-        data-template-add-action="true"
-        data-search-action="true"
-        data-popup-action="true"
-        data-template-type="extent"
-        data-filter='{"_root": "gmd:EX_Extent"}'
-        data-insert-modes=""/>
+      <directiveAttributes data-template-add-action="true" data-search-action="true" data-popup-action="true" data-template-type="extent" data-filter='{"_root": "gmd:EX_Extent"}' data-insert-modes=""/>
     </for>
 
     for formats:
     <for name="gmd:resourceFormat" addDirective="data-gn-directory-entry-selector">
-      <directiveAttributes
-              data-template-add-action="false"
-              data-search-action="true"
-              data-popup-action="true"
-              data-template-type="format"
-              data-filter='{"_root": "gmd:MD_Format"}'
-              data-insert-modes="xlink"/>
+      <directiveAttributes data-template-add-action="false" data-search-action="true" data-popup-action="true" data-template-type="format" data-filter='{"_root": "gmd:MD_Format"}' data-insert-modes="xlink"/>
     </for>     -->
-<!--     <for name="gmd:distributionFormat" addDirective="data-gn-directory-entry-selector">
-      <directiveAttributes
-              data-template-add-action="false"
-              data-search-action="true"
-              data-popup-action="true"
-              data-template-type="format"
-              data-insert-modes=""
-              data-filter='{"_root": "gmd:MD_Format"}'
-              data-insert-modes="xlink"/>
+    <!--     <for name="gmd:distributionFormat" addDirective="data-gn-directory-entry-selector">
+      <directiveAttributes data-template-add-action="false" data-search-action="true" data-popup-action="true" data-template-type="format" data-insert-modes="" data-filter='{"_root": "gmd:MD_Format"}' data-insert-modes="xlink"/>
     </for> -->
 
 
     <for name="gmd:contact" addDirective="data-gn-directory-entry-selector">
-      <directiveAttributes
-        data-template-add-action="true"
-        data-search-action="true"
-        data-popup-action="true"
-        data-template-type="contact"
-        data-insert-modes=""
-        data-variables="gmd:role/gmd:CI_RoleCode/@codeListValue~{role}"/>
+      <directiveAttributes data-template-add-action="true" data-search-action="true" data-popup-action="true" data-template-type="contact" data-insert-modes="" data-variables="gmd:role/gmd:CI_RoleCode/@codeListValue~{role}"/>
     </for>
     <for name="gmd:pointOfContact" addDirective="data-gn-directory-entry-selector">
-      <directiveAttributes
-        data-template-add-action="true"
-        data-search-action="true"
-        data-popup-action="true"
-        data-template-type="contact"
-        data-insert-modes=""
-        data-variables="gmd:role/gmd:CI_RoleCode/@codeListValue~{role}"/>
+      <directiveAttributes data-template-add-action="true" data-search-action="true" data-popup-action="true" data-template-type="contact" data-insert-modes="" data-variables="gmd:role/gmd:CI_RoleCode/@codeListValue~{role}"/>
     </for>
     <for name="gmd:distributorContact" addDirective="data-gn-directory-entry-selector">
-      <directiveAttributes
-        data-template-add-action="true"
-        data-search-action="true"
-        data-popup-action="true"
-        data-template-type="contact"
-        data-insert-modes=""
-        data-variables="gmd:role/gmd:CI_RoleCode/@codeListValue~{role}"/>
+      <directiveAttributes data-template-add-action="true" data-search-action="true" data-popup-action="true" data-template-type="contact" data-insert-modes="" data-variables="gmd:role/gmd:CI_RoleCode/@codeListValue~{role}"/>
     </for>
     <for name="gmd:processor" addDirective="data-gn-directory-entry-selector">
-      <directiveAttributes
-        data-template-add-action="true"
-        data-search-action="true"
-        data-popup-action="true"
-        data-template-type="contact"
-        data-insert-modes=""
-        data-variables="gmd:role/gmd:CI_RoleCode/@codeListValue~{role}"/>
+      <directiveAttributes data-template-add-action="true" data-search-action="true" data-popup-action="true" data-template-type="contact" data-insert-modes="" data-variables="gmd:role/gmd:CI_RoleCode/@codeListValue~{role}"/>
     </for>
     <for name="gmd:citedResponsibleParty" addDirective="data-gn-directory-entry-selector">
-      <directiveAttributes
-        data-template-add-action="true"
-        data-search-action="true"
-        data-popup-action="true"
-        data-template-type="contact"
-        data-insert-modes=""
-        data-variables="gmd:role/gmd:CI_RoleCode/@codeListValue~{role}"/>
+      <directiveAttributes data-template-add-action="true" data-search-action="true" data-popup-action="true" data-template-type="contact" data-insert-modes="" data-variables="gmd:role/gmd:CI_RoleCode/@codeListValue~{role}"/>
     </for>
     <for name="gmd:report" addDirective="data-gn-directory-entry-selector">
-      <directiveAttributes
-        data-template-add-action="true"
-        data-search-action="true"
-        data-popup-action="true"
-        data-filter='{"root": "gmd:DQ_*"}'
-        data-insert-modes=""
-        data-template-type="report"/>
+      <directiveAttributes data-template-add-action="true" data-search-action="true" data-popup-action="true" data-filter='{"root": "gmd:DQ_*"}' data-insert-modes="" data-template-type="report"/>
     </for>
     <for name="gmd:lineage" addDirective="data-gn-directory-entry-selector">
-      <directiveAttributes
-        data-template-add-action="true"
-        data-search-action="true"
-        data-popup-action="true"
-        data-filter='{"root": "gmd:LI_*"}'
-        data-insert-modes=""
-        data-template-type="lineage"/>
+      <directiveAttributes data-template-add-action="true" data-search-action="true" data-popup-action="true" data-filter='{"root": "gmd:LI_*"}' data-insert-modes="" data-template-type="lineage"/>
     </for>
 
 
     <!-- Example configuration: Add onLine source from subtemplate
     <for name="gmd:onLine" addDirective="data-gn-directory-entry-selector">
-      <directiveAttributes
-              data-template-add-action="true"
-              data-template-type="onLine"
-              data-filter='{"_root": "gmd:CI_OnlineResource"}'/>
+      <directiveAttributes data-template-add-action="true" data-template-type="onLine" data-filter='{"_root": "gmd:CI_OnlineResource"}'/>
     </for>
     -->
 
@@ -393,8 +324,7 @@
         <col xpath="srv:DCP"/>
         <col xpath="srv:connectPoint/gmd:CI_OnlineResource/gmd:linkage"/>
         <col del=".."/>
-        <section xpath="srv:SV_OperationMetadata/srv:parameters"
-                 or="parameters" in="srv:SV_OperationMetadata"/>
+        <section xpath="srv:SV_OperationMetadata/srv:parameters" or="parameters" in="srv:SV_OperationMetadata"/>
       </row>
     </table>
     <table for="srv:SV_CoupledResource">
@@ -442,76 +372,154 @@
   <!-- View configuration -->
   <views>
 
+    <!-- Default View -->
     <view name="default" default="true" hideTimeInCalendar="true">
       <sidePanel>
         <directive data-gn-validation-report="" data-initial-show-errors="true" data-initial-show-successes="false" data-initial-section-states="open"/>
         <directive data-gn-onlinesrc-list=""/>
-        <directive gn-geo-publisher=""
-                   data-ng-if="gnCurrentEdit.geoPublisherConfig"
-                   data-config="{{gnCurrentEdit.geoPublisherConfig}}"
-                   data-lang="lang"/>
+        <directive gn-geo-publisher="" data-ng-if="gnCurrentEdit.geoPublisherConfig" data-config="{{gnCurrentEdit.geoPublisherConfig}}" data-lang="lang"/>
         <directive data-gn-suggestion-list=""/>
         <directive data-gn-need-help="user-guide/describing-information/creating-metadata.html"/>
       </sidePanel>
 
       <tab id="default" default="true" mode="flat">
-        <section xpath="/gmd:MD_Metadata/gmd:identificationInfo"/>
+        <section name="gmd:identificationInfo">
+
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:title" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
+          <text ref="title_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
+
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:alternateTitle" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
+
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/gmd:citation/gmd:CI_Citation/gmd:title" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
+          <text ref="titlesrv_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
+
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/gmd:citation/gmd:CI_Citation/gmd:alternateTitle" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
+
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:date" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
+          <text ref="refdate_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
+
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/gmd:citation/gmd:CI_Citation/gmd:date" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
+          <text ref="refdatesrv_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
+
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:edition"/>
+
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:editionDate"/>
+
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier"/>
+          <text ref="resourceidentifier_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
+
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:abstract" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
+          <text ref="abstract_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
+
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/gmd:abstract" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
+          <text ref="abstractsrv_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
+
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:pointOfContact"/>
+          <text ref="responsiblepartysrv_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
+          <text ref="responsibleparty_help"/>
+
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceMaintenance" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
+          <text ref="maintenance_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
+
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords" or="descriptiveKeywords" in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
+          <text ref="keyword_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
+
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/gmd:descriptiveKeywords" or="descriptiveKeywords" in="/gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
+          <text ref="keywordsrv_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
+
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints[gmd:accessConstraints]"/>
+          <text ref="limitations_help"/>
+
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints[gmd:useConstraints]"/>
+          <text ref="use_help"/>
+
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:spatialRepresentationType"/>
+          <text ref="spatialrep_help"/>
+
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:spatialResolution"/>
+          <text ref="spatialresolution_help" />
+
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicDescription"/>
+          <text ref="extent_help"/>
+
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicBoundingBox"/>
+          <text ref="bbox_help" />
+
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:temporalElement"/>
+          <text ref="tempextent_help"/>
+
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:verticalElement" />
+          <text ref="verticalextent_help" />
+
+        </section>
 
         <section xpath="/gmd:MD_Metadata/gmd:referenceSystemInfo" or="referenceSystemInfo" in="/gmd:MD_Metadata"/>
-          <text ref="spatialref_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
+        <text ref="spatialref_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
         <text ref="spatialrefsrv_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
 
         <section xpath="/gmd:MD_Metadata/gmd:spatialRepresentationInfo"/>
 
         <section xpath="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributionFormat"/>
         <text ref="distribution_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
-         <text ref="distributionsrv_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
+        <text ref="distributionsrv_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
 
         <section xpath="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions"/>
-          <text ref="distribution_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
-          <text ref="distributionsrv_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
+        <text ref="distribution_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
+        <text ref="distributionsrv_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
 
         <section name="gmd:contentInfo">
-        <section name="nrw:internalInfo">
-          <field del="." xpath="/gmd:MD_Metadata/gmd:contentInfo/nrw:MD_ContentInfo/nrw:internalInfo/nrw:MD_InternalInfo/nrw:internalLocationInfo" or="internalLocationInfo" in="/gmd:MD_Metadata/gmd:contentInfo/nrw:MD_ContentInfo/nrw:internalInfo/nrw:MD_InternalInfo"/>
-          <text ref="NRW_InternalLocationInfo_help"/>
-          <field del="." xpath="/gmd:MD_Metadata/gmd:contentInfo/nrw:MD_ContentInfo/nrw:internalInfo/nrw:MD_InternalInfo/nrw:internalContactInfo" or="internalContactInfo" in="/gmd:MD_Metadata/gmd:contentInfo/nrw:MD_ContentInfo/nrw:internalInfo/nrw:MD_InternalInfo"/>
-          <text ref="NRW_InternalContactInfo_help"/>
-          <field del="." xpath="/gmd:MD_Metadata/gmd:contentInfo/nrw:MD_ContentInfo/nrw:internalInfo/nrw:MD_InternalInfo/nrw:relatedTitle"/>
-           <action type="add"
-                  name="relatedTitle"
-                  or="relatedTitle"
-                  in="/gmd:MD_Metadata/gmd:contentInfo/nrw:MD_ContentInfo/nrw:internalInfo/nrw:MD_InternalInfo">
-            <template>
-              <snippet>
-                <nrw:relatedTitle>
-                  <gco:CharacterString/>
-                </nrw:relatedTitle>
-              </snippet>
-            </template>
-          </action>
-          <text ref="NRW_RelatedTitle_help"/>
-        </section>
+          <section name="nrw:internalInfo">
+            <field del="." xpath="/gmd:MD_Metadata/gmd:contentInfo/nrw:MD_ContentInfo/nrw:internalInfo/nrw:MD_InternalInfo/nrw:internalLocationInfo" or="internalLocationInfo" in="/gmd:MD_Metadata/gmd:contentInfo/nrw:MD_ContentInfo/nrw:internalInfo/nrw:MD_InternalInfo"/>
+            <text ref="NRW_InternalLocationInfo_help"/>
+            <field del="." xpath="/gmd:MD_Metadata/gmd:contentInfo/nrw:MD_ContentInfo/nrw:internalInfo/nrw:MD_InternalInfo/nrw:internalContactInfo" or="internalContactInfo" in="/gmd:MD_Metadata/gmd:contentInfo/nrw:MD_ContentInfo/nrw:internalInfo/nrw:MD_InternalInfo"/>
+            <text ref="NRW_InternalContactInfo_help"/>
+            <field del="." xpath="/gmd:MD_Metadata/gmd:contentInfo/nrw:MD_ContentInfo/nrw:internalInfo/nrw:MD_InternalInfo/nrw:relatedTitle"/>
+            <action type="add" name="relatedTitle" or="relatedTitle" in="/gmd:MD_Metadata/gmd:contentInfo/nrw:MD_ContentInfo/nrw:internalInfo/nrw:MD_InternalInfo">
+              <template>
+                <snippet>
+                  <nrw:relatedTitle>
+                    <gco:CharacterString/>
+                  </nrw:relatedTitle>
+                </snippet>
+              </template>
+            </action>
+            <text ref="NRW_RelatedTitle_help"/>
+          </section>
         </section>
 
-        <section xpath="/gmd:MD_Metadata/gmd:dataQualityInfo"/>
-        <text ref="dataquality_help"/>
+        <section or="dataQualityInfo" in="/gmd:MD_Metadata">
+          <field xpath="/gmd:MD_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:scope" />
+          <field xpath="/gmd:MD_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report" />
+          <text ref="dataquality_help"/>
+
+          <field xpath="/gmd:MD_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:lineage" />
+          <text ref="lineage_help" />
+        </section>
 
         <section name="gmd:MD_Metadata">
           <field xpath="/gmd:MD_Metadata/gmd:fileIdentifier"/>
+          <text ref="fileidentifier_help" />
+
           <field xpath="/gmd:MD_Metadata/gmd:language" or="language" in="/gmd:MD_Metadata"/>
+          <text ref="datasetlang_help" />
+
           <field xpath="/gmd:MD_Metadata/gmd:characterSet"/>
-          <field xpath="/gmd:MD_Metadata/gmd:parentIdentifier" or="parentIdentifier"
-                 in="/gmd:MD_Metadata"/>
-          <field xpath="/gmd:MD_Metadata/gmd:hierarchyLevel" or="hierarchyLevel"
-                 in="/gmd:MD_Metadata"/>
+          <text ref="charset_help" />
+
+          <field xpath="/gmd:MD_Metadata/gmd:parentIdentifier" or="parentIdentifier" in="/gmd:MD_Metadata"/>
+          <text ref="parentidentifier_help" />
+
+          <field xpath="/gmd:MD_Metadata/gmd:hierarchyLevel" or="hierarchyLevel" in="/gmd:MD_Metadata"/>
           <text ref="hierarchylevelname_help"/>
-          <field xpath="/gmd:MD_Metadata/gmd:hierarchyLevelName" or="hierarchyLevelName"
-                 in="/gmd:MD_Metadata"/>
+
+          <field xpath="/gmd:MD_Metadata/gmd:hierarchyLevelName" or="hierarchyLevelName" in="/gmd:MD_Metadata"/>
           <field xpath="/gmd:MD_Metadata/gmd:dateStamp"/>
           <field xpath="/gmd:MD_Metadata/gmd:metadataStandardName"/>
           <field xpath="/gmd:MD_Metadata/gmd:metadataStandardVersion"/>
+
           <field xpath="/gmd:MD_Metadata/gmd:contact" or="contact" in="/gmd:MD_Metadata"/>
+          <text ref="metadatacontact_help" />
+
           <field xpath="/gmd:MD_Metadata/gmd:dataSetURI" or="dataSetURI" in="/gmd:MD_Metadata"/>
           <field xpath="/gmd:MD_Metadata/gmd:locale" or="locale" in="/gmd:MD_Metadata"/>
           <field xpath="/gmd:MD_Metadata/gmd:series"/>
@@ -558,61 +566,47 @@
       eg. only 2 INSPIRE themes with Anchor.
 
       <thesaurusList>
-        <thesaurus key="external.theme.inspire-theme"
-                   maxtags="2"
-                   fieldset="false"
-                   transformations="to-iso19139-keyword-with-anchor"/>
+        <thesaurus key="external.theme.inspire-theme" maxtags="2" fieldset="false" transformations="to-iso19139-keyword-with-anchor"/>
       </thesaurusList>
       -->
 
       <thesaurusList>
-        <thesaurus key="external.none.allThesaurus"
-                   fieldset="false"/>
-        <thesaurus key="external.theme.httpinspireeceuropaeutheme-theme"
-                   maxtags="2"
-                   fieldset="false"
-                   transformations="to-iso19139-keyword-with-anchor"/>
+        <thesaurus key="external.none.allThesaurus" fieldset="false"/>
+        <thesaurus key="external.theme.httpinspireeceuropaeutheme-theme" maxtags="2" fieldset="false" transformations="to-iso19139-keyword-with-anchor"/>
       </thesaurusList>
 
     </view>
+
+    <!-- Advanced View -->
     <view name="advanced">
       <sidePanel>
         <directive data-gn-onlinesrc-list=""/>
-        <directive gn-geo-publisher=""
-                   data-ng-if="gnCurrentEdit.geoPublisherConfig"
-                   data-config="{{gnCurrentEdit.geoPublisherConfig}}"
-                   data-lang="lang"/>
+        <directive gn-geo-publisher="" data-ng-if="gnCurrentEdit.geoPublisherConfig" data-config="{{gnCurrentEdit.geoPublisherConfig}}" data-lang="lang"/>
         <directive data-gn-validation-report=""/>
         <directive data-gn-suggestion-list=""/>
         <directive data-gn-need-help="user-guide/describing-information/creating-metadata.html"/>
       </sidePanel>
 
       <tab id="identificationInfo" default="true">
-        <section xpath="/gmd:MD_Metadata/gmd:identificationInfo" or="identificationInfo"
-                 in="/gmd:MD_Metadata"/>
+        <section xpath="/gmd:MD_Metadata/gmd:identificationInfo" or="identificationInfo" in="/gmd:MD_Metadata"/>
       </tab>
       <tab id="distributionInfo">
-        <section xpath="/gmd:MD_Metadata/gmd:distributionInfo" or="distributionInfo"
-                 in="/gmd:MD_Metadata"/>
+        <section xpath="/gmd:MD_Metadata/gmd:distributionInfo" or="distributionInfo" in="/gmd:MD_Metadata"/>
       </tab>
       <tab id="dataQualityInfo">
-        <section xpath="/gmd:MD_Metadata/gmd:dataQualityInfo" or="dataQualityInfo"
-                 in="/gmd:MD_Metadata"/>
+        <section xpath="/gmd:MD_Metadata/gmd:dataQualityInfo" or="dataQualityInfo" in="/gmd:MD_Metadata"/>
       </tab>
       <tab id="spatialRepresentationInfo">
-        <section xpath="/gmd:MD_Metadata/gmd:spatialRepresentationInfo"
-                 or="spatialRepresentationInfo" in="/gmd:MD_Metadata"/>
+        <section xpath="/gmd:MD_Metadata/gmd:spatialRepresentationInfo" or="spatialRepresentationInfo" in="/gmd:MD_Metadata"/>
       </tab>
       <tab id="referenceSystemInfo">
-        <section xpath="/gmd:MD_Metadata/gmd:referenceSystemInfo" or="referenceSystemInfo"
-                 in="/gmd:MD_Metadata"/>
+        <section xpath="/gmd:MD_Metadata/gmd:referenceSystemInfo" or="referenceSystemInfo" in="/gmd:MD_Metadata"/>
       </tab>
       <tab id="contentInfo" toggle="true">
         <section xpath="/gmd:MD_Metadata/gmd:contentInfo" or="contentInfo" in="/gmd:MD_Metadata"/>
       </tab>
       <tab id="portrayalCatalogueInfo" toggle="true">
-        <section xpath="/gmd:MD_Metadata/gmd:portrayalCatalogueInfo" or="portrayalCatalogueInfo"
-                 in="/gmd:MD_Metadata"/>
+        <section xpath="/gmd:MD_Metadata/gmd:portrayalCatalogueInfo" or="portrayalCatalogueInfo" in="/gmd:MD_Metadata"/>
       </tab>
       <tab id="metadata">
         <section name="metadata">
@@ -620,12 +614,9 @@
           <field xpath="/gmd:MD_Metadata/gmd:language" or="language" in="/gmd:MD_Metadata"/>
           <field xpath="/gmd:MD_Metadata/gmd:locale" or="locale" in="/gmd:MD_Metadata"/>
           <field xpath="/gmd:MD_Metadata/gmd:characterSet"/>
-          <field xpath="/gmd:MD_Metadata/gmd:parentIdentifier" or="parentIdentifier"
-                 in="/gmd:MD_Metadata"/>
-          <field xpath="/gmd:MD_Metadata/gmd:hierarchyLevel" or="hierarchyLevel"
-                 in="/gmd:MD_Metadata"/>
-          <field xpath="/gmd:MD_Metadata/gmd:hierarchyLevelName" or="hierarchyLevelName"
-                 in="/gmd:MD_Metadata"/>
+          <field xpath="/gmd:MD_Metadata/gmd:parentIdentifier" or="parentIdentifier" in="/gmd:MD_Metadata"/>
+          <field xpath="/gmd:MD_Metadata/gmd:hierarchyLevel" or="hierarchyLevel" in="/gmd:MD_Metadata"/>
+          <field xpath="/gmd:MD_Metadata/gmd:hierarchyLevelName" or="hierarchyLevelName" in="/gmd:MD_Metadata"/>
           <field xpath="/gmd:MD_Metadata/gmd:dateStamp"/>
           <field xpath="/gmd:MD_Metadata/gmd:metadataStandardName"/>
           <field xpath="/gmd:MD_Metadata/gmd:metadataStandardVersion"/>
@@ -639,25 +630,21 @@
         </section>
       </tab>
       <tab id="metadataConstraints" toggle="true">
-        <section xpath="/gmd:MD_Metadata/gmd:metadataConstraints" or="metadataConstraints"
-                 in="/gmd:MD_Metadata"/>
+        <section xpath="/gmd:MD_Metadata/gmd:metadataConstraints" or="metadataConstraints" in="/gmd:MD_Metadata"/>
       </tab>
       <tab id="metadataMaintenance" toggle="true">
-        <section xpath="/gmd:MD_Metadata/gmd:metadataMaintenance" or="metadataMaintenance"
-                 in="/gmd:MD_Metadata"/>
+        <section xpath="/gmd:MD_Metadata/gmd:metadataMaintenance" or="metadataMaintenance" in="/gmd:MD_Metadata"/>
       </tab>
       <tab id="applicationSchemaInfo" toggle="true">
-        <section xpath="/gmd:MD_Metadata/gmd:applicationSchemaInfo" or="applicationSchemaInfo"
-                 in="/gmd:MD_Metadata"/>
+        <section xpath="/gmd:MD_Metadata/gmd:applicationSchemaInfo" or="applicationSchemaInfo" in="/gmd:MD_Metadata"/>
       </tab>
     </view>
+
+    <!-- XML View -->
     <view name="xml">
       <sidePanel>
         <directive data-gn-onlinesrc-list=""/>
-        <directive gn-geo-publisher=""
-                   data-ng-if="gnCurrentEdit.geoPublisherConfig"
-                   data-config="{{gnCurrentEdit.geoPublisherConfig}}"
-                   data-lang="lang"/>
+        <directive gn-geo-publisher="" data-ng-if="gnCurrentEdit.geoPublisherConfig" data-config="{{gnCurrentEdit.geoPublisherConfig}}" data-lang="lang"/>
         <directive data-gn-validation-report=""/>
         <directive data-gn-suggestion-list=""/>
         <directive data-gn-need-help="user-guide/describing-information/creating-metadata.html"/>
@@ -668,10 +655,7 @@
   <batchEditing>
     <section name="identification">
       <!-- Update existing title in metadata record -->
-      <field name="title"
-             xpath="gmd:identificationInfo/*/gmd:citation/*/gmd:title"
-             insertMode="gn_replace"
-             indexField="title">
+      <field name="title" xpath="gmd:identificationInfo/*/gmd:citation/*/gmd:title" insertMode="gn_replace" indexField="title">
         <template><![CDATA[<gco:CharacterString xmlns:gco='http://www.isotc211.org/2005/gco'>{{value}}</gco:CharacterString>]]></template>
       </field>
 
@@ -680,11 +664,8 @@
       the keyword may not be part of it.
       Warning: Duplicates may be inserted.
       -->
-      <field name="keyword"
-             xpath="gmd:identificationInfo/gmd:MD_DataIdentification/
-                      gmd:descriptiveKeywords/gmd:MD_Keywords/gmd:keyword"
-             indexField="keyword"
-             insertMode="gn_create">
+      <field name="keyword" xpath="gmd:identificationInfo/gmd:MD_DataIdentification/
+                      gmd:descriptiveKeywords/gmd:MD_Keywords/gmd:keyword" indexField="keyword" insertMode="gn_create">
         <template>
           <![CDATA[<gco:CharacterString xmlns:gco='http://www.isotc211.org/2005/gco'>{{value}}</gco:CharacterString>]]></template>
       </field>
@@ -692,13 +673,8 @@
       <!-- Insert a new topic category
       Warning: Duplicates may be inserted.
       -->
-      <field name="topicCats"
-             xpath="gmd:identificationInfo/*/
-                      gmd:topicCategory"
-             use="data-gn-codelist-picker"
-             codelist="gmd:MD_TopicCategoryCode"
-             indexField="topicCat"
-             insertMode="gn_create">
+      <field name="topicCats" xpath="gmd:identificationInfo/*/
+                      gmd:topicCategory" use="data-gn-codelist-picker" codelist="gmd:MD_TopicCategoryCode" indexField="topicCat" insertMode="gn_create">
         <template>
           <![CDATA[<gmd:MD_TopicCategoryCode xmlns:gmd='http://www.isotc211.org/2005/gmd'>{{value}}</gmd:MD_TopicCategoryCode>]]></template>
       </field>
@@ -706,20 +682,13 @@
       <!-- Insert a new extent
       Warning: Duplicates may be inserted.
       -->
-      <field name="extent"
-             xpath="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent"
-             use="data-gn-draw-bbox"
-             insertMode="gn_create"/>
+      <field name="extent" xpath="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent" use="data-gn-draw-bbox" insertMode="gn_create"/>
 
       <!-- Insert a new resource language
       Warning: Duplicates may be inserted.
       -->
-      <field name="language"
-             xpath="gmd:identificationInfo/*/
-                      gmd:language"
-             use="data-gn-language-picker"
-             insertMode="gn_replace"
-             removable="true">
+      <field name="language" xpath="gmd:identificationInfo/*/
+                      gmd:language" use="data-gn-language-picker" insertMode="gn_replace" removable="true">
         <template>
           <![CDATA[<gmd:LanguageCode xmlns:gmd='http://www.isotc211.org/2005/gmd' codeListValue='{{value}}'/>]]></template>
       </field>
@@ -727,22 +696,13 @@
       <!-- Insert, or replace if existing, the parent identifier.
       Warning: Duplicates may be inserted.
       -->
-      <field name="parentIdentifier"
-             xpath="gmd:parentIdentifier"
-             use="data-gn-metadata-picker"
-             insertMode="gn_replace"
-             removable="true">
+      <field name="parentIdentifier" xpath="gmd:parentIdentifier" use="data-gn-metadata-picker" insertMode="gn_replace" removable="true">
         <template>
           <![CDATA[<gco:CharacterString xmlns:gco='http://www.isotc211.org/2005/gco'>{{value}}</gco:CharacterString>]]></template>
       </field>
 
-      <field name="resourceStatus"
-             xpath="gmd:identificationInfo/*/
-                      gmd:status"
-             use="data-gn-codelist-picker"
-             codelist="gmd:MD_ProgressCode"
-             insertMode="gn_replace"
-             removable="true">
+      <field name="resourceStatus" xpath="gmd:identificationInfo/*/
+                      gmd:status" use="data-gn-codelist-picker" codelist="gmd:MD_ProgressCode" insertMode="gn_replace" removable="true">
         <template>
           <![CDATA[<gmd:MD_ProgressCode xmlns:gmd='http://www.isotc211.org/2005/gmd' codeListValue='{{value}}'/>]]></template>
       </field>
@@ -750,39 +710,25 @@
 
     <section name="resourceConstraints">
       <!-- Insert a new access constraint -->
-      <field name="accessConstraints"
-             xpath="gmd:identificationInfo/*/
+      <field name="accessConstraints" xpath="gmd:identificationInfo/*/
                       gmd:resourceConstraints/gmd:MD_LegalConstraints/
-                        gmd:accessConstraints"
-             use="data-gn-codelist-picker"
-             codelist="gmd:MD_RestrictionCode"
-             insertMode="gn_create"
-             removable="true">
+                        gmd:accessConstraints" use="data-gn-codelist-picker" codelist="gmd:MD_RestrictionCode" insertMode="gn_create" removable="true">
         <template>
           <![CDATA[<gmd:MD_RestrictionCode xmlns:gmd='http://www.isotc211.org/2005/gmd' codeListValue='{{value}}'/>]]></template>
       </field>
 
       <!-- Insert a new use constraint -->
-      <field name="useConstraints"
-             xpath="gmd:identificationInfo/*/
+      <field name="useConstraints" xpath="gmd:identificationInfo/*/
                       gmd:resourceConstraints/gmd:MD_LegalConstraints/
-                        gmd:useConstraints"
-             use="data-gn-codelist-picker"
-             codelist="gmd:MD_RestrictionCode"
-             insertMode="gn_create"
-             removable="true">
+                        gmd:useConstraints" use="data-gn-codelist-picker" codelist="gmd:MD_RestrictionCode" insertMode="gn_create" removable="true">
         <template>
           <![CDATA[<gmd:MD_RestrictionCode xmlns:gmd='http://www.isotc211.org/2005/gmd' codeListValue='{{value}}'/>]]></template>
       </field>
 
       <!-- Insert a new other constraint -->
-      <field name="otherConstraints"
-             xpath="gmd:identificationInfo/*/
+      <field name="otherConstraints" xpath="gmd:identificationInfo/*/
                       gmd:resourceConstraints/gmd:MD_LegalConstraints/
-                        gmd:otherConstraints"
-             use="textarea"
-             insertMode="gn_create"
-             removable="true">
+                        gmd:otherConstraints" use="textarea" insertMode="gn_create" removable="true">
         <template>
           <![CDATA[<gco:CharacterString xmlns:gco='http://www.isotc211.org/2005/gco'>{{value}}</gco:CharacterString>]]></template>
       </field>
@@ -793,37 +739,21 @@
           Warning: Duplicates may be inserted.
     -->
     <section name="quality">
-      <field name="lineage"
-             xpath="gmd:dataQualityInfo/gmd:DQ_DataQuality/
-                      gmd:lineage/gmd:LI_Lineage/gmd:statement"
-             use="textarea"
-             insertMode="gn_replace"
-             removable="true">
+      <field name="lineage" xpath="gmd:dataQualityInfo/gmd:DQ_DataQuality/
+                      gmd:lineage/gmd:LI_Lineage/gmd:statement" use="textarea" insertMode="gn_replace" removable="true">
         <template>
           <![CDATA[<gco:CharacterString xmlns:gco='http://www.isotc211.org/2005/gco'>{{value}}</gco:CharacterString>]]></template>
       </field>
     </section>
 
     <section name="contact">
-      <field name="resourceContact"
-             xpath="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:pointOfContact"
-             use="data-gn-directory-entry-selector"
-             insertMode="gn_create"/>
-      <field name="distributor"
-             xpath="gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorContact"
-             use="data-gn-directory-entry-selector"
-             insertMode="gn_create"/>
-      <field name="mdContact"
-             xpath="gmd:contact"
-             use="data-gn-directory-entry-selector"
-             insertMode="gn_create"/>
+      <field name="resourceContact" xpath="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:pointOfContact" use="data-gn-directory-entry-selector" insertMode="gn_create"/>
+      <field name="distributor" xpath="gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorContact" use="data-gn-directory-entry-selector" insertMode="gn_create"/>
+      <field name="mdContact" xpath="gmd:contact" use="data-gn-directory-entry-selector" insertMode="gn_create"/>
     </section>
 
     <section name="metadata">
-      <field name="mdLanguage"
-             xpath="gmd:language"
-             use="data-gn-language-picker"
-             removable="true">
+      <field name="mdLanguage" xpath="gmd:language" use="data-gn-language-picker" removable="true">
         <template>
           <![CDATA[<gmd:LanguageCode xmlns:gmd='http://www.isotc211.org/2005/gmd' codeListValue='{{value}}'/>]]></template>
       </field>
