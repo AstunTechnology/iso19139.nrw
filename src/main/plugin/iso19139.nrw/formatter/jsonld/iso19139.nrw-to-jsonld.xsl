@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet 
+<xsl:stylesheet
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:gco="http://www.isotc211.org/2005/gco"
 	xmlns:gmd="http://www.isotc211.org/2005/gmd"
@@ -81,7 +81,7 @@
                           else concat($prefixedBy, 'Thing')"/>
   </xsl:function>
 
-  
+
   <!-- Define the root element of the resources
       and a catalogue id. -->
   <!--<xsl:param name="baseUrl"
@@ -109,7 +109,7 @@
                 select="//gmd:MD_Metadata/gmd:language/*/@codeListValue"/>
 
   <!-- TODO: Convert language code eng > en_US ? -->
- 
+
   <xsl:variable name="requestedLanguageExist"
                 select="$lang != ''
                         and count(//gmd:MD_Metadata/gmd:locale/*[gmd:languageCode/*/@codeListValue = $lang]/@id) > 0"/>
@@ -146,7 +146,7 @@
                                  select="gmd:identificationInfo/*/gmd:citation/*/gmd:title"/>,
 
     <!-- All alt titles concatenated as schema.org only allows one. -->
-    
+
     "alternateName": "<xsl:for-each select="gmd:identificationInfo/*/gmd:citation/*/gmd:alternateTitle">
         <xsl:value-of select="."/><xsl:if test="position() != last()"> | </xsl:if></xsl:for-each>",
 
@@ -159,7 +159,7 @@
     <xsl:for-each select="gmd:identificationInfo/*/gmd:citation/*/gmd:date[gmd:dateType/*/@codeListValue='publication']/*/gmd:date/*/text()">
     "datePublished": "<xsl:value-of select="."/>",
     </xsl:for-each>
-    
+
 		"thumbnailUrl": [
     <xsl:for-each select="gmd:identificationInfo/*/gmd:graphicOverview/*/gmd:fileName/*[. != '']">
     "<xsl:value-of select="."/>"<xsl:if test="position() != last()">,</xsl:if>
@@ -356,7 +356,7 @@
 
 
     <!-- spatialcoverage  -->
-        
+
     ,"spatialCoverage": {
       "@type":"Place",
 
@@ -377,12 +377,12 @@
         }
       </xsl:for-each>
     }
-   
+
 
 
     <xsl:if test="count(gmd:identificationInfo/*/gmd:extent/*/gmd:temporalElement/*/gmd:extent[normalize-space(.) != '']) > 0">
-      ,"temporalCoverage": [<xsl:for-each 
-        select="gmd:identificationInfo/*/gmd:extent/*/gmd:temporalElement/*/gmd:extent">"<xsl:value-of 
+      ,"temporalCoverage": [<xsl:for-each
+        select="gmd:identificationInfo/*/gmd:extent/*/gmd:temporalElement/*/gmd:extent">"<xsl:value-of
           select="concat(gml:TimePeriod/gml:beginPosition|gml320:TimePeriod/gml320:beginPosition,'/',
             gml:TimePeriod/gml:endPosition|gml320:TimePeriod/gml320:endPosition
       )"/>"<xsl:if test="position() != last()">,</xsl:if></xsl:for-each> ]
@@ -392,10 +392,10 @@
       "temporalCoverage" : "2013-12-19/.."
       "temporalCoverage" : "2008"
       -->
-    
+
     <!-- array of licenses is allowed, not multiple licenses-->
-   <!--  <xsl:if test="count(gmd:identificationInfo/*/gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:otherConstraints[normalize-space(.) != '']) > 0"> 
-      ,"license": {"@type": "CreativeWork", "name": "License Text", "Text": [<xsl:for-each 
+   <!--  <xsl:if test="count(gmd:identificationInfo/*/gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:otherConstraints[normalize-space(.) != '']) > 0">
+      ,"license": {"@type": "CreativeWork", "name": "License Text", "Text": [<xsl:for-each
         select="gmd:identificationInfo/*/gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:otherConstraints">
           <xsl:apply-templates mode="toJsonLDLocalized" select="."/>
           <xsl:if test="position() != last()">,</xsl:if></xsl:for-each> ]}
@@ -403,16 +403,16 @@
 
     <!-- limitations on public access- Gemini 25 -->
     <xsl:variable name="gemini25" select="count(gmd:identificationInfo/*//gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:otherConstraints[../gmd:accessConstraints]/(gmx:Anchor|gco:Characterstring))" />
-    <xsl:if test="$gemini25 > 0"> 
-      ,"conditionsofAccess": [<xsl:for-each 
+    <xsl:if test="$gemini25 > 0">
+      ,"conditionsofAccess": [<xsl:for-each
         select="gmd:identificationInfo/*//gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:otherConstraints[../gmd:accessConstraints]">
           <xsl:apply-templates mode="toJsonLDLocalized" select="."/>
           <xsl:if test="position() != last()">,</xsl:if></xsl:for-each>]
     </xsl:if>
     <!-- user constraints- Gemini 26 -->
     <xsl:variable name="gemini26" select="count(gmd:identificationInfo/*//gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:otherConstraints[../gmd:useConstraints]/(gmx:Anchor|gco:Characterstring))" />
-    <xsl:if test="  $gemini26 > 0"> 
-      ,"license": {"@type": "CreativeWork", "name": "License Text", "Text": [<xsl:for-each 
+    <xsl:if test="  $gemini26 > 0">
+      ,"license": {"@type": "CreativeWork", "name": "License Text", "Text": [<xsl:for-each
         select="gmd:identificationInfo/*/gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:otherConstraints[../gmd:useConstraints]">
           <xsl:apply-templates mode="toJsonLDLocalized" select="."/>
           <xsl:if test="position() != last()">,</xsl:if></xsl:for-each>]}
