@@ -377,8 +377,8 @@
       </div>
   </div>
 </limitationssrv_help>
-  <use_help>
-    <div class="row">
+<use_help>
+  <div class="row">
     <div class="col-xs-offset-2 col-xs-8">
       <p class="help-block">The purpose of this element is to describe any restrictions on usage of the data (as opposed to access).</p>
       <ol class="help-block">
@@ -387,8 +387,7 @@
       </ol>
       </div>
   </div>
-</use_help>  
-
+</use_help>
 <usesrv_help>
     <div class="row">
     <div class="col-xs-offset-2 col-xs-8">
