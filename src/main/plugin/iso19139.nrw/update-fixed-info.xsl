@@ -73,7 +73,6 @@
                 <xsl:message>=== Empty NRW ===</xsl:message>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:message>=== Not Empty NRW ===</xsl:message>
                 <xsl:copy>
                     <xsl:apply-templates select="@*|node()"/>
                 </xsl:copy>
