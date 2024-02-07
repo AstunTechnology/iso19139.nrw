@@ -67,7 +67,7 @@
   <xsl:include href="../../layout/evaluate.xsl"/>
   <xsl:include href="../../layout/utility-tpl-multilingual.xsl"/>
   <xsl:include href="../../layout/utility-fn.xsl"/>
-  <xsl:include href="../../formatter/jsonld/iso19139.nrw-to-jsonld.xsl"/>
+  <xsl:include href="../../formatter/jsonld/iso19139-to-jsonld.xsl"/>
   <xsl:include href="../../formatter/citation/base.xsl"/>
   <xsl:include href="../../../iso19115-3.2018/formatter/citation/common.xsl"/>
 
@@ -100,7 +100,19 @@
     </xsl:for-each>
   </xsl:template>
 
+  <xsl:template mode="getMetadataAbstract" match="gmd:MD_Metadata|*[@gco:isoType = 'gmd:MD_Metadata']">
+    <xsl:for-each select="gmd:identificationInfo/*/gmd:abstract">
 
+      <xsl:variable name="txt">
+        <xsl:call-template name="localised">
+          <xsl:with-param name="langId" select="$langId"/>
+        </xsl:call-template>
+      </xsl:variable>
+      <xsl:call-template name="addLineBreaksAndHyperlinks">
+        <xsl:with-param name="txt" select="$txt"/>
+      </xsl:call-template>
+    </xsl:for-each>
+  </xsl:template>
 
 
   <xsl:template mode="getTags" match="gmd:MD_Metadata|*[@gco:isoType = 'gmd:MD_Metadata']">
@@ -148,8 +160,9 @@
 
             <xsl:for-each select="current-group()">
               <xsl:sort select="."/>
-              <a href='#/search?query_string=%7B"tag.\\*":%7B"{.}":true%7D%7D'>
-                <span class="badge"><xsl:copy-of select="."/></span>
+              <a class="btn btn-default btn-xs"
+                 href='#/search?query_string=%7B"tag.\\*":%7B"{.}":true%7D%7D'>
+                <xsl:copy-of select="."/>
               </a>
             </xsl:for-each>
             <xsl:if test="position() != last()">
@@ -160,8 +173,9 @@
         <xsl:otherwise>
           <xsl:for-each select="$tags/tag">
             <xsl:sort select="."/>
-              <a href='#/search?query_string=%7B"tag.\\*":%7B"{.}":true%7D%7D'>
-              <span class="badge"><xsl:copy-of select="."/></span>
+            <a class="btn btn-default btn-xs"
+               href='#/search?query_string=%7B"tag.\\*":%7B"{.}":true%7D%7D'>
+              <xsl:copy-of select="."/>
             </a>
           </xsl:for-each>
         </xsl:otherwise>
@@ -209,26 +223,44 @@
         </span>
       </h2>
 
+      <xsl:variable name="imgOnError" as="xs:string?"
+                    select="if (count(gmd:identificationInfo/*/gmd:graphicOverview/*) > 1)
+                            then 'this.onerror=null; this.parentElement.style.display=''none'';'
+                            else 'this.onerror=null; $(''.gn-md-side-overview'').hide();'"/>
+
       <xsl:for-each select="gmd:identificationInfo/*/gmd:graphicOverview/*">
-        <img data-gn-img-modal="md"
-             class="gn-img-thumbnail"
-             alt="{$schemaStrings/overview}"
-             src="{gmd:fileName/*}"/>
+        <div>
+          <img data-gn-img-modal="md"
+               class="gn-img-thumbnail"
+               alt="{$schemaStrings/overview}"
+               src="{gmd:fileName/*}"
+               onerror="{$imgOnError}" />
 
-        <xsl:for-each select="gmd:fileDescription">
-          <div class="gn-img-thumbnail-caption">
-            <xsl:call-template name="localised">
-              <xsl:with-param name="langId" select="$langId"/>
-            </xsl:call-template>
-          </div>
-        </xsl:for-each>
-
+          <xsl:for-each select="gmd:fileDescription">
+            <div class="gn-img-thumbnail-caption">
+              <xsl:call-template name="localised">
+                <xsl:with-param name="langId" select="$langId"/>
+              </xsl:call-template>
+            </div>
+          </xsl:for-each>
+        </div>
       </xsl:for-each>
     </section>
   </xsl:template>
 
   <xsl:template mode="getMetadataHeader" match="gmd:MD_Metadata|*[@gco:isoType = 'gmd:MD_Metadata']">
-    
+    <div class="gn-abstract">
+      <xsl:for-each select="gmd:identificationInfo/*/gmd:abstract">
+        <xsl:variable name="txt">
+          <xsl:call-template name="localised">
+            <xsl:with-param name="langId" select="$langId"/>
+          </xsl:call-template>
+        </xsl:variable>
+         <xsl:call-template name="addLineBreaksAndHyperlinks">
+            <xsl:with-param name="txt" select="$txt"/>
+        </xsl:call-template>
+      </xsl:for-each>
+    </div>
 
     <xsl:if test="$withJsonLd = 'true'">
       <script type="application/ld+json">
@@ -582,9 +614,10 @@
   <xsl:template mode="render-field"
                 match="*[gmd:CI_ResponsibleParty]"
                 priority="100">
-
     <xsl:param name="layout"
                required="no"/>
+
+
     <xsl:variable name="email">
       <xsl:for-each select="*/gmd:contactInfo/
                                       */gmd:address/*/gmd:electronicMailAddress">
@@ -598,16 +631,16 @@
     <!-- Display name is <org name> - <individual name> (<position name>) -->
     <!-- with separator/parentheses as required -->
     <xsl:variable name="displayName">
-      <xsl:if test="*/gmd:organisationName">
+      <xsl:if test="*/gmd:organisationName[normalize-space(.) != '']">
         <xsl:apply-templates mode="render-value-no-breaklines" select="*/gmd:organisationName"/>
       </xsl:if>
-      <xsl:if test="*/gmd:organisationName and */gmd:individualName|*/gmd:positionName"> - </xsl:if>
-      <xsl:if test="*/gmd:individualName">
+      <xsl:if test="*/gmd:organisationName[normalize-space(.) != ''] and */gmd:individualName[normalize-space(.) != '']|*/gmd:positionName[normalize-space(.) != '']"> - </xsl:if>
+      <xsl:if test="*/gmd:individualName[normalize-space(.) != '']">
         <xsl:apply-templates mode="render-value-no-breaklines" select="*/gmd:individualName"/>
       </xsl:if>
-      <xsl:if test="*/gmd:positionName">
+      <xsl:if test="*/gmd:positionName[normalize-space(.) != '']">
         <xsl:choose>
-          <xsl:when test="*/gmd:individualName">
+          <xsl:when test="*/gmd:individualName[normalize-space(.) != '']">
             (<xsl:apply-templates mode="render-value-no-breaklines" select="*/gmd:positionName"/>)
           </xsl:when>
           <xsl:otherwise>
@@ -642,7 +675,12 @@
               </xsl:choose>
             <br/>
             <xsl:for-each select="*/gmd:contactInfo/*">
-              <xsl:for-each select="gmd:address/*">
+              <xsl:for-each select="gmd:address/*[
+                  gmd:deliveryPoint[normalize-space(.) != ''] or
+                  gmd:city[normalize-space(.) != ''] or
+                  gmd:administrativeArea[normalize-space(.) != ''] or
+                  gmd:postalCode[normalize-space(.) != ''] or
+                  gmd:country[normalize-space(.) != '']]">
                 <div>
                 <i class="fa fa-fw fa-map-marker"><xsl:comment select="'address'"/></i>
                   <xsl:for-each select="gmd:deliveryPoint[normalize-space(.) != '']">
@@ -939,38 +977,6 @@
     </dl>
   </xsl:template>
 
-  <!-- Data Quality Conformance Report -->
-  <xsl:template mode="render-field"
-                match="gmd:report"
-                priority="150">
-  <div class="entry name">
-      <dl class="gn-date">
-        <dt>
-        <xsl:call-template name="render-field-label">
-          <xsl:with-param name="languages" select="$allLanguages"/>
-        </xsl:call-template>
-      </dt>
-      <xsl:if test="*//gmd:title/(gmx:Anchor|gco:CharacterString)">
-        <dd>
-          <xsl:apply-templates mode="render-value" select="*//gmd:title/(gmx:Anchor|gco:CharacterString)"/>
-        </dd>
-      </xsl:if>
-      <dt>
-          <xsl:value-of select="tr:nodeLabel(tr:create($schema), *//gmd:explanation/name(), null)"/>
-        </dt>
-        <dd>
-          <xsl:apply-templates mode="render-value" select="*//gmd:explanation"/>
-        </dd>
-        <dt>
-          <xsl:value-of select="tr:nodeLabel(tr:create($schema), *//gmd:pass/name(), null)"/>
-        </dt>
-        <dd>
-          <xsl:apply-templates mode="render-value" select="*//gmd:pass"/>
-        </dd>
-      </dl>
-    </div>
-  </xsl:template>
-
 
   <!-- Enumeration -->
   <xsl:template mode="render-field"
@@ -1131,7 +1137,7 @@
       <xsl:when test="contains(., 'http')">
         <!-- Replace hyperlink in text by an hyperlink -->
         <xsl:variable name="textWithLinks"
-                      select="replace(., '([a-z][\w-]+:/{1,3}[^\s()&gt;&lt;]+[^\s`!()\[\]{};:'&apos;&quot;.,&gt;&lt;?«»????])',
+                      select="replace(., '([a-z][\w-]+:/{1,3}[^\s()&gt;&lt;]+[^\s`!()\[\]{};:'&apos;&quot;.,&gt;&lt;?«»“”‘’])',
                                     '&lt;a href=''$1''&gt;$1&lt;/a&gt;')"/>
 
         <xsl:if test="$textWithLinks != ''">
@@ -1309,5 +1315,3 @@
                 match="@*"/>
 
 </xsl:stylesheet>
-
-
