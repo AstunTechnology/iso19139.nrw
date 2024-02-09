@@ -2459,8 +2459,14 @@
     <description>Method used to spatially represent geographic information</description>
     <condition>mandatory</condition>
   </element>
-  <element name="gmd:spatialResolution" id="38.0">
-    <label>Spatial resolution</label>
+  <element name="gmd:spatialResolution" id="38.0" context="//gmd:spatialResolution[gmd:MD_Resolution/gmd:distance]">
+    <label>Spatial resolution in metres</label>
+    <description>Measure of the granularity of the data (in metres)
+    </description>
+    <condition>mandatory</condition>
+  </element>
+  <element name="gmd:spatialResolution" id="38.0" context="*/[gmd:denominator]">
+    <label>Spatial resolution as denominator</label>
     <description>Measure of the granularity of the data (in metres)
     </description>
     <condition>mandatory</condition>
@@ -3331,8 +3337,8 @@
     <description></description>
   </element>
   <element name="xlink:href">
-    <label>Data Metadata URL</label>
-    <description>The corresponding URL for the published data metadata record. This may be an OGC CSW GetRecordById request or an address of a metadata instance in a WAF
+    <label>Anchor URL</label>
+    <description>The URL that the anchor should link to
     </description>
   </element>
   <!-- ==================================================== -->
