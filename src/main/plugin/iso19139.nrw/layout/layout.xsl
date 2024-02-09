@@ -29,13 +29,15 @@
                 xmlns:srv="http://www.isotc211.org/2005/srv"
                 xmlns:gml="http://www.opengis.net/gml"
                 xmlns:gn="http://www.fao.org/geonetwork"
-                xmlns:nrw="https://metadata101.github.io/GDPR"
+                xmlns:nrw="http://naturalresources.wales/nrw"
                 xmlns:gn-fn-metadata="http://geonetwork-opensource.org/xsl/functions/metadata"
                 xmlns:gn-fn-iso19139="http://geonetwork-opensource.org/xsl/functions/profiles/iso19139"
                 version="2.0"
                 exclude-result-prefixes="#all">
 
   <xsl:include href="utility-tpl.xsl"/>
+  <xsl:include href="layout-custom-fields.xsl"/>
+  <xsl:include href="layout-custom-tpl.xsl"/>
 
   <!-- GDPR -->
   <!-- Visit all XML tree recursively -->

@@ -34,11 +34,6 @@
     <label>Scope code</label>
     <description>Class of information to which the referencing entity applies</description>
   </element>
-  <element name="code" id="207.0" context="gmd:MD_Identifier">
-    <label>Resource Identifier</label>
-    <description>Value uniquely identifying the data resource</description>
-    <help>alphanumeric value identifying an instance in the namespace</help>
-  </element>
   <element name="code">
     <label>System code</label>
     <description>Code. i.e. EPSG code.</description>
@@ -715,7 +710,7 @@
     <condition>mandatory</condition>
   </element>
   <element name="gmd:code" id="207.0" context="gmd:MD_Identifier">
-    <label>Code</label>
+    <label>Resource Identifier</label>
     <description>Value uniquely identifying the data resource</description>
     <condition>mandatory</condition>
   </element>
