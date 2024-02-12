@@ -77,7 +77,7 @@
 
   <xsl:template match="gmi:MI_Metadata|gmd:MD_Metadata|*[@gco:isoType='gmd:MD_Metadata']"
                 mode="extract-uuid">
-    <xsl:value-of select="gmd:fileIdentifier/gco:CharacterString"/>
+    <xsl:value-of select="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:MD_Identifier/gmd:code/gco:CharacterString"/>
   </xsl:template>
 
   <xsl:variable name="siteUrl" select="util:getSiteUrl()" />
@@ -94,7 +94,7 @@
       XTTE0570: An empty sequence is not allowed as the value of variable $identifier
     -->
     <xsl:variable name="identifier" as="xs:string?"
-                  select="gmd:fileIdentifier/gco:CharacterString[. != '']"/>
+                  select="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:MD_Identifier/gmd:code/gco:CharacterString[. != '']"/>
 
 
     <!-- In ISO19139 consider datestamp element the last update date
