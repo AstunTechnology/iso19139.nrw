@@ -36,6 +36,7 @@
                 xmlns:java="java:org.fao.geonet.util.XslUtil"
                 version="2.0" exclude-result-prefixes="#all">
 
+  <xsl:import href="../iso19139/update-fixed-info.xsl"/>
   <xsl:include href="../iso19139/convert/thesaurus-transformation.xsl"/>
 
 
@@ -66,7 +67,6 @@
 
   <!-- Override ISO19139 template for gmd:MD_Metadata to stop it messing with the file identifier -->
   <xsl:template match="gmd:MD_Metadata" priority="100">
-    <xsl:message> ==== Using NRW ==== </xsl:message>
     <xsl:copy copy-namespaces="no">
       <xsl:call-template name="add-namespaces"/>
 
@@ -79,6 +79,7 @@
       </gmd:fileIdentifier> -->
 
       <xsl:apply-templates select="gmd:fileIdentifier"/>
+      <xsl:message> ==== File Identifier: <xsl:value-of select="gmd:fileIdentifier"/> ==== </xsl:message>
       <xsl:apply-templates select="gmd:language"/>
       <xsl:apply-templates select="gmd:characterSet"/>
 

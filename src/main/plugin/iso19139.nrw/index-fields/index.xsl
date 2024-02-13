@@ -284,7 +284,7 @@
               </xsl:if> -->
               <xsl:value-of select="$date"/>
             </xsl:variable>
-            <xsl:message>=== ZuluDateTime = <xsl:value-of select="$zuluDateTime"/> ===</xsl:message>
+<!--             <xsl:message>=== ZuluDateTime = <xsl:value-of select="$zuluDateTime"/> ===</xsl:message> -->
 
             <xsl:choose>
               <xsl:when test="$zuluDateTime != ''">
@@ -320,7 +320,7 @@
               <resourceDate type="object">
                 {"type": "<xsl:value-of select="$dateType"/>", "date": "<xsl:value-of select="$zuluDate"/>"}
               </resourceDate>
-              <xsl:message>=== ZuluDateTime #2 = <xsl:value-of select="$zuluDate"/> ===</xsl:message>
+              <!-- <xsl:message>=== ZuluDateTime #2 = <xsl:value-of select="$zuluDate"/> ===</xsl:message> -->
             </xsl:if>
           </xsl:for-each>
 
