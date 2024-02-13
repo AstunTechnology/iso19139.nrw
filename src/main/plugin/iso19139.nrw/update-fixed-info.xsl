@@ -36,7 +36,6 @@
                 xmlns:java="java:org.fao.geonet.util.XslUtil"
                 version="2.0" exclude-result-prefixes="#all">
 
-  <xsl:import href="../iso19139/update-fixed-info.xsl"/>
   <xsl:include href="../iso19139/convert/thesaurus-transformation.xsl"/>
 
 
@@ -73,12 +72,13 @@
 
       <xsl:apply-templates select="@*"/>
 
-<!--       <gmd:fileIdentifier>
+      <!-- <gmd:fileIdentifier>
         <gco:CharacterString>
           <xsl:value-of select="/root/env/uuid"/>
         </gco:CharacterString>
       </gmd:fileIdentifier> -->
 
+      <xsl:apply-templates select="gmd:fileIdentifier"/>
       <xsl:apply-templates select="gmd:language"/>
       <xsl:apply-templates select="gmd:characterSet"/>
 
