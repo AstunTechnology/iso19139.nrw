@@ -252,6 +252,20 @@
     </xsl:choose>
   </xsl:template>
 
+  <!-- remove empty parent identifier -->
+  <xsl:template match="gmd:parentIdentifier" priority="10">
+    <xsl:choose>
+      <xsl:when test="not(text())">
+        <xsl:message>=== Removing empty Parent Identifier ===</xsl:message>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:copy>
+          <xsl:apply-templates select="@*|node()"/>
+        </xsl:copy>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
   <!-- remove empty uuidref attributes -->
   <xsl:template match="//*[@uuidref[not(string())]]" priority="10">
     <xsl:message>=== Removing empty uuidref ===</xsl:message>
