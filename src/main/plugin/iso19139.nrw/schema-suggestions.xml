@@ -219,6 +219,16 @@
     <suggest name="gmd:northBoundLatitude"/>
   </field>
 
+  <field name="gmd:EX_VerticalExtent">
+    <suggest name="gmd:minimumValue"/>
+    <suggest name="gmd:maximumValue"/>
+    <suggest name="gmd:verticalCRS"/>
+  </field>
+
+  <field name ="gmd:verticalCRS">
+    <suggest name="xlink:href"/>
+  </field>
+
   <!-- <field name="gmd:attributes">
     <suggest name="uuidref"/>
   </field>

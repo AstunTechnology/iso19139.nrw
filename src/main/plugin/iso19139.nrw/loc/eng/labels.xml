@@ -3292,7 +3292,7 @@
   <element name="srv:DCPList">
     <label>Distributed Computing Platforms list</label>
   </element>
-  <element name="gmd:verticalCRS">
+  <element name="gmd:verticalCRS" id="24.0">
     <label>Vertical CRS</label>
     <description>Provides information about the origin from which the maximum and minimum elevation
       values are measured
