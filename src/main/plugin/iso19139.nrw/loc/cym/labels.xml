@@ -34,6 +34,11 @@
     <label>Scope code</label>
     <description>Class of information to which the referencing entity applies</description>
   </element>
+  <element name="code" id="207.0" context="gmd:MD_Identifier">
+    <label>Resource Identifier</label>
+    <description>Value uniquely identifying the data resource</description>
+    <help>alphanumeric value identifying an instance in the namespace</help>
+  </element>
   <element name="code">
     <label>System code</label>
     <description>Code. i.e. EPSG code.</description>
@@ -710,7 +715,7 @@
     <condition>mandatory</condition>
   </element>
   <element name="gmd:code" id="207.0" context="gmd:MD_Identifier">
-    <label>Resource Identifier</label>
+    <label>Code</label>
     <description>Value uniquely identifying the data resource</description>
     <condition>mandatory</condition>
   </element>
@@ -2459,14 +2464,8 @@
     <description>Method used to spatially represent geographic information</description>
     <condition>mandatory</condition>
   </element>
-  <element name="gmd:spatialResolution" id="38.0" context="//gmd:spatialResolution[gmd:MD_Resolution/gmd:distance]">
-    <label>Spatial resolution in metres</label>
-    <description>Measure of the granularity of the data (in metres)
-    </description>
-    <condition>mandatory</condition>
-  </element>
-  <element name="gmd:spatialResolution" id="38.0" context="*/[gmd:denominator]">
-    <label>Spatial resolution as denominator</label>
+  <element name="gmd:spatialResolution" id="38.0">
+    <label>Spatial resolution</label>
     <description>Measure of the granularity of the data (in metres)
     </description>
     <condition>mandatory</condition>
@@ -3337,8 +3336,8 @@
     <description></description>
   </element>
   <element name="xlink:href">
-    <label>Anchor URL</label>
-    <description>The URL that the anchor should link to
+    <label>Data Metadata URL</label>
+    <description>The corresponding URL for the published data metadata record. This may be an OGC CSW GetRecordById request or an address of a metadata instance in a WAF
     </description>
   </element>
   <!-- ==================================================== -->

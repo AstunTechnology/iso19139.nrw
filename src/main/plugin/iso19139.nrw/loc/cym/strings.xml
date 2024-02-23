@@ -667,7 +667,7 @@
       <p class="help-block">This is the date or date range that identifies the currency of the data. It may refer to the period of collection, or the date at which it is deemed to be current. Mandatory for Datasets and Series.</p>
       <ol class="help-block">
         <li>This element should not be confused with Dataset reference date which is an identifying date for the data resource.</li>
-        <li>To indicate an indeterminate date use the More Details option in the view menu to add an Indeterminate position with the appropriate value:
+        <li>To indicate an indeterminate date select the appropriate entry from the dropdown.
           <ul>
             <li>If the indeterminate position is "now" or "unknown", leave the date blank</li>
             <li>If the indeterminate position is "before" or "after" fill in the date</li>
