@@ -39,6 +39,11 @@
   <xsl:import href="../iso19139/update-fixed-info.xsl"/>
   <xsl:include href="../iso19139/convert/thesaurus-transformation.xsl"/>
 
+  <!-- variables for doing hex-encoding -->
+  <!-- the next line is all on one line and the before the ! is a space -->
+  <xsl:variable name="ascii"> !"#$%&amp;'()*+,-./0123456789:;&lt;=&gt;?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~</xsl:variable>
+  <xsl:variable name="hex" >0123456789ABCDEF</xsl:variable>
+
 
   <!-- Override template to add gss namespace, to avoid being added to the elements inline.
        Used in templates and not defined in the template from iso19139
@@ -65,6 +70,48 @@
     <xsl:namespace name="xlink" select="'http://www.w3.org/1999/xlink'"/>
   </xsl:template>
 
+
+<!-- encode file identifier as a UUID hex encoding of the numeric component of the resource identifier. Prefix with the hex encoding of OLIB-CCWd-ds -->
+   <xsl:template match="gmd:fileIdentifier">
+        <xsl:variable name="foo" select="/root/env/uuid"/>
+        <xsl:variable name="prefix">4f4c4942-4343-5764-6473-</xsl:variable>
+        <gmd:fileIdentifier>
+            <gco:CharacterString>
+                <xsl:variable name="numericValue">
+                    <xsl:call-template name="extractNumeric">
+                        <xsl:with-param name="input" select="$foo"/>
+                    </xsl:call-template>
+                </xsl:variable>
+                <xsl:value-of select="concat($prefix, $numericValue)"/>
+            </gco:CharacterString>
+        </gmd:fileIdentifier>
+    </xsl:template>
+    
+    <xsl:template name="extractNumeric">
+        <xsl:param name="input" />
+        <xsl:variable name="numeric" select="translate($input, translate($input, '1234567890', ''), '')" />
+        <xsl:call-template name="recurse-over-string">
+            <xsl:with-param name="str" select="$numeric"/>
+        </xsl:call-template>
+    </xsl:template>
+    
+    <xsl:template name="recurse-over-string">
+        <xsl:param name="str"/>   
+        <xsl:if test="$str">
+            <xsl:variable name="first-char" select="substring($str,1,1)"/>
+            <xsl:variable name="ascii-value" select="string-length(substring-before($ascii,$first-char)) + 32"/>
+            <xsl:variable name="hex-digit1" select="substring($hex,floor($ascii-value div 16) + 1,1)"/>
+            <xsl:variable name="hex-digit2" select="substring($hex,$ascii-value mod 16 + 1,1)"/>
+            <xsl:value-of select="concat($hex-digit1,$hex-digit2)"/>
+            <xsl:if test="string-length($str) &gt; 1">
+                <xsl:call-template name="recurse-over-string">
+                    <xsl:with-param name="str" select="substring($str,2)"/>
+                </xsl:call-template>
+            </xsl:if>
+        </xsl:if>
+    </xsl:template>
+
+    
   <!-- Override ISO19139 template for gmd:MD_Metadata to stop it messing with the file identifier -->
   <xsl:template match="gmd:MD_Metadata" priority="100">
     <xsl:copy copy-namespaces="no">
@@ -79,7 +126,6 @@
       </gmd:fileIdentifier> -->
 
       <xsl:apply-templates select="gmd:fileIdentifier"/>
-      <xsl:message> ==== File Identifier: <xsl:value-of select="gmd:fileIdentifier"/> ==== </xsl:message>
       <xsl:apply-templates select="gmd:language"/>
       <xsl:apply-templates select="gmd:characterSet"/>
 
@@ -178,6 +224,7 @@
       </xsl:if>
     </xsl:copy>
   </xsl:template>
+
 
   <xsl:template match="gmd:hierarchyLevelName[not(string(gco:CharacterString))]" priority="10">
     <xsl:copy>
@@ -291,28 +338,36 @@
   </xsl:template>
 
 
-    <!-- Insert resource id if it does not exist -->
+    <!-- Prefill resource identifier with uuid -->
 
     <xsl:template match="gmd:identificationInfo/*/gmd:citation/gmd:CI_Citation" >
 
         <xsl:copy>
             <xsl:apply-templates select="gmd:title|gmd:alternateTitle|gmd:date|gmd:date|gmd:edition|gmd:editionDate"/>
 
-            <xsl:choose>
-                <xsl:when test="not(gmd:identifier)">
+            <!-- <xsl:choose>
+                <xsl:when test="not(gmd:identifier) or gmd:identifier ='' ">
                     <xsl:message>==== Add missing resource identifier ====</xsl:message>
                     <gmd:identifier>
-                        <gmd:RS_Identifier>
+                        <gmd:MD_Identifier>
                             <gmd:code>
-                                <gco:CharacterString><xsl:value-of select="/root/env/uuid"/>_resource</gco:CharacterString>
+                                <gco:CharacterString><xsl:value-of select="/root/env/uuid"/></gco:CharacterString>
                             </gmd:code>
-                        </gmd:RS_Identifier>
+                        </gmd:MD_Identifier>
                     </gmd:identifier>
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:apply-templates select="gmd:identifier"/>
                 </xsl:otherwise>
-            </xsl:choose>
+            </xsl:choose> -->
+
+            <gmd:identifier>
+                        <gmd:MD_Identifier>
+                            <gmd:code>
+                                <gco:CharacterString><xsl:value-of select="/root/env/uuid"/></gco:CharacterString>
+                            </gmd:code>
+                        </gmd:MD_Identifier>
+                    </gmd:identifier>
 
             <xsl:apply-templates select="gmd:citedResponsibleParty|gmd:presentationForm|gmd:series|gmd:otherCitationDetails|gmd:collectiveTitle|gmd:ISBN|gmd:ISSN"/>
 
