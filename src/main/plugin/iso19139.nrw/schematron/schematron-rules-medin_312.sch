@@ -3068,7 +3068,21 @@
   </sch:pattern>
   <sch:pattern abstract="true" id="TypeNotNillablePattern">
     <sch:rule context="$context">
-      <sch:assert test="string-length(normalize-space(.)) &gt; 0 and count(./@gco:nilReason) = 0"> MEDIN: The
+      <sch:assert test="name() = 'geonet:element' or count(*[name()!='geonet:element']) &gt; 0 or
+                    namespace-uri() = 'http://www.isotc211.org/2005/gco' or
+                    namespace-uri() = 'http://www.isotc211.org/2005/gmx' or
+                    namespace-uri() = 'http://www.opengis.net/gml/3.2' or
+                    namespace-uri() = 'http://www.opengis.net/gml' or
+                    @codeList or
+                    @codeListValue or
+                    local-name() = 'MD_TopicCategoryCode' or
+                    local-name() = 'URL' or
+                    (@gco:nilReason = 'inapplicable' or
+                    @gco:nilReason = 'missing' or
+                    @gco:nilReason = 'template' or
+                    @gco:nilReason = 'unknown' or
+                    @gco:nilReason = 'withheld') or
+                    @xlink:href"> MEDIN: The
         <sch:name/> element is not nillable and shall have a value. This test may be called by the following 
         Metadata Items: Title, Abstract, Keyword, Geographic Bounding
         Box, Spatial Reference System, Responsible Organisation, Metadata Date,
