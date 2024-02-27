@@ -47,8 +47,8 @@
 		<xs:complexContent>
 			<xs:extension base="gco:AbstractObject_Type">
 				<xs:sequence>
-					<xs:element minOccurs="0" maxOccurs="1" name="internalLocationInfo" type="gco:CharacterString_PropertyType"/>
-					<xs:element minOccurs="0" maxOccurs="1" name="internalContactInfo" type="gco:CharacterString_PropertyType"/>
+					<xs:element minOccurs="1" maxOccurs="1" name="internalLocationInfo" type="gco:CharacterString_PropertyType"/>
+					<xs:element minOccurs="1" maxOccurs="1" name="internalContactInfo" type="gco:CharacterString_PropertyType"/>
 					<xs:element minOccurs="0" maxOccurs="unbounded" name="relatedTitle" type="gco:CharacterString_PropertyType"/>
 				</xs:sequence>		
 			</xs:extension>
