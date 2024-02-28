@@ -366,6 +366,9 @@
                             <gmd:code>
                                 <gco:CharacterString><xsl:value-of select="/root/env/uuid"/></gco:CharacterString>
                             </gmd:code>
+                            <gmd:codeSpace>
+                              <gco:CharacterString>http://naturalresources.wales/</gco:CharacterString>
+                           </gmd:codeSpace>
                         </gmd:MD_Identifier>
                     </gmd:identifier>
 
