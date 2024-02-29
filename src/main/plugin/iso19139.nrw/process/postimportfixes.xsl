@@ -13,7 +13,7 @@
                 xmlns:nrw="http://naturalresources.wales/nrw">
     
     <!-- Define a map of inspire theme values and their corresponding xlink:href attributes -->
-    <xsl:variable name="valueToHrefMap">
+    <xsl:variable name="inspireValueToHrefMap">
         <map>
             <entry value="Addresses" href="https://www.eionet.europa.eu/gemet/en/inspire-theme/ad"/>
             <entry value="Administrative units" href="https://www.eionet.europa.eu/gemet/en/inspire-theme/au"/>
@@ -73,8 +73,22 @@
         /gmd:title
         /gmx:Anchor='GEMET - INSPIRE themes, version 1.0']">
         
-        <gmx:Anchor xlink:href="{$valueToHrefMap/map/entry[@value=current()]/@href}">
+        <gmx:Anchor xlink:href="{$inspireValueToHrefMap/map/entry[@value=current()]/@href}">
             <xsl:value-of select="gco:CharacterString"/>
+        </gmx:Anchor>
+    </xsl:template>
+    
+    <!-- Convert limitations on public access other constraint from string to gmx:Anchor -->
+    <xsl:template match="/gmd:MD_Metadata
+        /gmd:identificationInfo
+        /gmd:MD_DataIdentification
+        /gmd:resourceConstraints
+        /gmd:MD_LegalConstraints
+        /gmd:otherConstraints/gco:CharacterString[../../gmd:accessConstraints]">
+        
+        <!-- Create gmx:Anchor and set xlink:href -->
+        <gmx:Anchor xlink:href="https://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess">
+            <xsl:value-of select="."/>
         </gmx:Anchor>
     </xsl:template>
     
