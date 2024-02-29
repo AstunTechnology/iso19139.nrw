@@ -87,7 +87,7 @@
         /gmd:otherConstraints/gco:CharacterString[../../gmd:accessConstraints]">
         
         <!-- Create gmx:Anchor and set xlink:href -->
-        <gmx:Anchor xlink:href="https://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess">
+        <gmx:Anchor xlink:href="https://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/noLimitations">
             <xsl:value-of select="."/>
         </gmx:Anchor>
     </xsl:template>
