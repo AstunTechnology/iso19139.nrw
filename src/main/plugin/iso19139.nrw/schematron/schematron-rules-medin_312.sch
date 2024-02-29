@@ -1061,7 +1061,7 @@
       <sch:assert test="count(*/gmd:descriptiveKeywords/*/gmd:thesaurusName) &gt;= 1">
         Thesaurus Name is mandatory.
       </sch:assert>
-<sch:assert test="count(*/gmd:descriptiveKeywords/*/gmd:keyword[contains(*/@xlink:href, 'http://vocab.nerc.ac.uk/collection/P22/') or contains(*/@xlink:href, 'https://inspire.ec.europa.eu/theme/')]) &gt;= 1">        At least one INSPIRE keyword from http://vocab.nerc.ac.uk/collection/P22/ or https://inspire.ec.europa.eu/theme/ must be provided.
+<sch:assert test="count(*/gmd:descriptiveKeywords/*/gmd:keyword[contains(*/@xlink:href, 'http://vocab.nerc.ac.uk/collection/P22/') or contains(*/@xlink:href, 'http://inspire.ec.europa.eu/theme/')]) &gt;= 1">        At least one INSPIRE keyword from http://vocab.nerc.ac.uk/collection/P22/ or http://inspire.ec.europa.eu/theme/ must be provided.
       </sch:assert>
       <sch:assert test="(contains(../gmd:hierarchyLevel/*/@codeListValue, 'dataset') or 
         contains(../gmd:hierarchyLevel/*/@codeListValue, 'series')) or
@@ -1740,7 +1740,7 @@
       </sch:assert>
     </sch:rule>
     <sch:rule context="/*/gmd:identificationInfo/*/*/*/gmd:temporalElement/*/gmd:extent">
-      <sch:assert test="count(*/gml:beginPosition) >= 1">
+      <sch:assert test="count(*//gml:beginPosition) >= 1">
         Temporal extent: beginPosition is mandatory.
       </sch:assert>
     </sch:rule>
