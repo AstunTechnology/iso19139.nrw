@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<strings>
+
+    <NRW100>Internal Location Information</NRW100>
+    <NRW100.alert.nolocation>At least one Internal Location must be provided</NRW100.alert.nolocation>
+
+    <NRW101>Internal Contact Information</NRW101>
+    <NRW101.alert.nocontact>At least one Internal Contact must be provided</NRW101.alert.nocontact>
+
+ </strings>
