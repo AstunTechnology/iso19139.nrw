@@ -48,7 +48,7 @@
 
   <xsl:template name="dispatch-iso19139.nrw">
     <xsl:param name="base" as="node()"/>
-    <xsl:param name="overrideLabel" as="xs:string" required="no" select="''"/>
+    <xsl:param name="overrideLabel" as="xs:string?" required="no" select="''"/>
     <xsl:param name="refToDelete" as="node()?" required="no"/>
     <xsl:apply-templates mode="mode-iso19139" select="$base">
       <xsl:with-param name="overrideLabel" select="$overrideLabel"/>
