@@ -57,8 +57,8 @@
 
   </xsl:template>
 
-  
-  <xsl:template mode="mode-iso19139" priority="2300" match="gmd:identifier/gmd:MD_Identifier/gmd:code">
+  <!-- Resource Identifier and Codespace are also readonly -->
+  <xsl:template mode="mode-iso19139" priority="2300" match="gmd:identifier/gmd:MD_Identifier/gmd:code|gmd:identifier/gmd:MD_Identifier/gmd:codeSpace">
     <xsl:param name="schema" select="$schema" required="no"/>
     <xsl:param name="labels" select="$labels" required="no"/>
     <xsl:param name="overrideLabel" select="''" required="no"/>

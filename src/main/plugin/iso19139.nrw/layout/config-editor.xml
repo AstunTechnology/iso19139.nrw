@@ -96,11 +96,13 @@
     <for name="gmd:referenceSystemInfo" addDirective="data-gn-crs-selector"/>
 
 
-    <!--
-    Enable the following to use subtemplates for extent type.
+    
     <for name="gmd:extent" addDirective="data-gn-directory-entry-selector">
       <directiveAttributes data-template-add-action="true" data-search-action="true" data-popup-action="true" data-template-type="extent" data-filter='{"_root": "gmd:EX_Extent"}' data-insert-modes=""/>
     </for>
+
+    <!--
+    Enable the following to use subtemplates for format type.
 
     for formats:
     <for name="gmd:resourceFormat" addDirective="data-gn-directory-entry-selector">
@@ -187,7 +189,7 @@
     <name>gmd:projection</name>
     <name>gmd:ellipsoid</name>
     <name>gmd:attributes</name>
-    <name>gmd:geographicBox</name>
+    <name>gmd:geographicElement</name>
     <name>gmd:EX_TemporalExtent</name>
     <name>gmd:EX_VerticalExtent</name>
     <name>gmd:MD_Distributor</name>
@@ -439,6 +441,15 @@
           <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:spatialResolution"/>
           <text ref="spatialresolution_help" />
 
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:language"/>
+          <text ref="datasetlang_help" />
+
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:characterSet"/>
+          <text ref="charset_help" />
+
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:topicCategory"/>
+          <text ref="topic_help" />
+
           <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicDescription"/>
           <text ref="extent_help"/>
 
@@ -501,10 +512,7 @@
           <text ref="fileidentifier_help" />
 
           <field xpath="/gmd:MD_Metadata/gmd:language" or="language" in="/gmd:MD_Metadata"/>
-          <text ref="datasetlang_help" />
-
-          <field xpath="/gmd:MD_Metadata/gmd:characterSet"/>
-          <text ref="charset_help" />
+          <text ref="metadatalanguage_help" />
 
           <field xpath="/gmd:MD_Metadata/gmd:parentIdentifier" or="parentIdentifier" in="/gmd:MD_Metadata"/>
           <text ref="parentidentifier_help" />
