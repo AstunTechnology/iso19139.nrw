@@ -709,8 +709,13 @@
     <description>Code identifying the reference system</description>
     <condition>mandatory</condition>
   </element>
-  <element name="gmd:code" id="207.0" context="gmd:MD_Identifier">
+  <element name="gmd:code" id="207.0" context="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:MD_Identifier/gmd:code">
     <label>Resource Identifier</label>
+    <description>Value uniquely identifying the data resource</description>
+    <condition>mandatory</condition>
+  </element>
+  <element name="gmd:code" id="207.0" context="gmd:MD_Identifier">
+    <label>Identifier</label>
     <description>Value uniquely identifying the data resource</description>
     <condition>mandatory</condition>
   </element>
@@ -943,8 +948,8 @@
     </description>
     <condition>mandatory</condition>
   </element>
-  <element name="gmd:denominator" id="57.0">
-    <label>Denominator</label>
+  <element name="gmd:denominator" id="57.0" context="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:spatialResolution/gmd:MD_Resolution/gmd:equivalentScale/gmd:MD_RepresentativeFraction/gmd:denominator">
+    <label>Equivalent Scale</label>
     <description>The number below the line in a vulgar fraction</description>
     <condition>add either a denominator or a distance</condition>
     <helper>
@@ -1301,8 +1306,8 @@
     </_condition>
   </element>
   <element name="gmd:geographicIdentifier" id="349.0">
-    <label>Extent</label>
-    <description>Extent of the data resource</description>
+    <label>Geographic Extent</label>
+    <description>Geographic extent of the data resource</description>
     <condition>optional</condition>
   </element>
   <element name="gmd:geometricObjectCount" id="185.0">
@@ -1378,9 +1383,9 @@
       National Stock Number (NSN)
     </description>
   </element>
-  <element name="gmd:identifier" id="573.0" context="gmd:CI_Citation">
-    <label>Resource Identifier</label>
-    <description>Value uniquely identifying the data resource</description>
+  <element name="gmd:code" id="573.0" context="gmd:geographicIdentifier">
+    <label>Geographic Identifier</label>
+    <description>Value identifying the geographic extent of the data resource</description>
   </element>
   <element name="gmd:identifier" id="575.0" context="gmd:MD_Authority">
     <label>Identifier</label>
@@ -1479,7 +1484,7 @@
     <condition>mandatory</condition>
   </element>
   <element name="gmd:linkage" id="397.0">
-    <label>Resource Locator</label>
+    <label>URL</label>
     <description>Location (address) for on-line access using a Uniform Resource Locator address
       or similar addressing scheme such as http://www.statkart.no/isotc211
     </description>
@@ -2111,7 +2116,7 @@
     <condition>mandatory</condition>
   </element>
   <element name="gmd:parentIdentifier" id="5.0">
-    <label>Parent identifier</label>
+    <label>Parent Identifier</label>
     <btnLabel>Add parent record</btnLabel>
     <btnClass>fa fa-sitemap</btnClass>
     <description>File identifier of the metadata that is a parent to this child metadata
@@ -2551,7 +2556,7 @@
     </description>
   </element>
   <element name="gmd:transferOptions" id="273.0">
-    <label>Transfer options</label>
+    <label>Resource Locator</label>
     <description>Provides information about technical means and media by which a resource is
       obtained from the distributor
     </description>
