@@ -1000,6 +1000,11 @@
           <xsl:copy-of select="gn-fn-index:add-field('format', .)"/>
         </xsl:for-each>
 
+        <xsl:for-each
+          select="gmd:distributionFormat/*/gmd:specification/*[. != '']">
+          <xsl:copy-of select="gn-fn-index:add-field('formatSpecification', .)"/>
+        </xsl:for-each>
+
 
         <!-- Indexing distributor contact -->
         <xsl:for-each select="gmd:distributor/*[gmd:distributorContact]">
@@ -1104,6 +1109,14 @@
         </xsl:otherwise>
       </xsl:choose>
 
+      <xsl:choose>
+        <xsl:when test="*/gmd:MD_Distribution/gmd:transferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource/gmd:linkage/gmd:URL != ''">
+          <hasOnlineResource>true</hasOnlineResource>
+        </xsl:when>
+        <xsl:otherwise>
+          <hasOnlineResource>false</hasOnlineResource>
+        </xsl:otherwise>
+      </xsl:choose>
 
       <xsl:for-each select=".//gmd:aggregationInfo/*">
         <xsl:variable name="code"
