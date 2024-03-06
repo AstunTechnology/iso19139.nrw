@@ -97,9 +97,7 @@
 
 
     
-    <for name="gmd:extent" addDirective="data-gn-directory-entry-selector">
-      <directiveAttributes data-template-add-action="true" data-search-action="true" data-popup-action="true" data-template-type="extent" data-filter='{"_root": "gmd:EX_Extent"}' data-insert-modes=""/>
-    </for>
+    
 
     <!--
     Enable the following to use subtemplates for format type.
@@ -157,12 +155,20 @@
 
       Exclude all thesaurus already used in the metadata:
       -->
-      <directiveAttributes data-include="xpath::string-join(gmd:MD_Metadata/gmd:identificationInfo
+     <directiveAttributes
+        data-transformation="to-iso19139.nrw-keyword"
+        data-always-create-new-freekeyword-section="false"
+        data-allow-free-text-keywords="false"
+        data-include="xpath::string-join(gmd:MD_Metadata/gmd:identificationInfo
                                           //gmd:thesaurusName/*/gmd:identifier/*/
                                             gmd:code/gmx:Anchor/
                                               concat('-', substring-after(text()[. != ''], 'geonetwork.thesaurus.')), ',')"/>
-      <directiveAttributes data-transformation="to-iso19139-keyword-with-anchor" />
     </for>
+
+    <for name="gmd:geographicIdentifier" addDirective="data-gn-directory-entry-selector">
+      <!-- <directiveAttributes data-template-add-action="true" data-search-action="true" data-popup-action="true" data-template-type="extent" data-filter='{"_root": "gmd:EX_Extent"}' data-insert-modes=""/> -->
+    </for>
+
   </fields>
 
 
@@ -173,6 +179,7 @@
     <name>gmd:portrayalCatalogueInfo</name>
     <name>gmd:portrayalCatalogueCitation</name>
     <name>gmd:thesaurusName</name>
+    <name>gmd:descriptiveKeywords</name>
     <name>gmd:resourceConstraints</name>
     <name>gmd:spatialRepresentationInfo</name>
     <name>gmd:pointOfContact</name>
@@ -390,14 +397,14 @@
           <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:title" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
           <text ref="title_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
 
-          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:alternateTitle" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:alternateTitle" or="alternateTitle" in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
 
           <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/gmd:citation/gmd:CI_Citation/gmd:title" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
           <text ref="titlesrv_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
 
-          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/gmd:citation/gmd:CI_Citation/gmd:alternateTitle" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/gmd:citation/gmd:CI_Citation/gmd:alternateTitle" or="alternateTitle" in="/gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/gmd:citation/gmd:CI_Citation" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
 
-          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:date" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:date" or="date" in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
           <text ref="refdate_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
 
           <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/gmd:citation/gmd:CI_Citation/gmd:date" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
@@ -423,11 +430,13 @@
           <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceMaintenance" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
           <text ref="maintenance_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
 
-          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords" or="descriptiveKeywords" in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
-          <text ref="keyword_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
+          <section name="gmd:MD_Keywords">
+            <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords"
+                   in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification"
+                   or="descriptiveKeywords"/>
+            <text ref="keyword_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
+          </section>
 
-          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/gmd:descriptiveKeywords" or="descriptiveKeywords" in="/gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
-          <text ref="keywordsrv_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
 
           <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints[gmd:accessConstraints]"/>
           <text ref="limitations_help"/>
@@ -450,7 +459,8 @@
           <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:topicCategory"/>
           <text ref="topic_help" />
 
-          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicDescription"/>
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicDescription/gmd:geographicIdentifier" in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicDescription"
+                   or="geographicIdentifier"/>
           <text ref="extent_help"/>
 
           <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicBoundingBox"/>
@@ -540,6 +550,7 @@
 
       <!-- Elements that should not use the "flat" mode -->
       <flatModeExceptions>
+        <for name="gmd:alternateTitle" />
         <for name="gmd:parentIdentifier" />
         <for name="gmd:descriptiveKeywords"/>
         <for name="gmd:keyword"/>
@@ -604,6 +615,9 @@
       <tab id="dataQualityInfo">
         <section xpath="/gmd:MD_Metadata/gmd:dataQualityInfo" or="dataQualityInfo" in="/gmd:MD_Metadata"/>
       </tab>
+      <tab id="keywords">
+      <section xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords" or="gmd:descriptiveKeywords" in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification"/>
+      </tab>
       <tab id="spatialRepresentationInfo">
         <section xpath="/gmd:MD_Metadata/gmd:spatialRepresentationInfo" or="spatialRepresentationInfo" in="/gmd:MD_Metadata"/>
       </tab>
@@ -611,7 +625,7 @@
         <section xpath="/gmd:MD_Metadata/gmd:referenceSystemInfo" or="referenceSystemInfo" in="/gmd:MD_Metadata"/>
       </tab>
       <tab id="contentInfo" toggle="true">
-        <section xpath="/gmd:MD_Metadata/gmd:contentInfo" or="contentInfo" in="/gmd:MD_Metadata"/>
+        <section xpath="/gmd:MD_Metadata/gmd:contentInfo"/>
       </tab>
       <tab id="portrayalCatalogueInfo" toggle="true">
         <section xpath="/gmd:MD_Metadata/gmd:portrayalCatalogueInfo" or="portrayalCatalogueInfo" in="/gmd:MD_Metadata"/>
@@ -638,10 +652,10 @@
         </section>
       </tab>
       <tab id="metadataConstraints" toggle="true">
-        <section xpath="/gmd:MD_Metadata/gmd:metadataConstraints" or="metadataConstraints" in="/gmd:MD_Metadata"/>
+        <section xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints" or="resourceConstraints" in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification"/>
       </tab>
       <tab id="metadataMaintenance" toggle="true">
-        <section xpath="/gmd:MD_Metadata/gmd:metadataMaintenance" or="metadataMaintenance" in="/gmd:MD_Metadata"/>
+        <section xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceMaintenance" or="gmd:resourceMaintenance" in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification"/>
       </tab>
       <tab id="applicationSchemaInfo" toggle="true">
         <section xpath="/gmd:MD_Metadata/gmd:applicationSchemaInfo" or="applicationSchemaInfo" in="/gmd:MD_Metadata"/>

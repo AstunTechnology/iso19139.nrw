@@ -407,7 +407,7 @@
     <description>Information about an image's suitability for use</description>
   </element>
   <element name="gmd:MD_Keywords" id="52.0">
-    <label>Keyword</label>
+    <label>Keywords</label>
     <description>Keywords, their type and reference source</description>
   </element>
   <element name="gmd:MD_LegalConstraints" id="69.0">
@@ -415,6 +415,7 @@
     <description>Restrictions and legal prerequisites for accessing and using the resource or
       metadata
     </description>
+    <condition>mandatory</condition>
   </element>
   <element name="gmd:MD_MaintenanceInformation" id="142.0">
     <label>Maintenance information</label>
@@ -714,11 +715,11 @@
     <description>Value uniquely identifying the data resource</description>
     <condition>mandatory</condition>
   </element>
-  <element name="gmd:code" id="207.0" context="gmd:MD_Identifier">
+  <!-- <element name="gmd:code" id="207.0" context="gmd:MD_Identifier">
     <label>Identifier</label>
     <description>Value uniquely identifying the data resource</description>
     <condition>mandatory</condition>
-  </element>
+  </element> -->
   <element name="gmd:code" id="547.0" context="gmd:MD_CodeValue">
     <label>Code</label>
     <description>Value code</description>
@@ -946,7 +947,6 @@
     <description>Address line for the location (as described in ISO 11180, annex
       A)
     </description>
-    <condition>mandatory</condition>
   </element>
   <element name="gmd:denominator" id="57.0" context="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:spatialResolution/gmd:MD_Resolution/gmd:equivalentScale/gmd:MD_RepresentativeFraction/gmd:denominator">
     <label>Equivalent Scale</label>
@@ -1489,6 +1489,14 @@
       or similar addressing scheme such as http://www.statkart.no/isotc211
     </description>
     <condition>mandatory</condition>
+  </element>
+  <element name="gmd:linkage" context="/gmd:MD_Metadata/gmd:contact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:linkage">
+    <label>URL</label>
+    <description>Web Address for Organisation</description>
+  </element>
+  <element name="gmd:linkage" context="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:pointOfContact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:linkage">
+    <label>URL</label>
+    <description>Web Address for Organisation</description>
   </element>
   <element name="gmd:maintenanceAndUpdateFrequency" id="143.0">
     <label>Maintenance and update frequency</label>
@@ -3580,15 +3588,23 @@
 
   <!-- nrw specific -->
   <element name="nrw:internalInfo">
-  <label>NRW Custom Info</label>
+  <label>Custom Elements</label>
+  <condition>required</condition>
+  </element>
+
+  <element name="nrw:MD_ContentInfo">
+  <label>NRW Profile</label>
+  <condition>required</condition>
   </element> 
 
   <element name="nrw:internalLocationInfo">
   <label>NRW Internal Location</label>
+  <condition>required</condition>
   </element> 
 
   <element name="nrw:internalContactInfo">
   <label>NRW Internal Contact</label>
+  <condition>required</condition>
   </element>
 
   <element name="nrw:relatedTitle">

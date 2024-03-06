@@ -12,7 +12,8 @@
                 xmlns:gn-fn-iso19139="http://geonetwork-opensource.org/xsl/functions/profiles/iso19139"
                 xmlns:exslt="http://exslt.org/common" exclude-result-prefixes="#all">
 
-                <xsl:import href="../../iso19139/layout/layout-custom-fields.xsl"/>
+                <!-- <xsl:import href="../../iso19139/layout/layout-custom-fields.xsl"/> -->
+                <xsl:import href="layout-custom-fields-keywords.xsl"/>
 
   <!-- Readonly elements -->
   <!-- Uncomment to make gmd:metadataStandardName and gmd:metadataStandardVersion readonly -->
@@ -371,6 +372,63 @@
       </xsl:with-param>
     </xsl:call-template>
   </xsl:template>
+
+    <!-- Keywords boxed -->
+  <!-- <xsl:template mode="mode-iso19139"
+                match="gmd:descriptiveKeywords[$schema='iso19139.nrw']"
+                priority="4200">
+
+    <xsl:param name="schema" select="$schema" required="no"/>
+    <xsl:param name="labels" select="$labels" required="no"/>
+    <xsl:param name="overrideLabel" select="''" required="no"/>
+
+    <xsl:variable name="xpath" select="gn-fn-metadata:getXPath(.)"/>
+    <xsl:variable name="isoType" select="if (../@gco:isoType) then ../@gco:isoType else ''"/>
+
+    <xsl:variable name="labelConfig" select="gn-fn-metadata:getLabel($schema, name(), $labels, name(..), $isoType, $xpath)"/>
+
+    <xsl:variable name="helper" select="gn-fn-metadata:getHelper($labelConfig/helper, .)"/>
+
+    <xsl:variable name="labelConfig">
+      <xsl:choose>
+        <xsl:when test="$overrideLabel != ''">
+          <element>
+            <label><xsl:value-of select="$overrideLabel"/></label>
+          </element>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:copy-of select="$labelConfig"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+
+    <xsl:variable name="errors">
+      <xsl:if test="$showValidationErrors">
+        <xsl:call-template name="get-errors"/>
+      </xsl:if>
+    </xsl:variable>
+
+    <xsl:call-template name="render-boxed-element">
+      <xsl:with-param name="label" select="$labelConfig/*[1]/label"/>
+      <xsl:with-param name="editInfo" select="gn:element"/>
+      <xsl:with-param name="errors" select="$errors"/>
+      <xsl:with-param name="cls" select="local-name()"/>
+      <xsl:with-param name="xpath" select="$xpath"/>
+      <xsl:with-param name="subTreeSnippet">
+        <xsl:call-template name="render-element">
+          <xsl:with-param name="label" select="$labelConfig/*[1]"/>
+          <xsl:with-param name="value"
+                          select="gco:LocalName"/>
+          <xsl:with-param name="listOfValues" select="$helper"/>
+          <xsl:with-param name="name" select="if ($isEditing) then gco:LocalName/gn:element/@ref else ''"/>
+          <xsl:with-param name="cls" select="local-name()"/>
+          <xsl:with-param name="xpath" select="$xpath"/>
+          <xsl:with-param name="editInfo" select="gco:LocalName/gn:element"/>
+          <xsl:with-param name="parentEditInfo" select="gn:element"/>
+        </xsl:call-template>
+      </xsl:with-param>
+    </xsl:call-template>
+  </xsl:template> -->
 
   <!-- spatial representation type boxed -->
   <xsl:template mode="mode-iso19139"

@@ -37,7 +37,7 @@
                 version="2.0" exclude-result-prefixes="#all">
 
   <xsl:import href="../iso19139/update-fixed-info.xsl"/>
-  <xsl:include href="../iso19139/convert/thesaurus-transformation.xsl"/>
+  <xsl:include href="../convert/thesaurus-transformation.xsl"/>
 
   <!-- variables for doing hex-encoding -->
   <!-- the next line is all on one line and the before the ! is a space -->
@@ -210,10 +210,7 @@
         </xsl:choose>
     </xsl:template>
 
-    <!--  Delete empty keyword elements  -->
-  <!-- <xsl:template match="//gmd:descriptiveKeywords[./gmd:MD_Keywords/gmd:keyword/@gco:nilReason='missing']">
-    <xsl:message>==== Removing empty keyword element ====</xsl:message>
-  </xsl:template> -->
+
 
   <xsl:template match="gmd:MD_Format/gmd:version[not(string(gco:CharacterString))]" priority="10">
     <xsl:copy>
@@ -294,6 +291,22 @@
       <xsl:otherwise>
         <xsl:copy>
           <xsl:apply-templates select="@*|node()"/>
+        </xsl:copy>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
+      <!--  Delete empty keyword elements  -->
+  <xsl:template match="gmd:descriptiveKeywords" priority="100">
+    <xsl:message>==== Found keyword element ====</xsl:message>
+    <xsl:choose>
+      <xsl:when test="gmd:MD_Keywords/gmd:keyword/@gco:nilReason='missing'">
+        <xsl:message>=== Removing empty Keyword Element ===</xsl:message>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:copy>
+          <xsl:apply-templates select="@*|node()"/>
+           <xsl:message>=== I'm not empty ===</xsl:message>
         </xsl:copy>
       </xsl:otherwise>
     </xsl:choose>

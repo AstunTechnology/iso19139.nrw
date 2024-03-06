@@ -21,13 +21,13 @@
 
 	<!-- Define elements for Internal NRW Info. Extends gmd:contentInfo -->
 
-	<xs:element name="MD_ContentInfo" minOccurs="0" maxOccurs="1" type="nrw:MD_ContentInfo_Type" subsitutionGroup="gmd:AbstractMD_ContentInformation"/>
+	<xs:element name="MD_ContentInfo" minOccurs="1" maxOccurs="1" type="nrw:MD_ContentInfo_Type" subsitutionGroup="gmd:AbstractMD_ContentInformation"/>
 
 	<xs:complexType name="MD_ContentInfo_Type">
 		<xs:complexContent>
 			<xs:extension base="gmd:AbstractMD_ContentInformation_Type">
 				<xs:sequence>
-					<xs:element minOccurs="0" maxOccurs="1" name="internalInfo" type="nrw:MD_InternalInfo_PropertyType"/>
+					<xs:element minOccurs="1" maxOccurs="1" name="internalInfo" type="nrw:MD_InternalInfo_PropertyType"/>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
@@ -36,7 +36,7 @@
 	<xs:element name="MD_InternalInfo" type="nrw:MD_InternalInfo_Type"/>
 
 	<xs:complexType name="MD_InternalInfo_PropertyType">
-		<xs:sequence minOccurs="0">
+		<xs:sequence minOccurs="1" maxOccurs="1">
 			<xs:element ref="nrw:MD_InternalInfo" minOccurs="0" maxOccurs="1"/>
 		</xs:sequence>
 		 <xs:attributeGroup ref="gco:ObjectReference"/>
