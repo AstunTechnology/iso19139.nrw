@@ -115,7 +115,7 @@
   <format_version>Version</format_version>
   <format_specification>Specification</format_specification>
   <lineage>Lineage</lineage>
-  <spatialResolution>Spatial resolution (scale)</spatialResolution>
+  <spatialResolution>Spatial resolution</spatialResolution>
   <spatialDistance>Spatial resolution (distance)</spatialDistance>
   <accessConstraints>Access constraints</accessConstraints>
   <useConstraints>Use constraints</useConstraints>
@@ -139,7 +139,7 @@
   <inspireServiceTaxonomy>INSPIRE Service Taxonomy</inspireServiceTaxonomy>
   <otherConstraints>Other constraints</otherConstraints>
   <operatesOn>Coupled resource</operatesOn>
-  <extent>Geographic bounding box</extent>
+  <extent>Extent</extent>
   <freeTextKeywords>Other keywords</freeTextKeywords>
   <resource_url>URL</resource_url>
   <resource_protocol>Protocol</resource_protocol>
@@ -234,7 +234,12 @@
   <addAccessConstraints>Access constraints</addAccessConstraints>
   <addUseConstraints>Add use contraints</addUseConstraints>
   <addContact>Add contact</addContact>
-  <addVerticalExtent>Vertical Extent</addVerticalExtent>
+  <addVerticalExtentCRS>with CRS</addVerticalExtentCRS>
+  <addVerticalExtentDatum>with Datum</addVerticalExtentDatum>
+  <verticalExtent>Vertical Extent</verticalExtent>
+  <addVerticalExtent>Add Vertical Extent</addVerticalExtent>
+  <medinextent>Medin Extent Keyword</medinextent>
+  <geographicextent>Geographic Extent Keyword</geographicextent>
 
   <distributionFormat>Add Distribution Format</distributionFormat>
   <parentidentifier>Parent Identifier</parentidentifier>
@@ -505,6 +510,13 @@
       </div>
   </div>
 </extent_help>
+<medinextent_help>
+    <div class="row">
+    <div class="col-xs-offset-2 col-xs-8">
+      <p class="help-block">This element defines the Medin Vertical Extent of the dataset. It should only be used if you can't give a proper vertical extent in the section below.</p>
+      </div>
+  </div>
+</medinextent_help>
 <bbox_help>
     <div class="row">
     <div class="col-xs-offset-2 col-xs-8">

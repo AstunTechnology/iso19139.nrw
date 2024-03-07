@@ -139,6 +139,7 @@
       <directiveAttributes data-template-add-action="true" data-template-type="onLine" data-filter='{"_root": "gmd:CI_OnlineResource"}'/>
     </for>
     -->
+    <!-- /gmd:MD_Metadata/gmd:identificationInfo[1]/gmd:MD_DataIdentification[1]/gmd:extent[1]/gmd:EX_Extent[1]/gmd:geographicElement[2]/gmd:EX_GeographicDescription[1]/gmd:geographicIdentifier[1]/gmd:MD_Identifier[1]/gmd:code[1] -->
 
 
     <for name="gmd:descriptiveKeywords" addDirective="data-gn-thesaurus-selector">
@@ -165,9 +166,7 @@
                                               concat('-', substring-after(text()[. != ''], 'geonetwork.thesaurus.')), ',')"/>
     </for>
 
-    <for name="gmd:geographicIdentifier" addDirective="data-gn-directory-entry-selector">
-      <!-- <directiveAttributes data-template-add-action="true" data-search-action="true" data-popup-action="true" data-template-type="extent" data-filter='{"_root": "gmd:EX_Extent"}' data-insert-modes=""/> -->
-    </for>
+    
 
   </fields>
 
@@ -196,7 +195,6 @@
     <name>gmd:projection</name>
     <name>gmd:ellipsoid</name>
     <name>gmd:attributes</name>
-    <name>gmd:geographicElement</name>
     <name>gmd:EX_TemporalExtent</name>
     <name>gmd:EX_VerticalExtent</name>
     <name>gmd:MD_Distributor</name>
@@ -214,7 +212,6 @@
     <name>gmd:axisDimensionProperties</name>
     <name>gmd:topicCategory</name>
     <name>gmd:resourceMaintenance</name>
-    <name>gmd:geographicIdentifier</name>
     <name>srv:serviceType</name>
     <name>gmd:report</name>
     <name>gmd:distributionInfo</name>
@@ -447,9 +444,11 @@
           <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:spatialRepresentationType"/>
           <text ref="spatialrep_help"/>
 
-          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:spatialResolution"/>
+          <section name="spatialResolution">
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:spatialResolution/*//gmd:distance"/>
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:spatialResolution/*//gmd:denominator"/>
           <text ref="spatialresolution_help" />
-
+          </section>
           <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:language"/>
           <text ref="datasetlang_help" />
 
@@ -459,9 +458,74 @@
           <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:topicCategory"/>
           <text ref="topic_help" />
 
-          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicDescription/gmd:geographicIdentifier" in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicDescription"
-                   or="geographicIdentifier"/>
-          <text ref="extent_help"/>
+          <section name="medinextent">
+          <field name="medinextent" xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicDescription/gmd:geographicIdentifier[gmd:MD_Identifier/gmd:code/gmx:Anchor/starts-with(@xlink:href,'http://vocab.nerc.ac.uk/collection/L13/current')]" templateModeOnly="true" notDisplayedIfMissing="true" del="../../." removable="true">
+            <template>
+              <values>
+                <key label="medincode"
+                      xpath="gmd:MD_Identifier/gmd:code"
+                      use="data-gn-keyword-picker"
+                      tooltip="gmd:code">
+                 <directiveAttributes data-thesaurus-key="external.theme.SeaVoXVerticalCoordinateCoverages"
+                                      data-order-by-id="true"
+                                      data-display-definition="true"
+                                      data-template-field="true"
+                                      data-template-field-element="gmx:Anchor"
+                                      data-template-field-element-with-concept-id="gmx:Anchor"
+                                      data-template-field-value="eval#gmd:MD_Identifier/gmd:code/*/text()"
+                                      data-template-field-concept-id-value="eval#gmd:MD_Identifier/gmd:code/gmx:Anchor/@xlink:href"
+                                      data-thesaurus-concept-id-attribute="xlinkCOLONhref"/>
+                </key>
+              </values>
+              <snippet>
+                <gmd:geographicIdentifier>
+                    <gmd:MD_Identifier>
+                       <gmd:authority>
+                        <gmd:CI_Citation>
+                         <gmd:title>
+                          <gco:CharacterString>SeaVoX Vertical Co-ordinate Coverages</gco:CharacterString>
+                         </gmd:title>
+                         <gmd:date>
+                          <gmd:CI_Date>
+                           <gmd:date>
+                            <gco:Date>2021-01-06</gco:Date>
+                           </gmd:date>
+                           <gmd:dateType>
+                            <gmd:CI_DateTypeCode codeList="https://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode" codeListValue="revision">revision</gmd:CI_DateTypeCode>
+                           </gmd:dateType>
+                          </gmd:CI_Date>
+                         </gmd:date>
+                        </gmd:CI_Citation>
+                       </gmd:authority>
+                       <gmd:code>{{medincode}}</gmd:code>
+                    </gmd:MD_Identifier>
+                </gmd:geographicIdentifier>
+              </snippet>
+            </template>
+         </field>
+        <text ref="medinextent_help"/>
+        </section>
+        
+        <section name="extent">
+        <field 
+            xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicDescription/gmd:geographicIdentifier[gmd:MD_Identifier/gmd:code[not(gmx:Anchor)]]"/>
+            <action type="add" btnLabel="Add a Geographic Keyword" name="addGeoKeyword" or="geographicElement" in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent">
+            <template>
+               <snippet>
+                <gmd:geographicElement>
+                  <gmd:EX_GeographicDescription>
+                    <gmd:geographicIdentifier>
+                      <gmd:MD_Identifier>
+                         <gmd:code><gco:CharacterString></gco:CharacterString></gmd:code>
+                      </gmd:MD_Identifier>
+                  </gmd:geographicIdentifier>
+              </gmd:EX_GeographicDescription>
+            </gmd:geographicElement>
+              </snippet>
+            </template>
+          </action>
+
+          <text ref="extent_help" />
 
           <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicBoundingBox"/>
           <text ref="bbox_help" />
@@ -469,10 +533,72 @@
           <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:temporalElement"/>
           <text ref="tempextent_help"/>
 
-          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:verticalElement" />
+
+          <field
+            xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:verticalElement"
+            if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0">
+          </field>
+
+          <field
+            xpath="/gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/srv:extent/gmd:EX_Extent/gmd:verticalElement"
+            if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0">
+          </field>
+
+          <!-- add verticalelement datasets -->
+
+          <action type="add" btnLabel="addVerticalExtentCRS" name="addVerticalExtent" or="verticalElement"
+                  in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent">
+            <template>
+              <snippet label="Vertical Extent with CRS">
+                <gmd:verticalElement>
+                <gmd:EX_VerticalExtent>
+                  <gmd:minimumValue>
+                    <gco:Real/>
+                  </gmd:minimumValue>
+                  <gmd:maximumValue>
+                    <gco:Real/>
+                  </gmd:maximumValue>
+                  <gmd:verticalCRS xlink:href='http://www.opengis.net/def/crs/EPSG/0/5701'>EPSG:5701</gmd:verticalCRS>
+                </gmd:EX_VerticalExtent>
+              </gmd:verticalElement>
+              </snippet>
+            </template>
+          </action>
+
+          <action type="add" btnLabel="addVerticalExtentDatum" name="addVerticalExtent" or="verticalElement"
+                  in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent">
+            <template>
+              <snippet label="Vertical Extent with Datum">
+              <gmd:verticalElement>
+                <gmd:EX_VerticalExtent>
+                  <gmd:minimumValue>
+                    <gco:Real/>
+                  </gmd:minimumValue>
+                  <gmd:maximumValue>
+                    <gco:Real/>
+                  </gmd:maximumValue>
+                  <gmd:verticalCRS>
+                      <gml:VerticalCRS>
+                       <gml:verticalDatum>
+                        <gml:VerticalDatum>
+                         <gml:identifier codeSpace="OGP">urn:ogc:def:datum:EPSG::5100</gml:identifier>
+                         <gml:name>Sea Level</gml:name>
+                         <gml:scope>depth is unadjusted and does not take into account tidal height</gml:scope>
+                        </gml:VerticalDatum>
+                       </gml:verticalDatum>
+                      </gml:VerticalCRS>
+                     </gmd:verticalCRS>
+                </gmd:EX_VerticalExtent>
+              </gmd:verticalElement>
+              </snippet>
+            </template>
+          </action>
+
           <text ref="verticalextent_help" />
 
-        </section>
+        </section> <!-- end extent section -->
+
+        </section> <!--  end identification info section -->
 
         <section xpath="/gmd:MD_Metadata/gmd:referenceSystemInfo" or="referenceSystemInfo" in="/gmd:MD_Metadata"/>
         <text ref="spatialref_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
@@ -552,6 +678,7 @@
       <flatModeExceptions>
         <for name="gmd:alternateTitle" />
         <for name="gmd:parentIdentifier" />
+        <for name="gmd:geographicIdentifier" />
         <for name="gmd:descriptiveKeywords"/>
         <for name="gmd:keyword"/>
         <for name="gmd:spatialResolution"/>
@@ -565,6 +692,8 @@
         <for name="gmd:transferOptions"/>
         <for name="gmd:otherConstraints"/>
         <for name="gmd:EX_TemporalExtent"/>
+        <for name="gmd:geographicElement"/>
+        <for name="gmd:geographicIdentifier"/>
         <for name="gmd:report"/>
         <for name="gmd:lineage"/>
         <for name="gmd:date"/>
@@ -575,6 +704,8 @@
         <for name="nrw:internalInfo"/>
         <for name="nrw:MD_ContentInfo"/>
         <for name="nrw:MD_InternalInfo"/>
+        <for name="gmd:code"/>
+<!--         <for name="gmd:code" includeFrom="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicDescription/gmd:geographicIdentifier/gmd:MD_Identifier"/> -->
       </flatModeExceptions>
 
       <!--

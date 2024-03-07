@@ -268,7 +268,7 @@
     <description>Date for the content of the data resource</description>
   </element>
   <element name="gmd:EX_VerticalExtent" id="354.0">
-    <label>Vertical extent</label>
+    <label>Vertical Extent</label>
     <description>Vertical domain of data resource</description>
   </element>
   <element name="gmd:ISBN" id="372.0">
@@ -1383,13 +1383,51 @@
       National Stock Number (NSN)
     </description>
   </element>
-  <element name="gmd:code" id="573.0" context="gmd:geographicIdentifier">
+  <element name="gmd:code" id="573.0" context="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicDescription/gmd:geographicIdentifier/gmd:MD_Identifier/gmd:code">
     <label>Geographic Identifier</label>
     <description>Value identifying the geographic extent of the data resource</description>
-  </element>
+    <helper rel="gco:CharacterString">
+      <option value="ABERTAWE - SWANSEA" title="ABERTAWE - SWANSEA">ABERTAWE - SWANSEA</option>
+      <option value="Anglesey (52)" title="Anglesey (52)">Anglesey (52)</option>
+      <option value="BLAENAU GWENT - BLAENAU GWENT" title="BLAENAU GWENT - BLAENAU GWENT">BLAENAU GWENT - BLAENAU GWENT</option>
+      <option value="Bridgwater Bay" title="Bridgwater Bay">Bridgwater Bay</option>
+      <option value="Bristol Channel" title="Bristol Channel">Bristol Channel</option>
+      <option value="BRO MORGANNWG - THE VALE OF GLAMORGAN" title="BRO MORGANNWG - THE VALE OF GLAMORGAN">BRO MORGANNWG - THE VALE OF GLAMORGAN</option>
+      <option value="CAERDYDD - CARDIFF" title="CAERDYDD - CARDIFF">CAERDYDD - CARDIFF</option>
+      <option value="CAERFFILI - CAERPHILL" title="CAERFFILI - CAERPHILL">CAERFFILI - CAERPHILL</option>
+      <option value="Caernarfon Bay" title="Caernarfon Bay">Caernarfon Bay</option>
+      <option value="Caernarvonshire (49)" title="Caernarvonshire (49)">Caernarvonshire (49)</option>
+      <option value="Cardigan Bay" title="Cardigan Bay">Cardigan Bay</option>
+      <option value="Carmarthen Bay" title="Carmarthen Bay">Carmarthen Bay</option>
+      <option value="Carmarthenshire (44)" title="Carmarthenshire (44)">Carmarthenshire (44)</option>
+      <option value="CASNEWYDD - NEWPORT" title="CASNEWYDD - NEWPORT">CASNEWYDD - NEWPORT</option>
+      <option value="CASTELL-NEDD PORT TALBOT - NEATH PORT TALBOT" title="CASTELL-NEDD PORT TALBOT - NEATH PORT TALBOT">CASTELL-NEDD PORT TALBOT - NEATH PORT TALBOT</option>
+      <option value="Celtic Sea" title="Celtic Sea">Celtic Sea</option>
+      <option value="CONWY - CONWY" title="CONWY - CONWY">CONWY - CONWY</option>
+      <option value="Dee Estuary" title="Dee Estuary">Dee Estuary</option>
+      <option value="England (ENG)" title="England (ENG)">England (ENG)</option>
+      <option value="England and Wales (EAW)" title="England and Wales (EAW)">England and Wales (EAW)</option>
+      <option value="Flintshire (51)" title="Flintshire (51)">Flintshire (51)</option>
+      <option value="Glamorgan (41)" title="Glamorgan (41)">Glamorgan (41)</option>
+      <option value="Great Britain (GBN)" title="Great Britain (GBN)">Great Britain (GBN)</option>
+      <option value="GWYNEDD - GWYNEDD" title="GWYNEDD - GWYNEDD">GWYNEDD - GWYNEDD</option>
+      <option value="Irish Sea" title="Irish Sea">Irish Sea</option>
+      <option value="Liverpool Bay" title="Liverpool Bay">Liverpool Bay</option>
+      <option value="Menai Strait" title="Menai Strait">Menai Strait</option>
+      <option value="Merionethshire (48)" title="Merionethshire (48)">Merionethshire (48)</option>
+      <option value="MERTHYR TUDFUL - MERTHYR TYDFIL" title="MERTHYR TUDFUL - MERTHYR TYDFIL">MERTHYR TUDFUL - MERTHYR TYDFIL</option>
+      <option value="Monmouthshire (35)" title="Monmouthshire (35)">Monmouthshire (35)</option>
+      <option value="Montgomeryshire (47)" title="Montgomeryshire (47)">Montgomeryshire (47)</option>
+      <option value="Northern Ireland (NIR)" title="Northern Ireland (NIR)">Northern Ireland (NIR)</option>
+      <option value="Pembrokeshire (45)" title="Pembrokeshire (45)">Pembrokeshire (45)</option>
+      <option value="PEN-Y-BONT AR OGWR - BRIDGEND" title="PEN-Y-BONT AR OGWR - BRIDGEND">PEN-Y-BONT AR OGWR - BRIDGEND</option>
+      <option value="POWYS - POWYS" title="POWYS - POWYS">POWYS - POWYS</option>
+      <option value="RHONDDA CYNON TAF - RHONDDA CYNON TAFF" title="RHONDDA CYNON TAF - RHONDDA CYNON TAFF">RHONDDA CYNON TAF - RHONDDA CYNON TAFF</option>
+    </helper>
+    </element>
   <element name="gmd:identifier" id="575.0" context="gmd:MD_Authority">
     <label>Identifier</label>
-    <description>Identifier which belongs to the authority</description>
+    <description>Identifier that belongs to the authority</description>
   </element>
   <element name="gmd:illuminationAzimuthAngle" id="245.0">
     <label>Illumination azimuth angle</label>
@@ -3305,31 +3343,31 @@
   <element name="srv:DCPList">
     <label>Distributed Computing Platforms list</label>
   </element>
-  <element name="gmd:verticalCRS" id="24.0">
+  <element name="gmd:verticalCRS" id="24.0" context="gmd:EX_VerticalExtent">
     <label>Vertical CRS</label>
     <description>Provides information about the origin from which the maximum and minimum elevation
       values are measured
     </description>
-    <helper relAtt="xlink:href">
+    <!--</helper>
       <option value="http://www.opengis.net/def/crs/EPSG/0/5701">ODN height (United Kingdom) - EPSG:5701</option>
       <option value="http://www.opengis.net/def/crs/EPSG/0/7707">ODN (Offshore) height (United Kingdom) - EPSG:7707</option>
-      <option value="http://www.opengis.net/def/crs/EPSG/0/5730">EVRF2000 height (Europe) - EPSG:5730</option>
-      <option value="http://www.opengis.net/def/crs/EPSG/0/5621">EVRF2000 height (Europe) - EPSG:5621</option>
-      <option value="http://www.opengis.net/def/crs/EPSG/0/5732">Belfast height - EPSG:5732</option>
-      <option value="http://www.opengis.net/def/crs/EPSG/0/5741">Fair Isle height - EPSG:5741</option>
-      <option value="http://www.opengis.net/def/crs/EPSG/0/5748">Flannan Isles height - EPSG:5748</option>
-      <option value="http://www.opengis.net/def/crs/EPSG/0/5743">Foula height - EPSG:5743</option>
-      <option value="http://www.opengis.net/def/crs/EPSG/0/5731">Malin Head height - EPSG:5731</option>
-      <option value="http://www.opengis.net/def/crs/EPSG/0/5745">North Rona height - EPSG:5745</option>
-      <option value="http://www.opengis.net/def/crs/EPSG/0/5742">Lerwick height - EPSG:5742</option>
-      <option value="http://www.opengis.net/def/crs/EPSG/0/5740">ODN Orkney height - EPSG:5740</option>
-      <option value="http://www.opengis.net/def/crs/EPSG/0/7962">Poolbeg height (m) - EPSG:7962</option>
-      <option value="http://www.opengis.net/def/crs/EPSG/0/5754">Poolbeg height (ft(Br36)) - EPSG:5754</option>
-      <option value="http://www.opengis.net/def/crs/EPSG/0/5749">St Marys height - EPSG:5749</option>
-      <option value="http://www.opengis.net/def/crs/EPSG/0/5747">St Kilda height - EPSG:5747</option>
-      <option value="http://www.opengis.net/def/crs/EPSG/0/5746">Stornoway height - EPSG:5746</option>
-      <option value="http://www.opengis.net/def/crs/EPSG/0/5744">Sule Skerry height - EPSG:5744</option>
-    </helper>
+      <option title="http://www.opengis.net/def/crs/EPSG/0/5730">EVRF2000 height (Europe) - EPSG:5730</option>
+      <option title="http://www.opengis.net/def/crs/EPSG/0/5621">EVRF2000 height (Europe) - EPSG:5621</option>
+      <option title="http://www.opengis.net/def/crs/EPSG/0/5732">Belfast height - EPSG:5732</option>
+      <option title="http://www.opengis.net/def/crs/EPSG/0/5741">Fair Isle height - EPSG:5741</option>
+      <option title="http://www.opengis.net/def/crs/EPSG/0/5748">Flannan Isles height - EPSG:5748</option>
+      <option title="http://www.opengis.net/def/crs/EPSG/0/5743">Foula height - EPSG:5743</option>
+      <option title="http://www.opengis.net/def/crs/EPSG/0/5731">Malin Head height - EPSG:5731</option>
+      <option title="http://www.opengis.net/def/crs/EPSG/0/5745">North Rona height - EPSG:5745</option>
+      <option title="http://www.opengis.net/def/crs/EPSG/0/5742">Lerwick height - EPSG:5742</option>
+      <option title="http://www.opengis.net/def/crs/EPSG/0/5740">ODN Orkney height - EPSG:5740</option>
+      <option title="http://www.opengis.net/def/crs/EPSG/0/7962">Poolbeg height (m) - EPSG:7962</option>
+      <option title="http://www.opengis.net/def/crs/EPSG/0/5754">Poolbeg height (ft(Br36)) - EPSG:5754</option>
+      <option title="http://www.opengis.net/def/crs/EPSG/0/5749">St Marys height - EPSG:5749</option>
+      <option title="http://www.opengis.net/def/crs/EPSG/0/5747">St Kilda height - EPSG:5747</option>
+      <option title="http://www.opengis.net/def/crs/EPSG/0/5746">Stornoway height - EPSG:5746</option>
+      <option title="http://www.opengis.net/def/crs/EPSG/0/5744">Sule Skerry height - EPSG:5744</option> -->
+    <!-- </helper> -->
   </element>
   <element name="gmx:FileName">
     <label>File name</label>
@@ -3399,9 +3437,6 @@
   </element>
   <element name="gml:scope">
     <label>Scope</label>
-  </element>
-  <element name="gml:VerticalCRS">
-    <label>Vertical CRS</label>
   </element>
   <element name="gml:remarks">
     <label>Remarks</label>
