@@ -298,7 +298,6 @@
 
       <!--  Delete empty keyword elements  -->
   <xsl:template match="gmd:descriptiveKeywords" priority="100">
-    <xsl:message>==== Found keyword element ====</xsl:message>
     <xsl:choose>
       <xsl:when test="gmd:MD_Keywords/gmd:keyword/@gco:nilReason='missing'">
         <xsl:message>=== Removing empty Keyword Element ===</xsl:message>
@@ -306,7 +305,6 @@
       <xsl:otherwise>
         <xsl:copy>
           <xsl:apply-templates select="@*|node()"/>
-           <xsl:message>=== I'm not empty ===</xsl:message>
         </xsl:copy>
       </xsl:otherwise>
     </xsl:choose>
@@ -333,7 +331,7 @@
          </xsl:template>
 
   <!-- remove whole vertical element if both min and max values are empty or not present -->
-  <xsl:template match="gmd:verticalElement">
+  <!-- <xsl:template match="gmd:verticalElement">
     <xsl:variable name="hasMinimumValue" select="string(gmd:EX_VerticalExtent/gmd:minimumValue/gco:Real)" />
     <xsl:variable name="hasMaximumValue" select="string(gmd:EX_VerticalExtent/gmd:maximumValue/gco:Real)" />
     <xsl:variable name="hasVerticalCRSContent" select="string(gmd:EX_VerticalExtent/gmd:verticalCRS/@xlink:href) or count(gmd:EX_VerticalExtent/gmd:verticalCRS/*) > 0" />
@@ -348,7 +346,7 @@
         <gmd:verticalElement gco:nilReason="inapplicable" />
       </xsl:otherwise>
     </xsl:choose>
-  </xsl:template>
+  </xsl:template> -->
 
 
     <!-- Prefill resource identifier with uuid -->
