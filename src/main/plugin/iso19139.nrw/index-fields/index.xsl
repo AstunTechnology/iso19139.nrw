@@ -644,8 +644,9 @@
           </xsl:for-each>
         </xsl:for-each>
 
-        <xsl:for-each select="gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:otherConstraints">
-          <xsl:copy-of select="gn-fn-index:add-multilingual-field('license', ., $allLanguages)"/>
+        <!-- Changed to point to the correct License field for NRW -->
+        <xsl:for-each select="gmd:resourceConstraints[gmd:MD_LegalConstraints[1]/gmd:useConstraints]/gmd:MD_LegalConstraints/gmd:otherConstraints[2]/*/text()[lower-case(.) = '3rd party conditional' or lower-case(.) = '3rd party open' or lower-case(.) = 'not licenced for re-use' or lower-case(.) = 'nrw conditional' or lower-case(.) = 'open government licence' or lower-case(.) = 'open government licence (ogl)']">
+          <xsl:copy-of select="gn-fn-index:add-field('license', .)"/>
         </xsl:for-each>
 
         <xsl:if test="*/gmd:EX_Extent/*/gmd:EX_BoundingPolygon/gmd:polygon">
@@ -1000,6 +1001,11 @@
           <xsl:copy-of select="gn-fn-index:add-field('format', .)"/>
         </xsl:for-each>
 
+        <xsl:for-each
+          select="gmd:distributionFormat/*/gmd:specification/*[. != '']">
+          <xsl:copy-of select="gn-fn-index:add-field('formatSpecification', .)"/>
+        </xsl:for-each>
+
 
         <!-- Indexing distributor contact -->
         <xsl:for-each select="gmd:distributor/*[gmd:distributorContact]">
@@ -1104,6 +1110,14 @@
         </xsl:otherwise>
       </xsl:choose>
 
+      <xsl:choose>
+        <xsl:when test="*/gmd:MD_Distribution/gmd:transferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource/gmd:linkage/gmd:URL != ''">
+          <hasOnlineResource>true</hasOnlineResource>
+        </xsl:when>
+        <xsl:otherwise>
+          <hasOnlineResource>false</hasOnlineResource>
+        </xsl:otherwise>
+      </xsl:choose>
 
       <xsl:for-each select=".//gmd:aggregationInfo/*">
         <xsl:variable name="code"
