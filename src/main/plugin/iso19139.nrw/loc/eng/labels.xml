@@ -898,7 +898,7 @@
   </element>
   <element name="gmd:date" id="394.0" context="gmd:CI_Date">
     <condition>mandatory</condition>
-    <label>Reference Date</label>
+    <label>Resource Date</label>
     <btnClass>fa fa-calendar-plus-o</btnClass>
     <description>Reference date for the cited resource</description>
     <_condition>M</_condition>
@@ -1526,7 +1526,6 @@
     <description>Location (address) for on-line access using a Uniform Resource Locator address
       or similar addressing scheme such as http://www.statkart.no/isotc211
     </description>
-    <condition>mandatory</condition>
   </element>
   <element name="gmd:linkage" context="/gmd:MD_Metadata/gmd:contact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:linkage">
     <label>URL</label>
@@ -2550,7 +2549,7 @@
     <description>Status of the resource(s)</description>
   </element>
   <element name="gmd:supplementalInformation" id="46.0">
-    <label>Additional information</label>
+    <label>Additional Resource</label>
     <description>Any other descriptive information about the dataset</description>
   </element>
   <element name="gmd:temporalElement" id="337.0">
