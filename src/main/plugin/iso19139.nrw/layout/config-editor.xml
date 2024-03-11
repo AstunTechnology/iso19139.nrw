@@ -185,7 +185,6 @@
     <name>gmd:dataQualityInfo</name>
     <name>gmd:contentInfo</name>
     <name>gmd:distributionFormat</name>
-    <name>gmd:referenceSystemInfo</name>
     <name>gmd:spatialResolution</name>
     <name>gmd:offLine</name>
     <name>gmd:projection</name>
@@ -468,7 +467,7 @@
 
           <section name="extent">
           <field 
-              xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicDescription/gmd:geographicIdentifier[gmd:MD_Identifier/gmd:code[not(gmx:Anchor)]]"/>
+              xpath="//gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicDescription/gmd:geographicIdentifier[not(gmd:MD_Identifier/gmd:authority/gmd:CI_Citation/gmd:title/gco:CharacterString ='SeaVoX Vertical Co-ordinate Coverages')]"/>
               <action type="add" btnLabel="Add a Geographic Keyword" name="addGeoKeyword" or="geographicElement" in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent">
               <template>
                  <snippet>
@@ -565,15 +564,17 @@
 
         <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:spatialRepresentationType"/>
 
-
+        <section name="Access Constraints">
           <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints[gmd:accessConstraints]"/>
           <text ref="limitations_help"/>
-
+        </section>
+        <section name="Use Constraints">
           <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints[gmd:useConstraints]"/>
           <text ref="use_help"/>
+        </section>
 
           <section name="medinextent">
-            <field name="medinextent" xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicDescription/gmd:geographicIdentifier[gmd:MD_Identifier/gmd:code/gmx:Anchor/starts-with(@xlink:href,'http://vocab.nerc.ac.uk/collection/L13/current')]" templateModeOnly="true" notDisplayedIfMissing="true" del="../../." removable="true">
+            <field name="medinextent" xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicDescription/gmd:geographicIdentifier[gmd:MD_Identifier/gmd:authority/gmd:CI_Citation/gmd:title/gco:CharacterString ='SeaVoX Vertical Co-ordinate Coverages']" templateModeOnly="true" notDisplayedIfMissing="false" del="../../." removable="true">
               <template>
                 <values>
                   <key label="medincode"
