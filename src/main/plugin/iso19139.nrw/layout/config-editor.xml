@@ -570,13 +570,41 @@
           <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:accessConstraints"/>
         </section>
         <section name="Access Constraints URL">
-          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints[./gmd:accessConstraints]/gmd:otherConstraints[gmx:Anchor]"/>
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints[gmd:accessConstraints]/gmd:otherConstraints[gmx:Anchor]" del="." templateModeOnly="true">
+            <template>
+              <values>
+                  <key label="label"
+                        xpath="gmx:Anchor"/>
+              </values>
+              <snippet>
+                    <gmd:otherConstraints>
+                      <gn:copy select="gmx:Anchor/@xlink:href"/>
+                      <gmx:Anchor>{{label}}</gmx:Anchor>
+                    </gmd:otherConstraints>
+              </snippet>
+            </template>
+          </field>
           <action type="add" btnLabel="addAccessConstraints" name="addAccessConstraints" or="otherConstraints"
                   in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints[./gmd:accessConstraints]" if="count(//gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints[./gmd:accessConstraints]/gmd:otherConstraints/gmx:Anchor) = 0">
             <template>
-              <snippet>
+              <snippet label="addINSPIRE13_1a">
                     <gmd:otherConstraints>
-                      <gmx:Anchor xlink:href=""></gmx:Anchor>
+                      <gmx:Anchor xlink:href="http://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/INSPIRE_Directive_Article13_1a">INSPIRE_Directive_Article13_1a</gmx:Anchor>
+                    </gmd:otherConstraints>
+              </snippet>
+              <snippet label="addINSPIRE13_1c">
+                    <gmd:otherConstraints>
+                      <gmx:Anchor xlink:href="http://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/INSPIRE_Directive_Article13_1c">INSPIRE_Directive_Article13_1c</gmx:Anchor>
+                    </gmd:otherConstraints>
+              </snippet>
+              <snippet label="addINSPIRE13_1h">
+                    <gmd:otherConstraints>
+                      <gmx:Anchor xlink:href="http://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/INSPIRE_Directive_Article13_1h">INSPIRE_Directive_Article13_1h</gmx:Anchor>
+                    </gmd:otherConstraints>
+              </snippet>
+              <snippet label="addINSPIRE13_nolimitations">
+                    <gmd:otherConstraints>
+                      <gmx:Anchor xlink:href="http://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/noLimitations">noLimitations</gmx:Anchor>
                     </gmd:otherConstraints>
               </snippet>
             </template>

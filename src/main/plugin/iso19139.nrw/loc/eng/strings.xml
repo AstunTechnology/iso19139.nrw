@@ -119,6 +119,10 @@
   <spatialDistance>Spatial resolution (distance)</spatialDistance>
   <accessConstraints>Access constraints</accessConstraints>
   <useConstraints>Use constraints</useConstraints>
+  <addINSPIRE13_1a>INSPIRE_Directive_Article13_1a (Access would affect confidentiality of legal proceedings)</addINSPIRE13_1a>
+  <addINSPIRE13_1c>INSPIRE_Directive_Article13_1c (Access would affect the course of justice)</addINSPIRE13_1c>
+  <addINSPIRE13_1h>INSPIRE_Directive_Article13_1h (Access would affect the protection of the environment)</addINSPIRE13_1h>
+  <addINSPIRE13_nolimitations>No Limitations to public access</addINSPIRE13_nolimitations>
   <useLimitation>Use limitation</useLimitation>
   <licenceType>Licence Type</licenceType>
   <attributionStatement>Attribution Statement</attributionStatement>
