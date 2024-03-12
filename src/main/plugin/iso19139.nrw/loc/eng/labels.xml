@@ -2519,18 +2519,28 @@
     <description>Brief description of the resource and/or resource series usage</description>
     <condition>mandatory</condition>
   </element>
-  <element name="gmd:specification" id="130.0" context="gmd:DQ_ConformanceResult">
+  <element name="gmd:specification" id="288.0" context="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributionFormat/gmd:MD_Format/gmd:specification">
+    <label>Specification</label>
+    <description>Name of a subset, profile, or product specification of the format</description>
+    <helper rel="gco:CharacterString">
+      <option value="Binary">Binary</option>
+      <option value="Database">Database</option>
+      <option value="Delimited">Delimited</option>
+      <option value="Documents">Documents</option>
+      <option value="Geographic Information System">Geographic Information System</option>
+      <option value="Image">Image</option>
+      <option value="Movie">Movie</option>
+      <option value="Text or Plaintext">Text or Plaintext</option>
+    </helper>
+  </element>
+  <element name="gmd:specification">
+    <label>Specification</label>
+  </element>
+    <element name="gmd:specification" id="130.0" context="gmd:DQ_ConformanceResult">
     <condition>mandatory</condition>
     <label>Specification</label>
     <description>Citation of the product specification or user requirement against which data resource is evaluated
     </description>
-  </element>
-  <element name="gmd:specification" id="288.0" context="gmd:MD_Format">
-    <label>Specification</label>
-    <description>Name of a subset, profile, or product specification of the format</description>
-  </element>
-  <element name="gmd:specification">
-    <label>Specification</label>
   </element>
   <element name="gmd:statement" id="83.0">
     <label>Statement</label>

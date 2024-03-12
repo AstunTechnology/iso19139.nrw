@@ -595,7 +595,6 @@
             </template>
           </action>
         </section>
-          <text ref="limitations_help"/>
         <section name="Use Constraints">
           <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:useConstraints"/>
         </section>
@@ -605,10 +604,9 @@
         <section name="Attribution Statement">
           <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints[./gmd:useConstraints]/gmd:otherConstraints[gco:CharacterString]"/>
         </section>
-          <text ref="use_help"/>
         </section>
 
-          <section name="medinextent">
+          <section name="Vertical Extent">
             <field name="medinextent" xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicDescription/gmd:geographicIdentifier[gmd:MD_Identifier/gmd:authority/gmd:CI_Citation/gmd:title/gco:CharacterString ='SeaVoX Vertical Co-ordinate Coverages']" templateModeOnly="true" notDisplayedIfMissing="false" del="../../." removable="true">
               <template>
                 <values>
@@ -654,7 +652,6 @@
               </template>
            </field>
           <text ref="medinextent_help"/>
-          </section>
   
         
           <field
@@ -670,7 +667,7 @@
           <!-- add verticalelement datasets -->
 
           <action type="add" btnLabel="addVerticalExtentCRS" name="addVerticalExtent" or="verticalElement"
-                  in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent">
+                  in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent" if="count(//gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:verticalElement)=0">
             <template>
               <snippet label="Vertical Extent with CRS">
                 <gmd:verticalElement>
@@ -689,7 +686,7 @@
           </action>
 
           <action type="add" btnLabel="addVerticalExtentDatum" name="addVerticalExtent" or="verticalElement"
-                  in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent">
+                  in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent" if="count(//gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:verticalElement)=0">
             <template>
               <snippet label="Vertical Extent with Datum">
               <gmd:verticalElement>
@@ -718,6 +715,8 @@
           </action>
 
           <text ref="verticalextent_help" />
+
+          </section>
 
         </section> <!--  end identification info section -->
 
