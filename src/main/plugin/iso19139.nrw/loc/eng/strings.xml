@@ -119,9 +119,14 @@
   <spatialDistance>Spatial resolution (distance)</spatialDistance>
   <accessConstraints>Access constraints</accessConstraints>
   <useConstraints>Use constraints</useConstraints>
-  <addINSPIRE13_1a>INSPIRE_Directive_Article13_1a (Access would affect confidentiality of legal proceedings)</addINSPIRE13_1a>
-  <addINSPIRE13_1c>INSPIRE_Directive_Article13_1c (Access would affect the course of justice)</addINSPIRE13_1c>
-  <addINSPIRE13_1h>INSPIRE_Directive_Article13_1h (Access would affect the protection of the environment)</addINSPIRE13_1h>
+  <addINSPIRE13_1a>INSPIRE_Directive_Article13_1a</addINSPIRE13_1a>
+  <addINSPIRE13_1b>INSPIRE_Directive_Article13_1b</addINSPIRE13_1b>
+  <addINSPIRE13_1c>INSPIRE_Directive_Article13_1c</addINSPIRE13_1c>
+  <addINSPIRE13_1d>INSPIRE_Directive_Article13_1d</addINSPIRE13_1d>
+  <addINSPIRE13_1e>INSPIRE_Directive_Article13_1e</addINSPIRE13_1e>
+  <addINSPIRE13_1f>INSPIRE_Directive_Article13_1f</addINSPIRE13_1f>
+  <addINSPIRE13_1g>INSPIRE_Directive_Article13_1g</addINSPIRE13_1g>
+  <addINSPIRE13_1h>INSPIRE_Directive_Article13_1h</addINSPIRE13_1h>
   <addINSPIRE13_nolimitations>No Limitations to public access</addINSPIRE13_nolimitations>
   <useLimitation>Use limitation</useLimitation>
   <licenceType>Licence Type</licenceType>
@@ -351,11 +356,7 @@
   <limitations_help>
     <div class="row">
     <div class="col-xs-offset-2 col-xs-8">
-      <p class="help-block">The purpose of this element is to identify any external restrictions on access to the data such as licence arrangements.</p>
-      <ol class="help-block">
-        <li>For INSPIRE: If no limitations apply, enter 'No limitations'.</li>
-        <li>For more guidelines see <a target="_blank" href="https://www.agi.org.uk/40-gemini/1062-gemini-datasets-and-data-series#25">Gemini Guidance</a></li>
-      </ol>
+      <p class="help-block">Please see <a target="_blank" href="https://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess">https://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess</a> for more details.</p>
       </div>
   </div>
 </limitations_help>
