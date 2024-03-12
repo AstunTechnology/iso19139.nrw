@@ -176,7 +176,6 @@
     <name>gmd:portrayalCatalogueCitation</name>
     <name>gmd:thesaurusName</name>
     <name>gmd:descriptiveKeywords</name>
-    <name>gmd:resourceConstraints</name>
     <name>gmd:spatialRepresentationInfo</name>
     <name>gmd:pointOfContact</name>
     <name>gmd:contact</name>
@@ -221,6 +220,8 @@
     <expanded>
       <name>gmd:title</name>
       <name>gmd:abstract</name>
+      <name>gmd:alternateTitle</name>
+      <name>gmd:lineage</name>
     </expanded>
     <!-- All fields in ISO could be multilingual.
     Define element to exclude.
@@ -564,12 +565,46 @@
 
         <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:spatialRepresentationType"/>
 
-        <section name="Access Constraints">
-          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints[gmd:accessConstraints]"/>
-          <text ref="limitations_help"/>
+        <section name="Constraints">
+          <section name="Limitations on Public Access and Use">
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:accessConstraints"/>
         </section>
+        <section name="Access Constraints URL">
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints[./gmd:accessConstraints]/gmd:otherConstraints[gmx:Anchor]"/>
+          <action type="add" btnLabel="addAccessConstraints" name="addAccessConstraints" or="otherConstraints"
+                  in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints[./gmd:accessConstraints]" if="count(//gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints[./gmd:accessConstraints]/gmd:otherConstraints/gmx:Anchor) = 0">
+            <template>
+              <snippet>
+                    <gmd:otherConstraints>
+                      <gmx:Anchor xlink:href=""></gmx:Anchor>
+                    </gmd:otherConstraints>
+              </snippet>
+            </template>
+          </action>
+        </section>
+        <section name="Access Constraints Text">
+          <field name="accessConstraints" xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints[./gmd:accessConstraints]/gmd:otherConstraints[gco:CharacterString]"/>
+          <action type="add" btnLabel="addAccessConstraints" name="addAccessConstraints" or="otherConstraints"
+                  in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints[./gmd:accessConstraints]" if="count(//gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints[./gmd:accessConstraints]/gmd:otherConstraints/gco:CharacterString) = 0">
+            <template>
+              <snippet>
+                    <gmd:otherConstraints>
+                      <gco:CharacterString></gco:CharacterString>
+                    </gmd:otherConstraints>
+              </snippet>
+            </template>
+          </action>
+        </section>
+          <text ref="limitations_help"/>
         <section name="Use Constraints">
-          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints[gmd:useConstraints]"/>
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:useConstraints"/>
+        </section>
+        <section name="Licence Type">
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints[./gmd:useConstraints]/gmd:otherConstraints[gmx:Anchor]"/>
+        </section>
+        <section name="Attribution Statement">
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints[./gmd:useConstraints]/gmd:otherConstraints[gco:CharacterString]"/>
+        </section>
           <text ref="use_help"/>
         </section>
 
@@ -782,7 +817,7 @@
     </view>
 
     <!-- Advanced View -->
-    <view name="advanced">
+    <view name="advanced" displayIfServiceInfo="count(session[profile = 'Administrator']) = 1">
       <sidePanel>
         <directive data-gn-onlinesrc-list=""/>
         <directive gn-geo-publisher="" data-ng-if="gnCurrentEdit.geoPublisherConfig" data-config="{{gnCurrentEdit.geoPublisherConfig}}" data-lang="lang"/>

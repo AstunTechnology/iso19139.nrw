@@ -120,6 +120,8 @@
   <accessConstraints>Access constraints</accessConstraints>
   <useConstraints>Use constraints</useConstraints>
   <useLimitation>Use limitation</useLimitation>
+  <licenceType>Licence Type</licenceType>
+  <attributionStatement>Attribution Statement</attributionStatement>
   <add-resource-id>Compute resource identifier</add-resource-id>
   <add-resource-idHelp>Compose the resource identifier using the catalog URL and the metadata
     identifier (eg. http://www.organization.org/catalogue/5391bf69-44bc-4ea0-8cc0-6cf6c3bc81ae).
@@ -137,7 +139,6 @@
   <topicCategory>Topic category code</topicCategory>
   <metadataLanguage>Metadata language</metadataLanguage>
   <inspireServiceTaxonomy>INSPIRE Service Taxonomy</inspireServiceTaxonomy>
-  <otherConstraints>Other constraints</otherConstraints>
   <operatesOn>Coupled resource</operatesOn>
   <extent>Extent</extent>
   <freeTextKeywords>Other keywords</freeTextKeywords>

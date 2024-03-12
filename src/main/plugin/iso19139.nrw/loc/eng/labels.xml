@@ -522,7 +522,7 @@
     <condition>mandatory</condition>
   </element>
   <element name="gmd:accessConstraints" id="70.0">
-    <label>Limitations on Public Access</label>
+    <label>Restriction Type</label>
     <description>Access constraints applied to assure the protection of privacy or intellectual
       property, and any special restrictions or limitations on obtaining the
       resource
@@ -2135,13 +2135,6 @@
       elsewhere
     </description>
   </element>
-  <element name="gmd:otherConstraints" id="72.0">
-    <label>Other constraints</label>
-    <description>Other restrictions and legal prerequisites for accessing and using the
-      resource
-    </description>
-    <condition>conditional</condition>
-  </element>
   <element name="gmd:page" id="406.0">
     <label>Page</label>
     <description>Details on which pages of the publication the article was
@@ -2677,7 +2670,7 @@
     </description>
   </element>
   <element name="gmd:useConstraints" id="71.0">
-    <label>Use constraints</label>
+    <label>Use Constraints Type</label>
     <description>Constraints applied to assure the protection of privacy or intellectual
       property, and any special restrictions or limitations or warnings on using the
       resource
