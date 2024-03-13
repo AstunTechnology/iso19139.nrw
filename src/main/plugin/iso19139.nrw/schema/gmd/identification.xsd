@@ -80,7 +80,7 @@
 					<xs:element name="spatialResolution" type="gmd:MD_Resolution_PropertyType" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:element name="language" type="gco:CharacterString_PropertyType" maxOccurs="unbounded"/>
 					<xs:element name="characterSet" type="gmd:MD_CharacterSetCode_PropertyType" minOccurs="0" maxOccurs="unbounded"/>
-					<xs:element name="topicCategory" type="gmd:MD_TopicCategoryCode_PropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="topicCategory" type="gmd:MD_TopicCategoryCode_PropertyType" minOccurs="1" maxOccurs="unbounded"/>
 					<xs:element name="environmentDescription" type="gco:CharacterString_PropertyType" minOccurs="0"/>
 					<xs:element name="extent" type="gmd:EX_Extent_PropertyType" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:element name="supplementalInformation" type="gco:CharacterString_PropertyType" minOccurs="0"/>
@@ -122,7 +122,7 @@
 		<xs:complexContent>
 			<xs:extension base="gco:AbstractObject_Type">
 				<xs:sequence>
-					<xs:element name="denominator" type="gco:Integer_PropertyType"/>
+					<xs:element name="denominator" type="gco:Integer_PropertyType" minOccurs="0"/>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
@@ -235,8 +235,8 @@
 	<!-- =========================================================================== -->
 	<xs:complexType name="MD_Resolution_Type">
 		<xs:choice>
-			<xs:element name="equivalentScale" type="gmd:MD_RepresentativeFraction_PropertyType"/>
-			<xs:element name="distance" type="gco:Distance_PropertyType"/>
+			<xs:element name="equivalentScale" type="gmd:MD_RepresentativeFraction_PropertyType" minOccurs="0"/>
+			<xs:element name="distance" type="gco:Distance_PropertyType" minOccurs="0"/>
 		</xs:choice>
 	</xs:complexType>
 	<!-- ........................................................................ -->

@@ -300,6 +300,7 @@
       <xsl:with-param name="errors" select="$errors"/>
       <xsl:with-param name="cls" select="local-name()"/>
       <xsl:with-param name="xpath" select="$xpath"/>
+      <xsl:with-param name="isDisabled" select="true()"/>
       <xsl:with-param name="subTreeSnippet">
         <xsl:call-template name="render-element">
           <xsl:with-param name="label"

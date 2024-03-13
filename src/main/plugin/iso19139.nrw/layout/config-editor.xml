@@ -199,12 +199,10 @@
     <name>gmd:metadataConstraints</name>
     <name>gmd:aggregationInfo</name>
     <name>gmd:processStep</name>
-    <name>gmd:lineage</name>
     <name>gmd:centerPoint</name>
     <name>gml:verticalCS</name>
     <name>gml:verticalDatum</name>
     <name>gmd:axisDimensionProperties</name>
-    <name>gmd:topicCategory</name>
     <name>gmd:resourceMaintenance</name>
     <name>srv:serviceType</name>
     <name>gmd:report</name>
@@ -345,7 +343,7 @@
     </table>
     <table for="gmd:MD_Format">
       <header>
-        <col label="gmd:specification"/>
+        <col label="gmd:specification" class="gn-required"/>
         <col label="gmd:name" class="gn-required"/>
         <col label="gmd:version" class="gn-required"/>
         <col/>
@@ -375,6 +373,7 @@
   <views>
 
     <!-- Default View -->
+<!--     <view name="default" default="true" hideTimeInCalendar="true" displayIfRecord="starts-with(/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:MD_Identifier/gmd:code/gco:CharacterString, 'NRW_')"> -->
     <view name="default" default="true" hideTimeInCalendar="true">
       <sidePanel>
         <directive data-gn-validation-report="" data-initial-show-errors="true" data-initial-show-successes="false" data-initial-section-states="open"/>
@@ -462,9 +461,55 @@
           <text ref="responsiblepartysrv_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
           <text ref="responsibleparty_help"/>
 
-          <section xpath="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributionFormat"/>
+          <field xpath="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributionFormat"/>
+          <action type="add" btnLabel="Add a Distribution Format" name="addDistroFormat" or="distributionFormat" in="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution">
+              <template>
+                 <snippet>
+                  <gmd:distributionFormat>
+                    <gmd:MD_Format>
+                       <gmd:name>
+                          <gco:CharacterString/>
+                       </gmd:name>
+                       <gmd:version gco:nilReason="unknown">
+                          <gco:CharacterString/>
+                       </gmd:version>
+                       <gmd:specification>
+                          <gco:CharacterString/>
+                       </gmd:specification>
+                    </gmd:MD_Format>
+                 </gmd:distributionFormat>
+                </snippet>
+              </template>
+            </action>
 
-          <section xpath="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions"/>
+          <field xpath="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions"/>
+          <action type="add" btnLabel="Add a Transfer Option" name="addTransferOption" or="transferOptions" in="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution">
+              <template>
+                 <snippet>
+                  <gmd:transferOptions>
+                    <gmd:MD_DigitalTransferOptions>
+                       <gmd:onLine>
+                          <gmd:CI_OnlineResource>
+                             <gmd:linkage>
+                                <gmd:URL/>
+                             </gmd:linkage>
+                             <gmd:name gco:nilReason="missing">
+                                <gco:CharacterString/>
+                             </gmd:name>
+                             <gmd:description gco:nilReason="missing">
+                                <gco:CharacterString/>
+                             </gmd:description>
+                             <gmd:function>
+                                <gmd:CI_OnLineFunctionCode codeList="http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_OnLineFunctionCode"
+                                                           codeListValue="information"/>
+                             </gmd:function>
+                          </gmd:CI_OnlineResource>
+                       </gmd:onLine>
+                    </gmd:MD_DigitalTransferOptions>
+                 </gmd:transferOptions>
+                </snippet>
+              </template>
+            </action>
 
           <section name="extent">
           <field 
@@ -558,10 +603,9 @@
         <text ref="spatialrefsrv_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
       </section>
 
-        <section name="spatialResolution">
-        <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:spatialResolution/*//gmd:distance"/>
-        <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:spatialResolution/*//gmd:denominator"/>
-        </section>
+<!--         <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:spatialResolution/*//gmd:distance"/>
+        <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:spatialResolution/*//gmd:denominator"/> -->
+        <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:spatialResolution"/>
 
         <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:spatialRepresentationType"/>
 
@@ -569,7 +613,7 @@
           <section name="Limitations on Public Access and Use">
           <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:accessConstraints"/>
         </section>
-        <section name="Access Constraints URL">
+        <section name="Access Constraints Directive">
           <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints[gmd:accessConstraints]/gmd:otherConstraints[gmx:Anchor]" del="." templateModeOnly="true">
             <template>
               <values>

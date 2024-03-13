@@ -2502,17 +2502,10 @@
     <description>Method used to spatially represent geographic information</description>
     <condition>mandatory</condition>
   </element>
-  <element name="gmd:spatialResolution" id="38.0" context="//gmd:spatialResolution[gmd:MD_Resolution/gmd:distance]">
-    <label>Spatial resolution in metres</label>
+  <element name="gmd:spatialResolution" id="38.0">
+    <label>Spatial Resolution</label>
     <description>Measure of the granularity of the data (in metres)
     </description>
-    <condition>mandatory</condition>
-  </element>
-  <element name="gmd:spatialResolution" id="38.0" context="*/[gmd:denominator]">
-    <label>Spatial resolution as denominator</label>
-    <description>Measure of the granularity of the data (in metres)
-    </description>
-    <condition>mandatory</condition>
   </element>
   <element name="gmd:specificUsage" id="63.0">
     <label>Specific usage</label>
@@ -2543,9 +2536,10 @@
     </description>
   </element>
   <element name="gmd:statement" id="83.0">
-    <label>Statement</label>
+    <label>Lineage</label>
     <description>Information about the events or source data used in the construction of the data resource
     </description>
+    <condition>mandatory</condition>
   </element>
   <element name="gmd:status" id="28.0">
     <label>Status</label>
