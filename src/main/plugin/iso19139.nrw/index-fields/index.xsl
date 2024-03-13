@@ -24,6 +24,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
                 xmlns:gmd="http://www.isotc211.org/2005/gmd"
+                xmlns:nrw="http://naturalresources.wales/nrw"
                 xmlns:gmx="http://www.isotc211.org/2005/gmx"
                 xmlns:gmi="http://www.isotc211.org/2005/gmi"
                 xmlns:gco="http://www.isotc211.org/2005/gco"
@@ -143,6 +144,10 @@
       </document>
 
       <xsl:copy-of select="gn-fn-index:add-field('metadataIdentifier', $identifier)"/>
+
+      <xsl:for-each select="gmd:fileIdentifier">
+        <xsl:copy-of select="gn-fn-index:add-field('fileIdentifier', .)"/>
+      </xsl:for-each>
 
       <xsl:for-each select="gmd:metadataStandardName">
         <xsl:copy-of select="gn-fn-index:add-multilingual-field('standardName', ., $allLanguages)"/>
@@ -284,7 +289,7 @@
               </xsl:if> -->
               <xsl:value-of select="$date"/>
             </xsl:variable>
-<!--             <xsl:message>=== ZuluDateTime = <xsl:value-of select="$zuluDateTime"/> ===</xsl:message> -->
+            <!-- xsl:message>=== ZuluDateTime = <xsl:value-of select="$zuluDateTime"/> ===</xsl:message> -->
 
             <xsl:choose>
               <xsl:when test="$zuluDateTime != ''">
@@ -995,6 +1000,7 @@
 
       <xsl:variable name="atomProtocol" select="util:getSettingValue('system/inspire/atomProtocol')" />
 
+      <!-- Indexing format and format specification -->
       <xsl:for-each select="gmd:distributionInfo/*">
         <xsl:for-each
           select="gmd:distributionFormat/*/gmd:name/*[. != '']">
