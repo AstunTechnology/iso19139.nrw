@@ -102,4 +102,31 @@
         /gmd:MD_RestrictionCode/@codeListValue">
         <xsl:attribute name="codeListValue">otherRestrictions</xsl:attribute>
     </xsl:template>
+
+      <!-- remove empty alt title -->
+    <xsl:template match="gmd:alternateTitle" priority="100">
+        <xsl:choose>
+          <xsl:when test="not(gco:CharacterString/text())">
+            <xsl:message>=== Removing empty Alternate Title ===</xsl:message>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:copy>
+              <xsl:apply-templates select="@*|node()"/>
+            </xsl:copy>
+          </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+
+    <!-- Split gmd:topicCategory element into multiple blocks -->
+    <xsl:template match="gmd:topicCategory">
+        <xsl:apply-templates select="gmd:MD_TopicCategoryCode"/>
+    </xsl:template>
+    
+    <!-- Match MD_TopicCategoryCode elements and copy them unchanged within the same gmd:topicCategory block -->
+    <xsl:template match="gmd:MD_TopicCategoryCode">
+        <gmd:topicCategory>
+            <xsl:copy-of select="."/>
+        </gmd:topicCategory>
+    </xsl:template>
+  
 </xsl:stylesheet>
