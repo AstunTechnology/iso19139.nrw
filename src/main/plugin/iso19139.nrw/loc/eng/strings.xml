@@ -53,8 +53,8 @@
   <referenceSystemInfo>Spatial Reference System</referenceSystemInfo>
   <contentInfo>Content</contentInfo>
   <portrayalCatalogueInfo>Portrayal</portrayalCatalogueInfo>
-  <metadataConstraints>Md. constraints</metadataConstraints>
-  <metadataMaintenance>Md. maintenance</metadataMaintenance>
+  <metadataConstraints>Constraints</metadataConstraints>
+  <metadataMaintenance>Maintenance</metadataMaintenance>
   <applicationSchemaInfo>Schema info</applicationSchemaInfo>
   <noThesaurusName>Keywords</noThesaurusName>
   <bboxesSection>Geographic coverage</bboxesSection>

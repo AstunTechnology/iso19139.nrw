@@ -373,7 +373,7 @@
   <views>
 
     <!-- Default View -->
-    <view name="default" hideTimeInCalendar="true" displayIfRecord="starts-with(/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:MD_Identifier/gmd:code/gco:CharacterString, 'NRW_')">
+    <view name="default" default="true" hideTimeInCalendar="true" displayIfRecord="starts-with(/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:MD_Identifier/gmd:code/gco:CharacterString, 'NRW_')">
       <sidePanel>
         <directive data-gn-validation-report="" data-initial-show-errors="true" data-initial-show-successes="false" data-initial-section-states="open"/>
         <directive data-gn-onlinesrc-list=""/>
@@ -1226,7 +1226,7 @@
       <tab id="dataQualityInfo">
         <section xpath="/gmd:MD_Metadata/gmd:dataQualityInfo" or="dataQualityInfo" in="/gmd:MD_Metadata"/>
       </tab>
-      <tab id="keywords">
+      <tab id="Keywords">
       <section xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords" or="gmd:descriptiveKeywords" in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification"/>
       </tab>
       <tab id="spatialRepresentationInfo">

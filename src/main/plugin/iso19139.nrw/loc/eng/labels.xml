@@ -411,7 +411,7 @@
     <description>Keywords, their type and reference source</description>
   </element>
   <element name="gmd:MD_LegalConstraints" id="69.0">
-    <label>Legal constraints</label>
+    <label>Legal Constraints</label>
     <description>Restrictions and legal prerequisites for accessing and using the resource or
       metadata
     </description>
@@ -2680,6 +2680,13 @@
       resource
     </description>
     <condition>mandatory</condition>
+  </element>
+  <element name="gmd:otherConstraints" id="71.0">
+    <label>Other Constraint</label>
+    <description>Constraints applied to assure the protection of privacy or intellectual
+      property, and any special restrictions or limitations or warnings on using the
+      resource
+    </description>
   </element>
   <element name="gmd:useLimitation" id="68.0">
     <label>Use limitation</label>
