@@ -1439,7 +1439,7 @@
   </codelist>
   <!-- ==================================================== -->
   <codelist name="gmd:MD_RestrictionCode">
-    <entry>
+    <!-- <entry>
       <code>copyright</code>
       <label>Copyright</label>
       <description>Exclusive right to the publication, production, or sale of the rights to a
@@ -1447,43 +1447,43 @@
         label, granted by law for a specified period of time to an author, composer, artist,
         distributor
       </description>
-    </entry>
+    </entry> -->
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
-    <entry>
+    <!-- <entry>
       <code>patent</code>
       <label>Patent</label>
       <description>Government has granted exclusive right to make, sell, use or license an
         invention or discovery
       </description>
-    </entry>
+    </entry> -->
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
-    <entry>
+    <!-- <entry>
       <code>patentPending</code>
       <label>Pending patent</label>
       <description>Produced or sold information awaiting a patent</description>
-    </entry>
+    </entry> -->
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
-    <entry>
+    <!-- <entry>
       <code>trademark</code>
       <label>Trademark</label>
       <description>A name, symbol, or other device identifying a product, officially registered
         and legally restricted to the use of the owner or manufacturer
       </description>
-    </entry>
+    </entry> -->
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
-    <entry>
+    <!-- <entry>
       <code>license</code>
       <label>License</label>
       <description>Formal permission to do something</description>
-    </entry>
+    </entry> -->
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
-    <entry>
+    <!-- <entry>
       <code>intellectualPropertyRights</code>
       <label>Intellectual property rights</label>
       <description>Rights to financial benefit from and control of distribution of non-tangible
         property that is a result of creativity
       </description>
-    </entry>
+    </entry> -->
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
     <entry>
       <code>restricted</code>

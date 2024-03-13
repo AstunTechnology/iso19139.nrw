@@ -13,7 +13,8 @@
     <sch:ns prefix="geonet" uri="http://www.fao.org/geonetwork"/>
     <sch:ns prefix="xlink" uri="http://www.w3.org/1999/xlink"/>
 
-
+    <!-- NRW additional elements -->
+    
     <!--Internal Location is Mandatory-->
     <sch:pattern>
         <sch:title>$loc/strings/NRW100</sch:title>
@@ -30,45 +31,16 @@
         </sch:rule>
     </sch:pattern>
 
+    <!-- additional rules for standard elements -->
 
-
+    <!-- Vertical Extent -->
     
-
-
-    <!-- POINT OF CONTACT -->
-
-    <!-- <sch:pattern>
-        <sch:title>$loc/strings/EAMP300</sch:title>
-    </sch:pattern>
-
-    <sch:pattern>
-        <sch:title>EAMP-mi3-GeneralContact</sch:title>
-        <sch:rule context="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:pointOfContact/gmd:CI_ResponsibleParty">
-            <sch:assert test="count(./gmd:individualName)=1">$loc/strings/EAMP300.alert.name</sch:assert>
-            <sch:assert test="count(./gmd:organisationName)=1">$loc/strings/EAMP300.alert.org</sch:assert>
-            <sch:assert test="count(./gmd:positionName)=1">$loc/strings/EAMP300.alert.position</sch:assert>
-            <sch:assert test="count(./gmd:role)=1">$loc/strings/EAMP300.alert.role</sch:assert>
+    <!-- There should be only one -->
+   <sch:pattern>
+        <sch:title>$loc/strings/NRW200</sch:title>
+        <sch:rule context="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent">
+            <sch:assert test="count(./gmd:verticalElement)=1">$loc/strings/NRW200.alert</sch:assert>
      </sch:rule>
     </sch:pattern>
-
-    <sch:pattern>
-        <sch:title>EAMP-mi4-Custodian</sch:title>
-        <sch:rule context="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification">
-            <sch:assert test="count(//gmd:pointOfContact/gmd:CI_ResponsibleParty/gmd:role/gmd:CI_RoleCode[@codeListValue='custodian'])=2">$loc/strings/EAMP300.alert.custodian</sch:assert>
-            <sch:assert test="count(//gmd:pointOfContact/gmd:CI_ResponsibleParty/gmd:role/gmd:CI_RoleCode[@codeListValue='owner'])=1">$loc/strings/EAMP300.alert.owner</sch:assert>
-            <sch:assert test="count(//gmd:pointOfContact/gmd:CI_ResponsibleParty/gmd:role/gmd:CI_RoleCode[@codeListValue='pointOfContact'])=1">$loc/strings/EAMP300.alert.poc</sch:assert>
-         </sch:rule>
-     </sch:pattern>
-
-    <sch:pattern>
-        <sch:title>EAMP-mi5-Resourcetype</sch:title>
-        <sch:rule context="/*[1]">
-            <sch:assert test="count(gmd:hierarchyLevel) = 1">Resource type is mandatory. One shall be provided.</sch:assert>
-            <sch:assert test="gmd:hierarchyLevel[1]/*[1]/@codeListValue = 'dataset' or
-                gmd:hierarchyLevel[1]/*[1]/@codeListValue = 'series' or
-                gmd:hierarchyLevel[1]/*[1]/@codeListValue = 'nonGeographicDataset' or
-                gmd:hierarchyLevel[1]/*[1]/@codeListValue = 'service'">Value of resource type shall be 'dataset', 'series', 'nonGeographicDataset' or 'service'.</sch:assert>
-        </sch:rule>
-    </sch:pattern> -->
 
 </sch:schema>

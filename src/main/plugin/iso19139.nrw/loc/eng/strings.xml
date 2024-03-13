@@ -50,7 +50,7 @@
   <distributionInfo>Distribution</distributionInfo>
   <dataQualityInfo>Quality</dataQualityInfo>
   <spatialRepresentationInfo>Spatial rep.</spatialRepresentationInfo>
-  <referenceSystemInfo>Ref. system</referenceSystemInfo>
+  <referenceSystemInfo>Spatial Reference System</referenceSystemInfo>
   <contentInfo>Content</contentInfo>
   <portrayalCatalogueInfo>Portrayal</portrayalCatalogueInfo>
   <metadataConstraints>Md. constraints</metadataConstraints>
@@ -115,11 +115,22 @@
   <format_version>Version</format_version>
   <format_specification>Specification</format_specification>
   <lineage>Lineage</lineage>
-  <spatialResolution>Spatial resolution (scale)</spatialResolution>
+  <spatialResolution>Spatial resolution</spatialResolution>
   <spatialDistance>Spatial resolution (distance)</spatialDistance>
   <accessConstraints>Access constraints</accessConstraints>
   <useConstraints>Use constraints</useConstraints>
+  <addINSPIRE13_1a>INSPIRE_Directive_Article13_1a</addINSPIRE13_1a>
+  <addINSPIRE13_1b>INSPIRE_Directive_Article13_1b</addINSPIRE13_1b>
+  <addINSPIRE13_1c>INSPIRE_Directive_Article13_1c</addINSPIRE13_1c>
+  <addINSPIRE13_1d>INSPIRE_Directive_Article13_1d</addINSPIRE13_1d>
+  <addINSPIRE13_1e>INSPIRE_Directive_Article13_1e</addINSPIRE13_1e>
+  <addINSPIRE13_1f>INSPIRE_Directive_Article13_1f</addINSPIRE13_1f>
+  <addINSPIRE13_1g>INSPIRE_Directive_Article13_1g</addINSPIRE13_1g>
+  <addINSPIRE13_1h>INSPIRE_Directive_Article13_1h</addINSPIRE13_1h>
+  <addINSPIRE13_nolimitations>No Limitations to public access</addINSPIRE13_nolimitations>
   <useLimitation>Use limitation</useLimitation>
+  <licenceType>Licence Type</licenceType>
+  <attributionStatement>Attribution Statement</attributionStatement>
   <add-resource-id>Compute resource identifier</add-resource-id>
   <add-resource-idHelp>Compose the resource identifier using the catalog URL and the metadata
     identifier (eg. http://www.organization.org/catalogue/5391bf69-44bc-4ea0-8cc0-6cf6c3bc81ae).
@@ -137,35 +148,17 @@
   <topicCategory>Topic category code</topicCategory>
   <metadataLanguage>Metadata language</metadataLanguage>
   <inspireServiceTaxonomy>INSPIRE Service Taxonomy</inspireServiceTaxonomy>
-  <otherConstraints>Other constraints</otherConstraints>
   <operatesOn>Coupled resource</operatesOn>
-  <extent>Geographic bounding box</extent>
+  <extent>Extent</extent>
   <freeTextKeywords>Other keywords</freeTextKeywords>
   <resource_url>URL</resource_url>
   <resource_protocol>Protocol</resource_protocol>
 
-  <addCrs>Projection</addCrs>
-  <addCrs4936>ETRS89-XYZ</addCrs4936>
-  <addCrs4937>ETRS89-GRS80h</addCrs4937>
-  <addCrs4258>ETRS89-GRS80</addCrs4258>
-  <addCrs3035>ETRS89-LAEA</addCrs3035>
-  <addCrs3034>ETRS89-LCC</addCrs3034>
-  <addCrs3038>ETRS89-TM26N</addCrs3038>
-  <addCrs3039>ETRS89-TM27N</addCrs3039>
-  <addCrs3040>ETRS89-TM28N</addCrs3040>
-  <addCrs3041>ETRS89-TM29N</addCrs3041>
-  <addCrs3042>ETRS89-TM30N</addCrs3042>
-  <addCrs3043>ETRS89-TM31N</addCrs3043>
-  <addCrs3044>ETRS89-TM32N</addCrs3044>
-  <addCrs3045>ETRS89-TM33N</addCrs3045>
-  <addCrs3046>ETRS89-TM34N</addCrs3046>
-  <addCrs3047>ETRS89-TM35N</addCrs3047>
-  <addCrs3048>ETRS89-TM36N</addCrs3048>
-  <addCrs3049>ETRS89-TM37N</addCrs3049>
-  <addCrs3050>ETRS89-TM38N</addCrs3050>
-  <addCrs3051>ETRS89-TM39N</addCrs3051>
-  <addCrs5730>EVRS</addCrs5730>
-  <addCrs7409>ETRS89-GRS80-EVRS</addCrs7409>
+  <addCrs>Add a Spatial Reference System</addCrs>
+  <addCrs27700>British National Grid (EPSG:27700)</addCrs27700>
+  <addCrs4326>WGS 84 (EPSG:4326)</addCrs4326>
+  <addCrs4277>OSGB 1936 (EPSG:4277)</addCrs4277>
+  <addCrs4258>ETRS89 (EPSG:4258)</addCrs4258>
 
   <!-- String for INSPIRE SDS tab -->
 
@@ -234,7 +227,12 @@
   <addAccessConstraints>Access constraints</addAccessConstraints>
   <addUseConstraints>Add use contraints</addUseConstraints>
   <addContact>Add contact</addContact>
-  <addVerticalExtent>Vertical Extent</addVerticalExtent>
+  <addVerticalExtentCRS>with CRS</addVerticalExtentCRS>
+  <addVerticalExtentDatum>with Datum</addVerticalExtentDatum>
+  <verticalExtent>Vertical Extent</verticalExtent>
+  <addVerticalExtent>Add Vertical Extent</addVerticalExtent>
+  <medinextent>Medin Extent</medinextent>
+  <geographicextent>Geographic Extent</geographicextent>
 
   <distributionFormat>Add Distribution Format</distributionFormat>
   <parentidentifier>Parent Identifier</parentidentifier>
@@ -358,11 +356,7 @@
   <limitations_help>
     <div class="row">
     <div class="col-xs-offset-2 col-xs-8">
-      <p class="help-block">The purpose of this element is to identify any external restrictions on access to the data such as licence arrangements.</p>
-      <ol class="help-block">
-        <li>For INSPIRE: If no limitations apply, enter 'No limitations'.</li>
-        <li>For more guidelines see <a target="_blank" href="https://www.agi.org.uk/40-gemini/1062-gemini-datasets-and-data-series#25">Gemini Guidance</a></li>
-      </ol>
+      <p class="help-block">Please see <a target="_blank" href="https://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess">https://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess</a> for more details.</p>
       </div>
   </div>
 </limitations_help>
@@ -435,10 +429,6 @@
     <div class="row">
     <div class="col-xs-offset-2 col-xs-8">
       <p class="help-block">The abstract should provide a clear and concise statement that enables the reader to understand the content of the data or service.</p>
-      <ol class="help-block">
-        <li>For Gemini compliance, the abstract should be at least 100 characters long.</li>
-        <li>For more guidelines see <a target="_blank" href="https://www.agi.org.uk/40-gemini/1062-gemini-datasets-and-data-series#4">Gemini Guidance</a></li>
-      </ol>
       </div>
   </div>
 </abstract_help>
@@ -446,44 +436,17 @@
     <div class="row">
     <div class="col-xs-offset-2 col-xs-8">
       <p class="help-block">The abstract should provide a clear and concise statement that enables the reader to understand the content of the data or service.</p>
-      <ol class="help-block">
-        <li>For Gemini compliance, the abstract should be at least 100 characters long.</li>
-        <li>For more guidelines see <a target="_blank" href="https://www.agi.org.uk/40-gemini/1063-gemini-services#4">Gemini Guidance</a></li>
-      </ol>
       </div>
   </div>
 </abstractsrv_help>
 <supplemental_help>
     <div class="row">
     <div class="col-xs-offset-2 col-xs-8">
-      <p class="help-block">The purpose of this element is to record relevant information that does not clearly belong in another element.</p>
-      <ol class="help-block">
-        <li>For more guidelines see <a target="_blank" href="https://www.agi.org.uk/40-gemini/1062-gemini-datasets-and-data-series#27">Gemini Guidance</a></li>
-      </ol>
+      <p class="help-block">Any reference to external information that are considered useful such as evidence report citation.
+E.g. Feingold D. and Evans P.G.H 2014 Bottlenose Dolphin and Harbour Porpoise Monitoring in Cardigan Bay and Pen Llŷn a’r Sarnau Special Areas of Conservation 2011 - 2013. NRW Evidence Report Series Report No: 4, 120 pp, Natural Resources Wales, Bangor</p>
       </div>
   </div>
 </supplemental_help>
-<resourceidentifier_help>
-    <div class="row">
-    <div class="col-xs-offset-2 col-xs-8">
-      <p class="help-block">The purpose of this is to uniquely identify the data resource.</p>
-      <ol class="help-block">
-        <li>For more guidelines see <a target="_blank" href="https://www.agi.org.uk/40-gemini/1062-gemini-datasets-and-data-series#36">Gemini Guidance</a></li>
-      </ol>
-      </div>
-  </div>
-</resourceidentifier_help>
-<!-- <conformity_help>
-    <div class="row">
-    <div class="col-xs-offset-2 col-xs-8">
-      <p class="help-block">The purpose of this is to record the conformity to the INSPIRE or other data specification.</p>
-      <ol class="help-block">
-        <li>For the default options for datasets and services, choose the appropriate snippet</li>
-        <li>For more guidelines see <a target="_blank" href="https://www.agi.org.uk/40-gemini/1062-gemini-datasets-and-data-series#41">Gemini Guidance</a></li>
-      </ol>
-      </div>
-  </div>
-</conformity_help> -->
 <spatialresolution_help>
     <div class="row">
     <div class="col-xs-offset-2 col-xs-8">
@@ -505,6 +468,13 @@
       </div>
   </div>
 </extent_help>
+<medinextent_help>
+    <div class="row">
+    <div class="col-xs-offset-2 col-xs-8">
+      <p class="help-block">This element defines the Medin Vertical Extent of the dataset. It should only be used if you can't give a proper vertical extent in the section below.</p>
+      </div>
+  </div>
+</medinextent_help>
 <bbox_help>
     <div class="row">
     <div class="col-xs-offset-2 col-xs-8">
@@ -540,11 +510,9 @@
 <keyword_help>
     <div class="row">
     <div class="col-xs-offset-2 col-xs-8">
-      <p class="help-block">Provide a keyword to describe the general subject of the resource. Keywords should preferrably be from a controlled vocabulary, in which case the title and reference date of the vocabulary should be provided, or free text.</p>
-      <ol class="help-block">
-        <li>For INSPIRE, at least one keyword should describe the relevant INSPIRE spatial data theme from GEMET</li>
-        <li>For more guidelines see <a target="_blank" href="https://www.agi.org.uk/40-gemini/1062-gemini-datasets-and-data-series#6">Gemini Guidance</a></li>
-      </ol>
+      <p class="help-block">Records to be published as Gemini require at least keyword from the GEMET INSPIRE themes vocabulary.</p> 
+      <p>Records to be published as Medin require at least one keyword from the SeaDataNet vocabulary.</p>
+      <p>For NRW keywords, if you can't find a suitable one, in either the standard list or the SMNR list, or need a new one adding, please contact opendata@cyfoethnaturiolcymru.gov.uk</p>
       </div>
   </div>
 </keyword_help>
@@ -559,59 +527,11 @@
       </div>
   </div>
 </keywordsrv_help>
-<lineage_help>
-    <div class="row">
-    <div class="col-xs-offset-2 col-xs-8">
-      <p class="help-block">The purpose of this element is to give an indication of how the data resource was created. It is useful in determining its fitness for purpose.</p>
-      <ol class="help-block">
-        <li>Include information on source material, processes, method of updating, and quality control processes</li>
-        <li>Not required for services.</li>
-        <li>For more guidelines see <a target="_blank" href="https://www.agi.org.uk/40-gemini/1062-gemini-datasets-and-data-series#10">Gemini Guidance</a></li>
-      </ol>
-      </div>
-  </div>
-</lineage_help>
-<maintenance_help>
-    <div class="row">
-    <div class="col-xs-offset-2 col-xs-8">
-      <p class="help-block">Information about the scope and frequency of updating.</p>
-      <ol class="help-block">
-        <li>Include at least the Update Frequency, choose from the dropdown list</li>
-        <li>For more guidelines see <a target="_blank" href="https://www.agi.org.uk/40-gemini/1062-gemini-datasets-and-data-series#53">Gemini Guidance</a></li>
-      </ol>
-      </div>
-  </div>
-</maintenance_help>
-<!-- <scope_help>
-    <div class="row">
-    <div class="col-xs-offset-2 col-xs-8">
-      <p class="help-block">The scope that the data quality report refers to.</p>
-      <ol class="help-block">
-        <li>Include at least a report where the scope is the entire dataset or series. Choose from the appropriate code snippet.</li>
-        <li>For more guidelines see <a target="_blank" href="https://www.agi.org.uk/40-gemini/1062-gemini-datasets-and-data-series#48">Gemini Guidance</a></li>
-      </ol>
-      </div>
-  </div>
-</scope_help>
-<scopesrv_help>
-    <div class="row">
-    <div class="col-xs-offset-2 col-xs-8">
-      <p class="help-block">The scope that the data quality report refers to.</p>
-      <ol class="help-block">
-        <li>Include at least a report where the scope is the entire service. Choose from the appropriate code snippet.</li>
-        <li>For more guidelines see <a target="_blank" href="https://www.agi.org.uk/40-gemini/1063-gemini-services#48">Gemini Guidance</a></li>
-      </ol>
-      </div>
-  </div>
-</scopesrv_help> -->
 <responsibleparty_help>
     <div class="row">
     <div class="col-xs-offset-2 col-xs-8">
-      <p class="help-block">This informs the user about who is responsible for the data resource.</p>
-      <ol class="help-block">
-        <li>Include at least the organisation name, delivery point, email, and role. A generic role may be given. Delete those you don't need, or use advanced view to add more elements.</li>
-        <li>For more guidelines see <a target="_blank" href="https://www.agi.org.uk/40-gemini/1062-gemini-datasets-and-data-series#23">Gemini Guidance</a></li>
-      </ol>
+      <p class="help-block">Select the organisation from the dropdown list and select their role.</p> 
+      <p>If the organisation is not included please contact opendata@cyfoethnaturiolcymru.gov.uk</p>
       </div>
   </div>
 </responsibleparty_help>
@@ -629,11 +549,12 @@
 <spatialref_help>
     <div class="row">
     <div class="col-xs-offset-2 col-xs-8">
-      <p class="help-block">The purpose of this element is to identify the way in which the data is spatially referenced in the data resource. This may be by coordinates or geographic identifiers.</p>
-      <ol class="help-block">
-        <li>For INSPIRE compliance at least EPSG 4258 should be included.</li>
-        <li>Pick an EPSG Code from the list.</li>
-        <li>For more guidelines see <a target="_blank" href="https://www.agi.org.uk/40-gemini/1062-gemini-datasets-and-data-series#17">Gemini Guidance</a></li>
+      <p class="help-block">This is the spatial reference system used in the data and should include one of the following:</p> 
+    <ol class="help-block">
+        <li>OSGB 1936 / British National Grid (EPSG:27700)</li>
+        <li>WGS 84 (EPSG:4326)</li>
+        <li>British National Grid Long/Lat (OSGB 36) (EPSG: 4277])</li>
+        <li>ETRS89 (EPSG:4258) should be included for INSPIRE compliance</li>
       </ol>
       </div>
   </div>
@@ -664,17 +585,7 @@
 <tempextent_help>
     <div class="row">
     <div class="col-xs-offset-2 col-xs-8">
-      <p class="help-block">This is the date or date range that identifies the currency of the data. It may refer to the period of collection, or the date at which it is deemed to be current. Mandatory for Datasets and Series.</p>
-      <ol class="help-block">
-        <li>This element should not be confused with Dataset reference date which is an identifying date for the data resource.</li>
-        <li>To indicate an indeterminate date use the More Details option in the view menu to add an Indeterminate position with the appropriate value:
-          <ul>
-            <li>If the indeterminate position is "now" or "unknown", leave the date blank</li>
-            <li>If the indeterminate position is "before" or "after" fill in the date</li>
-          </ul>
-        </li>
-        <li>For more guidelines see <a target="_blank" href="https://www.agi.org.uk/40-gemini/1062-gemini-datasets-and-data-series#7">Gemini Guidance</a></li>
-      </ol>
+      <p class="help-block">This is the date or date range of the period of collection of the data. For data resources that are continuous you can leave the end date range blank.</p>
       </div>
   </div>
 </tempextent_help>
@@ -696,26 +607,20 @@
       </div>
   </div>
 </tempextentsrv_help>
-<title_help>
+<alttitle_help>
     <div class="row">
     <div class="col-xs-offset-2 col-xs-8">
-      <p class="help-block">The purpose of this element is to provide a readily recognisable name for the resource.</p>
-      <ol class="help-block">
-        <li>For more guidelines see <a target="_blank" href="https://www.agi.org.uk/40-gemini/1062-gemini-datasets-and-data-series#1">Gemini Guidance</a></li>
-      </ol>
+      <p class="help-block">Include the welsh translation, and for single datasets include the exact file name used in the corporate store such as the .lyr, .shp</p>
       </div>
   </div>
-</title_help>
-<titlesrv_help>
+</alttitle_help>
+<alttitlesrv_help>
     <div class="row">
     <div class="col-xs-offset-2 col-xs-8">
-      <p class="help-block">The purpose of this element is to provide a readily recognisable name for the resource.</p>
-      <ol class="help-block">
-        <li>For more guidelines see <a target="_blank" href="https://www.agi.org.uk/40-gemini/1063-gemini-services#1">Gemini Guidance</a></li>
-      </ol>
-      </div>
+      <p class="help-block">Include the welsh translation</p>      
+    </div>
   </div>
-</titlesrv_help>
+</alttitlesrv_help>
 <servicetype_help>
     <div class="row">
     <div class="col-xs-offset-2 col-xs-8">
@@ -802,22 +707,14 @@
 <refdate_help>
     <div class="row">
     <div class="col-xs-offset-2 col-xs-8">
-      <p class="help-block">The reference date for the data resource.</p>
-      <ol class="help-block">
-        <li>Dataset reference date is a notional date of 'publication' of the data resource. It is different from Temporal extent which is the actual date of the currency of the data.</li>
-        <li>For more guidelines see <a target="_blank" href="https://www.agi.org.uk/40-gemini/1062-gemini-datasets-and-data-series#58">Gemini Guidance</a></li>
-      </ol>
+      <p class="help-block">For datasets that have not been published this should be set to creation. When the data is published please change the date type to publication.</p>
       </div>
   </div>
 </refdate_help>
 <refdatesrv_help>
     <div class="row">
     <div class="col-xs-offset-2 col-xs-8">
-      <p class="help-block">The reference date for the data resource.</p>
-      <ol class="help-block">
-        <li>Dataset reference date is a notional date of 'publication' of the data resource. It is different from Temporal extent which is the actual date of the currency of the data.</li>
-        <li>For more guidelines see <a target="_blank" href="https://www.agi.org.uk/40-gemini/1063-gemini-services#58">Gemini Guidance</a></li>
-      </ol>
+      <p class="help-block">For services that have not been published this should be set to creation. When the service is published please change the date type to publication.</p>
       </div>
   </div>
 </refdatesrv_help>
@@ -900,7 +797,7 @@
 <NRW_InternalContactInfo_help>
     <div class="row">
     <div class="col-xs-offset-2 col-xs-8">
-      <p class="help-block">NRW Internal Contact Information (optional, single occurrence)</p>
+      <p class="help-block">This element should include the NRW Data Custodian and their NRW job title.</p>
       </div>
   </div>
 </NRW_InternalContactInfo_help>

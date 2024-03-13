@@ -84,7 +84,7 @@
 					<xs:element name="administrativeArea" type="gco:CharacterString_PropertyType" minOccurs="0"/>
 					<xs:element name="postalCode" type="gco:CharacterString_PropertyType" minOccurs="0"/>
 					<xs:element name="country" type="gco:CharacterString_PropertyType" minOccurs="0"/>
-					<xs:element name="electronicMailAddress" type="gco:CharacterString_PropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="electronicMailAddress" type="gco:CharacterString_PropertyType" maxOccurs="unbounded"/>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
@@ -107,7 +107,7 @@
 		<xs:complexContent>
 			<xs:extension base="gco:AbstractObject_Type">
 				<xs:sequence>
-					<xs:element name="linkage" type="gmd:URL_PropertyType"/>
+					<xs:element name="linkage" type="gmd:URL_PropertyType" minOccurs="0"/>
 					<xs:element name="protocol" type="gco:CharacterString_PropertyType" minOccurs="0"/>
 					<xs:element name="applicationProfile" type="gco:CharacterString_PropertyType" minOccurs="0"/>
 					<xs:element name="name" type="gco:CharacterString_PropertyType" minOccurs="0"/>
