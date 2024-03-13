@@ -39,8 +39,8 @@
   <advanced>Advanced</advanced>
   <default>Default</default>
   <simple>Simple</simple>
-  <inspire>INSPIRE</inspire>
-  <inspire_sds>SDS</inspire_sds>
+  <thirdparty>Third Party View</thirdparty>
+  <default-thirdparty>Third Party View</default-thirdparty>
 
   <keywordFrom>Keywords - </keywordFrom>
   <resource>Resource</resource>
@@ -160,70 +160,7 @@
   <addCrs4277>OSGB 1936 (EPSG:4277)</addCrs4277>
   <addCrs4258>ETRS89 (EPSG:4258)</addCrs4258>
 
-  <!-- String for INSPIRE SDS tab -->
-
-  <inspire_sds_cc1>Conformance class 1: invocable</inspire_sds_cc1>
-  <inspire_sds_cc2>Conformance class 2: interoperable</inspire_sds_cc2>
-  <inspire_sds_cc3>Conformance class 3: harmonized</inspire_sds_cc3>
-
-  <sds-category>Category</sds-category>
-  <inspire_add_pass>Add pass element</inspire_add_pass>
-  <sds-add-dataquality>Add DataQuality element</sds-add-dataquality>
-  <sds-add-dataqualityHelp>TG4: For each spatial data service, there shall be one and only one set
-    of quality information (dataQualityInfo element) scoped to “service”.
-  </sds-add-dataqualityHelp>
-  <sds-add-tech-spec>Add a technical specification</sds-add-tech-spec>
-  <sds-add-tech-specHelp>TG8: The Specification metadata element shall at least refer to or contain
-    one technical specification to which the invocable spatial data service fully conforms,
-    providing all the necessary technical elements, to actually invoke the service and enable its
-    usage.
-  </sds-add-tech-specHelp>
-  <sds-tech-spec>Technical specification</sds-tech-spec>
-  <conformity_desc>Specification Title</conformity_desc>
-  <conformity_linkage>Specification URL</conformity_linkage>
-
-
-  <sds-section-qos>Quality of Service</sds-section-qos>
-  <sds-add-qualityofservice>Add missing Quality of Service criteria</sds-add-qualityofservice>
-  <sds-add-qualityofserviceHelp>INSPIRE SDS requires three quality of service criteria to be
-    reported in the metadata: Availability, Performance and Capacity. This button will add the
-    missing criteria.
-  </sds-add-qualityofserviceHelp>
-  <qos_measure>Measure:</qos_measure>
-  <qos_uom>UOM</qos_uom>
-  <qos_description>Description</qos_description>
-  <qos_value>Value</qos_value>
-  <sds-section-crs>Coordinate reference system</sds-section-crs>
-
-  <sds-fix-category>Fix the Category element</sds-fix-category>
-  <sds-fix-categoryHelp>(Rec1) Replace gco:CharacterString with gmx:Anchor in the description
-    metadata element.
-  </sds-fix-categoryHelp>
-
-  <sds-accesspoint>Access Point URL</sds-accesspoint>
-  <sds-add-accesspoint>Add Access Point</sds-add-accesspoint>
-
-  <sds-endpoint>Endpoint URL</sds-endpoint>
-  <sds-add-endpoint>Add Endpoint</sds-add-endpoint>
-
-  <sds-addNoConstraints>No Limitation</sds-addNoConstraints>
-  <sds-addNoConstraintsHelp>Add an element that documents that there are no limitation for this
-    service.
-  </sds-addNoConstraintsHelp>
-  <sds-addUnknownConstraints>Unknown Limitation</sds-addUnknownConstraints>
-  <sds-addConstraints>Customizable constraints</sds-addConstraints>
-
-  <sds>
-    <noConditionsApply>No conditions apply</noConditionsApply>
-    <conditionsUnknown>Conditions unknown</conditionsUnknown>
-  </sds>
-
-  <sds-limitation>Limitation</sds-limitation>
-
-  <sds-section-custodian>Responsible custodian</sds-section-custodian>
-  <sds-addOperation>Add Operation</sds-addOperation>
-
-
+  
   <addAccessConstraints>Access constraints</addAccessConstraints>
   <addUseConstraints>Add use contraints</addUseConstraints>
   <addContact>Add contact</addContact>
@@ -233,9 +170,17 @@
   <addVerticalExtent>Add Vertical Extent</addVerticalExtent>
   <medinextent>Medin Extent</medinextent>
   <geographicextent>Geographic Extent</geographicextent>
+  <addDistance>Add Spatial Resolution as Distance</addDistance>
+  <addSpatRep>Add Spatial Resolution</addSpatRep>
+  <addEquivScale>Add Spatial Resolution as Equivalent Scale</addEquivScale>
+
 
   <distributionFormat>Add Distribution Format</distributionFormat>
   <parentidentifier>Parent Identifier</parentidentifier>
+
+
+
+  
 
   <!-- Custom help for Gemini 2.3 elements, from https://www.agi.org.uk/40-gemini/1062-gemini-datasets-and-data-series-->
 

@@ -373,8 +373,7 @@
   <views>
 
     <!-- Default View -->
-<!--     <view name="default" default="true" hideTimeInCalendar="true" displayIfRecord="starts-with(/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:MD_Identifier/gmd:code/gco:CharacterString, 'NRW_')"> -->
-    <view name="default" default="true" hideTimeInCalendar="true">
+    <view name="default" hideTimeInCalendar="true" displayIfRecord="starts-with(/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:MD_Identifier/gmd:code/gco:CharacterString, 'NRW_')">
       <sidePanel>
         <directive data-gn-validation-report="" data-initial-show-errors="true" data-initial-show-successes="false" data-initial-section-states="open"/>
         <directive data-gn-onlinesrc-list=""/>
@@ -603,9 +602,36 @@
         <text ref="spatialrefsrv_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
       </section>
 
-<!--         <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:spatialResolution/*//gmd:distance"/>
-        <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:spatialResolution/*//gmd:denominator"/> -->
-        <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:spatialResolution"/>
+        <section name="spatialResolution">
+        <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:spatialResolution/*//gmd:distance"/>
+        <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:spatialResolution/*//gmd:denominator"/>
+          <action type="add" btnLabel="Add Spatial Resolution" name="addSpatRep" or="spatialResolution" in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification">
+          <template>
+             <snippet label="addDistance">
+                <gmd:spatialResolution>
+                  <gmd:MD_Resolution>
+                     <gmd:distance>
+                        <gco:Distance uom="urn:ogc:def:uom:EPSG::9001"/>
+                     </gmd:distance>
+                  </gmd:MD_Resolution>
+               </gmd:spatialResolution>
+            </snippet>
+            <snippet label="addEquivScale">
+                <gmd:spatialResolution>
+                  <gmd:MD_Resolution>
+                     <gmd:equivalentScale>
+                        <gmd:MD_RepresentativeFraction>
+                           <gmd:denominator>
+                              <gco:Integer>0</gco:Integer>
+                           </gmd:denominator>
+                        </gmd:MD_RepresentativeFraction>
+                     </gmd:equivalentScale>
+                  </gmd:MD_Resolution>
+               </gmd:spatialResolution>
+            </snippet>
+          </template>
+        </action>
+        </section>
 
         <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:spatialRepresentationType"/>
 
@@ -899,22 +925,285 @@
         <for name="gmd:code"/>
       </flatModeExceptions>
 
-      <!--
-      To configure the type of transformations
-      or the number of keyword allowed for e
-      thesaurus define a specific configuration:
+    </view>
 
-      eg. only 2 INSPIRE themes with Anchor.
+    <!-- third party view for records with an identifier starting with EXT_ -->
+    <!-- <view name="thirdparty" hideTimeInCalendar="true" displayIfRecord="starts-with(/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:MD_Identifier/gmd:code/gco:CharacterString, 'EXT_')"> -->
+    <view name="thirdparty" hideTimeInCalendar="true">
+      <sidePanel>
+        <directive data-gn-validation-report="" data-initial-show-errors="true" data-initial-show-successes="false" data-initial-section-states="open"/>
+        <directive data-gn-onlinesrc-list=""/>
+        <directive gn-geo-publisher="" data-ng-if="gnCurrentEdit.geoPublisherConfig" data-config="{{gnCurrentEdit.geoPublisherConfig}}" data-lang="lang"/>
+        <directive data-gn-need-help="user-guide/describing-information/creating-metadata.html"/>
+      </sidePanel>
 
-      <thesaurusList>
-        <thesaurus key="external.theme.inspire-theme" maxtags="2" fieldset="false" transformations="to-iso19139-keyword-with-anchor"/>
-      </thesaurusList>
-      -->
+      <tab id="thirdparty" default="true" mode="flat">
+        <section name="gmd:identificationInfo">
 
-      <thesaurusList>
-        <thesaurus key="external.none.allThesaurus" fieldset="false"/>
-        <thesaurus key="external.theme.httpinspireeceuropaeutheme-theme" maxtags="2" fieldset="false" transformations="to-iso19139-keyword-with-anchor"/>
-      </thesaurusList>
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier"/>
+          <text ref="resourceidentifier_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
+
+
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:title" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
+          <text ref="title_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
+
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/gmd:citation/gmd:CI_Citation/gmd:title" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
+          <text ref="titlesrv_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
+
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/gmd:citation/gmd:CI_Citation/gmd:alternateTitle" or="alternateTitle" in="/gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/gmd:citation/gmd:CI_Citation" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
+          <text ref="alttitlesrv_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
+
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:language"/>
+
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:characterSet"/>
+
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:abstract" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
+          <text ref="abstract_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
+
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/gmd:abstract" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
+          <text ref="abstractsrv_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
+
+          <field xpath="/gmd:MD_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:lineage" />
+          <text ref="lineage_help" />
+
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:supplementalInformation" />
+          <text ref="supplemental_help" />
+
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:date" or="date" in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
+          <text ref="refdate_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
+
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/gmd:citation/gmd:CI_Citation/gmd:date" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
+          <text ref="refdatesrv_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
+
+          <section name="nrw:internalInfo">
+            <field del="." xpath="/gmd:MD_Metadata/gmd:contentInfo/nrw:MD_ContentInfo/nrw:internalInfo/nrw:MD_InternalInfo/nrw:internalLocationInfo" or="internalLocationInfo" in="/gmd:MD_Metadata/gmd:contentInfo/nrw:MD_ContentInfo/nrw:internalInfo/nrw:MD_InternalInfo"/>
+            <field del="." xpath="/gmd:MD_Metadata/gmd:contentInfo/nrw:MD_ContentInfo/nrw:internalInfo/nrw:MD_InternalInfo/nrw:internalContactInfo" or="internalContactInfo" in="/gmd:MD_Metadata/gmd:contentInfo/nrw:MD_ContentInfo/nrw:internalInfo/nrw:MD_InternalInfo"/>
+            <text ref="NRW_InternalContactInfo_help"/>
+            <field del="." xpath="/gmd:MD_Metadata/gmd:contentInfo/nrw:MD_ContentInfo/nrw:internalInfo/nrw:MD_InternalInfo/nrw:relatedTitle"/>
+            <action type="add" name="relatedTitle" or="relatedTitle" in="/gmd:MD_Metadata/gmd:contentInfo/nrw:MD_ContentInfo/nrw:internalInfo/nrw:MD_InternalInfo">
+              <template>
+                <snippet>
+                  <nrw:relatedTitle>
+                    <gco:CharacterString/>
+                  </nrw:relatedTitle>
+                </snippet>
+              </template>
+            </action>
+            <text ref="NRW_RelatedTitle_help"/>
+          </section>
+
+          <section name="gmd:MD_Keywords">
+            <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords"
+                   in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification"
+                   or="descriptiveKeywords"/>
+            <text ref="keyword_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
+          </section>
+
+
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:pointOfContact" or="pointOfContact" in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification"/>
+          <text ref="responsiblepartysrv_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
+          <text ref="responsibleparty_help"/>
+
+          <field xpath="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions"/>
+          <action type="add" btnLabel="Add a Transfer Option" name="addTransferOption" or="transferOptions" in="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution">
+              <template>
+                 <snippet>
+                  <gmd:transferOptions>
+                    <gmd:MD_DigitalTransferOptions>
+                       <gmd:onLine>
+                          <gmd:CI_OnlineResource>
+                             <gmd:linkage>
+                                <gmd:URL/>
+                             </gmd:linkage>
+                             <gmd:name gco:nilReason="missing">
+                                <gco:CharacterString/>
+                             </gmd:name>
+                             <gmd:description gco:nilReason="missing">
+                                <gco:CharacterString/>
+                             </gmd:description>
+                             <gmd:function>
+                                <gmd:CI_OnLineFunctionCode codeList="http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_OnLineFunctionCode"
+                                                           codeListValue="information"/>
+                             </gmd:function>
+                          </gmd:CI_OnlineResource>
+                       </gmd:onLine>
+                    </gmd:MD_DigitalTransferOptions>
+                 </gmd:transferOptions>
+                </snippet>
+              </template>
+            </action>
+
+                  
+        <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:spatialRepresentationType"/>
+
+        <section name="Constraints">
+          <section name="Limitations on Public Access and Use">
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:accessConstraints"/>
+        </section>
+        <section name="Access Constraints Directive">
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints[gmd:accessConstraints]/gmd:otherConstraints[gmx:Anchor]" del="." templateModeOnly="true">
+            <template>
+              <values>
+                  <key label="label"
+                        xpath="gmx:Anchor"/>
+              </values>
+              <snippet>
+                    <gmd:otherConstraints>
+                      <gn:copy select="gmx:Anchor/@xlink:href"/>
+                      <gmx:Anchor>{{label}}</gmx:Anchor>
+                    </gmd:otherConstraints>
+              </snippet>
+            </template>
+          </field>
+          <action type="add" btnLabel="addAccessConstraints" name="addAccessConstraints" or="otherConstraints"
+                  in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints[./gmd:accessConstraints]" if="count(//gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints[./gmd:accessConstraints]/gmd:otherConstraints/gmx:Anchor) = 0">
+            <template>
+              <snippet label="addINSPIRE13_1a">
+                    <gmd:otherConstraints>
+                      <gmx:Anchor xlink:href="http://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/INSPIRE_Directive_Article13_1a">INSPIRE_Directive_Article13_1a</gmx:Anchor>
+                    </gmd:otherConstraints>
+              </snippet>
+              <snippet label="addINSPIRE13_1b">
+                    <gmd:otherConstraints>
+                      <gmx:Anchor xlink:href="http://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/INSPIRE_Directive_Article13_1b">INSPIRE_Directive_Article13_1b</gmx:Anchor>
+                    </gmd:otherConstraints>
+              </snippet>
+              <snippet label="addINSPIRE13_1c">
+                    <gmd:otherConstraints>
+                      <gmx:Anchor xlink:href="http://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/INSPIRE_Directive_Article13_1c">INSPIRE_Directive_Article13_1c</gmx:Anchor>
+                    </gmd:otherConstraints>
+              </snippet>
+              <snippet label="addINSPIRE13_1c">
+                    <gmd:otherConstraints>
+                      <gmx:Anchor xlink:href="http://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/INSPIRE_Directive_Article13_1c">INSPIRE_Directive_Article13_1c</gmx:Anchor>
+                    </gmd:otherConstraints>
+              </snippet>
+              <snippet label="addINSPIRE13_1d">
+                    <gmd:otherConstraints>
+                      <gmx:Anchor xlink:href="http://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/INSPIRE_Directive_Article13_1d">INSPIRE_Directive_Article13_1d</gmx:Anchor>
+                    </gmd:otherConstraints>
+              </snippet>
+              <snippet label="addINSPIRE13_1e">
+                    <gmd:otherConstraints>
+                      <gmx:Anchor xlink:href="http://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/INSPIRE_Directive_Article13_1e">INSPIRE_Directive_Article13_1e</gmx:Anchor>
+                    </gmd:otherConstraints>
+              </snippet>
+              <snippet label="addINSPIRE13_1f">
+                    <gmd:otherConstraints>
+                      <gmx:Anchor xlink:href="http://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/INSPIRE_Directive_Article13_1f">INSPIRE_Directive_Article13_1f</gmx:Anchor>
+                    </gmd:otherConstraints>
+              </snippet>
+              <snippet label="addINSPIRE13_1g">
+                    <gmd:otherConstraints>
+                      <gmx:Anchor xlink:href="http://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/INSPIRE_Directive_Article13_1g">INSPIRE_Directive_Article13_1g</gmx:Anchor>
+                    </gmd:otherConstraints>
+              </snippet>
+              <snippet label="addINSPIRE13_1h">
+                    <gmd:otherConstraints>
+                      <gmx:Anchor xlink:href="http://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/INSPIRE_Directive_Article13_1h">INSPIRE_Directive_Article13_1h</gmx:Anchor>
+                    </gmd:otherConstraints>
+              </snippet>
+              <snippet label="addINSPIRE13_nolimitations">
+                    <gmd:otherConstraints>
+                      <gmx:Anchor xlink:href="http://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/noLimitations">noLimitations</gmx:Anchor>
+                    </gmd:otherConstraints>
+              </snippet>
+            </template>
+          </action>
+          <text ref="limitations_help"/>
+        </section>
+        <section name="Access Constraints Text">
+          <field name="accessConstraints" xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints[./gmd:accessConstraints]/gmd:otherConstraints[gco:CharacterString]"/>
+          <action type="add" btnLabel="addAccessConstraints" name="addAccessConstraints" or="otherConstraints"
+                  in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints[./gmd:accessConstraints]" if="count(//gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints[./gmd:accessConstraints]/gmd:otherConstraints/gco:CharacterString) = 0">
+            <template>
+              <snippet>
+                    <gmd:otherConstraints>
+                      <gco:CharacterString></gco:CharacterString>
+                    </gmd:otherConstraints>
+              </snippet>
+            </template>
+          </action>
+        </section>
+        <section name="Use Constraints">
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:useConstraints"/>
+        </section>
+        <section name="Licence Type">
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints[./gmd:useConstraints]/gmd:otherConstraints[gmx:Anchor]"/>
+        </section>
+        <section name="Attribution Statement">
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints[./gmd:useConstraints]/gmd:otherConstraints[gco:CharacterString]"/>
+        </section>
+        </section>
+
+        </section> <!--  end identification info section -->
+
+         <section name="gmd:MD_Metadata" collapsed="true">
+          <field xpath="/gmd:MD_Metadata/gmd:fileIdentifier"/>
+
+          <field xpath="/gmd:MD_Metadata/gmd:language" or="language" in="/gmd:MD_Metadata"/>
+
+          <field xpath="/gmd:MD_Metadata/gmd:parentIdentifier" or="parentIdentifier" in="/gmd:MD_Metadata"/>
+
+          <field xpath="/gmd:MD_Metadata/gmd:hierarchyLevel" or="hierarchyLevel" in="/gmd:MD_Metadata"/>
+
+          <field xpath="/gmd:MD_Metadata/gmd:hierarchyLevelName" or="hierarchyLevelName" in="/gmd:MD_Metadata"/>
+          <field xpath="/gmd:MD_Metadata/gmd:dateStamp"/>
+          <field xpath="/gmd:MD_Metadata/gmd:metadataStandardName"/>
+          <field xpath="/gmd:MD_Metadata/gmd:metadataStandardVersion"/>
+
+          <section name="gmd:contact" collapsed="true">
+            <field xpath="/gmd:MD_Metadata/gmd:contact/*/gmd:individualName"  or="individualName"  in="/gmd:MD_Metadata/gmd:contact/*" />
+            <field xpath="/gmd:MD_Metadata/gmd:contact/*/gmd:organisationName"  or="organisationName" in="/gmd:MD_Metadata/gmd:contact/*"/>
+            <field xpath="/gmd:MD_Metadata/gmd:contact/*/gmd:positionName"  or="positionName" in="/gmd:MD_Metadata/gmd:contact/*"/>
+            <field xpath="/gmd:MD_Metadata/gmd:contact/*/gmd:contactInfo/*/gmd:phone/*/gmd:voice"  or="voice" in="/gmd:MD_Metadata/gmd:contact/*/gmd:contactInfo/*/gmd:phone/*" del="../.."/>
+            <field xpath="/gmd:MD_Metadata/gmd:contact/*/gmd:contactInfo/*/gmd:address/*/gmd:deliveryPoint"  or="deliveryPoint" in="/gmd:MD_Metadata/gmd:contact/*/gmd:contactInfo/*/gmd:address/*"/>
+            <field xpath="/gmd:MD_Metadata/gmd:contact/*/gmd:contactInfo/*/gmd:address/*/gmd:city"  or="city" in="/gmd:MD_Metadata/gmd:contact/*/gmd:contactInfo/*/gmd:address/*"/>
+            <field xpath="/gmd:MD_Metadata/gmd:contact/*/gmd:contactInfo/*/gmd:address/*/gmd:administrativeArea"  or="administrativeArea" in="/gmd:MD_Metadata/gmd:contact/*/gmd:contactInfo/*/gmd:address/*"/>
+            <field xpath="/gmd:MD_Metadata/gmd:contact/*/gmd:contactInfo/*/gmd:address/*/gmd:postalCode"  or="postalCode" in="/gmd:MD_Metadata/gmd:contact/*/gmd:contactInfo/*/gmd:address/*"/>
+            <field xpath="/gmd:MD_Metadata/gmd:contact/*/gmd:contactInfo/*/gmd:address/*/gmd:country"  or="country" in="/gmd:MD_Metadata/gmd:contact/*/gmd:contactInfo/*/gmd:address/*"/>
+            <field xpath="/gmd:MD_Metadata/gmd:contact/*/gmd:contactInfo/*/gmd:address/*/gmd:electronicMailAddress"  or="electronicMailAddress" in="/gmd:MD_Metadata/gmd:contact/*/gmd:contactInfo/*/gmd:address/*"/>
+            <field xpath="/gmd:MD_Metadata/gmd:contact/*/gmd:contactInfo/*/gmd:onlineResource/gmd:CI_OnlineResource/gmd:linkage"  or="linkage" in="/gmd:MD_Metadata/gmd:contact/*/gmd:contactInfo/*/gmd:onlineResource/*" del="../.."/>
+            <field xpath="/gmd:MD_Metadata/gmd:contact/*/gmd:role"  or="role" in="/gmd:MD_Metadata/gmd:contact/*"/>
+          </section> <!--  end contact section -->
+          
+        </section> <!--  end metadata section -->
+      </tab>
+
+      <!-- Elements that should not use the "flat" mode -->
+      <flatModeExceptions>
+        <for name="gmd:alternateTitle" />
+        <for name="gmd:parentIdentifier" />
+        <for name="gmd:geographicIdentifier" />
+        <for name="gmd:descriptiveKeywords"/>
+        <for name="gmd:keyword"/>
+        <for name="gmd:spatialResolution"/>
+        <for name="gmd:referenceSystemInfo"/>
+        <for name="gmd:pointOfContact"/>
+        <for name="gmd:distributionFormat"/>
+        <for name="gmd:contact"/>
+        <for name="gmd:processor"/>
+        <for name="gmd:specification"/>
+        <for name="gmd:topicCategory"/>
+        <for name="srv:parameters"/>
+        <for name="gmd:transferOptions"/>
+        <for name="gmd:otherConstraints"/>
+        <for name="gmd:EX_TemporalExtent"/>
+        <for name="gmd:geographicElement"/>
+        <for name="gmd:geographicIdentifier"/>
+        <for name="gmd:report"/>
+        <for name="gmd:lineage"/>
+        <for name="gmd:linkage"/>
+        <for name="gmd:date"/>
+        <for name="gmd:contentInfo"/>
+        <for name="nrw:internalContactInfo"/>
+        <for name="nrw:internalLocationInfo"/>
+        <for name="nrw:relatedTitle"/>
+        <for name="nrw:internalInfo"/>
+        <for name="nrw:MD_ContentInfo"/>
+        <for name="nrw:MD_InternalInfo"/>
+        <for name="gmd:code"/>
+      </flatModeExceptions>
 
     </view>
 
