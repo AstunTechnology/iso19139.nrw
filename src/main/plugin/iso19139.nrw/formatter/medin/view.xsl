@@ -46,12 +46,6 @@
 
   <xsl:import href="../xsl-view/view.xsl"/>
 
-  <!-- custom Third Party changes -->
-
-  <!-- Elements to avoid rendering -->
-  <xsl:template mode="render-field" match="gmd:PT_Locale" priority="100"/>
-  <xsl:template mode="render-field" match="gmd:contentInfo" priority="100"/>
-
 
   <!-- Medin-specific transformations -->
   <xsl:template mode="render-field" match="gmd:metadataStandardName">

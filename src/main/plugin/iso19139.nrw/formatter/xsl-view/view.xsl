@@ -669,19 +669,19 @@
                 <div>
                 <i class="fa fa-fw fa-map-marker"><xsl:comment select="'address'"/></i>
                   <xsl:for-each select="gmd:deliveryPoint[normalize-space(.) != '']">
-                    <xsl:apply-templates mode="render-value-no-breaklines" select="."/>,
+                    <xsl:apply-templates mode="render-value-no-breaklines" select="."/>
                   </xsl:for-each>
                   <xsl:for-each select="gmd:city[normalize-space(.) != '']">
-                    <xsl:apply-templates mode="render-value-no-breaklines" select="."/>,
+                    ,<xsl:apply-templates mode="render-value-no-breaklines" select="."/>
                   </xsl:for-each>
                   <xsl:for-each select="gmd:administrativeArea[normalize-space(.) != '']">
-                    <xsl:apply-templates mode="render-value-no-breaklines" select="."/>,
+                    ,<xsl:apply-templates mode="render-value-no-breaklines" select="."/>
                   </xsl:for-each>
                   <xsl:for-each select="gmd:postalCode[normalize-space(.) != '']">
-                    <xsl:apply-templates mode="render-value-no-breaklines" select="."/>,
+                    ,<xsl:apply-templates mode="render-value-no-breaklines" select="."/>
                   </xsl:for-each>
                   <xsl:for-each select="gmd:country[normalize-space(.) != '']">
-                    <xsl:apply-templates mode="render-value-no-breaklines" select="."/>
+                    ,<xsl:apply-templates mode="render-value-no-breaklines" select="."/>
                   </xsl:for-each>
                 </div>
               </xsl:for-each>
@@ -807,25 +807,8 @@
         </xsl:call-template>
       </dt>
       <dd>
-
-        <xsl:if test="*/gmd:codeSpace">
-          <xsl:apply-templates mode="render-value-no-breaklines"
-                               select="*/gmd:codeSpace"/>
-          /
-        </xsl:if>
         <xsl:apply-templates mode="render-value-no-breaklines"
                              select="*/gmd:code"/>
-        <xsl:if test="*/gmd:version">
-          /
-          <xsl:apply-templates mode="render-value-no-breaklines"
-                               select="*/gmd:version"/>
-        </xsl:if>
-        <xsl:if test="*/gmd:authority">
-          <p><xsl:comment select="name()"/>
-            <xsl:apply-templates mode="render-value-no-breaklines"
-                                 select="*/gmd:authority"/>
-          </p>
-        </xsl:if>
       </dd>
     </dl>
   </xsl:template>
@@ -997,7 +980,7 @@
 
   <!-- Enumeration -->
   <xsl:template mode="render-field"
-                match="gmd:topicCategory[1]|gmd:obligation[1]|gmd:pointInPixel[1]"
+                match="gmd:topicCategory[1]|gmd:obligation[1]|gmd:pointInPixel[1]|gmd:alternateTitle[1]"
                 priority="100">
     <dl class="gn-date">
       <dt>
@@ -1007,7 +990,7 @@
       </dt>
       <dd>
         <ul>
-          <xsl:for-each select="parent::node()/(gmd:topicCategory|gmd:obligation|gmd:pointInPixel)">
+          <xsl:for-each select="parent::node()/(gmd:topicCategory|gmd:obligation|gmd:pointInPixel|gmd:alternateTitle)">
             <li>
               <xsl:apply-templates mode="render-value"
                                    select="*"/>
@@ -1020,7 +1003,8 @@
   <xsl:template mode="render-field"
                 match="gmd:topicCategory[position() > 1]|
                         gmd:obligation[position() > 1]|
-                        gmd:pointInPixel[position() > 1]"
+                        gmd:obligation[position() > 1]|
+                        gmd:alternateTitle[position() > 1]"
                 priority="100"/>
 
 
@@ -1328,7 +1312,7 @@
     <i class="fa fa-lock text-warning" title="{{{{'withheld' | translate}}}}"><xsl:comment select="'warning'"/></i>
   </xsl:template>
 
-<xsl:template mode="render-field" match="gmd:resourceConstraints[1]/gmd:MD_LegalConstraints" priority="1000">
+<xsl:template mode="render-field" match="gmd:resourceConstraints/gmd:MD_LegalConstraints[./gmd:accessConstraints]" priority="1000">
         
   <div class="entry name">
       <h2>Limitations on Public Access and Use</h2>
@@ -1346,7 +1330,7 @@
         
     </xsl:template>
 
-  <xsl:template mode="render-field" match="gmd:resourceConstraints[2]/gmd:MD_LegalConstraints" priority="1000">
+  <xsl:template mode="render-field" match="gmd:resourceConstraints/gmd:MD_LegalConstraints[./gmd:useConstraints]" priority="1000">
         
   <div class="entry name">
       <h2>Use Constraints</h2>
@@ -1364,25 +1348,29 @@
         
     </xsl:template>
 
-    <xsl:template mode="render-field" match="gmd:resourceConstraints[2]/gmd:MD_LegalConstraints/gmd:otherConstraints" priority="1000">
+    <xsl:template mode="render-field" match="gmd:resourceConstraints/gmd:MD_LegalConstraints[./gmd:useConstraints]/gmd:otherConstraints" priority="1000">
         
-           <xsl:param name="fieldName" select="''" as="xs:string"/>
+        <xsl:param name="fieldName" select="''" as="xs:string"/>
 
-    <xsl:if test="normalize-space(string-join(*, '')) != ''">
-      <dl>
-        <dt>Attribution Statement</dt>
-          <!-- <xsl:call-template name="render-field-label">
-            <xsl:with-param name="fieldName" select="$fieldName"/>
-            <xsl:with-param name="languages" select="$allLanguages"/>
-          </xsl:call-template>
-          </dt> -->
-        
-        <dd><xsl:comment select="name()"/>
-          <xsl:apply-templates mode="render-value" select="*|*/@codeListValue"/>
-          <xsl:apply-templates mode="render-value" select="@*"/>
-        </dd>
-      </dl>
-    </xsl:if>
+        <xsl:if test="gco:CharacterString and normalize-space(string-join(*, '')) != ''">
+          <dl>
+            <dt>Attribution Statement</dt>      
+            <dd><xsl:comment select="name()"/>
+              <xsl:apply-templates mode="render-value" select="*|*/@codeListValue"/>
+              <xsl:apply-templates mode="render-value" select="@*"/>
+            </dd>
+          </dl>
+        </xsl:if>
+
+        <xsl:if test="gmx:Anchor and normalize-space(string-join(*, '')) != ''">
+          <dl>
+            <dt>License Type</dt>      
+            <dd><xsl:comment select="name()"/>
+              <xsl:apply-templates mode="render-value" select="*|*/@codeListValue"/>
+              <xsl:apply-templates mode="render-value" select="@*"/>
+            </dd>
+          </dl>
+        </xsl:if>
         
     </xsl:template>
 

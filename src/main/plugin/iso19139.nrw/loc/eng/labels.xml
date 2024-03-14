@@ -330,7 +330,7 @@
     <description>Information about the content of a grid data cell</description>
   </element>
   <element name="gmd:MD_DataIdentification" id="36.0">
-    <label>Data identification</label>
+    <label>Data Identification</label>
     <description>Information required to identify a dataset</description>
   </element>
   <element name="gmd:MD_DigitalTransferOptions" id="274.0">
@@ -557,7 +557,7 @@
     <description>Provides aggregate dataset information</description>
   </element>
   <element name="gmd:alternateTitle" id="361.0">
-    <label>Alternative title</label>
+    <label>Alternative Title</label>
     <description>Short name, other name, acronym or alternative language title for the data resource
     </description>
   </element>
@@ -1264,19 +1264,19 @@
     <description>Text description of the illustration</description>
   </element>
   <element name="gmd:fileIdentifier" id="2.0">
-    <label>File identifier</label>
+    <label>File Identifier</label>
     <description>Unique identifier for this metadata file</description>
     <condition>mandatory</condition>
   </element>
   <element name="gmd:fileName" id="49.0">
-    <label>File name</label>
+    <label>File Name</label>
     <description>Name of the file that contains a graphic that provides an illustration of the
       dataset. It could be a public image document URL.
     </description>
     <condition>mandatory</condition>
   </element>
   <element name="gmd:fileType" id="51.0">
-    <label>File type</label>
+    <label>File Type</label>
     <description>Format in which the illustration is encoded</description>
     <help>format in which the illustration is encoded Examples: CGM, EPS, GIF, JPEG, PBM, PS,
       TIFF, XWD
@@ -1297,7 +1297,7 @@
     <description>Code for function performed by the online resource</description>
   </element>
   <element name="gmd:geographicElement" id="336.0">
-    <label>Geographic element</label>
+    <label>Geographic Element</label>
     <description>Provides geographic component of the extent of the referring
       object
     </description>
@@ -2682,7 +2682,7 @@
     <condition>mandatory</condition>
   </element>
   <element name="gmd:otherConstraints" id="71.0">
-    <label>Other Constraint</label>
+    <label>Other Constraints</label>
     <description>Constraints applied to assure the protection of privacy or intellectual
       property, and any special restrictions or limitations or warnings on using the
       resource
