@@ -665,22 +665,22 @@
         <!-- Indexing individual constraints for NRW -->
 
         <!-- Access constraints -->
-        <xsl:for-each select="gmd:resourceConstraints[1]/gmd:MD_LegalConstraints">
+        <xsl:for-each select="gmd:resourceConstraints[1]/gmd:MD_LegalConstraints[*/normalize-space() != '']">
           <xsl:copy-of select="gn-fn-index:add-field('accessConstraints', .)"/>
         </xsl:for-each>
 
         <!-- Limitations on public access -->
-        <xsl:for-each select="gmd:resourceConstraints[1]/gmd:MD_LegalConstraints/gmd:otherConstraints[preceding-sibling::*[1][self::gmd:accessConstraints]]">
+        <xsl:for-each select="gmd:resourceConstraints[1]/gmd:MD_LegalConstraints/gmd:otherConstraints[preceding-sibling::*[1][self::gmd:accessConstraints] and normalize-space(.) != '']">
           <xsl:copy-of select="gn-fn-index:add-field('limitationsPublicAccess', .)" />
         </xsl:for-each>
 
         <!-- Use constraints -->
-        <xsl:for-each select="gmd:resourceConstraints[2]/gmd:MD_LegalConstraints/gmd:otherConstraints[preceding-sibling::*[1][self::gmd:useConstraints]]">
+        <xsl:for-each select="gmd:resourceConstraints[2]/gmd:MD_LegalConstraints/gmd:otherConstraints[preceding-sibling::*[1][self::gmd:useConstraints] and normalize-space(.) != '']">
           <xsl:copy-of select="gn-fn-index:add-field('useConstraints', .)" />
         </xsl:for-each>
 
         <!-- Attribution statement -->
-        <xsl:for-each select="gmd:resourceConstraints[2]/gmd:MD_LegalConstraints[1]/gmd:otherConstraints[3]">
+        <xsl:for-each select="gmd:resourceConstraints[2]/gmd:MD_LegalConstraints[1]/gmd:otherConstraints[3][*/normalize-space() != '']">
           <xsl:copy-of select="gn-fn-index:add-field('attributionStatement', .)" />
         </xsl:for-each>
 
