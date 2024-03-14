@@ -52,9 +52,32 @@
   <xsl:template mode="render-field" match="gmd:PT_Locale" priority="100"/>
   <xsl:template mode="render-field" match="gmd:contentInfo" priority="100"/>
 
-<!--   <xsl:template mode="render-value"
-                match="@*"/> -->
 
+  <!-- Medin-specific transformations -->
+  <xsl:template mode="render-field" match="gmd:metadataStandardName">
+     <dl>
+      <dt>
+        <xsl:call-template name="render-field-label">
+          <xsl:with-param name="languages" select="$allLanguages"/>
+        </xsl:call-template>
+      </dt>
+      <dd>
+        <a xlink:href="http://vocab.nerc.ac.uk/collection/M25/current/MEDIN/">MEDIN</a>
+      </dd>
+    </dl>
+  </xsl:template>
+
+  <xsl:template mode="render-field" match="gmd:metadataStandardVersion">
+      <dl>
+      <dt>
+        <xsl:call-template name="render-field-label">
+          <xsl:with-param name="languages" select="$allLanguages"/>
+        </xsl:call-template>
+      </dt>
+      <dd>3.1.2</dd>
+    </dl>
+  </xsl:template>
+  
    <!-- Render everything else -->
   <xsl:template mode="render-value"
                 match="@*"/>
