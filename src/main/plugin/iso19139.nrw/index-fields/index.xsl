@@ -662,7 +662,23 @@
           </xsl:for-each>
         </xsl:for-each>
 
-        <!-- Changed to point to the correct License field for NRW -->
+        <!-- Indexing individual constraints for NRW -->
+        <!-- Limitations on public access -->
+        <xsl:for-each select="gmd:resourceConstraints[1]/gmd:MD_LegalConstraints/gmd:otherConstraints[preceding-sibling::*[1][self::gmd:accessConstraints]]">
+          <xsl:copy-of select="gn-fn-index:add-field('limitationsPublicAccess', .)" />
+        </xsl:for-each>
+
+        <!-- Use contraints -->
+        <xsl:for-each select="gmd:resourceConstraints[2]/gmd:MD_LegalConstraints/gmd:otherConstraints[1]">
+          <xsl:copy-of select="gn-fn-index:add-field('useConstraints', .)" />
+        </xsl:for-each>
+
+        <!-- Attribution statement -->
+        <xsl:for-each select="gmd:resourceConstraints[2]/gmd:MD_LegalConstraints[1]/gmd:otherConstraints[3]">
+          <xsl:copy-of select="gn-fn-index:add-field('attributionStatement', .)" />
+        </xsl:for-each>
+
+        <!--License-->
         <xsl:for-each select="gmd:resourceConstraints[gmd:MD_LegalConstraints[1]/gmd:useConstraints]/gmd:MD_LegalConstraints/gmd:otherConstraints[2]/*/text()[lower-case(.) = '3rd party conditional' or lower-case(.) = '3rd party open' or lower-case(.) = 'not licenced for re-use' or lower-case(.) = 'nrw conditional' or lower-case(.) = 'open government licence' or lower-case(.) = 'open government licence (ogl)']">
           <xsl:copy-of select="gn-fn-index:add-field('license', .)"/>
         </xsl:for-each>
