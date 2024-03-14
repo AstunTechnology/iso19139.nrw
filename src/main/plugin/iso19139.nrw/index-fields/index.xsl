@@ -161,6 +161,19 @@
         <xsl:copy-of select="gn-fn-index:add-multilingual-field('resourceTypeName', ., $allLanguages)"/>
       </xsl:for-each>
 
+      <!-- Indexing custom NRW elements -->
+      <xsl:for-each select="gmd:contentInfo/nrw:MD_ContentInfo/nrw:internalInfo/nrw:MD_InternalInfo">
+        <xsl:for-each select="nrw:internalLocationInfo/*[. != '']">
+          <xsl:copy-of select="gn-fn-index:add-field('NRW_internalLocationInfo', .)" />
+        </xsl:for-each>
+        <xsl:for-each select="nrw:internalContactInfo/*[. != '']">
+          <xsl:copy-of select="gn-fn-index:add-field('NRW_internalContactInfo', .)"/>
+        </xsl:for-each>
+        <xsl:for-each select="nrw:relatedTitle/*[. != '']">
+          <xsl:copy-of select="gn-fn-index:add-field('NRW_relatedTitle', .)"/>
+        </xsl:for-each>
+      </xsl:for-each>
+
       <!-- Since GN sets the timezone in system/server/timeZone setting as Java system default
         timezone we can rely on XSLT functions to get current date in the right timezone -->
       <indexingDate>
