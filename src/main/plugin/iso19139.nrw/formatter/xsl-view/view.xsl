@@ -859,7 +859,7 @@
             <xsl:for-each select="*/gmd:keyword">
               <li>
                 <xsl:apply-templates mode="render-value"
-                                     select="."/>
+                                     select="./gco:CharacterString"/>
               </li>
             </xsl:for-each>
           </ul>
@@ -1154,7 +1154,7 @@
       <xsl:when test="contains(., 'http')">
         <!-- Replace hyperlink in text by an hyperlink -->
         <xsl:variable name="textWithLinks"
-                      select="replace(., '([a-z][\w-]+:/{1,3}[^\s()&gt;&lt;]+[^\s`!()\[\]{};:'&apos;&quot;.,&gt;&lt;?«»“”‘’])',
+                      select="replace(., '([a-z][\w-]+:/{1,3}[^\s()&gt;&lt;]+[^\s`!()\[\]{};:'&apos;&quot;.,&gt;&lt;?«»????])',
                                     '&lt;a href=''$1''&gt;$1&lt;/a&gt;')"/>
 
         <xsl:if test="$textWithLinks != ''">
@@ -1328,7 +1328,66 @@
     <i class="fa fa-lock text-warning" title="{{{{'withheld' | translate}}}}"><xsl:comment select="'warning'"/></i>
   </xsl:template>
 
+<xsl:template mode="render-field" match="gmd:resourceConstraints[1]/gmd:MD_LegalConstraints" priority="1000">
+        
+  <div class="entry name">
+      <h2>Limitations on Public Access and Use</h2>
+      <div class="target"><xsl:comment select="name()"/>
+        <xsl:choose>
+          <xsl:when test="count(*) > 0">
+            <xsl:apply-templates mode="render-field" select="*"/>
+          </xsl:when>
+          <xsl:otherwise>
+            No information provided.
+          </xsl:otherwise>
+        </xsl:choose>
+      </div>
+    </div>
+        
+    </xsl:template>
+
+  <xsl:template mode="render-field" match="gmd:resourceConstraints[2]/gmd:MD_LegalConstraints" priority="1000">
+        
+  <div class="entry name">
+      <h2>Use Constraints</h2>
+      <div class="target"><xsl:comment select="name()"/>
+        <xsl:choose>
+          <xsl:when test="count(*) > 0">
+            <xsl:apply-templates mode="render-field" select="*"/>
+          </xsl:when>
+          <xsl:otherwise>
+            No information provided.
+          </xsl:otherwise>
+        </xsl:choose>
+      </div>
+    </div>
+        
+    </xsl:template>
+
+    <xsl:template mode="render-field" match="gmd:resourceConstraints[2]/gmd:MD_LegalConstraints/gmd:otherConstraints" priority="1000">
+        
+           <xsl:param name="fieldName" select="''" as="xs:string"/>
+
+    <xsl:if test="normalize-space(string-join(*, '')) != ''">
+      <dl>
+        <dt>Attribution Statement</dt>
+          <!-- <xsl:call-template name="render-field-label">
+            <xsl:with-param name="fieldName" select="$fieldName"/>
+            <xsl:with-param name="languages" select="$allLanguages"/>
+          </xsl:call-template>
+          </dt> -->
+        
+        <dd><xsl:comment select="name()"/>
+          <xsl:apply-templates mode="render-value" select="*|*/@codeListValue"/>
+          <xsl:apply-templates mode="render-value" select="@*"/>
+        </dd>
+      </dl>
+    </xsl:if>
+        
+    </xsl:template>
+
   <xsl:template mode="render-value"
                 match="@*"/>
 
 </xsl:stylesheet>
+
