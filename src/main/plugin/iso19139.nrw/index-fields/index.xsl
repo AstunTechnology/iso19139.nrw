@@ -663,13 +663,19 @@
         </xsl:for-each>
 
         <!-- Indexing individual constraints for NRW -->
+
+        <!-- Access constraints -->
+        <xsl:for-each select="gmd:resourceConstraints[1]/gmd:MD_LegalConstraints">
+          <xsl:copy-of select="gn-fn-index:add-field('accessConstraints', .)"/>
+        </xsl:for-each>
+
         <!-- Limitations on public access -->
         <xsl:for-each select="gmd:resourceConstraints[1]/gmd:MD_LegalConstraints/gmd:otherConstraints[preceding-sibling::*[1][self::gmd:accessConstraints]]">
           <xsl:copy-of select="gn-fn-index:add-field('limitationsPublicAccess', .)" />
         </xsl:for-each>
 
-        <!-- Use contraints -->
-        <xsl:for-each select="gmd:resourceConstraints[2]/gmd:MD_LegalConstraints/gmd:otherConstraints[1]">
+        <!-- Use constraints -->
+        <xsl:for-each select="gmd:resourceConstraints[2]/gmd:MD_LegalConstraints/gmd:otherConstraints[preceding-sibling::*[1][self::gmd:useConstraints]]">
           <xsl:copy-of select="gn-fn-index:add-field('useConstraints', .)" />
         </xsl:for-each>
 
