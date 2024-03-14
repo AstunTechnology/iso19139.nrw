@@ -52,8 +52,8 @@
   <xsl:template mode="render-field" match="gmd:PT_Locale" priority="100"/>
   <xsl:template mode="render-field" match="gmd:contentInfo" priority="100"/>
 
-<!--   <xsl:template mode="render-value"
-                match="@*"/> -->
+  <xsl:template mode="render-value"
+                match="@*"/>
 
    <!-- Render everything else -->
   <xsl:template mode="render-value"
