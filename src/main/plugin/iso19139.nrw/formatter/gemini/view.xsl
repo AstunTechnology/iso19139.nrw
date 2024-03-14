@@ -72,4 +72,25 @@
     </dl>
   </xsl:template>
 
+  <!-- Metadata linkage -->
+  <xsl:template mode="render-field"
+                match="gmd:fileIdentifier"
+                priority="102">
+    <dl>
+      <dt>
+        <xsl:call-template name="render-field-label">
+          <xsl:with-param name="languages" select="$allLanguages"/>
+        </xsl:call-template>
+      </dt>
+      <dd>
+        <xsl:apply-templates mode="render-value" select="*"/>
+        <xsl:apply-templates mode="render-value" select="@*"/>
+        <a class="btn btn-default" href="{$nodeUrl}api/records/{$metadataUuid}/formatters/gemini-xml?output=xml">
+          <i class="fa fa-file-code-o"><xsl:comment select="'file'"/></i>
+          <span><xsl:value-of select="$schemaStrings/metadataInXML"/></span>
+        </a>
+      </dd>
+    </dl>
+  </xsl:template>
+
 </xsl:stylesheet>
