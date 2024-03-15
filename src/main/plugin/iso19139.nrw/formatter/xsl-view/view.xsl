@@ -32,6 +32,7 @@
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
                 xmlns:xlink="http://www.w3.org/1999/xlink"
                 xmlns:srv="http://www.isotc211.org/2005/srv"
+                xmlns:nrw="http://naturalresources.wales/nrw"
                 xmlns:tr="java:org.fao.geonet.api.records.formatters.SchemaLocalizations"
                 xmlns:gn-fn-render="http://geonetwork-opensource.org/xsl/functions/render"
                 xmlns:gn-fn-metadata="http://geonetwork-opensource.org/xsl/functions/metadata"
@@ -1371,6 +1372,35 @@
             </dd>
           </dl>
         </xsl:if>
+        
+    </xsl:template>
+
+    <!-- only show NRW internal location and contact elements if the user is logged in -->
+    <xsl:template mode="render-field" match="nrw:internalLocationInfo" priority="2000">
+        
+        <xsl:param name="fieldName" select="''" as="xs:string"/>
+          <dl data-ng-if="user.isConnected()">
+            <dt>NRW Internal Location Info</dt>      
+            <dd>
+              <xsl:comment select="name()"/>
+              <xsl:apply-templates mode="render-value" select="*|*/@codeListValue"/>
+              <xsl:apply-templates mode="render-value" select="@*"/>
+            </dd>
+          </dl>
+        
+    </xsl:template>
+
+    <xsl:template mode="render-field" match="nrw:internalContactInfo" priority="2000">
+        
+        <xsl:param name="fieldName" select="''" as="xs:string"/>
+          <dl data-ng-if="user.isConnected()">
+            <dt>NRW Internal Contact Info</dt>      
+            <dd>
+              <xsl:comment select="name()"/>
+              <xsl:apply-templates mode="render-value" select="*|*/@codeListValue"/>
+              <xsl:apply-templates mode="render-value" select="@*"/>
+            </dd>
+          </dl>
         
     </xsl:template>
 
