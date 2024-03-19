@@ -1423,6 +1423,7 @@
       <option value="PEN-Y-BONT AR OGWR - BRIDGEND" title="PEN-Y-BONT AR OGWR - BRIDGEND">PEN-Y-BONT AR OGWR - BRIDGEND</option>
       <option value="POWYS - POWYS" title="POWYS - POWYS">POWYS - POWYS</option>
       <option value="RHONDDA CYNON TAF - RHONDDA CYNON TAFF" title="RHONDDA CYNON TAF - RHONDDA CYNON TAFF">RHONDDA CYNON TAF - RHONDDA CYNON TAFF</option>
+      <option value="Wales (WLS)" title="Wales (WLS)">Wales (WLS)</option>
     </helper>
     </element>
   <element name="gmd:identifier" id="575.0" context="gmd:MD_Authority">
@@ -2187,7 +2188,7 @@
     <condition>mandatory</condition>
   </element>
   <element name="gmd:pointOfContact" id="29.0">
-    <label>Responsible organisation</label>
+    <label>Responsible Organisation</label>
     <btnLabel>Add contact</btnLabel>
     <btnClass>fa fa-user-plus</btnClass>
     <description>Details of the organisation(s) responsible for the establishment, management, maintenance and distribution of the data resource

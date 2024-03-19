@@ -178,6 +178,12 @@
   <distributionFormat>Add Distribution Format</distributionFormat>
   <parentidentifier>Parent Identifier</parentidentifier>
 
+  <addlicenceType>Add Licence Type</addlicenceType>
+  <OGL>Open Government Licence</OGL>
+  <thirdpartyconditional>Third Party Conditional</thirdpartyconditional>
+  <thirdpartyopen>Third Party Open</thirdpartyopen>
+  <nrwconditional>NRW Conditional</nrwconditional>
+  <notlicenced>Not Licenced for Re-use</notlicenced>
 
 
   
