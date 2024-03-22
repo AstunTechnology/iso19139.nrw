@@ -795,7 +795,7 @@
             <!--<xsl:value-of select="($e + $w) div 2"/>,<xsl:value-of select="($n + $s) div 2"/></field>-->
           </xsl:for-each>
 
-          <xsl:for-each select=".//gmd:temporalElement/*/gmd:extent/gml:TimePeriod">
+          <xsl:for-each select=".//*[local-name() = 'TimePeriod' and (namespace-uri() = 'http://www.opengis.net/gml' or not(namespace-uri()))]">
             <xsl:variable name="start"
                           select="gml:beginPosition|gml:begin/gml:TimeInstant/gml:timePosition"/>
             <xsl:variable name="end"
