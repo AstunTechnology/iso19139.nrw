@@ -895,6 +895,7 @@
             <field xpath="/gmd:MD_Metadata/gmd:contact/*/gmd:contactInfo/*/gmd:address/*/gmd:electronicMailAddress"  or="electronicMailAddress" in="/gmd:MD_Metadata/gmd:contact/*/gmd:contactInfo/*/gmd:address/*"/>
             <field xpath="/gmd:MD_Metadata/gmd:contact/*/gmd:contactInfo/*/gmd:onlineResource/gmd:CI_OnlineResource/gmd:linkage"  or="linkage" in="/gmd:MD_Metadata/gmd:contact/*/gmd:contactInfo/*/gmd:onlineResource/*" del="../.."/>
             <field xpath="/gmd:MD_Metadata/gmd:contact/*/gmd:role"  or="role" in="/gmd:MD_Metadata/gmd:contact/*"/>
+            <field xpath="/gmd:MD_Metadata/gmd:contact" or="contact" in="/gmd:MD_Metadata" if="count(gmd:MD_Metadata/gmd:contact) = 0"/>
           </section>
           
         </section>

@@ -52,6 +52,17 @@
         </map>
     </xsl:variable>
 
+    <!-- Define a map of keyword titles and their corresponding identifier xlink:href attributes and values -->
+    <xsl:variable name="keywordTitleToIdentifierMap">
+        <map>
+            <entry title="NRW SMNR Keywords" href="local.theme.converted_nrw-smnr-keywords"/>
+            <entry title="NRW Keywords" href="local.theme.converted_nrw-keywords"/>
+            <entry title="GEMET - INSPIRE themes, version 1.0" href="external.theme.httpinspireeceuropaeutheme-theme"/>
+            <entry title="SeaDataNet Parameter Discovery Vocabulary" href="external.theme.rdf+xml"/>
+            <entry title="IPSV Subjects List" href="external.theme.subjects"/>
+        </map>
+    </xsl:variable>
+
     <!-- Identity transform for all nodes and attributes -->
     <xsl:template match="@*|node()">
         <xsl:copy>
@@ -77,6 +88,70 @@
             <xsl:value-of select="gco:CharacterString"/>
         </gmx:Anchor>
     </xsl:template>
+
+    <!-- Insert correct citation identifier for keyword -->
+    <xsl:template match="/gmd:MD_Metadata
+        /gmd:identificationInfo
+        /gmd:MD_DataIdentification
+        /gmd:descriptiveKeywords
+        /gmd:MD_Keywords
+        /gmd:thesaurusName
+        /gmd:CI_Citation/gmd:date">
+        <xsl:copy-of select="."/>
+        <xsl:choose>
+            <xsl:when test="../gmd:title/*/text() = 'GEMET - INSPIRE themes, version 1.0'">
+                <xsl:message>=== INSPIRE ===</xsl:message>
+                <gmd:identifier>
+                    <gmd:MD_Identifier>
+                        <gmd:code>
+                            <gmx:Anchor xlink:href="http://localhost/geonetwork/srv/api/registries/vocabularies/external.theme.httpinspireeceuropaeutheme-theme">geonetwork.thesaurus.external.theme.httpinspireeceuropaeutheme-theme</gmx:Anchor>
+                        </gmd:code>
+                    </gmd:MD_Identifier>
+                </gmd:identifier>
+            </xsl:when>
+            <xsl:when test="../gmd:title/*/text() = 'NRW Keywords'">
+                <xsl:message>=== NRW Keywords ===</xsl:message>
+                <gmd:identifier>
+                        <gmd:MD_Identifier>
+                           <gmd:code>
+                              <gmx:Anchor xlink:href="http://localhost/geonetwork/srv/api/registries/vocabularies/local.theme.converted_nrw-keywords">geonetwork.thesaurus.local.theme.converted_nrw-keywords</gmx:Anchor>
+                           </gmd:code>
+                        </gmd:MD_Identifier>
+                     </gmd:identifier>
+            </xsl:when>
+            <xsl:when test="../gmd:title/*/text() = 'NRW SMNR Keywords'">
+                <xsl:message>=== NRW SMNR Keywords ===</xsl:message>
+                <gmd:identifier>
+                        <gmd:MD_Identifier>
+                           <gmd:code>
+                              <gmx:Anchor xlink:href="http://localhost/geonetwork/srv/api/registries/vocabularies/external.theme.converted_nrw-smnr-keywords">geonetwork.thesaurus.external.theme.converted_nrw-smnr-keywords</gmx:Anchor>
+                           </gmd:code>
+                        </gmd:MD_Identifier>
+                     </gmd:identifier>
+            </xsl:when>
+            <xsl:when test="../gmd:title/*/text() = 'IPSV Subjects List'">
+                <xsl:message>=== IPSV Subjects List ===</xsl:message>
+                <gmd:identifier>
+                        <gmd:MD_Identifier>
+                           <gmd:code>
+                              <gmx:Anchor xlink:href="http://localhost/geonetwork/srv/api/registries/vocabularies/external.theme.subjects">geonetwork.thesaurus.external.theme.subjects</gmx:Anchor>
+                           </gmd:code>
+                        </gmd:MD_Identifier>
+                     </gmd:identifier>
+            </xsl:when>
+            <xsl:when test="../gmd:title/*/text() = 'SeaDataNet Parameter Discovery Vocabulary'">
+                <xsl:message>=== SeaDataNet Parameter Discovery Vocabulary ===</xsl:message>
+                <gmd:identifier>
+                        <gmd:MD_Identifier>
+                           <gmd:code>
+                              <gmx:Anchor xlink:href="http://localhost/geonetwork/srv/api/registries/vocabularies/external.theme.rdf+xml">geonetwork.thesaurus.external.theme.rdf+xml</gmx:Anchor>
+                           </gmd:code>
+                        </gmd:MD_Identifier>
+                     </gmd:identifier>
+            </xsl:when>
+        </xsl:choose>
+        </xsl:template>
+
     
     <!-- Convert limitations on public access other constraint from string to gmx:Anchor -->
     <xsl:template match="/gmd:MD_Metadata
