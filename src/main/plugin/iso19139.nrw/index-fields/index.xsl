@@ -795,7 +795,7 @@
             <!--<xsl:value-of select="($e + $w) div 2"/>,<xsl:value-of select="($n + $s) div 2"/></field>-->
           </xsl:for-each>
 
-          <xsl:for-each select=".//*[local-name() = 'TimePeriod' and (namespace-uri() = 'http://www.opengis.net/gml' or not(namespace-uri()))]">
+          <xsl:for-each select=".//gmd:temporalElement/*/gmd:extent/*[local-name() = 'TimePeriod' and (namespace-uri() = 'http://www.opengis.net/gml' or not(namespace-uri()))]|.//gmd:temporalElement/*/gmd:extent/gml:TimePeriod">
             <xsl:variable name="start"
                           select="gml:beginPosition|gml:begin/gml:TimeInstant/gml:timePosition"/>
             <xsl:variable name="end"
@@ -814,13 +814,13 @@
                   <xsl:if test="$start &lt; $end and not($end/@indeterminatePosition = 'now')">
                     ,"lte": "<xsl:value-of select="$zuluEndDate"/>"
                   </xsl:if>
-                  }</resourceTemporalDateRange>
+                }</resourceTemporalDateRange>
                 <resourceTemporalExtentDateRange type="object">{
                   "gte": "<xsl:value-of select="$zuluStartDate"/>"
                   <xsl:if test="$start &lt; $end and not($end/@indeterminatePosition = 'now')">
                     ,"lte": "<xsl:value-of select="$zuluEndDate"/>"
                   </xsl:if>
-                  }</resourceTemporalExtentDateRange>
+                }</resourceTemporalExtentDateRange>
               </xsl:when>
               <xsl:otherwise>
                 <indexingErrorMsg>Warning / Field resourceTemporalDateRange / Lower and upper bounds empty or not valid dates. Date range not indexed.</indexingErrorMsg>
