@@ -420,6 +420,24 @@
       </xsl:copy>
     </xsl:template>
 
+    <!-- ================================================================= -->
+    <!-- Insert dataset lanaguage as English if it does not exist -->
+
+    <xsl:template match="gmd:identificationInfo/*/gmd:language" >
+      <xsl:copy>
+      <xsl:choose>
+        <xsl:when test="not(gmd:LanguageCode/text())">
+        <xsl:message>==== Add missing dataset language ====</xsl:message>
+            <gmd:LanguageCode codeList="http://www.loc.gov/standards/iso639-2/php/code_list.php"
+                                     codeListValue="eng">English</gmd:LanguageCode>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:apply-templates select="gmd:LanguageCode"/>
+        </xsl:otherwise>
+        </xsl:choose>
+      </xsl:copy>
+    </xsl:template>
+
     <!-- =============================================================== -->
     <!-- Overwrite ISO19139 template for dealing with uuidref in srv:OperationsOn -->
     <xsl:template match="srv:operatesOn" priority="10">
