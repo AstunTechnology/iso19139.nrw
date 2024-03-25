@@ -113,7 +113,7 @@
   <inspireThemeURI>INSPIRE themes</inspireThemeURI>
   <format>Format</format>
   <format_version>Version</format_version>
-  <format_specification>Specification</format_specification>
+  <format_specification>Format Type</format_specification>
   <lineage>Lineage</lineage>
   <spatialResolution>Spatial resolution</spatialResolution>
   <spatialDistance>Spatial resolution (distance)</spatialDistance>

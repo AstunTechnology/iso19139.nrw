@@ -1063,7 +1063,7 @@
     </helper>
   </element>
   <element name="gmd:distributionFormat" id="271.0">
-    <label>Data format</label>
+    <label>Format Type and Description</label>
     <description>Format in which the digital data is provided
     </description>
     <condition>mandatory</condition>
@@ -2514,7 +2514,7 @@
     <condition>mandatory</condition>
   </element>
   <element name="gmd:specification" id="288.0" context="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributionFormat/gmd:MD_Format/gmd:specification">
-    <label>Specification</label>
+    <label>Type</label>
     <description>Name of a subset, profile, or product specification of the format</description>
     <helper rel="gco:CharacterString">
       <option value="Binary">Binary</option>
@@ -2527,9 +2527,9 @@
       <option value="Text or Plaintext">Text or Plaintext</option>
     </helper>
   </element>
-  <element name="gmd:specification">
+<!--   <element name="gmd:specification">
     <label>Specification</label>
-  </element>
+  </element> -->
     <element name="gmd:specification" id="130.0" context="gmd:DQ_ConformanceResult">
     <condition>mandatory</condition>
     <label>Specification</label>
