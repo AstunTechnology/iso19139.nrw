@@ -45,4 +45,11 @@
             </gmd:metadataStandardVersion>
         </elements>
     </autodetect>
+    <!-- Hide nrw internal contact and internal location information from anyone without editor privileges -->
+    <filters xmlns:gco="http://www.isotc211.org/2005/gco" xmlns:nrw="http://naturalresources.wales/nrw">
+        <filter xpath=".//nrw:internalLocationInfo|.//nrw:internalContactInfo"
+                ifNotOperation="editing">
+          <keepMarkedElement gco:nilReason="withheld"/>
+        </filter>
+      </filters>
 </schema>
