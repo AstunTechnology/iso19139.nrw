@@ -145,7 +145,7 @@
 
       <xsl:copy-of select="gn-fn-index:add-field('metadataIdentifier', $identifier)"/>
 
-      <xsl:for-each select="gmd:fileIdentifier">
+      <xsl:for-each select="gmd:fileIdentifier/*[. != '']">
         <xsl:copy-of select="gn-fn-index:add-field('fileIdentifier', .)"/>
       </xsl:for-each>
 
@@ -665,28 +665,33 @@
         <!-- Indexing individual constraints for NRW -->
 
         <!-- Access constraints -->
-        <xsl:for-each select="gmd:resourceConstraints[1]/gmd:MD_LegalConstraints[*/normalize-space() != '']">
+        <xsl:for-each select="gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:accessConstraints/gmd:MD_RestrictionCode/@codeListValue">
           <xsl:copy-of select="gn-fn-index:add-field('accessConstraints', .)"/>
         </xsl:for-each>
 
-        <!-- Limitations on public access -->
-        <xsl:for-each select="gmd:resourceConstraints[1]/gmd:MD_LegalConstraints/gmd:otherConstraints[preceding-sibling::*[1][self::gmd:accessConstraints] and normalize-space(.) != '']">
+        <!-- Limitations on public access text -->
+        <xsl:for-each select="gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:accessConstraints/following-sibling::gmd:otherConstraints/gmx:Anchor/text()">
           <xsl:copy-of select="gn-fn-index:add-field('limitationsPublicAccess', .)" />
         </xsl:for-each>
 
+        <!-- Limitations on public access link -->
+        <xsl:for-each select="gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:accessConstraints/following-sibling::gmd:otherConstraints/gmx:Anchor/@xlink:href">
+          <xsl:copy-of select="gn-fn-index:add-field('limitationsPublicAccessLink', .)" />
+        </xsl:for-each>
+
         <!-- Use constraints -->
-        <xsl:for-each select="gmd:resourceConstraints[2]/gmd:MD_LegalConstraints/gmd:otherConstraints[preceding-sibling::*[1][self::gmd:useConstraints] and normalize-space(.) != '']">
+        <xsl:for-each select="gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:useConstraints/gmd:MD_RestrictionCode/@codeListValue">
           <xsl:copy-of select="gn-fn-index:add-field('useConstraints', .)" />
         </xsl:for-each>
 
-        <!-- Attribution statement -->
-        <xsl:for-each select="gmd:resourceConstraints[2]/gmd:MD_LegalConstraints[1]/gmd:otherConstraints[3][*/normalize-space() != '']">
-          <xsl:copy-of select="gn-fn-index:add-field('attributionStatement', .)" />
+        <!--Licence-->
+        <xsl:for-each select="gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:useConstraints/following-sibling::gmd:otherConstraints/gmx:Anchor/text()">
+          <xsl:copy-of select="gn-fn-index:add-field('licence', .)"/>
         </xsl:for-each>
 
-        <!--License-->
-        <xsl:for-each select="gmd:resourceConstraints[gmd:MD_LegalConstraints[1]/gmd:useConstraints]/gmd:MD_LegalConstraints/gmd:otherConstraints[2]/*/text()[lower-case(.) = '3rd party conditional' or lower-case(.) = '3rd party open' or lower-case(.) = 'not licenced for re-use' or lower-case(.) = 'nrw conditional' or lower-case(.) = 'open government licence' or lower-case(.) = 'open government licence (ogl)']">
-          <xsl:copy-of select="gn-fn-index:add-field('license', .)"/>
+        <!-- Attribution statement -->
+        <xsl:for-each select="gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:useConstraints/following-sibling::gmd:otherConstraints/gco:CharacterString/text()">
+          <xsl:copy-of select="gn-fn-index:add-field('attributionStatement', .)" />
         </xsl:for-each>
 
         <xsl:if test="*/gmd:EX_Extent/*/gmd:EX_BoundingPolygon/gmd:polygon">
@@ -795,7 +800,7 @@
             <!--<xsl:value-of select="($e + $w) div 2"/>,<xsl:value-of select="($n + $s) div 2"/></field>-->
           </xsl:for-each>
 
-          <xsl:for-each select=".//gmd:temporalElement/*/gmd:extent/gml:TimePeriod">
+          <xsl:for-each select=".//gmd:temporalElement/*/gmd:extent/*[local-name() = 'TimePeriod' and (namespace-uri() = 'http://www.opengis.net/gml' or not(namespace-uri()))]|.//gmd:temporalElement/*/gmd:extent/gml:TimePeriod">
             <xsl:variable name="start"
                           select="gml:beginPosition|gml:begin/gml:TimeInstant/gml:timePosition"/>
             <xsl:variable name="end"
@@ -814,13 +819,13 @@
                   <xsl:if test="$start &lt; $end and not($end/@indeterminatePosition = 'now')">
                     ,"lte": "<xsl:value-of select="$zuluEndDate"/>"
                   </xsl:if>
-                  }</resourceTemporalDateRange>
+                }</resourceTemporalDateRange>
                 <resourceTemporalExtentDateRange type="object">{
                   "gte": "<xsl:value-of select="$zuluStartDate"/>"
                   <xsl:if test="$start &lt; $end and not($end/@indeterminatePosition = 'now')">
                     ,"lte": "<xsl:value-of select="$zuluEndDate"/>"
                   </xsl:if>
-                  }</resourceTemporalExtentDateRange>
+                }</resourceTemporalExtentDateRange>
               </xsl:when>
               <xsl:otherwise>
                 <indexingErrorMsg>Warning / Field resourceTemporalDateRange / Lower and upper bounds empty or not valid dates. Date range not indexed.</indexingErrorMsg>
