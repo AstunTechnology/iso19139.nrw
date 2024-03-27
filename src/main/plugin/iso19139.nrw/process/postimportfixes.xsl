@@ -234,6 +234,29 @@
           </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
+    
+    <!-- remove empty transfer options -->
+    <xsl:template match="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions" priority="100">
+        <xsl:choose>
+            <xsl:when test="not(gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource/gmd:name/gco:CharacterString/text())">
+                <xsl:message>=== Removing empty Transfer Options ===</xsl:message>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:copy>
+                    <xsl:apply-templates select="@*|node()"/>
+                </xsl:copy>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+    
+    <!-- data format name should be a CharacterString rather than an Anchor -->
+    <xsl:template match="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributionFormat/gmd:MD_Format/gmd:name">
+        <gmd:name>
+            <gco:CharacterString>
+                <xsl:value-of select="."/>
+            </gco:CharacterString>
+        </gmd:name>
+    </xsl:template>
 
     <!-- Split gmd:topicCategory element into multiple blocks -->
     <xsl:template match="gmd:topicCategory">
