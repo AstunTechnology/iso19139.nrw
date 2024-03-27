@@ -51,15 +51,12 @@
             <entry value="Utility and government services" href="https://www.eionet.europa.eu/gemet/en/inspire-theme/us"/>
         </map>
     </xsl:variable>
-
-    <!-- Define a map of keyword titles and their corresponding identifier xlink:href attributes and values -->
-    <xsl:variable name="keywordTitleToIdentifierMap">
+   
+    <!-- Define a map of language values and their corresponding codeListValues -->
+    <xsl:variable name="languageToCodeListMap">
         <map>
-            <entry title="NRW SMNR Keywords" href="local.theme.converted_nrw-smnr-keywords"/>
-            <entry title="NRW Keywords" href="local.theme.converted_nrw-keywords"/>
-            <entry title="GEMET - INSPIRE themes, version 1.0" href="external.theme.httpinspireeceuropaeutheme-theme"/>
-            <entry title="SeaDataNet Parameter Discovery Vocabulary" href="external.theme.rdf+xml"/>
-            <entry title="IPSV Subjects List" href="external.theme.subjects"/>
+            <entry value="Welsh" codeListValue="cym"/>
+            <entry value="English" codeListValue="eng"/>
         </map>
     </xsl:variable>
 
@@ -73,7 +70,47 @@
     <!-- Remove gco:nilReason attribute from the root element -->
     <xsl:template match="/gmd:MD_Metadata/@gco:nilReason"/>
     
-    <!-- Convert INSPIRE keyword from gco:CharacterString to gmx:Anchor -->
+    <!-- Fix codelist URL for metadata language element -->
+    <xsl:template match="/gmd:MD_Metadata/gmd:language">
+        <xsl:variable name="lang" select="gmd:LanguageCode"/>
+        <gmd:language>
+            <gmd:LanguageCode codeList="http://www.loc.gov/standards/iso639-2/php/code_list.php" codeListValue="{$languageToCodeListMap/map/entry[@value=$lang]/@codeListValue}">
+                <xsl:value-of select="gmd:LanguageCode"/>
+            </gmd:LanguageCode>
+        </gmd:language>
+        
+    </xsl:template>
+    
+    <!-- If dataset language contains a semi-colon, split it into two language blocks -->
+    <xsl:template match="//gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:language">
+        <xsl:choose>
+            <xsl:when test="contains(gmd:LanguageCode, ';')">
+                <!-- Split the value and create two separate language variables -->
+                <xsl:variable name="lang1" select="substring-before(gmd:LanguageCode, ';')"/>
+                <xsl:variable name="lang2" select="substring-after(gmd:LanguageCode, '; ')"/>
+                <gmd:language>
+                    <gmd:LanguageCode codeList="http://www.loc.gov/standards/iso639-2/php/code_list.php" codeListValue="{$languageToCodeListMap/map/entry[@value=$lang1]/@codeListValue}">
+                        <xsl:value-of select="$lang1"/>
+                    </gmd:LanguageCode>
+                </gmd:language>
+                <gmd:language>
+                    <gmd:LanguageCode codeList="http://www.loc.gov/standards/iso639-2/php/code_list.php" codeListValue="{$languageToCodeListMap/map/entry[@value=$lang2]/@codeListValue}">
+                        <xsl:value-of select="$lang2"/>
+                    </gmd:LanguageCode>
+                </gmd:language>
+            </xsl:when>
+            <xsl:otherwise>
+                <!-- Keep the original language element -->
+                <gmd:language>
+                    <gmd:LanguageCode codeList="http://www.loc.gov/standards/iso639-2/php/code_list.php" codeListValue="{$languageToCodeListMap/map/entry[@value=gmd:LanguageCode]/@codeListValue}">
+                        <xsl:value-of select="gmd:LanguageCode"/>
+                    </gmd:LanguageCode>
+                </gmd:language>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+    
+    <!-- Convert INSPIRE keyword from gco:CharacterString to gmx:Anchor if it's not one already-->
     <xsl:template match="/gmd:MD_Metadata
         /gmd:identificationInfo
         /gmd:MD_DataIdentification
@@ -83,10 +120,12 @@
         /gmd:CI_Citation
         /gmd:title
         /gmx:Anchor='GEMET - INSPIRE themes, version 1.0']">
-        
+        <xsl:copy-of select="."/>
+        <xsl:if test="not(gmx:Anchor)">
         <gmx:Anchor xlink:href="{$inspireValueToHrefMap/map/entry[@value=current()]/@href}">
             <xsl:value-of select="gco:CharacterString"/>
         </gmx:Anchor>
+        </xsl:if>
     </xsl:template>
 
     <!-- Insert correct citation identifier for keyword -->
@@ -96,20 +135,22 @@
         /gmd:descriptiveKeywords
         /gmd:MD_Keywords
         /gmd:thesaurusName
-        /gmd:CI_Citation/gmd:date">
+        /gmd:CI_Citation">
         <xsl:copy-of select="."/>
         <xsl:choose>
-            <xsl:when test="../gmd:title/*/text() = 'GEMET - INSPIRE themes, version 1.0'">
-                <xsl:message>=== INSPIRE ===</xsl:message>
-                <gmd:identifier>
-                    <gmd:MD_Identifier>
-                        <gmd:code>
-                            <gmx:Anchor xlink:href="http://localhost/geonetwork/srv/api/registries/vocabularies/external.theme.httpinspireeceuropaeutheme-theme">geonetwork.thesaurus.external.theme.httpinspireeceuropaeutheme-theme</gmx:Anchor>
-                        </gmd:code>
-                    </gmd:MD_Identifier>
-                </gmd:identifier>
+            <xsl:when test="gmd:title/*/text() = 'GEMET - INSPIRE themes, version 1.0'">
+                <xsl:if test="count(gmd:identifier) = 0">
+                    <xsl:message>=== INSPIRE ===</xsl:message>
+                        <gmd:identifier>
+                            <gmd:MD_Identifier>
+                                <gmd:code>
+                                    <gmx:Anchor xlink:href="http://localhost/geonetwork/srv/api/registries/vocabularies/external.theme.httpinspireeceuropaeutheme-theme">geonetwork.thesaurus.external.theme.httpinspireeceuropaeutheme-theme</gmx:Anchor>
+                                </gmd:code>
+                            </gmd:MD_Identifier>
+                        </gmd:identifier>
+                </xsl:if>
             </xsl:when>
-            <xsl:when test="../gmd:title/*/text() = 'NRW Keywords'">
+            <xsl:when test="gmd:title/*/text() = 'NRW Thesaurus'">
                 <xsl:message>=== NRW Keywords ===</xsl:message>
                 <gmd:identifier>
                         <gmd:MD_Identifier>
@@ -119,7 +160,7 @@
                         </gmd:MD_Identifier>
                      </gmd:identifier>
             </xsl:when>
-            <xsl:when test="../gmd:title/*/text() = 'NRW SMNR Keywords'">
+            <xsl:when test="gmd:title/*/text() = 'NRW SMNR Vocabulary'">
                 <xsl:message>=== NRW SMNR Keywords ===</xsl:message>
                 <gmd:identifier>
                         <gmd:MD_Identifier>
@@ -129,7 +170,7 @@
                         </gmd:MD_Identifier>
                      </gmd:identifier>
             </xsl:when>
-            <xsl:when test="../gmd:title/*/text() = 'IPSV Subjects List'">
+            <xsl:when test="gmd:title/*/text() = 'Integrated Public Sector Vocabulary'">
                 <xsl:message>=== IPSV Subjects List ===</xsl:message>
                 <gmd:identifier>
                         <gmd:MD_Identifier>
@@ -139,7 +180,7 @@
                         </gmd:MD_Identifier>
                      </gmd:identifier>
             </xsl:when>
-            <xsl:when test="../gmd:title/*/text() = 'SeaDataNet Parameter Discovery Vocabulary'">
+            <xsl:when test="gmd:title/*/text() = 'SeaDataNet Parameter Discovery Vocabulary'">
                 <xsl:message>=== SeaDataNet Parameter Discovery Vocabulary ===</xsl:message>
                 <gmd:identifier>
                         <gmd:MD_Identifier>
@@ -151,6 +192,8 @@
             </xsl:when>
         </xsl:choose>
         </xsl:template>
+    
+    
 
     
     <!-- Convert limitations on public access other constraint from string to gmx:Anchor -->
