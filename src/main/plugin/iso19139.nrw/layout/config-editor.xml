@@ -36,6 +36,7 @@
   <!-- Form field type configuration. Default is text. -->
   <fields>
     <for name="gmd:abstract" use="textarea"/>
+    <for name="gmd:name" use="textarea"/>
     <for name="gmd:checkPointDescription" use="textarea"/>
     <for name="gmd:credit" use="textarea"/>
     <for name="gmd:description" use="textarea"/>
@@ -322,7 +323,7 @@
         <col del=".."/>
       </row>
     </table>
-    <table for="gmd:MD_Format">
+<!--     <table for="gmd:MD_Format">
       <header>
         <col label="Format Type" class="gn-required"/>
         <col label="Format Description" class="gn-required"/>
@@ -335,7 +336,7 @@
         <col xpath="gmd:version"/>
         <col del=".."/>
       </row>
-    </table>
+    </table> -->
     <table for="gmd:PT_Locale">
       <header>
         <col label="gmd:languageCode"/>
