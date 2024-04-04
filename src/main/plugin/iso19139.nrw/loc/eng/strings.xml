@@ -168,7 +168,7 @@
   <addVerticalExtentDatum>with Datum</addVerticalExtentDatum>
   <verticalExtent>Vertical Extent</verticalExtent>
   <addVerticalExtent>Add Vertical Extent</addVerticalExtent>
-  <medinextent>Medin Extent</medinextent>
+  <medinextent>Medin Extent Keyword</medinextent>
   <geographicextent>Geographic Extent</geographicextent>
   <addDistance>Add Spatial Resolution as Distance</addDistance>
   <addSpatRep>Add Spatial Resolution</addSpatRep>
