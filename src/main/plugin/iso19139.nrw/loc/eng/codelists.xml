@@ -1678,19 +1678,19 @@
   <codelist name="gmd:MD_SpatialRepresentationTypeCode">
     <entry>
       <code>vector</code>
-      <label>Vector</label>
+      <label>vector</label>
       <description>Vector data is used to represent geographic data</description>
     </entry>
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
     <entry>
       <code>grid</code>
-      <label>Grid</label>
+      <label>grid</label>
       <description>Grid data is used to represent geographic data</description>
     </entry>
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
     <entry>
       <code>textTable</code>
-      <label>Text, table</label>
+      <label>textTable</label>
       <description>Textual or tabular data is used to represent geographic data</description>
     </entry>
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
@@ -1700,19 +1700,19 @@
       <description>Triangulated irregular network</description>
     </entry>
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
-    <entry>
+    <!-- <entry>
       <code>stereoModel</code>
       <label>Stereo model</label>
       <description>Three-dimensional view formed by the intersecting homologous rays of an
         overlapping pair of images
       </description>
-    </entry>
+    </entry> -->
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
-    <entry>
+    <!-- <entry>
       <code>video</code>
       <label>Video</label>
       <description>Scene from a video recording</description>
-    </entry>
+    </entry> -->
     <!-- ISO PROFIL CHE ONLY
         <entry>
             <code>paperMap</code>
