@@ -164,9 +164,6 @@
             <gmd:MD_RestrictionCode codeList="http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#MD_RestrictionCode" codeListValue="otherRestrictions"/>
           </gmd:useConstraints>
           <gmd:otherConstraints>
-            <gmx:Anchor>Licence Type goes here</gmx:Anchor>
-          </gmd:otherConstraints>
-          <gmd:otherConstraints>
             <gco:CharacterString>Attribution Statement goes here</gco:CharacterString>
           </gmd:otherConstraints>
         </gmd:MD_LegalConstraints>
