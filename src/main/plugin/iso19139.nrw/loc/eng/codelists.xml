@@ -219,11 +219,11 @@
   </codelist>
   <!-- ==================================================== -->
   <codelist name="gmd:CI_RoleCode" alias="roleCode">
-    <entry>
+    <!-- <entry>
       <code>resourceProvider</code>
       <label>Resource provider</label>
       <description>Party that supplies the resource</description>
-    </entry>
+    </entry> -->
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
     <entry>
       <code>custodian</code>
@@ -239,11 +239,11 @@
       <description>Party that owns the resource</description>
     </entry>
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
-    <entry>
+    <!-- <entry>
       <code>user</code>
       <label>User</label>
       <description>Party who uses the resource</description>
-    </entry>
+    </entry> -->
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
     <entry>
       <code>distributor</code>
@@ -265,21 +265,21 @@
       </description>
     </entry>
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
-    <entry>
+    <!-- <entry>
       <code>principalInvestigator</code>
       <label>Principal investigator</label>
       <description>Key party responsible for gathering information and conducting
         research
       </description>
-    </entry>
+    </entry> -->
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
-    <entry>
+    <!-- <entry>
       <code>processor</code>
       <label>Processor</label>
       <description>Party wha has processed the data in a manner such that the resource has been
         modified
       </description>
-    </entry>
+    </entry> -->
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
     <entry>
       <code>publisher</code>
@@ -287,11 +287,11 @@
       <description>Party who published the resource</description>
     </entry>
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
-    <entry>
+   <!--  <entry>
       <code>author</code>
       <label>Author</label>
       <description>Party who authored the resource</description>
-    </entry>
+    </entry> -->
     <!-- ISO PROFIL CHE ONLY
         <entry>
             <code>editor</code>
