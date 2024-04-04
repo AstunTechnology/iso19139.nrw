@@ -210,6 +210,22 @@
         </xsl:choose>
     </xsl:template>
 
+    <!-- override template for updating datestamp to just use date -->
+    <xsl:template match="gmd:dateStamp">
+    <xsl:choose>
+      <xsl:when test="/root/env/changeDate">
+        <xsl:copy>
+          <gco:Date>
+            <xsl:value-of select="substring(/root/env/changeDate,1,10)"/>
+          </gco:Date>
+        </xsl:copy>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:copy-of select="."/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
 
 
   <xsl:template match="gmd:MD_Format/gmd:version[not(string(gco:CharacterString))]" priority="10">
