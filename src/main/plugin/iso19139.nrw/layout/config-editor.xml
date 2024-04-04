@@ -717,7 +717,7 @@
               </snippet>
             </template>
           </field>
-          <action type="add" btnLabel="addlicenceType" name="otherConstraints" or="otherConstraints" in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints">
+          <action type="add" btnLabel="addlicenceType" name="otherConstraints" or="otherConstraints" in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints[./gmd:useConstraints]/gmd:otherConstraints[gmx:Anchor]) = 0">
             <template>
               <snippet label="OGL">
                     <gmd:otherConstraints>
@@ -911,7 +911,7 @@
 
       <!-- Elements that should not use the "flat" mode -->
       <flatModeExceptions>
-        <for name="gmd:alternateTitle" />
+        <for name="gmd:alternateTitle" excludeFrom="gmd:report"/>
         <for name="gmd:parentIdentifier" />
         <for name="gmd:geographicIdentifier" />
         <for name="gmd:descriptiveKeywords"/>
