@@ -329,7 +329,7 @@
   <!-- remove empty parent identifier -->
   <xsl:template match="gmd:parentIdentifier" priority="10">
     <xsl:choose>
-      <xsl:when test="not(text())">
+      <xsl:when test="not(gco:CharacterString/text())">
         <xsl:message>=== Removing empty Parent Identifier ===</xsl:message>
       </xsl:when>
       <xsl:otherwise>
