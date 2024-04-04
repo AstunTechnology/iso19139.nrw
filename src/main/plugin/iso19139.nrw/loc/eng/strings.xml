@@ -160,7 +160,7 @@
   <addCrs4277>OSGB 1936 (EPSG:4277)</addCrs4277>
   <addCrs4258>ETRS89 (EPSG:4258)</addCrs4258>
 
-  
+
   <addAccessConstraints>Access constraints</addAccessConstraints>
   <addUseConstraints>Add use contraints</addUseConstraints>
   <addContact>Add contact</addContact>
@@ -186,7 +186,7 @@
   <notlicenced>Not Licenced for Re-use</notlicenced>
 
 
-  
+
 
   <!-- Custom help for Gemini 2.3 elements, from https://www.agi.org.uk/40-gemini/1062-gemini-datasets-and-data-series-->
 
@@ -461,9 +461,9 @@ E.g. Feingold D. and Evans P.G.H 2014 Bottlenose Dolphin and Harbour Porpoise Mo
 <keyword_help>
     <div class="row">
     <div class="col-xs-offset-2 col-xs-8">
-      <p class="help-block">Records to be published as Gemini require at least keyword from the GEMET INSPIRE themes vocabulary.</p> 
+      <p class="help-block">Records to be published as Gemini require at least keyword from the GEMET INSPIRE themes vocabulary.</p>
       <p>Records to be published as Medin require at least one keyword from the SeaDataNet vocabulary.</p>
-      <p>For NRW keywords, if you can't find a suitable one, in either the standard list or the SMNR list, or need a new one adding, please contact opendata@cyfoethnaturiolcymru.gov.uk</p>
+      <p>For NRW keywords, if you can't find a suitable one, in either the standard list or the SMNR list, or need a new one adding, please contact <a href="mailto:opendata@cyfoethnaturiolcymru.gov.uk?subject=Data Discovery Enquiry" target="_blank">opendata@cyfoethnaturiolcymru.gov.uk</a></p>
       </div>
   </div>
 </keyword_help>
@@ -481,8 +481,8 @@ E.g. Feingold D. and Evans P.G.H 2014 Bottlenose Dolphin and Harbour Porpoise Mo
 <responsibleparty_help>
     <div class="row">
     <div class="col-xs-offset-2 col-xs-8">
-      <p class="help-block">Select the organisation from the dropdown list and select their role.</p> 
-      <p>If the organisation is not included please contact opendata@cyfoethnaturiolcymru.gov.uk</p>
+      <p class="help-block">Select the organisation from the dropdown list and select their role.</p>
+      <p>If the organisation is not included please contact <a href="mailto:opendata@cyfoethnaturiolcymru.gov.uk?subject=Data Discovery Enquiry" target="_blank">opendata@cyfoethnaturiolcymru.gov.uk</a></p>
       </div>
   </div>
 </responsibleparty_help>
@@ -500,7 +500,7 @@ E.g. Feingold D. and Evans P.G.H 2014 Bottlenose Dolphin and Harbour Porpoise Mo
 <spatialref_help>
     <div class="row">
     <div class="col-xs-offset-2 col-xs-8">
-      <p class="help-block">This is the spatial reference system used in the data and should include one of the following:</p> 
+      <p class="help-block">This is the spatial reference system used in the data and should include one of the following:</p>
     <ol class="help-block">
         <li>OSGB 1936 / British National Grid (EPSG:27700)</li>
         <li>WGS 84 (EPSG:4326)</li>
@@ -568,7 +568,7 @@ E.g. Feingold D. and Evans P.G.H 2014 Bottlenose Dolphin and Harbour Porpoise Mo
 <alttitlesrv_help>
     <div class="row">
     <div class="col-xs-offset-2 col-xs-8">
-      <p class="help-block">Include the welsh translation</p>      
+      <p class="help-block">Include the welsh translation</p>
     </div>
   </div>
 </alttitlesrv_help>
