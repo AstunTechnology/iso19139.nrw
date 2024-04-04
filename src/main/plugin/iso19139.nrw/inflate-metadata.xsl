@@ -84,8 +84,13 @@
       <xsl:copy-of select="gmd:environmentDescription" />
       <xsl:copy-of select="gmd:extent" />
   
-
+      <!-- Add gmd:supplementalInformation if missing -->
       <xsl:copy-of select="gmd:supplementalInformation" />
+      <xsl:if test="not(gmd:supplementalInformation)">
+        <gmd:supplementalInformation>
+          <gco:CharacterString></gco:CharacterString>
+        </gmd:supplementalInformation>
+      </xsl:if>
     </xsl:copy>
   </xsl:template>
 

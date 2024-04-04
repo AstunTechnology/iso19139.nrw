@@ -312,6 +312,20 @@
     </xsl:choose>
   </xsl:template>
 
+  <!-- remove supplemental information elements with nilreasons of inapplicable, unknown or missing -->
+  <xsl:template match="gmd:supplementalInformation" priority="10">
+    <xsl:choose>
+      <xsl:when test="not(gco:CharacterString/text())">
+        <xsl:message>=== Removing empty supplemental Information element ===</xsl:message>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:copy>
+          <xsl:apply-templates select="@*|node()"/>
+        </xsl:copy>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
       <!--  Delete empty keyword elements  -->
   <xsl:template match="gmd:descriptiveKeywords" priority="100">
     <xsl:choose>
