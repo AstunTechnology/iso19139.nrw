@@ -1561,7 +1561,7 @@
     <condition>optional</condition>
   </element>
   <element name="gmd:maximumValue" context="gmd:EX_VerticalExtent" id="355.0">
-    <label>Maximum value</label>
+    <label>Maximum value (meters)</label>
     <description>Highest vertical extent contained in the dataset</description>
     <condition>optional</condition>
   </element>
@@ -1625,7 +1625,7 @@
     <condition>optional</condition>
   </element>
   <element name="gmd:minimumValue" context="gmd:EX_VerticalExtent" id="355.0">
-    <label>Minimum value</label>
+    <label>Minimum value (meters)</label>
     <description>Lowest vertical extent contained in the dataset</description>
     <condition>optional</condition>
   </element>
@@ -3635,12 +3635,12 @@
   <element name="nrw:MD_ContentInfo">
   <label>NRW Profile</label>
   <condition>required</condition>
-  </element> 
+  </element>
 
   <element name="nrw:internalLocationInfo">
   <label>NRW Internal Location</label>
   <condition>required</condition>
-  </element> 
+  </element>
 
   <element name="nrw:internalContactInfo">
   <label>NRW Internal Contact</label>
