@@ -656,10 +656,10 @@ E.g. Feingold D. and Evans P.G.H 2014 Bottlenose Dolphin and Harbour Porpoise Mo
   </div>
 </charset_help>
 <refdate_help>
-    <div class="row">
+  <div class="row">
     <div class="col-xs-offset-2 col-xs-8">
-      <p class="help-block">For datasets that have not been published this should be set to creation. When the data is published please change the date type to publication.</p>
-      </div>
+      <p class="help-block">Please restrict to one entry per date type. Creation date is the date the dataset was created or if the creation date is not known use the date it was first made available to staff. Publication date is when the data is published externally for download i.e. on DataMapWales, NBN or other approved NRW publishing mechanism. If the data is updated to create a new version, then you can add a separate revision date (you may also need to update the publication date if the data is republished). You should only add one revision date to reflect the latest version of the data.</p>
+    </div>
   </div>
 </refdate_help>
 <refdatesrv_help>
