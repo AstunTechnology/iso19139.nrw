@@ -97,8 +97,8 @@
     <!-- <for name="gmd:referenceSystemInfo" addDirective="data-gn-crs-selector"/> -->
 
 
-    
-    
+
+
 
     <!--
     Enable the following to use subtemplates for format type.
@@ -145,7 +145,7 @@
         data-include="-external.place.regions,-local.place.customregions,-external.theme.inspire-service-taxonomy,-external.theme.nrw-licenses,-external.theme.gemet,-external.theme.SeaVoXVerticalCoordinateCoverages,-local.stratum.vertical-crs"/>
     </for>
 
-    
+
 
   </fields>
 
@@ -450,6 +450,7 @@
 
           <section name="Data Format" displayIfRecord="contains(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:MD_Identifier/gmd:code/gco:CharacterString, 'NRW_')">
           <field xpath="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributionFormat"/>
+          <text ref="formatspecification_help"/>
           <action type="add" btnLabel="Add a Distribution Format" name="addDistroFormat" or="distributionFormat" in="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution">
               <template>
                  <snippet>
@@ -501,7 +502,7 @@
             </action>
 
           <section name="extent" displayIfRecord="contains(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:MD_Identifier/gmd:code/gco:CharacterString, 'NRW_')">
-          <field 
+          <field
               xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicDescription/gmd:geographicIdentifier[not(gmd:MD_Identifier/gmd:authority/gmd:CI_Citation/gmd:title/gco:CharacterString ='SeaVoX Vertical Co-ordinate Coverages')]" or="geographicIdentifier" in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicDescription"/>
 
             <text ref="extent_help" />
@@ -799,8 +800,8 @@
               </template>
            </field>
           <text ref="medinextent_help"/>
-  
-        
+
+
           <field
             xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:verticalElement"
             or="verticalElement" in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0">
@@ -867,7 +868,7 @@
 
         </section> <!--  end identification info section -->
 
-        
+
 
 
         <section name="gmd:DQ_DataQuality" collapsed="true" displayIfRecord="contains(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:MD_Identifier/gmd:code/gco:CharacterString, 'NRW_')">
@@ -905,7 +906,7 @@
             <field xpath="/gmd:MD_Metadata/gmd:contact/*/gmd:role"  or="role" in="/gmd:MD_Metadata/gmd:contact/*"/>
             <field xpath="/gmd:MD_Metadata/gmd:contact" or="contact" in="/gmd:MD_Metadata" if="count(gmd:MD_Metadata/gmd:contact) = 0"/>
           </section>
-          
+
         </section>
       </tab>
 
@@ -949,7 +950,7 @@
 
     <!-- third party view for records with an identifier starting with EXT_ -->
     <!-- <view name="thirdparty" hideTimeInCalendar="true" displayIfRecord="starts-with(/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:MD_Identifier/gmd:code/gco:CharacterString, 'EXT_')"> -->
-    
+
 
     <!-- Advanced View -->
     <view name="advanced" displayIfServiceInfo="count(session[profile = 'Administrator']) = 1">

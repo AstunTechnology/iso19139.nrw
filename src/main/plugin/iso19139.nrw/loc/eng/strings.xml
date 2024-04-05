@@ -738,6 +738,14 @@ E.g. Feingold D. and Evans P.G.H 2014 Bottlenose Dolphin and Harbour Porpoise Mo
   </div>
 </dataqualitysrv_help>
 
+<formatspecification_help>
+  <div class="row">
+  <div class="col-xs-offset-2 col-xs-8">
+    <p class="help-block">Please select a Data Format Type from the Recommended Values list and then use the description box to describe the Format Type. E.g. for the Format Type “Documents” you can describe it as NRW Evidence Report on Microsoft Word. The version could then be the software version word such as Windows 11</p>
+  </div>
+</div>
+</formatspecification_help>
+
 <NRW_InternalLocationInfo_help>
     <div class="row">
     <div class="col-xs-offset-2 col-xs-8">
