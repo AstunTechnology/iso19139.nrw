@@ -1593,7 +1593,7 @@
     <condition>optional</condition>
   </element>
   <element name="gmd:maximumValue" context="gmd:EX_VerticalExtent" id="355.0">
-    <label>Maximum value (meters)</label>
+    <label>Maximum value (metres)</label>
     <description>Highest vertical extent contained in the dataset</description>
     <condition>optional</condition>
   </element>
@@ -1657,7 +1657,7 @@
     <condition>optional</condition>
   </element>
   <element name="gmd:minimumValue" context="gmd:EX_VerticalExtent" id="355.0">
-    <label>Minimum value (meters)</label>
+    <label>Minimum value (metres)</label>
     <description>Lowest vertical extent contained in the dataset</description>
     <condition>optional</condition>
   </element>
