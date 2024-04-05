@@ -203,7 +203,7 @@
       <name>gmd:alternateTitle</name>
       <name>gmd:lineage</name>
     </expanded>
-    
+
     <!-- All fields in ISO could be multilingual.
     Define element to exclude.
 
@@ -497,6 +497,9 @@
                              <gmd:linkage>
                                 <gmd:URL/>
                              </gmd:linkage>
+                             <gmd:protocol gco:nilReason="missing">
+                                <gco:CharacterString/>
+                              </gmd:protocol>
                              <gmd:name gco:nilReason="missing">
                                 <gco:CharacterString/>
                              </gmd:name>
