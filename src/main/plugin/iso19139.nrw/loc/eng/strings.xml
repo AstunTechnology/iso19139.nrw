@@ -503,9 +503,9 @@ E.g. Feingold D. and Evans P.G.H 2014 Bottlenose Dolphin and Harbour Porpoise Mo
       <p class="help-block">This is the spatial reference system used in the data and should include one of the following:</p>
     <ol class="help-block">
         <li>OSGB 1936 / British National Grid (EPSG:27700)</li>
-        <li>WGS 84 (EPSG:4326)</li>
-        <li>British National Grid Long/Lat (OSGB 36) (EPSG: 4277])</li>
-        <li>ETRS89 (EPSG:4258) should be included for INSPIRE compliance</li>
+        <li>WGS 84 Lat/Long (EPSG:4326)</li>
+        <li>OSGB 36 Lat/Long (EPSG: 4277)</li>
+        <li>ETRS89 Lat/Long (EPSG:4258). This option should only be included when the data is transformed to the INSPIRE specification for the relevant INSPIRE theme.</li>
       </ol>
       </div>
   </div>
