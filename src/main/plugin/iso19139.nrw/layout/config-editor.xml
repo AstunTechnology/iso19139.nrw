@@ -203,6 +203,7 @@
       <name>gmd:alternateTitle</name>
       <name>gmd:lineage</name>
     </expanded>
+    
     <!-- All fields in ISO could be multilingual.
     Define element to exclude.
 
@@ -276,6 +277,19 @@
       <name ancestor="gmd:thesaurusName">gmd:code</name>
       <name ancestor="gmd:aggregateDataSetIdentifier">gmd:code</name>
       <name ancestor="gmd:CI_Citation">gmd:code</name>
+      <!-- NRW specifics -->
+      <name ancestor="gmd:MD_Identifier">gmd:code</name>
+      <name ancestor="gmd:specification">gmd:title</name>
+      <name>nrw:internalLocationInfo</name>
+      <name>nrw:internalContactInfo</name>
+      <name>nrw:relatedTitle</name>
+      <name>gmd:name</name>
+      <name>gmd:deliveryPoint</name>
+      <name>gmd:positionName</name>
+      <name>gmd:organisationName</name>
+      <name>gmd:country</name>
+      <name>gmd:electronicMailAddress</name>
+      <name>gmd:explanation</name>
     </exclude>
   </multilingualFields>
 
