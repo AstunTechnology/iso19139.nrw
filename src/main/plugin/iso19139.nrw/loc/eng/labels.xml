@@ -1388,43 +1388,75 @@
     <label>Geographic Identifier</label>
     <description>Value identifying the geographic extent of the data resource</description>
     <helper rel="gco:CharacterString">
-      <option value="ABERTAWE - SWANSEA" title="ABERTAWE - SWANSEA">ABERTAWE - SWANSEA</option>
-      <option value="Anglesey (52)" title="Anglesey (52)">Anglesey (52)</option>
-      <option value="BLAENAU GWENT - BLAENAU GWENT" title="BLAENAU GWENT - BLAENAU GWENT">BLAENAU GWENT - BLAENAU GWENT</option>
+      <option value="UNITED KINGDOM (GB)" title="UNITED KINGDOM (GB)">UNITED KINGDOM (GB)</option>
+      <option value="England and Wales (EAW)" title="England and Wales (EAW)">England and Wales (EAW)</option>
+      <option value="England (ENG)" title="England (ENG)">England (ENG)</option>
+      <option value="Northern Ireland (NIR)" title="Northern Ireland (NIR)">Northern Ireland (NIR)</option>
+      <option value="Scotland (SCT)" title="Scotland (SCT)">Scotland (SCT)</option>
+      <option value="Wales (WLS)" title="Wales (WLS)">Wales (WLS)</option>
       <option value="Bridgwater Bay" title="Bridgwater Bay">Bridgwater Bay</option>
-      <option value="Bristol Channel" title="Bristol Channel">Bristol Channel</option>
-      <option value="BRO MORGANNWG - THE VALE OF GLAMORGAN" title="BRO MORGANNWG - THE VALE OF GLAMORGAN">BRO MORGANNWG - THE VALE OF GLAMORGAN</option>
-      <option value="CAERDYDD - CARDIFF" title="CAERDYDD - CARDIFF">CAERDYDD - CARDIFF</option>
-      <option value="CAERFFILI - CAERPHILL" title="CAERFFILI - CAERPHILL">CAERFFILI - CAERPHILL</option>
-      <option value="Caernarfon Bay" title="Caernarfon Bay">Caernarfon Bay</option>
-      <option value="Caernarvonshire (49)" title="Caernarvonshire (49)">Caernarvonshire (49)</option>
-      <option value="Cardigan Bay" title="Cardigan Bay">Cardigan Bay</option>
+      <option value="Swansea Bay" title="Swansea Bay">Swansea Bay</option>
       <option value="Carmarthen Bay" title="Carmarthen Bay">Carmarthen Bay</option>
-      <option value="Carmarthenshire (44)" title="Carmarthenshire (44)">Carmarthenshire (44)</option>
+      <option value="Severn Estuary" title="Severn Estuary">Severn Estuary</option>
+      <option value="St. Brides Bay" title="St. Brides Bay">St. Brides Bay</option>
+      <option value="St. George's Channel" title="St. George's Channel">St. George's Channel</option>
+      <option value="Caernarfon Bay" title="Caernarfon Bay">Caernarfon Bay</option>
+      <option value="Liverpool Bay" title="Liverpool Bay">Liverpool Bay</option>
+      <option value="Ribble Estuary" title="Ribble Estuary">Ribble Estuary</option>
+      <option value="Mersey Estuary" title="Mersey Estuary">Mersey Estuary</option>
+      <option value="Dee Estuary" title="Dee Estuary">Dee Estuary</option>
+      <option value="Cardigan Bay" title="Cardigan Bay">Cardigan Bay</option>
+      <option value="Tremadog Bay" title="Tremadog Bay">Tremadog Bay</option>
+      <option value="Menai Strait" title="Menai Strait">Menai Strait</option>
+      <option value="Celtic Sea" title="Celtic Sea">Celtic Sea</option>
+      <option value="Irish Sea" title="Irish Sea">Irish Sea</option>
+      <option value="English Channel" title="English Channel">English Channel</option>
+      <option value="Bristol Channel" title="Bristol Channel">Bristol Channel</option>
+      <option value="Morecambe Bay" title="Morecambe Bay">Morecambe Bay</option>
+      <option value="Northern North Sea" title="Northern North Sea">Northern North Sea</option>
+      <option value="Southern North Sea" title="Southern North Sea">Southern North Sea</option>
+      <option value="Eastern Channel" title="Eastern Channel">Eastern Channel</option>
+      <option value="Western Channel and Celtic Sea" title="Western Channel and Celtic Sea">Western Channel and Celtic Sea</option>
+      <option value="Irish Sea" title="Irish Sea">Irish Sea</option>
+      <option value="Minches and Western Scotland" title="Minches and Western Scotland">Minches and Western Scotland</option>
+      <option value="Scottish Continental Shelf" title="Scottish Continental Shelf">Scottish Continental Shelf</option>
+      <option value="Atlantic North-West Approaches and Rockall Trough" title="Atlantic North-West Approaches and Rockall Trough">Atlantic North-West Approaches and Rockall Trough</option>
+      <option value="Shared waters between Northern Ireland and Republic of Ireland" title="Shared waters between Northern Ireland and Republic of Ireland">Shared waters between Northern Ireland and Republic of Ireland</option>
+      <option value="BLAENAU GWENT - BLAENAU GWENT" title="BLAENAU GWENT - BLAENAU GWENT">BLAENAU GWENT - BLAENAU GWENT</option>
+      <option value="CAERFFILI - CAERPHILLY" title="CAERFFILI - CAERPHILLY">CAERFFILI - CAERPHILLY</option>
+      <option value="MERTHYR TUDFUL - MERTHYR TYDFIL" title="MERTHYR TUDFUL - MERTHYR TYDFIL">MERTHYR TUDFUL - MERTHYR TYDFIL</option>
+      <option value="POWYS - POWYS" title="POWYS - POWYS">POWYS - POWYS</option>
+      <option value="RHONDDA CYNON TAF - RHONDDA CYNON TAF" title="RHONDDA CYNON TAF - RHONDDA CYNON TAF">RHONDDA CYNON TAF - RHONDDA CYNON TAF</option>
+      <option value="WRECSAM - WREXHAM" title="WRECSAM - WREXHAM">WRECSAM - WREXHAM</option>
+      <option value="ABERTAWE - SWANSEA" title="ABERTAWE - SWANSEA">ABERTAWE - SWANSEA</option>
+      <option value="BRO MORGANNWG - THE VALE OF GLAMORGAN" title="BRO MORGANNWG - THE VALE OF GLAMORGAN">BRO MORGANNWG - THE VALE OF GLAMORGAN</option>
       <option value="CASNEWYDD - NEWPORT" title="CASNEWYDD - NEWPORT">CASNEWYDD - NEWPORT</option>
       <option value="CASTELL-NEDD PORT TALBOT - NEATH PORT TALBOT" title="CASTELL-NEDD PORT TALBOT - NEATH PORT TALBOT">CASTELL-NEDD PORT TALBOT - NEATH PORT TALBOT</option>
-      <option value="Celtic Sea" title="Celtic Sea">Celtic Sea</option>
       <option value="CONWY - CONWY" title="CONWY - CONWY">CONWY - CONWY</option>
-      <option value="Dee Estuary" title="Dee Estuary">Dee Estuary</option>
-      <option value="England (ENG)" title="England (ENG)">England (ENG)</option>
-      <option value="England and Wales (EAW)" title="England and Wales (EAW)">England and Wales (EAW)</option>
-      <option value="Flintshire (51)" title="Flintshire (51)">Flintshire (51)</option>
-      <option value="Glamorgan (41)" title="Glamorgan (41)">Glamorgan (41)</option>
-      <option value="Great Britain (GBN)" title="Great Britain (GBN)">Great Britain (GBN)</option>
-      <option value="GWYNEDD - GWYNEDD" title="GWYNEDD - GWYNEDD">GWYNEDD - GWYNEDD</option>
-      <option value="Irish Sea" title="Irish Sea">Irish Sea</option>
-      <option value="Liverpool Bay" title="Liverpool Bay">Liverpool Bay</option>
-      <option value="Menai Strait" title="Menai Strait">Menai Strait</option>
-      <option value="Merionethshire (48)" title="Merionethshire (48)">Merionethshire (48)</option>
-      <option value="MERTHYR TUDFUL - MERTHYR TYDFIL" title="MERTHYR TUDFUL - MERTHYR TYDFIL">MERTHYR TUDFUL - MERTHYR TYDFIL</option>
-      <option value="Monmouthshire (35)" title="Monmouthshire (35)">Monmouthshire (35)</option>
-      <option value="Montgomeryshire (47)" title="Montgomeryshire (47)">Montgomeryshire (47)</option>
-      <option value="Northern Ireland (NIR)" title="Northern Ireland (NIR)">Northern Ireland (NIR)</option>
-      <option value="Pembrokeshire (45)" title="Pembrokeshire (45)">Pembrokeshire (45)</option>
       <option value="PEN-Y-BONT AR OGWR - BRIDGEND" title="PEN-Y-BONT AR OGWR - BRIDGEND">PEN-Y-BONT AR OGWR - BRIDGEND</option>
-      <option value="POWYS - POWYS" title="POWYS - POWYS">POWYS - POWYS</option>
-      <option value="RHONDDA CYNON TAF - RHONDDA CYNON TAFF" title="RHONDDA CYNON TAF - RHONDDA CYNON TAFF">RHONDDA CYNON TAF - RHONDDA CYNON TAFF</option>
-      <option value="Wales (WLS)" title="Wales (WLS)">Wales (WLS)</option>
+      <option value="SIR DDINBYCH - DENBIGHSHIRE" title="SIR DDINBYCH - DENBIGHSHIRE">SIR DDINBYCH - DENBIGHSHIRE</option>
+      <option value="SIR GAERFYRDDIN - CARMARTHENSHIRE" title="SIR GAERFYRDDIN - CARMARTHENSHIRE">SIR GAERFYRDDIN - CARMARTHENSHIRE</option>
+      <option value="SIR Y FFLINT - FLINTSHIRE" title="SIR Y FFLINT - FLINTSHIRE">SIR Y FFLINT - FLINTSHIRE</option>
+      <option value="TORFAEN - TORFAEN" title="TORFAEN - TORFAEN">TORFAEN - TORFAEN</option>
+      <option value="SIR YNYS MON - ISLE OF ANGLESEY" title="SIR YNYS MON - ISLE OF ANGLESEY">SIR YNYS MON - ISLE OF ANGLESEY</option>
+      <option value="GWYNEDD - GWYNEDD" title="GWYNEDD - GWYNEDD">GWYNEDD - GWYNEDD</option>
+      <option value="CAERDYDD - CARDIFF" title="CAERDYDD - CARDIFF">CAERDYDD - CARDIFF</option>
+      <option value="SIR CEREDIGION - CEREDIGION" title="SIR CEREDIGION - CEREDIGION">SIR CEREDIGION - CEREDIGION</option>
+      <option value="SIR FYNWY - MONMOUTHSHIRE" title="SIR FYNWY - MONMOUTHSHIRE">SIR FYNWY - MONMOUTHSHIRE</option>
+      <option value="SIR BENFRO - PEMBROKESHIRE" title="SIR BENFRO - PEMBROKESHIRE">SIR BENFRO - PEMBROKESHIRE</option>
+      <option value="Radnorshire (43)" title="Radnorshire (43)">Radnorshire (43)</option>
+      <option value="Anglesey (52)" title="Anglesey (52)">Anglesey (52)</option>
+      <option value="Caernarvonshire (49)" title="Caernarvonshire (49)">Caernarvonshire (49)</option>
+      <option value="Denbighshire (50)" title="Denbighshire (50)">Denbighshire (50)</option>
+      <option value="Flintshire (51)" title="Flintshire (51)">Flintshire (51)</option>
+      <option value="Merionethshire (48)" title="Merionethshire (48)">Merionethshire (48)</option>
+      <option value="Montgomeryshire (47)" title="Montgomeryshire (47)">Montgomeryshire (47)</option>
+      <option value="Cardiganshire (46)" title="Cardiganshire (46)">Cardiganshire (46)</option>
+      <option value="Breconshire (42)" title="Breconshire (42)">Breconshire (42)</option>
+      <option value="Pembrokeshire (45)" title="Pembrokeshire (45)">Pembrokeshire (45)</option>
+      <option value="Carmarthenshire (44)" title="Carmarthenshire (44)">Carmarthenshire (44)</option>
+      <option value="Glamorganshire (41)" title="Glamorganshire (41)">Glamorganshire (41)</option>
+      <option value="Monmouthshire (35)" title="Monmouthshire (35)">Monmouthshire (35)</option>
     </helper>
     </element>
   <element name="gmd:identifier" id="575.0" context="gmd:MD_Authority">
