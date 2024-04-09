@@ -70,6 +70,9 @@
     <xsl:namespace name="xlink" select="'http://www.w3.org/1999/xlink'"/>
   </xsl:template>
 
+  <!-- Remove gco:nilReason attribute from the root element -->
+    <xsl:template match="/gmd:MD_Metadata/@gco:nilReason"/>
+
 
 <!-- encode file identifier as a UUID hex encoding of the numeric component of the resource identifier. Prefix with the hex encoding of OLIB-CCWd-ds -->
    <xsl:template match="gmd:fileIdentifier">

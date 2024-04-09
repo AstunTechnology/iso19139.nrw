@@ -374,7 +374,7 @@
         <directive data-gn-validation-report="" data-initial-show-errors="true" data-initial-show-successes="false" data-initial-section-states="open"/>
         <directive data-gn-onlinesrc-list=""/>
         <directive gn-geo-publisher="" data-ng-if="gnCurrentEdit.geoPublisherConfig" data-config="{{gnCurrentEdit.geoPublisherConfig}}" data-lang="lang"/>
-        <directive data-gn-suggestion-list=""/>
+        <!-- <directive data-gn-suggestion-list=""/> -->
         <directive data-gn-need-help="user-guide/describing-information/creating-metadata.html"/>
       </sidePanel>
 
@@ -972,7 +972,7 @@
         <directive data-gn-onlinesrc-list=""/>
         <directive gn-geo-publisher="" data-ng-if="gnCurrentEdit.geoPublisherConfig" data-config="{{gnCurrentEdit.geoPublisherConfig}}" data-lang="lang"/>
         <directive data-gn-validation-report=""/>
-        <directive data-gn-suggestion-list=""/>
+        <!-- <directive data-gn-suggestion-list=""/> -->
         <directive data-gn-need-help="user-guide/describing-information/creating-metadata.html"/>
       </sidePanel>
 
@@ -1038,7 +1038,7 @@
         <directive data-gn-onlinesrc-list=""/>
         <directive gn-geo-publisher="" data-ng-if="gnCurrentEdit.geoPublisherConfig" data-config="{{gnCurrentEdit.geoPublisherConfig}}" data-lang="lang"/>
         <directive data-gn-validation-report=""/>
-        <directive data-gn-suggestion-list=""/>
+<!--         <directive data-gn-suggestion-list=""/> -->
         <directive data-gn-need-help="user-guide/describing-information/creating-metadata.html"/>
       </sidePanel>
       <tab id="xml" default="true"/>
