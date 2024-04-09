@@ -43,7 +43,7 @@
                 extension-element-prefixes="saxon"
                 exclude-result-prefixes="#all">
 
-  <!-- This formatter render an ISO19139 record based on the
+  <!-- This formatter renders an ISO19139 record based on the
   editor configuration file.
 
   The layout is made in 2 modes:
