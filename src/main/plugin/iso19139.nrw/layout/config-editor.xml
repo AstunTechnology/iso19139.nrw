@@ -401,7 +401,7 @@
 
           <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:language"/>
 
-          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:characterSet"/>
+<!--           <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:characterSet"/> -->
 
           <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:abstract" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
           <text ref="abstract_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
@@ -720,7 +720,7 @@
         <section name="Use Constraints">
           <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:useConstraints"/>
         </section>
-        <section name="Licence">
+        <section name="licence">
           <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints[./gmd:useConstraints]/gmd:otherConstraints[gmx:Anchor]" templateModeOnly="true">
             <template>
               <values>
@@ -766,12 +766,12 @@
           </action>
 
         </section>
-        <section name="Attribution Statement">
+        <section name="attributionstatement">
           <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints[./gmd:useConstraints]/gmd:otherConstraints[gco:CharacterString]"/>
         </section>
         </section>
 
-          <section name="Vertical Extent" displayIfRecord="contains(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:MD_Identifier/gmd:code/gco:CharacterString, 'NRW_')">
+          <section name="verticalextent" displayIfRecord="contains(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:MD_Identifier/gmd:code/gco:CharacterString, 'NRW_')">
             <field name="medinextent" xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicDescription/gmd:geographicIdentifier[gmd:MD_Identifier/gmd:authority/gmd:CI_Citation/gmd:title/gco:CharacterString ='SeaVoX Vertical Co-ordinate Coverages']" templateModeOnly="true" notDisplayedIfMissing="false" del="../../." removable="true">
               <template>
                 <values>

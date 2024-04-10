@@ -358,7 +358,7 @@
   </xsl:template>
 
   <!-- remove empty alt title -->
-  <xsl:template match="gmd:alternateTitle" priority="100">
+  <!-- <xsl:template match="gmd:alternateTitle" priority="100">
     <xsl:choose>
       <xsl:when test="not(gco:CharacterString/text())">
         <xsl:message>=== Removing empty Alternate Title ===</xsl:message>
@@ -369,7 +369,7 @@
         </xsl:copy>
       </xsl:otherwise>
     </xsl:choose>
-  </xsl:template>
+  </xsl:template> -->
 
   <!-- remove empty uuidref attributes -->
   <xsl:template match="//*[@uuidref[not(string())]]" priority="10">
