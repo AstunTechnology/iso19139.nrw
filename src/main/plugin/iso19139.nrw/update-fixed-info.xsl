@@ -330,7 +330,7 @@
   </xsl:template>
 
       <!--  Delete empty keyword elements  -->
-  <xsl:template match="gmd:descriptiveKeywords" priority="100">
+  <!-- <xsl:template match="gmd:descriptiveKeywords" priority="100">
     <xsl:choose>
       <xsl:when test="gmd:MD_Keywords/gmd:keyword/@gco:nilReason='missing'">
         <xsl:message>=== Removing empty Keyword Element ===</xsl:message>
@@ -341,7 +341,7 @@
         </xsl:copy>
       </xsl:otherwise>
     </xsl:choose>
-  </xsl:template>
+  </xsl:template> -->
 
   <!-- remove empty parent identifier -->
   <xsl:template match="gmd:parentIdentifier" priority="10">
