@@ -219,11 +219,11 @@
   </codelist>
   <!-- ==================================================== -->
   <codelist name="gmd:CI_RoleCode" alias="roleCode">
-    <entry>
+    <!-- <entry>
       <code>resourceProvider</code>
       <label>Resource provider</label>
       <description>Party that supplies the resource</description>
-    </entry>
+    </entry> -->
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
     <entry>
       <code>custodian</code>
@@ -239,11 +239,11 @@
       <description>Party that owns the resource</description>
     </entry>
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
-    <entry>
+    <!-- <entry>
       <code>user</code>
       <label>User</label>
       <description>Party who uses the resource</description>
-    </entry>
+    </entry> -->
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
     <entry>
       <code>distributor</code>
@@ -257,29 +257,29 @@
       <description>Party who created the resource</description>
     </entry>
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
-    <entry>
+<!--     <entry>
       <code>pointOfContact</code>
       <label>Point of contact</label>
       <description>Party who can be contacted for acquiring knowledge about or acquisition of the
         resource
       </description>
-    </entry>
+    </entry> -->
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
-    <entry>
+    <!-- <entry>
       <code>principalInvestigator</code>
       <label>Principal investigator</label>
       <description>Key party responsible for gathering information and conducting
         research
       </description>
-    </entry>
+    </entry> -->
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
-    <entry>
+    <!-- <entry>
       <code>processor</code>
       <label>Processor</label>
       <description>Party wha has processed the data in a manner such that the resource has been
         modified
       </description>
-    </entry>
+    </entry> -->
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
     <entry>
       <code>publisher</code>
@@ -287,11 +287,11 @@
       <description>Party who published the resource</description>
     </entry>
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
-    <entry>
+   <!--  <entry>
       <code>author</code>
       <label>Author</label>
       <description>Party who authored the resource</description>
-    </entry>
+    </entry> -->
     <!-- ISO PROFIL CHE ONLY
         <entry>
             <code>editor</code>
@@ -1439,7 +1439,7 @@
   </codelist>
   <!-- ==================================================== -->
   <codelist name="gmd:MD_RestrictionCode">
-    <entry>
+    <!-- <entry>
       <code>copyright</code>
       <label>Copyright</label>
       <description>Exclusive right to the publication, production, or sale of the rights to a
@@ -1447,43 +1447,43 @@
         label, granted by law for a specified period of time to an author, composer, artist,
         distributor
       </description>
-    </entry>
+    </entry> -->
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
-    <entry>
+    <!-- <entry>
       <code>patent</code>
       <label>Patent</label>
       <description>Government has granted exclusive right to make, sell, use or license an
         invention or discovery
       </description>
-    </entry>
+    </entry> -->
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
-    <entry>
+    <!-- <entry>
       <code>patentPending</code>
       <label>Pending patent</label>
       <description>Produced or sold information awaiting a patent</description>
-    </entry>
+    </entry> -->
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
-    <entry>
+    <!-- <entry>
       <code>trademark</code>
       <label>Trademark</label>
       <description>A name, symbol, or other device identifying a product, officially registered
         and legally restricted to the use of the owner or manufacturer
       </description>
-    </entry>
+    </entry> -->
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
-    <entry>
+    <!-- <entry>
       <code>license</code>
       <label>License</label>
       <description>Formal permission to do something</description>
-    </entry>
+    </entry> -->
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
-    <entry>
+    <!-- <entry>
       <code>intellectualPropertyRights</code>
       <label>Intellectual property rights</label>
       <description>Rights to financial benefit from and control of distribution of non-tangible
         property that is a result of creativity
       </description>
-    </entry>
+    </entry> -->
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
     <entry>
       <code>restricted</code>
@@ -1678,19 +1678,19 @@
   <codelist name="gmd:MD_SpatialRepresentationTypeCode">
     <entry>
       <code>vector</code>
-      <label>Vector</label>
+      <label>vector</label>
       <description>Vector data is used to represent geographic data</description>
     </entry>
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
     <entry>
       <code>grid</code>
-      <label>Grid</label>
+      <label>grid</label>
       <description>Grid data is used to represent geographic data</description>
     </entry>
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
     <entry>
       <code>textTable</code>
-      <label>Text, table</label>
+      <label>textTable</label>
       <description>Textual or tabular data is used to represent geographic data</description>
     </entry>
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
@@ -1700,19 +1700,19 @@
       <description>Triangulated irregular network</description>
     </entry>
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
-    <entry>
+    <!-- <entry>
       <code>stereoModel</code>
       <label>Stereo model</label>
       <description>Three-dimensional view formed by the intersecting homologous rays of an
         overlapping pair of images
       </description>
-    </entry>
+    </entry> -->
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
-    <entry>
+    <!-- <entry>
       <code>video</code>
       <label>Video</label>
       <description>Scene from a video recording</description>
-    </entry>
+    </entry> -->
     <!-- ISO PROFIL CHE ONLY
         <entry>
             <code>paperMap</code>

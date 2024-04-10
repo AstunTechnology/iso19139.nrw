@@ -1638,11 +1638,11 @@
     </description>
   </element>
   <element name="gmd:metadataStandardName" id="10.0">
-    <label>Metadata standard name</label>
+    <label>Metadata Standard Name</label>
     <description>Name of the metadata standard (including profile name) used</description>
   </element>
   <element name="gmd:metadataStandardVersion" id="11.0">
-    <label>Metadata standard version</label>
+    <label>Metadata Standard Version</label>
     <description>Version (profile) of the metadata standard used</description>
   </element>
   <element name="gmd:minValue" id="261.0">

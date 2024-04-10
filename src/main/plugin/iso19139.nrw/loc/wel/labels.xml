@@ -177,7 +177,7 @@
     <condition>mandatory</condition>
   </element>
   <element name="gmd:DQ_DataQuality" id="78.0">
-    <label>Data quality</label>
+    <label>Ansawdd Data</label>
     <description>Quality information for the data specified by a data quality
       scope
     </description>
@@ -768,7 +768,7 @@
   </element>
   <element name="gmd:contact" id="8.0">
     <condition>mandatory</condition>
-    <label>Point of contact</label>
+    <label>Pwynt Cyswllt</label>
     <btnLabel>Add contact</btnLabel>
     <btnClass>fa fa-user-plus</btnClass>
     <description>Party responsible for the creation and maintenance of the metadata</description>
@@ -908,7 +908,7 @@
     <description>Scheduled revision date for resource (YYYY-MM-DD)</description>
   </element>
   <element name="gmd:dateStamp" id="9.0">
-    <label>Metadata Date</label>
+    <label>Dyddiad Metadata</label>
     <btnClass>fa fa-calendar-plus-o</btnClass>
     <description>Date that the metadata was created (YYYY-MM-DDThh:mm:ss)</description>
     <condition>mandatory</condition>
@@ -1137,7 +1137,7 @@
     <description>Date of the edition (YYYY-MM-DD)</description>
   </element>
   <element name="gmd:electronicMailAddress" id="386.0">
-    <label>Electronic mail address</label>
+    <label>Ebost</label>
     <description>Address of the electronic mailbox of the responsible organization or
       individual
     </description>
@@ -1174,7 +1174,7 @@
     <description>Reference to the procedure information</description>
   </element>
   <element name="gmd:explanation" id="131.0">
-    <label>Explanation</label>
+    <label>Eglurhad</label>
     <description>Meaning of conformance for this result</description>
     <condition>mandatory</condition>
   </element>
@@ -1264,7 +1264,7 @@
     <description>Text description of the illustration</description>
   </element>
   <element name="gmd:fileIdentifier" id="2.0">
-    <label>File identifier</label>
+    <label>Dynodydd Ffeil</label>
     <description>Unique identifier for this metadata file</description>
     <condition>mandatory</condition>
   </element>
@@ -1444,7 +1444,7 @@
     <condition>mandatory</condition>
   </element>
   <element name="gmd:language" id="3.0">
-    <label>Metadata Language</label>
+    <label>Laith Metadata</label>
     <description>Language used for documenting the metadata</description>
     <condition>mandatory</condition>
   </element>
@@ -1466,7 +1466,7 @@
     </description>
   </element>
   <element name="gmd:level" id="139.0">
-    <label>Quality Scope</label>
+    <label>Cwmpas Ansawdd</label>
     <description>The specific data to which the data quality information applies, to enable data quality to be reported on a subset of the data resource</description>
     <condition>mandatory</condition>
   </element>
@@ -1559,11 +1559,11 @@
     </description>
   </element>
   <element name="gmd:metadataStandardName" id="10.0">
-    <label>Metadata standard name</label>
+    <label>Enw Safonol Metadata</label>
     <description>Name of the metadata standard (including profile name) used</description>
   </element>
   <element name="gmd:metadataStandardVersion" id="11.0">
-    <label>Metadata standard version</label>
+    <label>Fersiwn Metadata</label>
     <description>Version (profile) of the metadata standard used</description>
   </element>
   <element name="gmd:minValue" id="261.0">
@@ -2091,7 +2091,7 @@
     </description>
   </element>
   <element name="gmd:otherConstraints" id="72.0">
-    <label>Other constraints</label>
+    <label>Cyfyngiadau eraill</label>
     <description>Other restrictions and legal prerequisites for accessing and using the
       resource
     </description>
@@ -2123,7 +2123,7 @@
     </description>
   </element>
   <element name="gmd:pass" id="132.0">
-    <label>Degree</label>
+    <label>Gradd</label>
     <description>The purpose of this element is to identify the conformity of the data resource to the cited specification</description>
     <condition>mandatory</condition>
   </element>
@@ -2347,7 +2347,7 @@
     <description>Reference to the ends (roles) of a concrete association</description>
   </element>
   <element name="gmd:role" id="379.0">
-    <label>Role</label>
+    <label>Rol</label>
     <description>Function performed by the responsible party</description>
     <condition>mandatory</condition>
   </element>
@@ -2626,7 +2626,7 @@
     </description>
   </element>
   <element name="gmd:useConstraints" id="71.0">
-    <label>Use constraints</label>
+    <label>Cyfyngiadau Defnyddio</label>
     <description>Constraints applied to assure the protection of privacy or intellectual
       property, and any special restrictions or limitations or warnings on using the
       resource
