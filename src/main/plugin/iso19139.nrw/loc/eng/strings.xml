@@ -162,7 +162,9 @@
 
 
   <addAccessConstraints>Access constraints</addAccessConstraints>
+  <addINSPIRELimitations>Add Limitations</addINSPIRELimitations>
   <addUseConstraints>Add use contraints</addUseConstraints>
+  <accessLimitations>Limitations on Public Access and Use</accessLimitations>
   <addContact>Add contact</addContact>
   <addVerticalExtentCRS>with CRS</addVerticalExtentCRS>
   <addVerticalExtentDatum>with Datum</addVerticalExtentDatum>

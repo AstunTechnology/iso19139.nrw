@@ -3420,6 +3420,19 @@
       CharacterStrings
     </description>
   </element>
+  <element name="gmx:Anchor" context="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:otherConstraints">
+    <label>Anchor</label>
+    <description>Supports hyper-linking capabilities and ensures a web-like implementation of
+      CharacterStrings
+    </description>
+    <helper>
+      <option title="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/">Open Government Licence (OGL)</option>
+      <option title="https://naturalresources.wales/licences/thirdpartyconditional">Third Party Conditional</option>
+      <option title="https://naturalresources.wales/licences/thirdpartyopen">Third Party Open</option>
+      <option title="https://naturalresources.wales/licences/nrwconditional">NRW Conditional</option>
+      <option title="https://naturalresources.wales/licences/notlicenced">Not Licenced for Re-use</option>
+    </helper>
+  </element>
   <element name="xlink:title">
     <label>URL title</label>
     <description></description>

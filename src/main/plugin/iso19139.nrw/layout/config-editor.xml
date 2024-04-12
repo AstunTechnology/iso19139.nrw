@@ -598,9 +598,9 @@
         <section name="spatialResolution" displayIfRecord="contains(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:MD_Identifier/gmd:code/gco:CharacterString, 'NRW_')">
         <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:spatialResolution/*//gmd:distance"/>
         <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:spatialResolution/*//gmd:denominator"/>
-          <action type="add" btnLabel="Add Spatial Resolution" name="addSpatRep" or="spatialResolution" in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification">
+          <action type="add" btnLabel="addSpatRep" name="addSpatRep" or="spatialResolution" in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification">
           <template>
-             <snippet label="addDistance">
+          <snippet label="addDistance">
                 <gmd:spatialResolution>
                   <gmd:MD_Resolution>
                      <gmd:distance>
@@ -629,27 +629,19 @@
         <section xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:spatialRepresentationType" displayIfRecord="contains(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:MD_Identifier/gmd:code/gco:CharacterString, 'NRW_')"/>
 
         <section name="Constraints">
-          <section name="Limitations on Public Access and Use">
+          <section name="accessLimitations">
           <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:accessConstraints"/>
         </section>
         <section name="Access Constraints Directive">
-          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints[gmd:accessConstraints]/gmd:otherConstraints[gmx:Anchor]" del="." templateModeOnly="true">
-            <template>
-              <values>
-                  <key label="label"
-                        xpath="gmx:Anchor"/>
-              </values>
-              <snippet>
-                    <gmd:otherConstraints>
-                      <gn:copy select="gmx:Anchor/@xlink:href"/>
-                      <gmx:Anchor>{{label}}</gmx:Anchor>
-                    </gmd:otherConstraints>
-              </snippet>
-            </template>
-          </field>
-          <action type="add" btnLabel="addAccessConstraints" name="addAccessConstraints" or="otherConstraints"
+          <field name="Limitations" xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints[gmd:accessConstraints]/gmd:otherConstraints[gmx:Anchor]"/>
+            <action type="add" btnLabel="addINSPIRELimitations" name="addAccessConstraints" or="otherConstraints"
                   in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints[./gmd:accessConstraints]" if="count(//gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints[./gmd:accessConstraints]/gmd:otherConstraints/gmx:Anchor) = 0">
             <template>
+              <snippet label="addINSPIRE13_nolimitations">
+                    <gmd:otherConstraints>
+                      <gmx:Anchor xlink:href="http://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/noLimitations">noLimitations</gmx:Anchor>
+                    </gmd:otherConstraints>
+              </snippet>
               <snippet label="addINSPIRE13_1a">
                     <gmd:otherConstraints>
                       <gmx:Anchor xlink:href="http://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/INSPIRE_Directive_Article13_1a">INSPIRE_Directive_Article13_1a</gmx:Anchor>
@@ -695,12 +687,7 @@
                       <gmx:Anchor xlink:href="http://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/INSPIRE_Directive_Article13_1h">INSPIRE_Directive_Article13_1h</gmx:Anchor>
                     </gmd:otherConstraints>
               </snippet>
-              <snippet label="addINSPIRE13_nolimitations">
-                    <gmd:otherConstraints>
-                      <gmx:Anchor xlink:href="http://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/noLimitations">noLimitations</gmx:Anchor>
-                    </gmd:otherConstraints>
-              </snippet>
-            </template>
+              </template>
           </action>
           <text ref="limitations_help"/>
         </section>
@@ -719,21 +706,12 @@
         </section>
         <section name="Use Constraints">
           <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:useConstraints"/>
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints[./gmd:useConstraints]/gmd:otherConstraints[1]"/>
         </section>
         <section name="licence">
-          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints[./gmd:useConstraints]/gmd:otherConstraints[gmx:Anchor]" templateModeOnly="true">
-            <template>
-              <values>
-                  <key label="label"
-                        xpath="gmx:Anchor"/>
-              </values>
-              <snippet>
-                    <gmd:otherConstraints>
-                      <gn:copy select="gmx:Anchor/@xlink:href"/>
-                      <gmx:Anchor>{{label}}</gmx:Anchor>
-                    </gmd:otherConstraints>
-              </snippet>
-            </template>
+             <section name="licence">
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints[./gmd:useConstraints]/gmd:otherConstraints[gmx:Anchor]">
+            
           </field>
           <action type="add" btnLabel="addlicenceType" name="otherConstraints" or="otherConstraints" in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints[./gmd:useConstraints]/gmd:otherConstraints[gmx:Anchor]) = 0">
             <template>
@@ -764,10 +742,12 @@
               </snippet>
             </template>
           </action>
+        </section>
 
         </section>
         <section name="attributionstatement">
-          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints[./gmd:useConstraints]/gmd:otherConstraints[gco:CharacterString]"/>
+          <!-- <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints[./gmd:useConstraints]/gmd:otherConstraints[gco:CharacterString]"/> -->
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:otherConstraints[3]"/>
         </section>
         </section>
 
@@ -944,7 +924,7 @@
         <for name="gmd:topicCategory"/>
         <for name="srv:parameters"/>
         <for name="gmd:transferOptions"/>
-        <for name="gmd:otherConstraints"/>
+        <!-- <for name="gmd:otherConstraints"/> -->
         <for name="gmd:EX_TemporalExtent"/>
         <for name="gmd:geographicElement"/>
         <for name="gmd:geographicIdentifier"/>

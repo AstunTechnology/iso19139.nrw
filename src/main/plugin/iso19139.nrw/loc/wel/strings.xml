@@ -46,7 +46,7 @@
   <resource>Resource</resource>
   <xml>XML</xml>
   <metadata>Metadata</metadata>
-  <identificationInfo>Identification</identificationInfo>
+  <identificationInfo>Dull adnabod</identificationInfo>
   <distributionInfo>Distribution</distributionInfo>
   <dataQualityInfo>Quality</dataQualityInfo>
   <spatialRepresentationInfo>Spatial rep.</spatialRepresentationInfo>
@@ -109,8 +109,8 @@
   <electronicMailAddress>Email</electronicMailAddress>
   <role>Role</role>
   <encoding>Encoding</encoding>
-  <inspireTheme>INSPIRE themes</inspireTheme>
-  <inspireThemeURI>INSPIRE themes</inspireThemeURI>
+  <inspireTheme>Themâu INSPIRE</inspireTheme>
+  <inspireThemeURI>Themâu INSPIRE</inspireThemeURI>
   <format>Format</format>
   <format_version>Version</format_version>
   <format_specification>Format Type</format_specification>
@@ -118,7 +118,7 @@
   <spatialResolution>Spatial resolution</spatialResolution>
   <spatialDistance>Spatial resolution (distance)</spatialDistance>
   <accessConstraints>Access constraints</accessConstraints>
-  <useConstraints>Use constraints</useConstraints>
+  <useConstraints>Cyfyngiadau ar ddefnyddio</useConstraints>
   <addINSPIRE13_1a>INSPIRE_Directive_Article13_1a</addINSPIRE13_1a>
   <addINSPIRE13_1b>INSPIRE_Directive_Article13_1b</addINSPIRE13_1b>
   <addINSPIRE13_1c>INSPIRE_Directive_Article13_1c</addINSPIRE13_1c>
@@ -129,8 +129,8 @@
   <addINSPIRE13_1h>INSPIRE_Directive_Article13_1h</addINSPIRE13_1h>
   <addINSPIRE13_nolimitations>No Limitations to public access</addINSPIRE13_nolimitations>
   <useLimitation>Use limitation</useLimitation>
-  <licenceType>Licence Type</licenceType>
-  <attributionStatement>Attribution Statement</attributionStatement>
+  <licenceType>Math o Drwydded</licenceType>
+  <attributionStatement>Datganiad priodoli</attributionStatement>
   <add-resource-id>Compute resource identifier</add-resource-id>
   <add-resource-idHelp>Compose the resource identifier using the catalog URL and the metadata
     identifier (eg. http://www.organization.org/catalogue/5391bf69-44bc-4ea0-8cc0-6cf6c3bc81ae).
@@ -163,13 +163,14 @@
 
   <addAccessConstraints>Access constraints</addAccessConstraints>
   <addUseConstraints>Add use contraints</addUseConstraints>
+  <accessLimitations>Cyfyngiadau ar Fynediad a Defnydd Cyhoeddus</accessLimitations>
   <addContact>Add contact</addContact>
   <addVerticalExtentCRS>with CRS</addVerticalExtentCRS>
   <addVerticalExtentDatum>with Datum</addVerticalExtentDatum>
   <verticalExtent>Maint Fertigol</verticalExtent>
   <addVerticalExtent>Add Vertical Extent</addVerticalExtent>
   <medinextent>Maint allweddair MEDIN</medinextent>
-  <geographicextent>Geographic Extent</geographicextent>
+  <geographicextent>Maint Daearyddol</geographicextent>
   <addDistance>Add Spatial Resolution as Distance</addDistance>
   <addSpatRep>Add Spatial Resolution</addSpatRep>
   <addEquivScale>Add Spatial Resolution as Equivalent Scale</addEquivScale>

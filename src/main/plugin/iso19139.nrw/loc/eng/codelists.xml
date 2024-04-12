@@ -2354,4 +2354,13 @@
       <entry><code>OGC:WMC</code><label>OGC:WMC</label><description></description></entry>
       <entry><code>OGC:OWS-C</code><label>OGC OWS Context</label><description></description></entry>
     </codelist>
+    
+    <!-- Use Constraints Licences -->
+    <codelist name="licences">
+      <entry><code>https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/</code><label>Open Government Licence (OGL)</label><description>Open Government Licence (OGL)</description></entry>
+      <entry><code>https://naturalresources.wales/licences/thirdpartyconditional</code><label>Third Party Conditional</label><description>Third Party Conditional</description></entry>
+      <entry><code>https://naturalresources.wales/licences/thirdpartyopen</code><label>Third Party Open</label><description>Third Party Open</description></entry>
+      <entry><code>https://naturalresources.wales/licences/nrwconditional</code><label>NRW Conditional</label><description>NRW Conditional</description></entry>
+      <entry><code>https://naturalresources.wales/licences/notlicenced</code><label>Not Licenced for Re-use</label><description>Not Licenced for Re-use</description></entry>
+    </codelist>
   </codelists>

@@ -143,11 +143,11 @@
   </xsl:template>
 
    <!-- otherConstraints with gmx:Anchor -->
-  <xsl:template mode="mode-iso19139" priority="200" match="gmd:otherConstraints[$schema='iso19139.nrw' and gmx:Anchor]">
+  <xsl:template mode="mode-iso19139" priority="200" match="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints[./gmd:useConstraints]/gmd:otherConstraints[$schema='iso19139.nrw' and gmx:Anchor]">
     <xsl:variable name="name" select="name(.)"/>
 
     <xsl:variable name="labelConfig" select="gn-fn-metadata:getLabel($schema, $name, $labels)"/>
-    <xsl:variable name="helper" select="gn-fn-metadata:getHelper($labelConfig/helper, .)"/>
+    <xsl:variable name="helper" select="gn-fn-metadata:getHelper($labelConfig/helper, /gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints[./gmd:useConstraints]/gmd:otherConstraints/gmx:Anchor)"/>
 
 
     <xsl:variable name="attributes">
@@ -162,14 +162,16 @@
 
     <xsl:call-template name="render-element">
       <xsl:with-param name="label" select="$labelConfig/label"/>
+      <xsl:with-param name="listOfValues" select="$helper"/>
       <xsl:with-param name="value" select="gmx:Anchor" />
       <xsl:with-param name="name" select="gmx:Anchor/gn:element/@ref" />
       <xsl:with-param name="cls" select="local-name()" />
       <xsl:with-param name="xpath" select="gn-fn-metadata:getXPath(.)"/>
-      <xsl:with-param name="editInfo" select="gmx:Anchor/gn:element" />
-      <xsl:with-param name="isDisabled" select="false()" />
-      <xsl:with-param name="attributesSnippet" select="$attributes" />
-      <xsl:with-param name="forceDisplayAttributes" select="true()" />
+      <xsl:with-param name="editInfo" select="../gn:element" />
+      <xsl:with-param name="isDisabled" select="true()" />
+      <xsl:with-param name="parentEditInfo" select="gn:element"/>
+      <!-- <xsl:with-param name="attributesSnippet" select="$attributes" /> -->
+      <xsl:with-param name="forceDisplayAttributes" select="false()" />
     </xsl:call-template>
   </xsl:template>
 

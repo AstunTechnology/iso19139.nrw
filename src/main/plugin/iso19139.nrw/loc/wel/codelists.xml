@@ -58,7 +58,7 @@
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
     <entry>
       <code>publication</code>
-      <label>Publication</label>
+      <label>Cyhoeddiad</label>
       <description>Date identifies when the resource was issued</description>
     </entry>
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
@@ -227,7 +227,7 @@
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
     <entry>
       <code>custodian</code>
-      <label>Custodian</label>
+      <label>Ceidwad</label>
       <description>Party that accepts accountability and responsability for the data and ensures
         appropriate care and maintenance of the resource
       </description>
@@ -235,7 +235,7 @@
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
     <entry>
       <code>owner</code>
-      <label>Owner</label>
+      <label>Perchennog</label>
       <description>Party that owns the resource</description>
     </entry>
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
@@ -247,13 +247,13 @@
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
     <entry>
       <code>distributor</code>
-      <label>Distributor</label>
+      <label>Dosbarthwr</label>
       <description>Party who distributes the resource</description>
     </entry>
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
     <entry>
       <code>originator</code>
-      <label>Originator</label>
+      <label>Cychwynnwr</label>
       <description>Party who created the resource</description>
     </entry>
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->

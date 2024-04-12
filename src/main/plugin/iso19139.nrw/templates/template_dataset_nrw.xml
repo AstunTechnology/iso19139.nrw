@@ -180,9 +180,7 @@
           <gmd:accessConstraints>
             <gmd:MD_RestrictionCode codeList="http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#MD_RestrictionCode" codeListValue="otherRestrictions"/>
           </gmd:accessConstraints>
-          <gmd:otherConstraints>
-            <gmx:Anchor xlink:href="http://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/noLimitations">no limitations</gmx:Anchor>
-          </gmd:otherConstraints>
+          <gmd:otherConstraints/>
         </gmd:MD_LegalConstraints>
       </gmd:resourceConstraints>
       <gmd:resourceConstraints>
@@ -191,7 +189,7 @@
             <gmd:MD_RestrictionCode codeList="http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#MD_RestrictionCode" codeListValue="otherRestrictions"/>
           </gmd:useConstraints>
           <gmd:otherConstraints xsi:type="gmd:PT_FreeText_PropertyType">
-            <gco:CharacterString>Attribution Statement goes here</gco:CharacterString>
+            <gco:CharacterString>Replace this text with the attribution statement</gco:CharacterString>
             <gmd:PT_FreeText>
                <gmd:textGroup>
                   <gmd:LocalisedCharacterString locale="#CY"/>
@@ -204,16 +202,12 @@
         <gmd:MD_SpatialRepresentationTypeCode codeList="http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#MD_SpatialRepresentationTypeCode" codeListValue="textTable"/>
       </gmd:spatialRepresentationType>
       <gmd:spatialResolution>
-        <gmd:MD_Resolution>
-          <gmd:equivalentScale>
-            <gmd:MD_RepresentativeFraction>
-              <gmd:denominator>
-                <gco:Integer/>
-              </gmd:denominator>
-            </gmd:MD_RepresentativeFraction>
-          </gmd:equivalentScale>
-        </gmd:MD_Resolution>
-      </gmd:spatialResolution>
+            <gmd:MD_Resolution>
+               <gmd:distance>
+                  <gco:Distance uom="urn:ogc:def:uom:EPSG::9001"/>
+               </gmd:distance>
+            </gmd:MD_Resolution>
+         </gmd:spatialResolution>
       <gmd:language>
         <gmd:LanguageCode codeList="http://www.loc.gov/standards/iso639-2/" codeListValue="eng">English</gmd:LanguageCode>
       </gmd:language>

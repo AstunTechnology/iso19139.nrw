@@ -35,7 +35,7 @@
     <description>Class of information to which the referencing entity applies</description>
   </element>
   <element name="code" id="207.0" context="gmd:MD_Identifier">
-    <label>Resource Identifier</label>
+    <label>Dynodwr adnoddau</label>
     <description>Value uniquely identifying the data resource</description>
     <help>alphanumeric value identifying an instance in the namespace</help>
   </element>
@@ -44,7 +44,7 @@
     <description>Code. i.e. EPSG code.</description>
   </element>
   <element name="code" id="547.0" context="gmd:MD_CodeValue">
-    <label>Code</label>
+    <label>Cod</label>
     <description>Value code</description>
     <help>Value code (i.e. numeric)</help>
   </element>
@@ -101,7 +101,7 @@
     <_condition>Use obligation/condition from referencing object</_condition>
   </element>
   <element name="gmd:CI_Citation" id="359.0">
-    <label>Citation</label>
+    <label>Dyfyniad</label>
     <description>Standardised resource reference</description>
     <_condition>Use obligation/condition from referencing object</_condition>
   </element>
@@ -113,7 +113,7 @@
     <_condition>Use obligation/condition from referencing object</_condition>
   </element>
   <element name="gmd:CI_Date" id="393.0">
-    <label>Date</label>
+    <label>Dyddiad</label>
     <description>Reference date and event used to describe it (YYYY-MM-DD)</description>
     <_condition>Use obligation/condition from referencing object</_condition>
   </element>
@@ -125,7 +125,7 @@
     <_condition>Use obligation/condition from referencing object</_condition>
   </element>
   <element name="gmd:CI_ResponsibleParty" id="374.0">
-    <label>Responsible Organisation</label>
+    <label>Sefydliad Cyfrifol</label>
     <description>Identification of, and means of communication with, person(s) and organizations
       associated with the dataset
     </description>
@@ -252,7 +252,7 @@
     </description>
   </element>
   <element name="gmd:EX_Extent" id="334.0">
-    <label>Extent</label>
+    <label>Hyd</label>
     <description>Extent of the data resource</description>
   </element>
   <element name="gmd:EX_GeographicBoundingBox" id="343.0">
@@ -273,7 +273,7 @@
     <description>Date for the content of the data resource</description>
   </element>
   <element name="gmd:EX_VerticalExtent" id="354.0">
-    <label>Vertical extent</label>
+    <label>Maint Fertigol</label>
     <description>Vertical domain of data resource</description>
   </element>
   <element name="gmd:ISBN" id="372.0">
@@ -561,7 +561,7 @@
     <description>Provides aggregate dataset information</description>
   </element>
   <element name="gmd:alternateTitle" id="361.0">
-    <label>Alternative title</label>
+    <label>Teitl Amgen</label>
     <description>Short name, other name, acronym or alternative language title for the data resource
     </description>
   </element>
@@ -667,19 +667,19 @@
     <condition>conditional</condition>
   </element>
   <element name="gmd:citation" id="24.0" context="gmd:MD_Identification">
-    <label>Citation</label>
+    <label>Dyfyniad</label>
     <description>Citation data for the resource(s)</description>
   </element>
   <element name="gmd:citation" id="576.0" context="gmd:MD_Authority">
-    <label>Citation</label>
+    <label>Dyfyniad</label>
     <description>Citation which belongs to the authority</description>
   </element>
   <element name="gmd:citation" id="581.0" context="gmd:MD_Thesaurus">
-    <label>Citation</label>
+    <label>Dyfyniad</label>
     <description>Citation of the thesaurus</description>
   </element>
   <element name="gmd:citation" id="581.0">
-    <label>Citation</label>
+    <label>Dyfyniad</label>
     <description>Citation data for the resource(s)</description>
   </element>
   <element name="gmd:citedResponsibleParty" id="367.0">
@@ -710,17 +710,17 @@
     </description>
   </element>
   <element name="gmd:code" id="207.0" context="gmd:RS_Identifier">
-    <label>Code</label>
+    <label>Cod</label>
     <description>Code identifying the reference system</description>
     <condition>mandatory</condition>
   </element>
   <element name="gmd:code" id="207.0" context="gmd:MD_Identifier">
-    <label>Code</label>
+    <label>Cod</label>
     <description>Value uniquely identifying the data resource</description>
     <condition>mandatory</condition>
   </element>
   <element name="gmd:code" id="547.0" context="gmd:MD_CodeValue">
-    <label>Code</label>
+    <label>Cod</label>
     <description>Value code</description>
     <help>Value code (i.e. numeric)</help>
   </element>
@@ -890,7 +890,7 @@
   </element>
   <element name="gmd:date" id="362.0" context="gmd:CI_Citation">
     <condition>mandatory</condition>
-    <label>Date</label>
+    <label>Dyddiad</label>
     <btnClass>fa fa-calendar-plus-o</btnClass>
     <description>Reference date for the cited resource</description>
     <_condition>M</_condition>
@@ -1378,13 +1378,13 @@
     <condition>mandatory</condition>
   </element>
   <element name="gmd:identifier" id="573.0">
-    <label>Identifier</label>
+    <label>Dynodydd</label>
     <description>Unique identifier for the resource. EXAMPLE: Universal Product Code (UPC),
       National Stock Number (NSN)
     </description>
   </element>
   <element name="gmd:identifier" id="573.0" context="gmd:CI_Citation">
-    <label>Resource Identifier</label>
+    <label>Dynodwr adnoddau</label>
     <description>Value uniquely identifying the data resource</description>
   </element>
   <element name="gmd:identifier" id="575.0" context="gmd:MD_Authority">
@@ -1491,7 +1491,7 @@
     <condition>mandatory</condition>
   </element>
   <element name="gmd:maintenanceAndUpdateFrequency" id="143.0">
-    <label>Maintenance and update frequency</label>
+    <label>Diweddaru Amlder</label>
     <description>Frequency with which changes and additions are made to the resource after the
       initial resource is completed
     </description>
@@ -1503,18 +1503,18 @@
     </description>
   </element>
   <element name="gmd:maxValue" id="260.0">
-    <label>Maximum value</label>
+    <label>Gwerth uchaf</label>
     <description>Longest wavelength that the sensor is capable of collecting within a designated
       band
     </description>
   </element>
   <element name="gmd:maximumValue" id="356.0">
-    <label>Maximum value</label>
+    <label>Gwerth uchaf</label>
     <description>Highest vertical extent contained in the dataset</description>
     <condition>optional</condition>
   </element>
   <element name="gmd:maximumValue" context="gmd:EX_VerticalExtent" id="355.0">
-    <label>Maximum value</label>
+    <label>Gwerth uchaf</label>
     <description>Highest vertical extent contained in the dataset</description>
     <condition>optional</condition>
   </element>
@@ -1567,18 +1567,18 @@
     <description>Version (profile) of the metadata standard used</description>
   </element>
   <element name="gmd:minValue" id="261.0">
-    <label>Minimum value</label>
+    <label>Gwerth lleiaf</label>
     <description>Shortest wavelength that the sensor is capable of collecting within a
       designated band
     </description>
   </element>
   <element name="gmd:minimumValue" id="355.0">
-    <label>Minimum value</label>
+    <label>Gwerth lleiaf</label>
     <description>Lowest vertical extent contained in the dataset</description>
     <condition>optional</condition>
   </element>
   <element name="gmd:minimumValue" context="gmd:EX_VerticalExtent" id="355.0">
-    <label>Minimum value</label>
+    <label>Gwerth lleiaf</label>
     <description>Lowest vertical extent contained in the dataset</description>
     <condition>optional</condition>
   </element>
@@ -2460,7 +2460,7 @@
     <description>Digital representation of spatial information in the dataset</description>
   </element>
   <element name="gmd:spatialRepresentationType" id="37.0">
-    <label>Spatial representation type</label>
+    <label>Math o Gynrychiolaeth Ofodol</label>
     <description>Method used to spatially represent geographic information</description>
     <condition>mandatory</condition>
   </element>
@@ -2475,11 +2475,19 @@
     <description>Brief description of the resource and/or resource series usage</description>
     <condition>mandatory</condition>
   </element>
-  <element name="gmd:specification" id="130.0" context="gmd:DQ_ConformanceResult">
-    <condition>mandatory</condition>
-    <label>Specification</label>
-    <description>Citation of the product specification or user requirement against which data resource is evaluated
-    </description>
+ <element name="gmd:specification" id="288.0" context="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributionFormat/gmd:MD_Format/gmd:specification">
+    <label>Type</label>
+    <description>Name of a subset, profile, or product specification of the format</description>
+    <helper rel="gco:CharacterString">
+      <option value="Binary">Deuaidd</option>
+      <option value="Database">Cronfa Ddata</option>
+      <option value="Delimited">Amffiniedig</option>
+      <option value="Documents">Dogfennau</option>
+      <option value="Geographic Information System">System Gwybodaeth Ddaearyddol</option>
+      <option value="Image">Llun</option>
+      <option value="Movie">Ffilm</option>
+      <option value="Text or Plaintext">Testun neu Destun Plaen</option>
+    </helper>
   </element>
   <element name="gmd:specification" id="288.0" context="gmd:MD_Format">
     <label>Specification</label>
@@ -2498,7 +2506,7 @@
     <description>Status of the resource(s)</description>
   </element>
   <element name="gmd:supplementalInformation" id="46.0">
-    <label>Additional information</label>
+    <label>Gwybodaeth ychwanegol</label>
     <description>Any other descriptive information about the dataset</description>
   </element>
   <element name="gmd:temporalElement" id="337.0">
@@ -2530,12 +2538,12 @@
     <description>Number of discrete numerical values in the grid data</description>
   </element>
   <element name="gmd:topicCategory" id="41.0">
-    <label>Topic category</label>
+    <label>Categori pwnc</label>
     <description>Main theme(s) of the datset</description>
     <condition>mandatory</condition>
   </element>
   <element name="gmd:MD_TopicCategoryCode">
-    <label>Topic category code</label>
+    <label>Categori pwnc côd</label>
     <description>High-level geographic data thematic classification to assist in the grouping
       and search of available geographic data sets. Can be used to group keywords as well.
       Listed examples are not exhaustive. NOTE It is understood there are overlaps between
@@ -2726,12 +2734,12 @@
     <condition>mandatory</condition>
   </element>
   <element name="gml:beginPosition">
-    <label>Begin date</label>
+    <label>Dyddiad cychwyn</label>
     <description>Formatted as 2007-09-12T15:00:00 (YYYY-MM-DDTHH:mm:ss)</description>
   </element>
 
   <element name="gml:endPosition">
-    <label>End date</label>
+    <label>Dyddiad gorffen</label>
     <description>Formatted as 2007-09-12T15:00:00 (YYYY-MM-DDTHH:mm:ss)</description>
   </element>
 
@@ -3378,10 +3386,10 @@
     <label>Axis direction</label>
   </element>
   <element name="gml:maximumValue">
-    <label>Maximum value</label>
+    <label>Gwerth uchaf</label>
   </element>
   <element name="gml:minimumValue">
-    <label>Minimum value</label>
+    <label>Gwerth lleiaf</label>
   </element>
   <element name="gml:scope">
     <label>Scope</label>
@@ -3426,7 +3434,7 @@
     <label>Spatial Representation Type</label>
   </element>
   <element name="gmd:MD_CharacterSetCode">
-    <label>Character Set</label>
+    <label>Set nodau</label>
   </element>
   <element name="gmd:MD_TopologyLevelCode">
     <label>Topology Level</label>
@@ -3462,7 +3470,7 @@
     <label>Scale</label>
   </element>
   <element name="gmx:MX_ScopeCode">
-    <label>Code</label>
+    <label>Cod</label>
   </element>
 
  <element name="gmd:CI_PresentationFormCode">
@@ -3586,7 +3594,7 @@
   </element>
 
   <element name="nrw:relatedTitle">
-  <label>NRW Related Title</label>
+  <label>Teitlau cysylltiedig CNC</label>
    <btnLabel>Add a Related Title</btnLabel>
   </element>
 

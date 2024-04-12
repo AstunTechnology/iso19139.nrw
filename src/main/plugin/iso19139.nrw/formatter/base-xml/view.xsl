@@ -47,6 +47,7 @@
   <!-- Remove generic elements -->
   <xsl:template match="gmd:PT_Locale" priority="100"/>
   <xsl:template match="gmd:contentInfo" priority="100"/>
+  <xsl:template match="gmd:specification" priority="100"/>
   <xsl:template match="geonet:info" priority="100"/>
 
 
