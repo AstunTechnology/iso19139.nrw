@@ -175,6 +175,8 @@
   <addDistance>Add Spatial Resolution as Distance</addDistance>
   <addSpatRep>Add Spatial Resolution</addSpatRep>
   <addEquivScale>Add Spatial Resolution as Equivalent Scale</addEquivScale>
+  <accessConstraintsDirective>Access Constraints Directive</accessConstraintsDirective>
+  <alternativeTitle>Alternative Title</alternativeTitle>
 
 
   <distributionFormat>Add Distribution Format</distributionFormat>

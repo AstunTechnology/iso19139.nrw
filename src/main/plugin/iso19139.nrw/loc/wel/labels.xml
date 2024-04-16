@@ -183,7 +183,7 @@
     </description>
   </element>
   <element name="gmd:DQ_DomainConsistency" id="113.0">
-    <label>Conformity</label>
+    <label>Cydymffurfiad</label>
     <description>Statement of conformity with the product specification or user requirement against which the data is being evaluated</description>
   </element>
   <element name="gmd:DQ_FormatConsistency" id="114.0">
@@ -269,7 +269,7 @@
     <description>Extent with respect to date/time and spatial boundaries</description>
   </element>
   <element name="gmd:EX_TemporalExtent" id="350.0">
-    <label>Temporal Extent</label>
+    <label>Maint Amserol</label>
     <description>Date for the content of the data resource</description>
   </element>
   <element name="gmd:EX_VerticalExtent" id="354.0">
@@ -285,7 +285,7 @@
     <description>International Standard Serial Number</description>
   </element>
   <element name="gmd:LI_Lineage" id="82.0">
-    <label>Lineage</label>
+    <label>Llinach</label>
     <description>Information about the events or source data used in constructing the data
       specified by the scope or lack of knowledge about lineage
     </description>
@@ -412,7 +412,7 @@
     <description>Information about an image's suitability for use</description>
   </element>
   <element name="gmd:MD_Keywords" id="52.0">
-    <label>Keyword</label>
+    <label>Allweddair</label>
     <description>Keywords, their type and reference source</description>
   </element>
   <element name="gmd:MD_LegalConstraints" id="69.0">
@@ -526,7 +526,7 @@
     <condition>mandatory</condition>
   </element>
   <element name="gmd:accessConstraints" id="70.0">
-    <label>Limitations on Public Access</label>
+    <label>Math o Gyfyngiad</label>
     <description>Access constraints applied to assure the protection of privacy or intellectual
       property, and any special restrictions or limitations on obtaining the
       resource
@@ -795,14 +795,12 @@
   </element>
   <element name="gmd:contactInstructions" id="392.0">
     <label>Contact instructions</label>
-    <description>Supplemental instructions on how or when to contact the individual or
-      organization
+    <description>Supplemental instructions on how or when to contact the individual or organization
     </description>
   </element>
   <element name="gmd:contentInfo" id="16.0">
-    <label>Content Information</label>
-    <description>Provides information about the feature catalogue and describes the coverage and
-      image data characteristics
+    <label>Gwybodaeth Cynnwys</label>
+    <description>Provides information about the feature catalogue and describes the coverage and image data characteristics
     </description>
     <abbrLabel>Content Info.</abbrLabel>
   </element>
@@ -842,7 +840,7 @@
     <description>Recognition of those who contributed to the resource(s)</description>
   </element>
   <element name="gmd:dataQualityInfo" id="18.0">
-    <label>Data quality info</label>
+    <label>Ansawdd Data Gwybodaeth</label>
     <abbrLabel>Data Quality</abbrLabel>
     <description>Provides overall assessment of quality of a resource(s)</description>
   </element>
@@ -868,7 +866,7 @@
     <condition/>
   </element>
   <element name="gmd:date" id="570.0">
-    <label>Dataset Reference Date</label>
+    <label>Dyddiad cyfeirnod y set ddata</label>
     <btnClass>fa fa-calendar-plus-o</btnClass>
     <description>Reference date for the cited resource (YYYY-MM-DD)</description>
     <condition>mandatory</condition>
@@ -942,7 +940,7 @@
     <condition>mandatory</condition>
   </element>
   <element name="gmd:deliveryPoint" id="381.0">
-    <label>Delivery point</label>
+    <label>Man cyflenwi</label>
     <description>Address line for the location (as described in ISO 11180, annex
       A)
     </description>
@@ -1024,7 +1022,7 @@
     <description>Role description</description>
   </element>
   <element name="gmd:descriptiveKeywords" id="33.0">
-    <label>Keyword</label>
+    <label>Allweddair</label>
     <description>Provides category keywords, their type, and reference source</description>
     <condition>mandatory</condition>
   </element>
@@ -1063,7 +1061,7 @@
     </helper>
   </element>
   <element name="gmd:distributionFormat" id="271.0">
-    <label>Data format</label>
+    <label>Fformat - Math a Disgrifiad</label>
     <description>Format in which the digital data is provided
     </description>
     <condition>mandatory</condition>
@@ -1348,13 +1346,13 @@
     </description>
   </element>
   <element name="gmd:hierarchyLevel" context="gmd:MD_Metadata" id="6.0">
-    <label>Resource type</label>
+    <label>Math o adnodd</label>
     <description>Scope to which metadata applies, to distinguish between datasets, series, and services
     </description>
     <condition>mandatory</condition>
   </element>
   <element name="gmd:hierarchyLevelName" id="7.0">
-    <label>Hierarchy level name</label>
+    <label>Math o adnodd enw</label>
     <description>Name of the hierarchy level for which the metadata is provided</description>
     <condition>conditional</condition>
     <helper>
@@ -1370,8 +1368,8 @@
     </description>
   </element>
   <element name="gmd:identificationInfo" id="15.0">
-    <label>Identification info</label>
-    <abbrLabel>Identification</abbrLabel>
+    <label>Gwybodaeth adnabod</label>
+    <abbrLabel>Adnabod</abbrLabel>
     <description>Basic information about the resource(s) to which the metadata
       applies
     </description>
@@ -1484,7 +1482,7 @@
     <condition>mandatory</condition>
   </element>
   <element name="gmd:linkage" id="397.0">
-    <label>Resource Locator</label>
+    <label>Lleolwr Adnoddau</label>
     <description>Location (address) for on-line access using a Uniform Resource Locator address
       or similar addressing scheme such as http://www.statkart.no/isotc211
     </description>
@@ -2040,7 +2038,7 @@
     <description>The physical value corresponding to a cell value of zero</description>
   </element>
   <element name="gmd:onLine" id="277.0">
-    <label>Resource Locator</label>
+    <label>Lleolwr Adnoddau</label>
     <description>Location (address) for online access using a Uniform Resource Locator (URL) address or similar addressing scheme
     </description>
   </element>
@@ -2058,7 +2056,7 @@
     </description>
   </element>
   <element name="gmd:organisationName" id="376.0">
-    <label>Organisation name</label>
+    <label>Enw’r sefydliad</label>
     <description>Name of the responsible organization</description>
     <condition>mandatory</condition>
   </element>
@@ -2297,7 +2295,7 @@
     <condition>conditional</condition>
   </element>
   <element name="gmd:referenceSystemInfo" id="13.0">
-    <label>Spatial Reference System</label>
+    <label>System Cyfeirio Gofodol</label>
     <abbrLabel>Ref. Sys.</abbrLabel>
     <description>Identifier, name or description of the system of spatial reference, whether by coordinates or geographic identifiers, used in the data resource
     </description>
@@ -2323,7 +2321,7 @@
     <description>Provides a description of the format of the resource(s)</description>
   </element>
   <element name="gmd:resourceMaintenance" id="30.0">
-    <label>Resource maintenance</label>
+    <label>Cynnal a chadw adnoddau</label>
     <description>Provides information about the frequency of resource updates, and the scope of
       those updates
     </description>
@@ -2376,7 +2374,7 @@
     <condition>mandatory</condition>
   </element>
   <element name="gmd:scope" id="79.0">
-    <label>Quality Scope</label>
+    <label>Cwmpas Ansawdd</label>
     <description>The specific data to which the data quality information applies</description>
     <condition>mandatory</condition>
   </element>
@@ -2476,7 +2474,7 @@
     <condition>mandatory</condition>
   </element>
  <element name="gmd:specification" id="288.0" context="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributionFormat/gmd:MD_Format/gmd:specification">
-    <label>Type</label>
+    <label>Math</label>
     <description>Name of a subset, profile, or product specification of the format</description>
     <helper rel="gco:CharacterString">
       <option value="Binary">Deuaidd</option>
@@ -2497,7 +2495,7 @@
     <label>Specification</label>
   </element>
   <element name="gmd:statement" id="83.0">
-    <label>Statement</label>
+    <label>Datganiad</label>
     <description>Information about the events or source data used in the construction of the data resource
     </description>
   </element>
@@ -2520,8 +2518,7 @@
   </element>
   <element name="gmd:thesaurusName" id="55.0">
     <label>Thesaurus name</label>
-    <description>Name of the formally registered thesaurus or a similar authoritative source of
-      keywords
+    <description>Name of the formally registered thesaurus or a similar authoritative source of keywords
     </description>
   </element>
   <element name="gmd:title" id="360.0">
@@ -2599,11 +2596,11 @@
     <description>Typical turnaround time for the filling of an order</description>
   </element>
   <element name="gmd:type" id="54.0">
-    <label>Type</label>
+    <label>Math</label>
     <description>Subject matter used to group similar keywords</description>
   </element>
   <element name="gmd:type" id="540.0" context="gmd:MD_CodeDomain">
-    <label>Type</label>
+    <label>Math</label>
     <description>Datatype of the code domain</description>
   </element>
   <element name="gmd:type" id="543.0" context="gmd:MD_Type">
@@ -3074,7 +3071,7 @@
     <description>Geographic/Temporal Extent of Service</description>
   </element>
   <element name="srv:keywords">
-    <label>Keywords</label>
+    <label>Geiriau allweddol</label>
     <description>Keywords describing service</description>
   </element>
   <element name="gmd:locale">
@@ -3582,15 +3579,15 @@
 
   <!-- nrw specific -->
   <element name="nrw:internalInfo">
-  <label>NRW Custom Info</label>
+  <label>Elfennau CNC</label>
   </element> 
 
   <element name="nrw:internalLocationInfo">
-  <label>NRW Internal Location</label>
+  <label>Lleoliad Mewnol CNC</label>
   </element> 
 
   <element name="nrw:internalContactInfo">
-  <label>NRW Internal Contact</label>
+  <label>Cyswllt Mewnol CNC</label>
   </element>
 
   <element name="nrw:relatedTitle">

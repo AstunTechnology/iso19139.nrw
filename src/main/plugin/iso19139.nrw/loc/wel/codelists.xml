@@ -1628,12 +1628,17 @@
     </entry>
     <entry hideInEditMode="true">
       <code>staticMap</code>
-      <label>Static map</label>
+      <label>Map statig</label>
       <description></description>
     </entry>
     <entry hideInEditMode="true">
       <code>interactiveMap</code>
-      <label>Interactive map</label>
+      <label>Map rhyngweithiol</label>
+      <description></description>
+    </entry>
+    <entry hideInEditMode="true">
+      <code>Maps and graphics</code>
+      <label>Mapiau a graffigwaith</label>
       <description></description>
     </entry>
     <entry hideInEditMode="true">
@@ -1642,13 +1647,11 @@
       <description></description>
     </entry>
   </codelist>
-      <!-- ====================================================  Service-->
-
   <codelist name="gmd:MD_ScopeCode"
-            displayIf="../gmd:identificationInfo/srv:SV_ServiceIdentification">
+            displayIf="/ancestor::node()[name()='gmd:MD_Metadata']/gmd:identificationInfo/srv:SV_ServiceIdentification">
     <entry>
       <code>service</code>
-      <label>Service</label>
+      <label>Gwasanaeth</label>
       <description>Information applies to a capability which a service provider entity makes
         available to a service user entity through a set of interfaces that define a behaviour,
         such as a use case
@@ -1998,7 +2001,7 @@
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
     <entry>
       <code>series</code>
-      <label>Series</label>
+      <label>Cyfres</label>
       <description>Information applies to the series</description>
     </entry>
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->

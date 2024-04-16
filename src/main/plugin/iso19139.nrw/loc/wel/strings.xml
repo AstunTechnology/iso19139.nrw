@@ -36,9 +36,9 @@
 
   <!-- New strings added for the AngularJS editor -->
   <!-- View and tabs -->
-  <advanced>Advanced</advanced>
-  <default>Default</default>
-  <simple>Simple</simple>
+  <advanced>Uwch</advanced>
+  <default>Diofyn</default>
+  <simple>Syml</simple>
   <thirdparty>Third Party View</thirdparty>
   <default-thirdparty>Third Party View</default-thirdparty>
 
@@ -54,7 +54,7 @@
   <contentInfo>Content</contentInfo>
   <portrayalCatalogueInfo>Portrayal</portrayalCatalogueInfo>
   <metadataConstraints>Constraints</metadataConstraints>
-  <metadataMaintenance>Maintenance</metadataMaintenance>
+  <metadataMaintenance>Cynnal a chadw</metadataMaintenance>
   <applicationSchemaInfo>Schema info</applicationSchemaInfo>
   <noThesaurusName>Keywords</noThesaurusName>
   <bboxesSection>Geographic coverage</bboxesSection>
@@ -63,11 +63,11 @@
   <providedBy>Corff Cyhoeddi</providedBy>
   <shareOnSocialSite>Share on social sites</shareOnSocialSite>
   <viewMode>Views</viewMode>
-  <linkToPortal>Access the portal</linkToPortal>
+  <linkToPortal>Mynediad i'r Porth</linkToPortal>
   <linkToPortal-help>Full access to the portal and metadata.</linkToPortal-help>
   <citationProposal>Citation proposal</citationProposal>
   <citationProposal-help>This proposal was automatically generated, check if the metadata authors did not specify custom citation requirements.</citationProposal-help>
-  <associatedResources>Associated resources (if any)</associatedResources>
+  <associatedResources>Adnoddau cysylltiedig (os oes rhai)</associatedResources>
 
   <!-- XSD error translation -->
   <invalidElement>Invalid element. Invalid content was found starting with element:</invalidElement>
@@ -93,7 +93,7 @@
   <hierarchyLevel>Hierarchy level</hierarchyLevel>
   <publicationDate>Publication date</publicationDate>
   <revisionDate>Revision date</revisionDate>
-  <temporalRangeSection>Temporal extent</temporalRangeSection>
+  <temporalRangeSection>Maint Amserol</temporalRangeSection>
   <beginPosition>Begin</beginPosition>
   <endPosition>End</endPosition>
   <conformity>Conformity</conformity>
@@ -132,8 +132,7 @@
   <licenceType>Math o Drwydded</licenceType>
   <attributionStatement>Datganiad priodoli</attributionStatement>
   <add-resource-id>Compute resource identifier</add-resource-id>
-  <add-resource-idHelp>Compose the resource identifier using the catalog URL and the metadata
-    identifier (eg. http://www.organization.org/catalogue/5391bf69-44bc-4ea0-8cc0-6cf6c3bc81ae).
+  <add-resource-idHelp>Compose the resource identifier using the catalog URL and the metadata identifier (eg. http://www.organization.org/catalogue/5391bf69-44bc-4ea0-8cc0-6cf6c3bc81ae).
   </add-resource-idHelp>
   <add-extent-from-geokeywords>Compute extent from keyword</add-extent-from-geokeywords>
   <add-extent-from-geokeywordsHelp>Analyze each keyword of type place and add matching extent.
@@ -161,19 +160,21 @@
   <addCrs4258>ETRS89 (EPSG:4258)</addCrs4258>
 
 
-  <addAccessConstraints>Access constraints</addAccessConstraints>
-  <addUseConstraints>Add use contraints</addUseConstraints>
+  <addAccessConstraints>Cyfyngiadau Mynediad</addAccessConstraints>
+  <addUseConstraints>Ychwanegu Cyfyngiadau Defnydd</addUseConstraints>
   <accessLimitations>Cyfyngiadau ar Fynediad a Defnydd Cyhoeddus</accessLimitations>
   <addContact>Add contact</addContact>
   <addVerticalExtentCRS>with CRS</addVerticalExtentCRS>
   <addVerticalExtentDatum>with Datum</addVerticalExtentDatum>
   <verticalExtent>Maint Fertigol</verticalExtent>
-  <addVerticalExtent>Add Vertical Extent</addVerticalExtent>
+  <addVerticalExtent>Ychwanegu Maint Fertigol</addVerticalExtent>
   <medinextent>Maint allweddair MEDIN</medinextent>
   <geographicextent>Maint Daearyddol</geographicextent>
   <addDistance>Add Spatial Resolution as Distance</addDistance>
   <addSpatRep>Add Spatial Resolution</addSpatRep>
   <addEquivScale>Add Spatial Resolution as Equivalent Scale</addEquivScale>
+  <accessConstraintsDirective>Cyfarwyddeb Cyfyngiadau Mynediad</accessConstraintsDirective>
+  <alternativeTitle>Teitl Amgen</alternativeTitle>
 
 
   <distributionFormat>Add Distribution Format</distributionFormat>
