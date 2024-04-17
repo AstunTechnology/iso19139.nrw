@@ -666,31 +666,41 @@
 
         <!-- Access constraints -->
         <xsl:for-each select="gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:accessConstraints/gmd:MD_RestrictionCode/@codeListValue">
-          <xsl:copy-of select="gn-fn-index:add-field('accessConstraints', .)"/>
+          <xsl:copy-of select="gn-fn-index:add-field('accessConstraintsRestrictionType', .)"/>
         </xsl:for-each>
 
-        <!-- Limitations on public access text -->
+        <!-- Limitations on public access link text -->
         <xsl:for-each select="gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:accessConstraints/following-sibling::gmd:otherConstraints/gmx:Anchor/text()">
-          <xsl:copy-of select="gn-fn-index:add-field('limitationsPublicAccess', .)" />
+          <xsl:copy-of select="gn-fn-index:add-field('limitationsPublicAccessLinkText', .)" />
         </xsl:for-each>
 
         <!-- Limitations on public access link -->
+        <xsl:for-each select="gmd:resourceConstraints/gmd:MD_LegalConstraints[gmd:accessConstraints]/gmd:otherConstraints[1]/gco:CharacterString/text()">
+          <xsl:copy-of select="gn-fn-index:add-field('accessConstraintsText', .)" />
+        </xsl:for-each>
+
+        <!-- Access contraints text -->
         <xsl:for-each select="gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:accessConstraints/following-sibling::gmd:otherConstraints/gmx:Anchor/@xlink:href">
           <xsl:copy-of select="gn-fn-index:add-field('limitationsPublicAccessLink', .)" />
         </xsl:for-each>
 
-        <!-- Use constraints -->
+        <!-- Use constraints type -->
         <xsl:for-each select="gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:useConstraints/gmd:MD_RestrictionCode/@codeListValue">
-          <xsl:copy-of select="gn-fn-index:add-field('useConstraints', .)" />
+          <xsl:copy-of select="gn-fn-index:add-field('useConstraintsType', .)" />
+        </xsl:for-each>
+
+        <!-- Use constraints text -->
+        <xsl:for-each select="gmd:resourceConstraints/gmd:MD_LegalConstraints[gmd:useConstraints]/gmd:otherConstraints[1]/*/text()">
+          <xsl:copy-of select="gn-fn-index:add-field('useConstraintsText', .)" />
         </xsl:for-each>
 
         <!--Licence-->
-        <xsl:for-each select="gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:useConstraints/following-sibling::gmd:otherConstraints/gmx:Anchor/text()">
+        <xsl:for-each select="gmd:resourceConstraints/gmd:MD_LegalConstraints[gmd:useConstraints]/gmd:otherConstraints/gmx:Anchor/text()">
           <xsl:copy-of select="gn-fn-index:add-field('licence', .)"/>
         </xsl:for-each>
 
         <!-- Attribution statement -->
-        <xsl:for-each select="gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:useConstraints/following-sibling::gmd:otherConstraints/gco:CharacterString/text()">
+        <xsl:for-each select="gmd:resourceConstraints/gmd:MD_LegalConstraints[gmd:useConstraints]/gmd:otherConstraints[3]/gco:CharacterString/text()">
           <xsl:copy-of select="gn-fn-index:add-field('attributionStatement', .)" />
         </xsl:for-each>
 
