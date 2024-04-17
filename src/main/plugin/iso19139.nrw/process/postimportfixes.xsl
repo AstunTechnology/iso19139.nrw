@@ -195,19 +195,40 @@
     
     
 
-    
+    <!-- This should add a noLimitations anchor if it doesn't already exist -->
     <!-- Convert limitations on public access other constraint from string to gmx:Anchor -->
-    <xsl:template match="/gmd:MD_Metadata
+    <!-- <xsl:template match="/gmd:MD_Metadata
         /gmd:identificationInfo
         /gmd:MD_DataIdentification
         /gmd:resourceConstraints
         /gmd:MD_LegalConstraints
         /gmd:otherConstraints/gco:CharacterString[../../gmd:accessConstraints]">
         
-        <!-- Create gmx:Anchor and set xlink:href -->
+
         <gmx:Anchor xlink:href="https://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/noLimitations">
             <xsl:value-of select="."/>
         </gmx:Anchor>
+    </xsl:template> -->
+
+    <xsl:template match="/gmd:MD_Metadata
+        /gmd:identificationInfo
+        /gmd:MD_DataIdentification
+        /gmd:resourceConstraints
+        /gmd:MD_LegalConstraints
+        [gmd:accessConstraints]">
+        <xsl:choose>
+            <xsl:when test="count(./gmd:otherConstraints/gmx:Anchor) = 0">
+                <xsl:message>=== Adding an inspire nolimitations element ===</xsl:message>
+                    <xsl:copy-of select="."/>
+                    <gmd:otherConstraints>
+                        <gmx:Anchor xlink:href="https://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/noLimitations">no limitations</gmx:Anchor>
+                    </gmd:otherConstraints>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:message>=== No need to add an inspire nolimitations element ===</xsl:message>
+                <xsl:copy-of select="."/>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
     
     <!-- Update limitations on public access codelistvalue to "otherRestrictions" -->
