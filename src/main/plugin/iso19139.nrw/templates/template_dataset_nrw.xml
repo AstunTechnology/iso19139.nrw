@@ -189,7 +189,15 @@
             <gmd:MD_RestrictionCode codeList="http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#MD_RestrictionCode" codeListValue="otherRestrictions"/>
           </gmd:useConstraints>
           <gmd:otherConstraints xsi:type="gmd:PT_FreeText_PropertyType">
-            <gco:CharacterString>Replace this text with the attribution statement</gco:CharacterString>
+            <gco:CharacterString>Replace this text with the Use Constraints statement</gco:CharacterString>
+            <gmd:PT_FreeText>
+               <gmd:textGroup>
+                  <gmd:LocalisedCharacterString locale="#CY"/>
+               </gmd:textGroup>
+            </gmd:PT_FreeText>
+          </gmd:otherConstraints>
+          <gmd:otherConstraints xsi:type="gmd:PT_FreeText_PropertyType">
+            <gco:CharacterString>Replace this text with the Attribution Statement</gco:CharacterString>
             <gmd:PT_FreeText>
                <gmd:textGroup>
                   <gmd:LocalisedCharacterString locale="#CY"/>
