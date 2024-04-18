@@ -1314,9 +1314,16 @@
   </xsl:template>
 
 <xsl:template mode="render-field" match="gmd:resourceConstraints/gmd:MD_LegalConstraints[./gmd:accessConstraints]" priority="1000">
+
+  <xsl:param name="fieldName" select="''" as="xs:string"/>
         
   <div class="entry name">
-      <h2>Limitations on Public Access and Use</h2>
+      <h2>
+        <xsl:call-template name="render-field-label">
+            <xsl:with-param name="fieldName" select="$fieldName"/>
+            <xsl:with-param name="languages" select="$allLanguages"/>
+          </xsl:call-template>
+        </h2>
       <div class="target"><xsl:comment select="name()"/>
         <xsl:choose>
           <xsl:when test="count(*) > 0">
@@ -1332,9 +1339,17 @@
     </xsl:template>
 
   <xsl:template mode="render-field" match="gmd:resourceConstraints/gmd:MD_LegalConstraints[./gmd:useConstraints]" priority="1000">
+
+    <xsl:param name="fieldName" select="''" as="xs:string"/>
         
   <div class="entry name">
-      <h2>Use Constraints</h2>
+      <!-- <h2>Use Constraints</h2> -->
+      <h2>
+        <xsl:call-template name="render-field-label">
+            <xsl:with-param name="fieldName" select="$fieldName"/>
+            <xsl:with-param name="languages" select="$allLanguages"/>
+          </xsl:call-template>
+        </h2>
       <div class="target"><xsl:comment select="name()"/>
         <xsl:choose>
           <xsl:when test="count(*) > 0">
@@ -1355,7 +1370,13 @@
 
         <xsl:if test="gco:CharacterString and normalize-space(string-join(*, '')) != ''">
           <dl>
-            <dt>Attribution Statement</dt>      
+            <!-- <dt>Attribution Statement</dt> -->
+            <dt>
+              <xsl:call-template name="render-field-label">
+              <xsl:with-param name="fieldName" select="$fieldName"/>
+              <xsl:with-param name="languages" select="$allLanguages"/>
+              </xsl:call-template>
+            </dt>      
             <dd><xsl:comment select="name()"/>
               <xsl:apply-templates mode="render-value" select="*|*/@codeListValue"/>
               <xsl:apply-templates mode="render-value" select="@*"/>
@@ -1365,7 +1386,13 @@
 
         <xsl:if test="gmx:Anchor and normalize-space(string-join(*, '')) != ''">
           <dl>
-            <dt>License Type</dt>      
+            <!-- <dt>License Type</dt> -->
+            <dt>
+              <xsl:call-template name="render-field-label">
+                  <xsl:with-param name="fieldName" select="$fieldName"/>
+                  <xsl:with-param name="languages" select="$allLanguages"/>
+                </xsl:call-template>
+            </dt>      
             <dd><xsl:comment select="name()"/>
               <xsl:apply-templates mode="render-value" select="*|*/@codeListValue"/>
               <xsl:apply-templates mode="render-value" select="@*"/>
@@ -1380,7 +1407,13 @@
         
         <xsl:param name="fieldName" select="''" as="xs:string"/>
           <dl data-ng-if="user.isConnected()">
-            <dt>NRW Internal Location Info</dt>      
+            <!-- <dt>NRW Internal Location Info</dt> -->
+            <dt>
+              <xsl:call-template name="render-field-label">
+                  <xsl:with-param name="fieldName" select="$fieldName"/>
+                  <xsl:with-param name="languages" select="$allLanguages"/>
+                </xsl:call-template>
+            </dt>      
             <dd>
               <xsl:comment select="name()"/>
               <xsl:apply-templates mode="render-value" select="*|*/@codeListValue"/>
@@ -1394,7 +1427,13 @@
         
         <xsl:param name="fieldName" select="''" as="xs:string"/>
           <dl data-ng-if="user.isConnected()">
-            <dt>NRW Internal Contact Info</dt>      
+            <!-- <dt>NRW Internal Contact Info</dt> -->     
+            <dt>
+              <xsl:call-template name="render-field-label">
+                  <xsl:with-param name="fieldName" select="$fieldName"/>
+                  <xsl:with-param name="languages" select="$allLanguages"/>
+                </xsl:call-template>
+            </dt>     
             <dd>
               <xsl:comment select="name()"/>
               <xsl:apply-templates mode="render-value" select="*|*/@codeListValue"/>
