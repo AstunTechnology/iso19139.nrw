@@ -191,6 +191,11 @@
   <licence>Licence</licence>
   <attributionstatement>Attribution Statement</attributionstatement>
   <verticalextent>Vertical Extent</verticalextent>
+  <dataformat>Data format</dataformat>
+  <accessconstraintsText>Access Constraints Text</accessconstraintsText>
+  <useconstraints>Use Constraints</useconstraints>
+  <medincode>MEDIN Keyword</medincode>
+  <limitations>Limitations</limitations>
 
 
 

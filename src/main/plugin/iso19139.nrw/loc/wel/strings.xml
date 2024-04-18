@@ -42,7 +42,7 @@
   <thirdparty>Third Party View</thirdparty>
   <default-thirdparty>Third Party View</default-thirdparty>
 
-  <keywordFrom>Keywords - </keywordFrom>
+  <keywordFrom>Geiriau allweddol - </keywordFrom>
   <resource>Resource</resource>
   <xml>XML</xml>
   <metadata>Metadata</metadata>
@@ -56,7 +56,7 @@
   <metadataConstraints>Constraints</metadataConstraints>
   <metadataMaintenance>Cynnal a chadw</metadataMaintenance>
   <applicationSchemaInfo>Schema info</applicationSchemaInfo>
-  <noThesaurusName>Keywords</noThesaurusName>
+  <noThesaurusName>Geiriau allweddol</noThesaurusName>
   <bboxesSection>Geographic coverage</bboxesSection>
   <overviews>Trosolwg</overviews>
   <metadataInXML>XML</metadataInXML>
@@ -117,7 +117,7 @@
   <lineage>Lineage</lineage>
   <spatialResolution>Spatial resolution</spatialResolution>
   <spatialDistance>Spatial resolution (distance)</spatialDistance>
-  <accessConstraints>Access constraints</accessConstraints>
+  <accessConstraints>Cyfyngiadau mynediad</accessConstraints>
   <useConstraints>Cyfyngiadau ar ddefnyddio</useConstraints>
   <addINSPIRE13_1a>INSPIRE_Directive_Article13_1a</addINSPIRE13_1a>
   <addINSPIRE13_1b>INSPIRE_Directive_Article13_1b</addINSPIRE13_1b>
@@ -189,6 +189,11 @@
   <licence>Math o Drwydded</licence>
   <attributionstatement>Datganiad Priodoli</attributionstatement>
   <verticalextent>Maint Fertigol</verticalextent>
+  <dataformat>Fformat data</dataformat>
+  <accessconstraintsText>Testun cyfyngiadau mynediad</accessconstraintsText>
+  <useconstraints>Defnyddiwch gyfyngiadau</useconstraints>
+  <medincode>Allweddair MEDIN</medincode>
+  <limitations>Cyfyngiadau</limitations>
 
 
 

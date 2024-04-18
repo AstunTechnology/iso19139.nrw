@@ -327,7 +327,7 @@
     </description>
   </element>
   <element name="gmd:MD_Constraints" id="67.0">
-    <label>Constraints</label>
+    <label>Cyfyngiadau</label>
     <description>Restrictions on the access and use of a resource or metadata</description>
   </element>
   <element name="gmd:MD_CoverageDescription" id="239.0">
@@ -1189,7 +1189,7 @@
     </description>
   </element>
   <element name="gmd:extent" id="45.0" context="gmd:MD_DataIdentification">
-    <label>Extent</label>
+    <label>Maint</label>
     <description>Extent information including the bounding polygon, vertical, and temporal
       extent of the dataset
     </description>
@@ -1435,7 +1435,7 @@
     <description>Information identifying the issue of the series</description>
   </element>
   <element name="gmd:keyword" id="53.0">
-    <label>Keyword</label>
+    <label>Allweddair</label>
     <btnClass>fa fa-tag</btnClass>
     <description>Topic of the content of the data resource
     </description>
@@ -2488,7 +2488,7 @@
     </helper>
   </element>
   <element name="gmd:specification" id="288.0" context="gmd:MD_Format">
-    <label>Specification</label>
+    <label>Math</label>
     <description>Name of a subset, profile, or product specification of the format</description>
   </element>
   <element name="gmd:specification">
@@ -2517,7 +2517,7 @@
     <description>TextGroup</description>
   </element>
   <element name="gmd:thesaurusName" id="55.0">
-    <label>Thesaurus name</label>
+    <label>Enw Thesawrws</label>
     <description>Name of the formally registered thesaurus or a similar authoritative source of keywords
     </description>
   </element>
@@ -2555,7 +2555,7 @@
     </description>
   </element>
   <element name="gmd:transferOptions" id="273.0">
-    <label>Transfer options</label>
+    <label>Opsiynau trosglwyddo</label>
     <description>Provides information about technical means and media by which a resource is
       obtained from the distributor
     </description>
@@ -3067,7 +3067,7 @@
     <description>Type of Coupling</description>
   </element>
   <element name="srv:extent">
-    <label>Extent</label>
+    <label>Maint</label>
     <description>Geographic/Temporal Extent of Service</description>
   </element>
   <element name="srv:keywords">
