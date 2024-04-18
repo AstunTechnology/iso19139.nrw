@@ -110,12 +110,15 @@
             </gmd:CI_Date>
           </gmd:date>
           <gmd:identifier>
-            <gmd:MD_Identifier>
-              <gmd:code gco:nilReason="missing">
-                <gco:CharacterString/>
-              </gmd:code>
-            </gmd:MD_Identifier>
-          </gmd:identifier>
+                  <gmd:MD_Identifier>
+                     <gmd:code>
+                        <gco:CharacterString>NRW_DS000001</gco:CharacterString>
+                     </gmd:code>
+                     <gmd:codeSpace>
+                        <gco:CharacterString>http://naturalresources.wales/</gco:CharacterString>
+                     </gmd:codeSpace>
+                  </gmd:MD_Identifier>
+               </gmd:identifier>
         </gmd:CI_Citation>
       </gmd:citation>
       <gmd:abstract gco:nilReason="missing" xsi:type="gmd:PT_FreeText_PropertyType">
