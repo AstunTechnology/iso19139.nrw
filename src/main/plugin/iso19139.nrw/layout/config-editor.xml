@@ -290,6 +290,9 @@
       <name>gmd:country</name>
       <name>gmd:electronicMailAddress</name>
       <name>gmd:explanation</name>
+      <name>gmd:supplementalInformation</name>
+      <name>gmd:keyword</name>
+      <name ancestor="gmd:MD_LegalConstraints">gmd:otherConstraints</name>
     </exclude>
   </multilingualFields>
 
