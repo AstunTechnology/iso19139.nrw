@@ -43,48 +43,21 @@
                 extension-element-prefixes="saxon"
                 exclude-result-prefixes="#all">
 
-  <!-- This formatter renders an ISO19139 record based on the
-  editor configuration file.
-
-  The layout is made in 2 modes:
-  * render-field taking care of elements (eg. sections, label)
-  * render-value taking care of element values (eg. characterString, URL)
-
-  3 levels of priority are defined: 100, 50, none
-
-  -->
- <!-- tr is defined at  core-geonetwork/services/src/main/java/org/fao/geonet/api/records/formatters/SchemaLocalizations.java -->
+  <xsl:import href="../../layout/evaluate.xsl"/>
+  <xsl:import href="../../layout/utility-tpl-multilingual.xsl"/>
+  <xsl:import href="../../layout/utility-fn.xsl"/>
+  <xsl:import href="../../../iso19139/formatter/xsl-view/view.xsl"/>
 
   <!-- Load the editor configuration to be able
   to render the different views -->
   <xsl:variable name="configuration"
                 select="document('../../layout/config-editor.xml')"/>
 
- <!-- Required for utility-fn.xsl -->
+  <!-- Required for utility-fn.xsl -->
   <xsl:variable name="editorConfig"
                 select="document('../../layout/config-editor.xml')"/>
 
-  <!-- Some utility -->
-  <xsl:include href="../../layout/evaluate.xsl"/>
-  <xsl:include href="../../layout/utility-tpl-multilingual.xsl"/>
-  <xsl:include href="../../layout/utility-fn.xsl"/>
-  <xsl:include href="../../formatter/jsonld/iso19139.nrw-to-jsonld.xsl"/>
-  <xsl:include href="../../formatter/citation/base.xsl"/>
-  <xsl:include href="../../../iso19115-3.2018/formatter/citation/common.xsl"/>
-
-  <!-- The core formatter XSL layout based on the editor configuration -->
-  <xsl:include href="sharedFormatterDir/xslt/render-layout.xsl"/>
-  <!--<xsl:include href="../../../../../data/formatter/xslt/render-layout.xsl"/>-->
-
-  <!-- Define the metadata to be loaded for this schema plugin-->
-  <xsl:variable name="metadata"
-                select="/root/(gmd:MD_Metadata|*[@gco:isoType = 'gmd:MD_Metadata'])"/>
-
   <xsl:variable name="langId" select="gn-fn-iso19139:getLangId($metadata, $language)"/>
-
-  <xsl:variable name="allLanguages">
-    <xsl:call-template name="get-iso19139-other-languages"/>
-  </xsl:variable>
 
 
   <!-- Ignore some fields displayed in header or in right column -->

@@ -22,7 +22,7 @@
   <xsl:import href="../../layout/utility-tpl-multilingual.xsl"/>
   <xsl:import href="../../layout/utility-fn.xsl"/>
 
-  <xsl:template name="get-iso19139-citation">
+  <xsl:template name="get-iso19139.nrw-citation">
     <xsl:param name="metadata" as="node()"/>
     <xsl:param name="language" as="xs:string"/>
 
