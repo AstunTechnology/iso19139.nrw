@@ -912,7 +912,7 @@
 
       <!-- Elements that should not use the "flat" mode -->
       <flatModeExceptions>
-        <for name="gmd:alternateTitle" excludeFrom="gmd:report"/>
+        <for name="gmd:alternateTitle" excludeFrom="/gmd:MD_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_DomainConsistency/gmd:result/gmd:DQ_ConformanceResult/gmd:specification/gmd:CI_Citation"/>
         <for name="gmd:parentIdentifier" />
         <for name="gmd:geographicIdentifier" />
         <for name="gmd:descriptiveKeywords"/>
