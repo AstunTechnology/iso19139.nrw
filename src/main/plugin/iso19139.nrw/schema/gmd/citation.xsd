@@ -79,7 +79,7 @@
 		<xs:complexContent>
 			<xs:extension base="gco:AbstractObject_Type">
 				<xs:sequence>
-					<xs:element name="deliveryPoint" type="gco:CharacterString_PropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="deliveryPoint" type="gco:CharacterString_PropertyType" maxOccurs="unbounded"/>
 					<xs:element name="city" type="gco:CharacterString_PropertyType" minOccurs="0"/>
 					<xs:element name="administrativeArea" type="gco:CharacterString_PropertyType" minOccurs="0"/>
 					<xs:element name="postalCode" type="gco:CharacterString_PropertyType" minOccurs="0"/>

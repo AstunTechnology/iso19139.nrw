@@ -947,6 +947,7 @@
     <description>Address line for the location (as described in ISO 11180, annex
       A)
     </description>
+    <condition>mandatory</condition>
   </element>
   <element name="gmd:denominator" id="57.0" context="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:spatialResolution/gmd:MD_Resolution/gmd:equivalentScale/gmd:MD_RepresentativeFraction/gmd:denominator">
     <label>Equivalent Scale</label>
@@ -1567,7 +1568,8 @@
   </element>
   <element name="gmd:linkage" context="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:pointOfContact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:linkage">
     <label>URL</label>
-    <description>Web Address for Organisation</description>
+    <description>Web Address for Responsible Organisation</description>
+    <condition>mandatory</condition>
   </element>
   <element name="gmd:maintenanceAndUpdateFrequency" id="143.0">
     <label>Maintenance and update frequency</label>
