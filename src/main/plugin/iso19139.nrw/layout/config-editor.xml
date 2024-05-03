@@ -278,6 +278,7 @@
       <name ancestor="gmd:CI_Citation">gmd:code</name>
       <!-- NRW specifics -->
       <name ancestor="gmd:MD_Identifier">gmd:code</name>
+      <name ancestor="gmd:RS_Identifier">gmd:code</name>
       <name ancestor="gmd:specification">gmd:title</name>
       <name>nrw:internalLocationInfo</name>
       <name>nrw:internalContactInfo</name>
@@ -293,6 +294,10 @@
       <name>gmd:keyword</name>
       <name>gmd:alternateTitle</name>
       <name ancestor="gmd:MD_LegalConstraints">gmd:otherConstraints</name>
+      <name ancestor="gmd:CI_OnlineResource">gmd:name</name>
+      <name ancestor="gmd:MD_Format">gmd:name</name>
+      <name ancestor="gmd:CI_OnlineResource">gmd:description</name>
+      <name ancestor="gmd:code">gmx:Anchor</name>
     </exclude>
   </multilingualFields>
 
@@ -375,7 +380,7 @@
     <view name="default" default="true" hideTimeInCalendar="true">
       <sidePanel>
         <directive data-gn-validation-report="" data-initial-show-errors="true" data-initial-show-successes="false" data-initial-section-states="open"/>
-        <directive data-gn-onlinesrc-list=""/>
+        <directive data-gn-onlinesrc-list="" types="parent|dataset|service|source|sibling|associated"/>
         <directive gn-geo-publisher="" data-ng-if="gnCurrentEdit.geoPublisherConfig" data-config="{{gnCurrentEdit.geoPublisherConfig}}" data-lang="lang"/>
         <directive data-gn-suggestion-list=""/>
         <directive data-gn-need-help="user-guide/describing-information/creating-metadata.html"/>
@@ -749,8 +754,16 @@
 
         </section>
         <section name="attributionstatement">
-          <!-- <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints[./gmd:useConstraints]/gmd:otherConstraints[gco:CharacterString]"/> -->
           <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints[./gmd:useConstraints]/gmd:otherConstraints[3]"/>
+          <action type="add" btnLabel="addAttributionStatement" name="addAttributionStatement" or="otherConstraints" in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints">
+            <template>
+              <snippet>
+                    <gmd:otherConstraints>
+                      <gco:CharacterString></gco:CharacterString>
+                    </gmd:otherConstraints>
+              </snippet>
+            </template>
+          </action>
         </section>
         </section>
 

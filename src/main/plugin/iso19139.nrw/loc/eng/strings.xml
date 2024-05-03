@@ -130,7 +130,6 @@
   <addINSPIRE13_nolimitations>No Limitations to public access</addINSPIRE13_nolimitations>
   <useLimitation>Use limitation</useLimitation>
   <licenceType>Licence Type</licenceType>
-  <attributionStatement>Attribution Statement</attributionStatement>
   <add-resource-id>Compute resource identifier</add-resource-id>
   <add-resource-idHelp>Compose the resource identifier using the catalog URL and the metadata
     identifier (eg. http://www.organization.org/catalogue/5391bf69-44bc-4ea0-8cc0-6cf6c3bc81ae).
@@ -190,12 +189,14 @@
   <notlicenced>Not Licenced for Re-use</notlicenced>
   <licence>Licence</licence>
   <attributionstatement>Attribution Statement</attributionstatement>
+  <addAttributionStatement>Add Attribution Statement</addAttributionStatement>
   <verticalextent>Vertical Extent</verticalextent>
   <dataformat>Data format</dataformat>
   <accessconstraintsText>Access Constraints Text</accessconstraintsText>
   <useconstraints>Use Constraints</useconstraints>
   <medincode>MEDIN Keyword</medincode>
   <limitations>Limitations</limitations>
+  <addTransferOption>Add a Transfer Option</addTransferOption>
 
 
 
