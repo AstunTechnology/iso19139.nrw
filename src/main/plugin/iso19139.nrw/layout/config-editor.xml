@@ -200,7 +200,6 @@
     <expanded>
       <name>gmd:title</name>
       <name>gmd:abstract</name>
-      <name>gmd:alternateTitle</name>
       <name>gmd:lineage</name>
     </expanded>
 
@@ -292,6 +291,7 @@
       <name>gmd:explanation</name>
       <name>gmd:supplementalInformation</name>
       <name>gmd:keyword</name>
+      <name>gmd:alternateTitle</name>
       <name ancestor="gmd:MD_LegalConstraints">gmd:otherConstraints</name>
     </exclude>
   </multilingualFields>
@@ -377,7 +377,7 @@
         <directive data-gn-validation-report="" data-initial-show-errors="true" data-initial-show-successes="false" data-initial-section-states="open"/>
         <directive data-gn-onlinesrc-list=""/>
         <directive gn-geo-publisher="" data-ng-if="gnCurrentEdit.geoPublisherConfig" data-config="{{gnCurrentEdit.geoPublisherConfig}}" data-lang="lang"/>
-        <!-- <directive data-gn-suggestion-list=""/> -->
+        <directive data-gn-suggestion-list=""/>
         <directive data-gn-need-help="user-guide/describing-information/creating-metadata.html"/>
       </sidePanel>
 
@@ -755,7 +755,9 @@
         </section>
 
           <section name="verticalextent" displayIfRecord="contains(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:MD_Identifier/gmd:code/gco:CharacterString, 'NRW_')">
-            <field name="medinextent" xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicDescription/gmd:geographicIdentifier[gmd:MD_Identifier/gmd:authority/gmd:CI_Citation/gmd:title/gco:CharacterString ='SeaVoX Vertical Co-ordinate Coverages']" or="geographicIdentifier" in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicDescription" templateModeOnly="true" del="../../.">
+            <!-- This fails for records that don't already have the SeaVox title element in, eg existing records with no vertical extent or where it has been explicitly removed-->
+            <!-- The template record has a section for it already so it works so maybe an inflate/remove approach is best-->
+              <field name="medinextent" xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicDescription/gmd:geographicIdentifier[gmd:MD_Identifier/gmd:authority/gmd:CI_Citation/gmd:title/gco:CharacterString ='SeaVoX Vertical Co-ordinate Coverages']" or="geographicIdentifier" in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicDescription" templateModeOnly="true" del="../../.">
               <template>
                 <values>
                   <key label="medincode"

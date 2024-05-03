@@ -25,6 +25,7 @@
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:gmd="http://www.isotc211.org/2005/gmd"
+                xmlns:gmx="http://www.isotc211.org/2005/gmx"
                 xmlns:gco="http://www.isotc211.org/2005/gco"
                 xmlns:gml="http://www.opengis.net/gml/3.2"
                 xmlns:srv="http://www.isotc211.org/2005/srv"
@@ -82,7 +83,43 @@
         </gmd:topicCategory>
       </xsl:if>
       <xsl:copy-of select="gmd:environmentDescription" />
+      
+       <!-- add a Medin vertical extent element if missing and remove it with update-fixed-info if it's not used -->
       <xsl:copy-of select="gmd:extent" />
+      <xsl:if test="not(gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicDescription/gmd:geographicIdentifier/gmd:MD_Identifier/gmd:authority/gmd:CI_Citation/gmd:title/gco:CharacterString ='SeaVoX Vertical Co-ordinate Coverages')">
+        <gmd:extent>
+          <gmd:EX_Extent>
+            <gmd:geographicElement>
+              <gmd:EX_GeographicDescription>
+                <gmd:geographicIdentifier>
+                              <gmd:MD_Identifier>
+                                 <gmd:authority>
+                                  <gmd:CI_Citation>
+                                   <gmd:title>
+                                    <gco:CharacterString>SeaVoX Vertical Co-ordinate Coverages</gco:CharacterString>
+                                   </gmd:title>
+                                   <gmd:date>
+                                    <gmd:CI_Date>
+                                     <gmd:date>
+                                      <gco:Date>2021-01-06</gco:Date>
+                                     </gmd:date>
+                                     <gmd:dateType>
+                                      <gmd:CI_DateTypeCode codeList="https://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode" codeListValue="revision">revision</gmd:CI_DateTypeCode>
+                                     </gmd:dateType>
+                                    </gmd:CI_Date>
+                                   </gmd:date>
+                                  </gmd:CI_Citation>
+                                 </gmd:authority>
+                                 <gmd:code>
+                                   <gmx:Anchor xlink:href=""/>
+                                 </gmd:code>
+                              </gmd:MD_Identifier>
+                          </gmd:geographicIdentifier>
+                        </gmd:EX_GeographicDescription>
+                      </gmd:geographicElement>
+                    </gmd:EX_Extent>
+                  </gmd:extent>
+      </xsl:if>
   
       <!-- Add gmd:supplementalInformation if missing -->
       <xsl:copy-of select="gmd:supplementalInformation" />
@@ -115,6 +152,18 @@
 
     </xsl:copy>
 
+  </xsl:template>
+
+  <!-- add a Medin vertical extent element if missing and remove it with update-fixed-info if it's not used -->
+  <xsl:template match="gmd:EX_Extent" priority="1000">
+    <xsl:message>=== gmd:EX_Extent ===</xsl:message>
+  <xsl:copy>
+    <xsl:copy-of select="@*"/>
+      <xsl:apply-templates select="gmd:EX_Extent/gmd:geographicElement"/>
+      <xsl:if test="not(gmd:geographicElement/gmd:EX_GeographicDescription/gmd:geographicIdentifier/gmd:MD_Identifier/gmd:authority/gmd:CI_Citation/gmd:title/gco:CharacterString ='SeaVoX Vertical Co-ordinate Coverages')">
+        <xsl:message>=== No seavox ===</xsl:message>
+      </xsl:if>
+  </xsl:copy>
   </xsl:template>
 
   <!-- services -->

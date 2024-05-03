@@ -241,6 +241,20 @@
     </xsl:copy>
   </xsl:template>
 
+  <xsl:template match="gmd:geographicElement[gmd:EX_GeographicDescription/gmd:geographicIdentifier/gmd:MD_Identifier/gmd:authority/gmd:CI_Citation/gmd:title/gco:CharacterString ='SeaVoX Vertical Co-ordinate Coverages']">
+    <xsl:choose>
+      <xsl:when test="gmd:EX_GeographicDescription/gmd:geographicIdentifier/gmd:MD_Identifier/gmd:code[@gmd:nilReason='missing']">
+        <xsl:message>=== Removing Medin vertical extent keyword ===</xsl:message>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:message>=== Copying Medin keyword ===</xsl:message>
+        <xsl:copy>
+          <xsl:apply-templates select="@*|node()"/>
+        </xsl:copy>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
 
   <xsl:template match="gmd:hierarchyLevelName[not(string(gco:CharacterString))]" priority="10">
     <xsl:copy>
