@@ -134,9 +134,9 @@
 
             <xsl:for-each select="current-group()">
               <xsl:sort select="."/>
-              <a href='#/search?query_string=%7B"tag.\\*":%7B"{.}":true%7D%7D'>
-                <span class="badge"><xsl:copy-of select="."/></span>
-              </a>
+                <a href='#/search?query_string=%7B"tag.\\*":%7B"{.}":true%7D%7D' class="btn btn-default btn-xs better-tags">
+                  <span><xsl:copy-of select="."/></span>
+                </a>
             </xsl:for-each>
             <xsl:if test="position() != last()">
               <hr/>
@@ -146,9 +146,9 @@
         <xsl:otherwise>
           <xsl:for-each select="$tags/tag">
             <xsl:sort select="."/>
-              <a href='#/search?query_string=%7B"tag.\\*":%7B"{.}":true%7D%7D'>
-              <span class="badge"><xsl:copy-of select="."/></span>
-            </a>
+              <a href='#/search?query_string=%7B"tag.\\*":%7B"{.}":true%7D%7D' class="btn btn-default btn-xs better-tags">
+                <span><xsl:copy-of select="."/></span>
+              </a>
           </xsl:for-each>
         </xsl:otherwise>
       </xsl:choose>
@@ -1289,7 +1289,7 @@
 <xsl:template mode="render-field" match="gmd:resourceConstraints/gmd:MD_LegalConstraints[./gmd:accessConstraints]" priority="1000">
 
   <xsl:param name="fieldName" select="''" as="xs:string"/>
-        
+
   <div class="entry name">
       <h2>
         <xsl:call-template name="render-field-label">
@@ -1308,13 +1308,13 @@
         </xsl:choose>
       </div>
     </div>
-        
+
     </xsl:template>
 
   <xsl:template mode="render-field" match="gmd:resourceConstraints/gmd:MD_LegalConstraints[./gmd:useConstraints]" priority="1000">
 
     <xsl:param name="fieldName" select="''" as="xs:string"/>
-        
+
   <div class="entry name">
       <!-- <h2>Use Constraints</h2> -->
       <h2>
@@ -1334,11 +1334,11 @@
         </xsl:choose>
       </div>
     </div>
-        
+
     </xsl:template>
 
     <xsl:template mode="render-field" match="gmd:resourceConstraints/gmd:MD_LegalConstraints[./gmd:useConstraints]/gmd:otherConstraints" priority="1000">
-        
+
         <xsl:param name="fieldName" select="''" as="xs:string"/>
 
         <xsl:if test="gco:CharacterString and normalize-space(string-join(*, '')) != ''">
@@ -1349,7 +1349,7 @@
               <xsl:with-param name="fieldName" select="$fieldName"/>
               <xsl:with-param name="languages" select="$allLanguages"/>
               </xsl:call-template>
-            </dt>      
+            </dt>
             <dd><xsl:comment select="name()"/>
               <xsl:apply-templates mode="render-value" select="*|*/@codeListValue"/>
               <xsl:apply-templates mode="render-value" select="@*"/>
@@ -1365,19 +1365,19 @@
                   <xsl:with-param name="fieldName" select="$fieldName"/>
                   <xsl:with-param name="languages" select="$allLanguages"/>
                 </xsl:call-template>
-            </dt>      
+            </dt>
             <dd><xsl:comment select="name()"/>
               <xsl:apply-templates mode="render-value" select="*|*/@codeListValue"/>
               <xsl:apply-templates mode="render-value" select="@*"/>
             </dd>
           </dl>
         </xsl:if>
-        
+
     </xsl:template>
 
     <!-- only show NRW internal location and contact elements if the user is logged in -->
     <xsl:template mode="render-field" match="nrw:internalLocationInfo" priority="2000">
-        
+
         <xsl:param name="fieldName" select="''" as="xs:string"/>
           <dl data-ng-if="user.isConnected()">
             <!-- <dt>NRW Internal Location Info</dt> -->
@@ -1386,38 +1386,37 @@
                   <xsl:with-param name="fieldName" select="$fieldName"/>
                   <xsl:with-param name="languages" select="$allLanguages"/>
                 </xsl:call-template>
-            </dt>      
+            </dt>
             <dd>
               <xsl:comment select="name()"/>
               <xsl:apply-templates mode="render-value" select="*|*/@codeListValue"/>
               <xsl:apply-templates mode="render-value" select="@*"/>
             </dd>
           </dl>
-        
+
     </xsl:template>
 
     <xsl:template mode="render-field" match="nrw:internalContactInfo" priority="2000">
-        
+
         <xsl:param name="fieldName" select="''" as="xs:string"/>
           <dl data-ng-if="user.isConnected()">
-            <!-- <dt>NRW Internal Contact Info</dt> -->     
+            <!-- <dt>NRW Internal Contact Info</dt> -->
             <dt>
               <xsl:call-template name="render-field-label">
                   <xsl:with-param name="fieldName" select="$fieldName"/>
                   <xsl:with-param name="languages" select="$allLanguages"/>
                 </xsl:call-template>
-            </dt>     
+            </dt>
             <dd>
               <xsl:comment select="name()"/>
               <xsl:apply-templates mode="render-value" select="*|*/@codeListValue"/>
               <xsl:apply-templates mode="render-value" select="@*"/>
             </dd>
           </dl>
-        
+
     </xsl:template>
 
   <xsl:template mode="render-value"
                 match="@*"/>
 
 </xsl:stylesheet>
-
