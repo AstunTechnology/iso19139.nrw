@@ -411,7 +411,7 @@
     <description>Keywords, their type and reference source</description>
   </element>
   <element name="gmd:MD_LegalConstraints" id="69.0">
-    <label>Legal Constraints</label>
+    <label>Constraints</label>
     <description>Restrictions and legal prerequisites for accessing and using the resource or
       metadata
     </description>
@@ -1678,7 +1678,7 @@
   </element>
   <!-- <element name="gmd:name" context="gmd:MD_Format" id="285.0"> -->
   <element name="gmd:name" context="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributionFormat/gmd:MD_Format/gmd:name" id="285.0" >
-    <label>Name</label>
+    <label>Data Format Specification</label>
     <description>Name of the data transfer format(s)</description>
     <help>name of the data transfer format(s)</help>
     <condition>mandatory</condition>
@@ -2549,7 +2549,7 @@
     <condition>mandatory</condition>
   </element>
   <element name="gmd:specification" id="288.0" context="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributionFormat/gmd:MD_Format/gmd:specification">
-    <label>Type</label>
+    <label>Data Format Type</label>
     <description>Name of a subset, profile, or product specification of the format</description>
     <helper rel="gco:CharacterString">
       <option value="Binary">Binary</option>
