@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gmd:MD_Metadata xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gco="http://www.isotc211.org/2005/gco" xmlns:srv="http://www.isotc211.org/2005/srv" xmlns:gmx="http://www.isotc211.org/2005/gmx" xmlns:gts="http://www.isotc211.org/2005/gts" xmlns:gsr="http://www.isotc211.org/2005/gsr" xmlns:gmi="http://www.isotc211.org/2005/gmi" xmlns:gss="http://www.isotc211.org/2005/gss" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.isotc211.org/2005/gmd http://schemas.opengis.net/csw/2.0.2/profiles/apiso/1.0.0/apiso.xsd">
+    <gmd:language xmlns:geonet="http://www.fao.org/geonetwork">
+    <gmd:LanguageCode codeList="http://www.loc.gov/standards/iso639-2/" codeListValue="eng">English</gmd:LanguageCode>
+  </gmd:language>
+  <gmd:hierarchyLevel xmlns:geonet="http://www.fao.org/geonetwork">
+    <gmd:MD_ScopeCode codeList="http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#MD_ScopeCode" codeListValue="service"/>
+  </gmd:hierarchyLevel>
+  <gmd:hierarchyLevelName xmlns:geonet="http://www.fao.org/geonetwork">
+    <gco:CharacterString>service</gco:CharacterString>
+  </gmd:hierarchyLevelName>
+  <gmd:contact xmlns:geonet="http://www.fao.org/geonetwork">
+    <gmd:CI_ResponsibleParty>
+      <gmd:organisationName>
+        <gco:CharacterString>Natural Resources Wales</gco:CharacterString>
+      </gmd:organisationName>
+      <gmd:positionName gco:nilReason="missing">
+        <gco:CharacterString/>
+      </gmd:positionName>
+      <gmd:contactInfo>
+        <gmd:CI_Contact>
+          <gmd:address>
+            <gmd:CI_Address>
+              <gmd:deliveryPoint>
+                <gco:CharacterString>4th Floor South Crown Buildings (CP2), Cathays Park</gco:CharacterString>
+              </gmd:deliveryPoint>
+              <gmd:deliveryPoint>
+                <gco:CharacterString>King Edward VII Avenue</gco:CharacterString>
+              </gmd:deliveryPoint>
+              <gmd:city>
+                <gco:CharacterString>Cardiff</gco:CharacterString>
+              </gmd:city>
+              <gmd:postalCode>
+                <gco:CharacterString>CF10 3NQ</gco:CharacterString>
+              </gmd:postalCode>
+              <gmd:country>
+                <gco:CharacterString>United Kingdom</gco:CharacterString>
+              </gmd:country>
+              <gmd:electronicMailAddress>
+                <gco:CharacterString>opendata@cyfoethnaturiolcymru.gov.uk</gco:CharacterString>
+              </gmd:electronicMailAddress>
+            </gmd:CI_Address>
+          </gmd:address>
+          <gmd:onlineResource>
+            <gmd:CI_OnlineResource>
+              <gmd:linkage>
+                <gmd:URL>https://naturalresources.wales</gmd:URL>
+              </gmd:linkage>
+            </gmd:CI_OnlineResource>
+          </gmd:onlineResource>
+        </gmd:CI_Contact>
+      </gmd:contactInfo>
+      <gmd:role>
+        <gmd:CI_RoleCode codeList="http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_RoleCode" codeListValue="pointOfContact"/>
+      </gmd:role>
+    </gmd:CI_ResponsibleParty>
+  </gmd:contact>
+  <gmd:dateStamp xmlns:geonet="http://www.fao.org/geonetwork">
+    <gco:DateTime>2024-01-26T15:22:27.775Z</gco:DateTime>
+  </gmd:dateStamp>
+  <gmd:metadataStandardName xmlns:geonet="http://www.fao.org/geonetwork">
+    <gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/M25/current/GEMINI/">UK GEMINI</gmx:Anchor>
+  </gmd:metadataStandardName>
+  <gmd:metadataStandardVersion xmlns:geonet="http://www.fao.org/geonetwork">
+    <gco:CharacterString>2.3</gco:CharacterString>
+  </gmd:metadataStandardVersion>
+  <gmd:referenceSystemInfo xmlns:geonet="http://www.fao.org/geonetwork">
+    <gmd:MD_ReferenceSystem>
+      <gmd:referenceSystemIdentifier>
+        <gmd:RS_Identifier>
+          <gmd:code>
+            <gmx:Anchor xlink:title="WGS 84 (EPSG:4326)" xlink:href="http://www.opengis.net/def/crs/EPSG/0/4326">EPSG:4326</gmx:Anchor>
+          </gmd:code>
+        </gmd:RS_Identifier>
+      </gmd:referenceSystemIdentifier>
+    </gmd:MD_ReferenceSystem>
+  </gmd:referenceSystemInfo>
+  <gmd:identificationInfo xmlns:geonet="http://www.fao.org/geonetwork">
+    <srv:SV_ServiceIdentification>
+      <gmd:citation>
+        <gmd:CI_Citation>
+          <gmd:title>
+            <gco:CharacterString>NRW Discovery Metadata (MEDIN)</gco:CharacterString>
+          </gmd:title>
+          <gmd:date>
+            <gmd:CI_Date>
+              <gmd:date>
+                <gco:DateTime>2021-01-27T16:01:00</gco:DateTime>
+              </gmd:date>
+              <gmd:dateType>
+                <gmd:CI_DateTypeCode codeList="http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode" codeListValue="publication"/>
+              </gmd:dateType>
+            </gmd:CI_Date>
+          </gmd:date>
+          <gmd:identifier>
+                  <gmd:MD_Identifier>
+                     <gmd:code>
+                        <gco:CharacterString>NRW_DS000004</gco:CharacterString>
+                     </gmd:code>
+                     <gmd:codeSpace>
+                        <gco:CharacterString>http://naturalresources.wales/</gco:CharacterString>
+                     </gmd:codeSpace>
+                  </gmd:MD_Identifier>
+               </gmd:identifier>
+        </gmd:CI_Citation>
+      </gmd:citation>
+      <gmd:abstract>
+        <gco:CharacterString>Natural Resources Wales (NRW) Discovery Metadata Catalogue Service. This Catalogue Service for the Web (CSW) includes endpoints for marine records within the NRW's Discovery metadata catalogue for harvest to MEDIN-compliant endpoints. The metadata provides details of datasets held by NRW. Natural Resources Wales is the largest Welsh Government Sponsored Body. NRW's purpose is to ensure the environment and natural resources of Wales are sustainably maintained and used, now and in the future.</gco:CharacterString>
+      </gmd:abstract>
+      <gmd:pointOfContact>
+        <gmd:CI_ResponsibleParty>
+          <gmd:organisationName>
+            <gco:CharacterString>Natural Resources Wales</gco:CharacterString>
+          </gmd:organisationName>
+          <gmd:positionName gco:nilReason="missing">
+            <gco:CharacterString/>
+          </gmd:positionName>
+          <gmd:contactInfo>
+            <gmd:CI_Contact>
+              <gmd:address>
+                <gmd:CI_Address>
+                  <gmd:deliveryPoint>
+                    <gco:CharacterString>4th Floor South Crown Buildings (CP2), Cathays Park</gco:CharacterString>
+                  </gmd:deliveryPoint>
+                  <gmd:deliveryPoint>
+                    <gco:CharacterString>King Edward VII Avenue</gco:CharacterString>
+                  </gmd:deliveryPoint>
+                  <gmd:city>
+                    <gco:CharacterString>Cardiff</gco:CharacterString>
+                  </gmd:city>
+                  <gmd:postalCode>
+                    <gco:CharacterString>CF10 3NQ</gco:CharacterString>
+                  </gmd:postalCode>
+                  <gmd:country>
+                    <gco:CharacterString>United Kingdom</gco:CharacterString>
+                  </gmd:country>
+                  <gmd:electronicMailAddress>
+                    <gco:CharacterString>opendata@cyfoethnaturiolcymru.gov.uk</gco:CharacterString>
+                  </gmd:electronicMailAddress>
+                </gmd:CI_Address>
+              </gmd:address>
+            </gmd:CI_Contact>
+          </gmd:contactInfo>
+          <gmd:role>
+            <gmd:CI_RoleCode codeList="http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_RoleCode" codeListValue="pointOfContact"/>
+          </gmd:role>
+        </gmd:CI_ResponsibleParty>
+      </gmd:pointOfContact>
+      <gmd:resourceMaintenance>
+        <gmd:MD_MaintenanceInformation>
+          <gmd:maintenanceAndUpdateFrequency>
+            <gmd:MD_MaintenanceFrequencyCode codeList="http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#MD_MaintenanceFrequencyCode" codeListValue="asNeeded"/>
+          </gmd:maintenanceAndUpdateFrequency>
+        </gmd:MD_MaintenanceInformation>
+      </gmd:resourceMaintenance>
+      <gmd:descriptiveKeywords>
+        <gmd:MD_Keywords>
+          <gmd:keyword>
+            <gco:CharacterString>Discovery service</gco:CharacterString>
+          </gmd:keyword>
+        </gmd:MD_Keywords>
+      </gmd:descriptiveKeywords>
+      <gmd:descriptiveKeywords>
+        <gmd:MD_Keywords>
+          <gmd:keyword>
+            <gco:CharacterString>infoCatalogueService</gco:CharacterString>
+          </gmd:keyword>
+          <gmd:type>
+            <gmd:MD_KeywordTypeCode codeList="http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#MD_KeywordTypeCode" codeListValue="theme"/>
+          </gmd:type>
+          <gmd:thesaurusName>
+            <gmd:CI_Citation>
+              <gmd:title>
+                <gco:CharacterString>INSPIRE Service taxonomy</gco:CharacterString>
+              </gmd:title>
+              <gmd:date>
+                <gmd:CI_Date>
+                  <gmd:date>
+                    <gco:Date>2010-01-01</gco:Date>
+                  </gmd:date>
+                  <gmd:dateType>
+                    <gmd:CI_DateTypeCode codeList="http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode" codeListValue="publication"/>
+                  </gmd:dateType>
+                </gmd:CI_Date>
+              </gmd:date>
+              <gmd:identifier>
+                <gmd:MD_Identifier>
+                  <gmd:code>
+                    <gmx:Anchor xlink:href="https://test.metadata.naturalresources.wales/geonetwork/srv/api/registries/vocabularies/external.theme.inspire-service-taxonomy">geonetwork.thesaurus.external.theme.inspire-service-taxonomy</gmx:Anchor>
+                  </gmd:code>
+                </gmd:MD_Identifier>
+              </gmd:identifier>
+            </gmd:CI_Citation>
+          </gmd:thesaurusName>
+        </gmd:MD_Keywords>
+      </gmd:descriptiveKeywords>
+      <gmd:resourceConstraints>
+        <gmd:MD_LegalConstraints>
+          <gmd:accessConstraints>
+            <gmd:MD_RestrictionCode codeList="http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#MD_RestrictionCode" codeListValue="otherRestrictions"/>
+          </gmd:accessConstraints>
+          <gmd:otherConstraints>
+            <gmx:Anchor xlink:href="http://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/noLimitations">no limitations</gmx:Anchor>
+          </gmd:otherConstraints>
+        </gmd:MD_LegalConstraints>
+      </gmd:resourceConstraints>
+      <gmd:resourceConstraints>
+        <gmd:MD_LegalConstraints>
+          <gmd:useConstraints>
+            <gmd:MD_RestrictionCode codeList="http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#MD_RestrictionCode" codeListValue="otherRestrictions"/>
+          </gmd:useConstraints>
+          <gmd:otherConstraints>
+            <gco:CharacterString>no conditions apply</gco:CharacterString>
+          </gmd:otherConstraints>
+        </gmd:MD_LegalConstraints>
+      </gmd:resourceConstraints>
+      <srv:serviceType>
+        <gco:LocalName codeSpace="INSPIRE">discovery</gco:LocalName>
+      </srv:serviceType>
+      <srv:extent>
+        <gmd:EX_Extent>
+          <gmd:geographicElement>
+            <gmd:EX_GeographicDescription>
+              <gmd:geographicIdentifier>
+                <gmd:MD_Identifier>
+                  <gmd:code>
+                    <gmx:Anchor>Great Britain</gmx:Anchor>
+                  </gmd:code>
+                </gmd:MD_Identifier>
+              </gmd:geographicIdentifier>
+            </gmd:EX_GeographicDescription>
+          </gmd:geographicElement>
+          <gmd:geographicElement>
+            <gmd:EX_GeographicBoundingBox>
+              <gmd:westBoundLongitude>
+                <gco:Decimal>-8.45</gco:Decimal>
+              </gmd:westBoundLongitude>
+              <gmd:eastBoundLongitude>
+                <gco:Decimal>1.78</gco:Decimal>
+              </gmd:eastBoundLongitude>
+              <gmd:southBoundLatitude>
+                <gco:Decimal>49.86</gco:Decimal>
+              </gmd:southBoundLatitude>
+              <gmd:northBoundLatitude>
+                <gco:Decimal>60.86</gco:Decimal>
+              </gmd:northBoundLatitude>
+            </gmd:EX_GeographicBoundingBox>
+          </gmd:geographicElement>
+          <gmd:verticalElement gco:nilReason="inapplicable"/>
+        </gmd:EX_Extent>
+      </srv:extent>
+      <srv:couplingType gco:nilReason="missing"/>
+      <srv:containsOperations gco:nilReason="missing"/>
+    </srv:SV_ServiceIdentification>
+  </gmd:identificationInfo>
+  <gmd:distributionInfo xmlns:geonet="http://www.fao.org/geonetwork">
+    <gmd:MD_Distribution>
+      <gmd:distributionFormat>
+        <gmd:MD_Format>
+          <gmd:name>
+            <gco:CharacterString>XML</gco:CharacterString>
+          </gmd:name>
+          <gmd:version>
+            <gco:CharacterString>1</gco:CharacterString>
+          </gmd:version>
+        </gmd:MD_Format>
+      </gmd:distributionFormat>
+      <gmd:transferOptions>
+        <gmd:MD_DigitalTransferOptions/>
+      </gmd:transferOptions>
+    </gmd:MD_Distribution>
+  </gmd:distributionInfo>
+  <gmd:dataQualityInfo xmlns:geonet="http://www.fao.org/geonetwork">
+    <gmd:DQ_DataQuality>
+      <gmd:scope>
+        <gmd:DQ_Scope>
+          <gmd:level>
+            <gmd:MD_ScopeCode codeList="http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#MD_ScopeCode" codeListValue="service"/>
+          </gmd:level>
+          <gmd:levelDescription>
+            <gmd:MD_ScopeDescription>
+              <gmd:other>
+                <gco:CharacterString>service</gco:CharacterString>
+              </gmd:other>
+            </gmd:MD_ScopeDescription>
+          </gmd:levelDescription>
+        </gmd:DQ_Scope>
+      </gmd:scope>
+      <gmd:report>
+        <gmd:DQ_DomainConsistency>
+          <gmd:result>
+            <gmd:DQ_ConformanceResult>
+              <gmd:specification>
+                <gmd:CI_Citation>
+                  <gmd:title>
+                    <gmx:Anchor xlink:href="http://data.europa.eu/eli/reg/2010/1089">Commission Regulation (EU) No 1089/2010 of 23 November 2010 implementing Directive 2007/2/EC of the European Parliament and of the Council as regards interoperability of spatial data sets and services</gmx:Anchor>
+                  </gmd:title>
+                  <gmd:date>
+                    <gmd:CI_Date>
+                      <gmd:date>
+                        <gco:Date>2010-12-08</gco:Date>
+                      </gmd:date>
+                      <gmd:dateType>
+                        <gmd:CI_DateTypeCode codeList="http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode" codeListValue="publication"/>
+                      </gmd:dateType>
+                    </gmd:CI_Date>
+                  </gmd:date>
+                </gmd:CI_Citation>
+              </gmd:specification>
+              <gmd:explanation>
+                <gco:CharacterString>The Natural Resources Wales Metadata Portal CSW is an INSPIRE compliant Download Service</gco:CharacterString>
+              </gmd:explanation>
+              <gmd:pass>
+                <gco:Boolean>true</gco:Boolean>
+              </gmd:pass>
+            </gmd:DQ_ConformanceResult>
+          </gmd:result>
+        </gmd:DQ_DomainConsistency>
+      </gmd:report>
+      <gmd:lineage>
+        <gmd:LI_Lineage>
+          <gmd:statement gco:nilReason="missing">
+            <gco:CharacterString/>
+          </gmd:statement>
+        </gmd:LI_Lineage>
+      </gmd:lineage>
+    </gmd:DQ_DataQuality>
+  </gmd:dataQualityInfo>
+</gmd:MD_Metadata>
