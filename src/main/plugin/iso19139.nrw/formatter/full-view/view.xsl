@@ -67,7 +67,7 @@
 
   <!-- Specific schema rendering -->
   <xsl:template mode="getMetadataTitle" match="gmd:MD_Metadata|*[@gco:isoType = 'gmd:MD_Metadata']">
-    <xsl:message>=== permalink template ===</xsl:message>
+    <xsl:message>=== full view template ===</xsl:message>
     <xsl:for-each select="gmd:identificationInfo/*/gmd:citation/*/gmd:title">
       <xsl:call-template name="localised">
         <xsl:with-param name="langId" select="$langId"/>
@@ -92,8 +92,8 @@
 
   <xsl:template mode="getTags" match="gmd:MD_Metadata|*[@gco:isoType = 'gmd:MD_Metadata']">
     <xsl:param name="byThesaurus" select="false()"/>
-    <!-- Disabled for NRW -->
-    <!-- <section class="gn-md-side-social">
+
+    <section class="gn-md-side-social">
       <h2>
         <i class="fa fa-fw fa-tag"><xsl:comment select="'image'"/></i>
         <span><xsl:comment select="name()"/>
@@ -154,7 +154,7 @@
         </xsl:otherwise>
       </xsl:choose>
 
-    </section> -->
+    </section>
   </xsl:template>
 
   <xsl:template mode="getMetadataHierarchyLevel" match="gmd:MD_Metadata|*[@gco:isoType = 'gmd:MD_Metadata']">
@@ -166,8 +166,7 @@
   </xsl:template>
 
   <xsl:template mode="getExtent" match="gmd:MD_Metadata|*[@gco:isoType = 'gmd:MD_Metadata']">
-    <!-- Disabled for NRW -->
-    <!-- <section class="gn-md-side-extent">
+    <section class="gn-md-side-extent">
       <h2>
         <i class="fa fa-fw fa-map-marker"><xsl:comment select="'image'"/></i>
         <span><xsl:comment select="name()"/>
@@ -185,12 +184,11 @@
           </xsl:apply-templates>
         </xsl:otherwise>
       </xsl:choose>
-    </section> -->
+    </section>
   </xsl:template>
 
   <xsl:template mode="getOverviews" match="gmd:MD_Metadata|*[@gco:isoType = 'gmd:MD_Metadata']">
-    <!-- Disabled for NRW -->
-    <!-- <section class="gn-md-side-overview">
+    <section class="gn-md-side-overview">
       <h2>
         <i class="fa fa-fw fa-image"><xsl:comment select="'image'"/></i>
         <span><xsl:comment select="name()"/>
@@ -213,7 +211,7 @@
         </xsl:for-each>
 
       </xsl:for-each>
-    </section> -->
+    </section>
   </xsl:template>
 
   <xsl:template mode="getMetadataHeader" match="gmd:MD_Metadata|*[@gco:isoType = 'gmd:MD_Metadata']">
@@ -571,8 +569,8 @@
 
         <xsl:apply-templates mode="render-field"
                              select="gmd:temporalElement"/>
-        <!-- <xsl:apply-templates mode="render-field"
-                             select="gmd:verticalElement"/> -->
+        <xsl:apply-templates mode="render-field"
+                             select="gmd:verticalElement"/>
 
       </div>
     </div>
@@ -583,12 +581,8 @@
                 match="*[gmd:CI_ResponsibleParty]"
                 priority="100">
 
-
     <xsl:param name="layout"
                required="no"/>
-    <xsl:choose>
-    <xsl:when test="not(gmd:CI_ResponsibleParty/gmd:role/gmd:CI_RoleCode/@codeListValue='custodian' or gmd:CI_ResponsibleParty/gmd:role/gmd:CI_RoleCode/@codeListValue='distributor')">
-
     <xsl:variable name="email">
       <xsl:for-each select="*/gmd:contactInfo/
                                       */gmd:address/*/gmd:electronicMailAddress">
@@ -619,7 +613,6 @@
           </xsl:otherwise>
         </xsl:choose>
       </xsl:if>
-            
     </xsl:variable>
 
     <xsl:choose>
@@ -706,11 +699,6 @@
         </div>
       </xsl:otherwise>
     </xsl:choose>
-  </xsl:when>
-      <xsl:otherwise>
-        <xsl:message>=== Template not matched ===</xsl:message>
-      </xsl:otherwise>
-</xsl:choose>
   </xsl:template>
 
   <!-- Metadata linkage -->
@@ -1076,8 +1064,6 @@
 
   <xsl:template mode="render-field" match="nrw:internalLocationInfo" priority="100"/>
   <xsl:template mode="render-field" match="nrw:internalContactInfo" priority="100"/>
-  <xsl:template mode="render-field" match="gmd:maintenanceAndUpdateFrequency" priority="100"/>
-  <xsl:template mode="render-field" match="gmd:distance" priority="100"/>
 
 
   <!-- Traverse the tree -->
@@ -1433,12 +1419,12 @@
 
     </xsl:template>
 
-
     <!-- only show NRW internal location and contact elements if the user is logged in -->
     <xsl:template mode="render-field" match="nrw:internalLocationInfo" priority="2000">
 
         <xsl:param name="fieldName" select="''" as="xs:string"/>
           <dl data-ng-if="user.isConnected()">
+            <!-- <dt>NRW Internal Location Info</dt> -->
             <dt>
               <xsl:call-template name="render-field-label">
                   <xsl:with-param name="fieldName" select="$fieldName"/>
@@ -1458,6 +1444,7 @@
 
         <xsl:param name="fieldName" select="''" as="xs:string"/>
           <dl data-ng-if="user.isConnected()">
+            <!-- <dt>NRW Internal Contact Info</dt> -->
             <dt>
               <xsl:call-template name="render-field-label">
                   <xsl:with-param name="fieldName" select="$fieldName"/>
