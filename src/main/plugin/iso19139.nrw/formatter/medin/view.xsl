@@ -72,6 +72,15 @@
     </dl>
   </xsl:template>
 
+  <!-- switch identifier to use RS_Identifier -->
+    <xsl:template match="//gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier">
+        <xsl:message>== Matched identifier element ===</xsl:message>
+        <!-- TODO wait for example of correct encoding using RS_Identifier -->
+        <xsl:copy>
+            <xsl:apply-templates select="@*|node()"/>
+        </xsl:copy>
+    </xsl:template>
+
   <!-- Metadata linkage -->
   <xsl:template mode="render-field"
                 match="gmd:fileIdentifier"
