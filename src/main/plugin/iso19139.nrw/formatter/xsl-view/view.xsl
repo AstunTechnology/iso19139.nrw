@@ -129,7 +129,7 @@
           <xsl:for-each-group select="$tags/tag" group-by="@thesaurus">
             <xsl:sort select="@thesaurus"/>
             <xsl:if test="current-grouping-key() != ''">
-              <xsl:value-of select="current-grouping-key()"/><br/>
+              <h3 style="color: #58595B;"><xsl:value-of select="current-grouping-key()"/></h3><br/>
             </xsl:if>
 
             <xsl:for-each select="current-group()">
