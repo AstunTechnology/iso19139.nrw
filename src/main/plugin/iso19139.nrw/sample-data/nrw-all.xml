@@ -97,9 +97,6 @@
                      <gmd:code>
                         <gco:CharacterString>NRW_DS000002</gco:CharacterString>
                      </gmd:code>
-                     <gmd:codeSpace>
-                        <gco:CharacterString>http://naturalresources.wales/</gco:CharacterString>
-                     </gmd:codeSpace>
                   </gmd:MD_Identifier>
                </gmd:identifier>
         </gmd:CI_Citation>

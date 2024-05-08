@@ -89,7 +89,7 @@
             </gco:CharacterString>
         </gmd:fileIdentifier>
     </xsl:template>
-    
+
     <xsl:template name="extractNumeric">
         <xsl:param name="input" />
         <xsl:variable name="numeric" select="translate($input, translate($input, '1234567890', ''), '')" />
@@ -97,9 +97,9 @@
             <xsl:with-param name="str" select="$numeric"/>
         </xsl:call-template>
     </xsl:template>
-    
+
     <xsl:template name="recurse-over-string">
-        <xsl:param name="str"/>   
+        <xsl:param name="str"/>
         <xsl:if test="$str">
             <xsl:variable name="first-char" select="substring($str,1,1)"/>
             <xsl:variable name="ascii-value" select="string-length(substring-before($ascii,$first-char)) + 32"/>
@@ -114,7 +114,7 @@
         </xsl:if>
     </xsl:template>
 
-    
+
   <!-- Override ISO19139 template for gmd:MD_Metadata to stop it messing with the file identifier -->
   <xsl:template match="gmd:MD_Metadata" priority="100">
     <xsl:copy copy-namespaces="no">
@@ -433,16 +433,29 @@
                 </xsl:otherwise>
             </xsl:choose> -->
 
-            <gmd:identifier>
-                        <gmd:MD_Identifier>
-                            <gmd:code>
-                                <gco:CharacterString><xsl:value-of select="/root/env/uuid"/></gco:CharacterString>
-                            </gmd:code>
-                            <gmd:codeSpace>
-                              <gco:CharacterString>http://naturalresources.wales/</gco:CharacterString>
-                           </gmd:codeSpace>
-                        </gmd:MD_Identifier>
-                    </gmd:identifier>
+             <!-- Resource identifier for services -->
+             <xsl:choose>
+              <xsl:when test="not(../../*[namespace-uri()='http://www.isotc211.org/2005/srv' and local-name()='SV_ServiceIdentification'] ='')">
+              <xsl:message>=== resource identifier test ===</xsl:message>
+                <gmd:identifier>
+                    <gmd:RS_Identifier>
+                        <gmd:code>
+                            <gco:CharacterString><xsl:value-of select="/root/env/uuid"/></gco:CharacterString>
+                        </gmd:code>
+                    </gmd:RS_Identifier>
+                </gmd:identifier>
+              </xsl:when>
+              <!-- Resource identifier for everything else -->
+              <xsl:otherwise >
+                <gmd:identifier>
+                    <gmd:MD_Identifier>
+                        <gmd:code>
+                            <gco:CharacterString><xsl:value-of select="/root/env/uuid"/></gco:CharacterString>
+                        </gmd:code>
+                    </gmd:MD_Identifier>
+                </gmd:identifier>
+              </xsl:otherwise>
+            </xsl:choose>
 
             <xsl:apply-templates select="gmd:citedResponsibleParty|gmd:presentationForm|gmd:series|gmd:otherCitationDetails|gmd:collectiveTitle|gmd:ISBN|gmd:ISSN"/>
 

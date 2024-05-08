@@ -24,12 +24,13 @@
   -->
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:gco="http://www.isotc211.org/2005/gco"
-                xmlns:gmd="http://www.isotc211.org/2005/gmd"
+                xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:srv="http://www.isotc211.org/2005/srv"
                 version="1.0">
 
   <xsl:template match="gmd:MD_Metadata">
     <uuid>
-      <xsl:value-of select="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:MD_Identifier/gmd:code/gco:CharacterString"/>
+      <xsl:value-of select="/gmd:MD_Metadata/gmd:identificationInfo/*/gmd:citation/gmd:CI_Citation/gmd:identifier/*/gmd:code/gco:CharacterString"/>
+      <xsl:message>=== permalink template ===</xsl:message>
     </uuid>
   </xsl:template>
 
