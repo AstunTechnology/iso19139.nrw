@@ -25,7 +25,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema"
                 xmlns:gmd="http://www.isotc211.org/2005/gmd"
                 xmlns:gco="http://www.isotc211.org/2005/gco"
-                xmlns:gn-fn-iso19139="http://geonetwork-opensource.org/xsl/functions/profiles/iso19139"
+                xmlns:gn-fn-iso19139.nrw="http://geonetwork-opensource.org/xsl/functions/profiles/iso19139.nrw"
                 version="2.0"
                 exclude-result-prefixes="#all">
 
@@ -35,7 +35,7 @@
 
          if not return the lang iso3code in uper case.
         -->
-  <xsl:function name="gn-fn-iso19139:getLangId" as="xs:string">
+  <xsl:function name="gn-fn-iso19139.nrw:getLangId" as="xs:string">
     <xsl:param name="md"/>
     <xsl:param name="lang"/>
 
@@ -53,7 +53,7 @@
   </xsl:function>
 
 
-  <xsl:function name="gn-fn-iso19139:getCodeListType" as="xs:string">
+  <xsl:function name="gn-fn-iso19139.nrw:getCodeListType" as="xs:string">
     <xsl:param name="name" as="xs:string"/>
 
     <xsl:variable name="configType" select="$editorConfig/editor/fields/for[@name = $name]/@use"/>
@@ -65,7 +65,7 @@
 
 
 
-  <xsl:function name="gn-fn-iso19139:isNotMultilingualField" as="xs:boolean">
+  <xsl:function name="gn-fn-iso19139.nrw:isNotMultilingualField" as="xs:boolean">
     <xsl:param name="element" as="node()"/>
     <xsl:param name="editorConfig" as="node()"/>
 
