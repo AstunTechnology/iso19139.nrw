@@ -434,19 +434,9 @@
             </xsl:choose> -->
 
              <!-- Resource identifier for services -->
-             <xsl:choose>
-              <xsl:when test="not(../../*[namespace-uri()='http://www.isotc211.org/2005/srv' and local-name()='SV_ServiceIdentification'] ='')">
+             
               <xsl:message>=== resource identifier test ===</xsl:message>
-                <gmd:identifier>
-                    <gmd:RS_Identifier>
-                        <gmd:code>
-                            <gco:CharacterString><xsl:value-of select="/root/env/uuid"/></gco:CharacterString>
-                        </gmd:code>
-                    </gmd:RS_Identifier>
-                </gmd:identifier>
-              </xsl:when>
-              <!-- Resource identifier for everything else -->
-              <xsl:otherwise >
+               
                 <gmd:identifier>
                     <gmd:MD_Identifier>
                         <gmd:code>
@@ -454,8 +444,7 @@
                         </gmd:code>
                     </gmd:MD_Identifier>
                 </gmd:identifier>
-              </xsl:otherwise>
-            </xsl:choose>
+
 
             <xsl:apply-templates select="gmd:citedResponsibleParty|gmd:presentationForm|gmd:series|gmd:otherCitationDetails|gmd:collectiveTitle|gmd:ISBN|gmd:ISSN"/>
 

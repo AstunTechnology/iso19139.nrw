@@ -35,6 +35,8 @@
   <depends>iso19139</depends>
   <!-- 19139:2007 version -->
   <schemaLocation>http://naturalresources.wales/nrw http://naturalresources.wales/nrw/nrw1.xsd http://www.isotc211.org/2005/gmd http://schemas.opengis.net/csw/2.0.2/profiles/apiso/1.0.0/apiso.xsd</schemaLocation>
+
+  <!-- Identify NRW records by their metadatastandardname and version -->
     <autodetect xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gco="http://www.isotc211.org/2005/gco" xmlns:gmx="http://www.isotc211.org/2005/gmx" xmlns:xlink="http://www.w3.org/1999/xlink">
         <elements>
             <gmd:metadataStandardName>
@@ -45,6 +47,7 @@
             </gmd:metadataStandardVersion>
         </elements>
     </autodetect>
+    
     <!-- Hide nrw internal contact and internal location information from anyone without editor privileges -->
     <filters xmlns:gco="http://www.isotc211.org/2005/gco" xmlns:nrw="http://naturalresources.wales/nrw">
         <filter xpath=".//nrw:internalLocationInfo|.//nrw:internalContactInfo"
