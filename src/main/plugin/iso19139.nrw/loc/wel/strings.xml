@@ -47,13 +47,13 @@
   <xml>XML</xml>
   <metadata>Metadata</metadata>
   <identificationInfo>Dull adnabod</identificationInfo>
-  <distributionInfo>Distribution</distributionInfo>
-  <dataQualityInfo>Quality</dataQualityInfo>
+  <distributionInfo>Dosbarthiad</distributionInfo>
+  <dataQualityInfo>Ansawdd</dataQualityInfo>
   <spatialRepresentationInfo>Spatial rep.</spatialRepresentationInfo>
-  <referenceSystemInfo>Spatial Reference System</referenceSystemInfo>
-  <contentInfo>Content</contentInfo>
+  <referenceSystemInfo>System Cyfeirio Gofodol</referenceSystemInfo>
+  <contentInfo>Cynnwys</contentInfo>
   <portrayalCatalogueInfo>Portrayal</portrayalCatalogueInfo>
-  <metadataConstraints>Constraints</metadataConstraints>
+  <metadataConstraints>Cyfyngiadau</metadataConstraints>
   <metadataMaintenance>Cynnal a chadw</metadataMaintenance>
   <applicationSchemaInfo>Schema info</applicationSchemaInfo>
   <noThesaurusName>Geiriau allweddol</noThesaurusName>
@@ -96,7 +96,7 @@
   <temporalRangeSection>Maint Amserol</temporalRangeSection>
   <beginPosition>Begin</beginPosition>
   <endPosition>End</endPosition>
-  <conformity>Conformity</conformity>
+  <conformity>Cydymffurfiad</conformity>
   <conformity_title>Title</conformity_title>
   <conformity_date>Reference Date</conformity_date>
   <explanation>Explanation</explanation>
@@ -148,7 +148,7 @@
   <metadataLanguage>Metadata language</metadataLanguage>
   <inspireServiceTaxonomy>INSPIRE Service Taxonomy</inspireServiceTaxonomy>
   <operatesOn>Coupled resource</operatesOn>
-  <extent>Extent</extent>
+  <extent>Rhychwant</extent>
   <freeTextKeywords>Other keywords</freeTextKeywords>
   <resource_url>URL</resource_url>
   <resource_protocol>Protocol</resource_protocol>

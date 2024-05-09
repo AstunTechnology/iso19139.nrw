@@ -335,7 +335,7 @@
     <description>Information about the content of a grid data cell</description>
   </element>
   <element name="gmd:MD_DataIdentification" id="36.0">
-    <label>Data identification</label>
+    <label>Adnabod data</label>
     <description>Information required to identify a dataset</description>
   </element>
   <element name="gmd:MD_DigitalTransferOptions" id="274.0">
@@ -349,7 +349,7 @@
     <description>Axis properties</description>
   </element>
   <element name="gmd:MD_Distribution" id="270.0">
-    <label>Distribution</label>
+    <label>Dosbarthiad</label>
     <description>Information about the distributor of and options for obtaining the
       resource
     </description>
@@ -416,7 +416,7 @@
     <description>Keywords, their type and reference source</description>
   </element>
   <element name="gmd:MD_LegalConstraints" id="69.0">
-    <label>Legal constraints</label>
+    <label>Cyfyngiadau cyfreithiol</label>
     <description>Restrictions and legal prerequisites for accessing and using the resource or
       metadata
     </description>
@@ -635,18 +635,18 @@
     </description>
   </element>
   <element name="gmd:characterSet" id="4.0" context="gmd:MD_Metadata">
-    <label>Character set</label>
+    <label>Set nodau</label>
     <description>Full name of the character coding standard used for the metadata</description>
     <condition>conditional</condition>
     <_condition>conditional / ISO/IEC 10646-1 not used and not defined by encoding?</_condition>
   </element>
   <element name="gmd:characterSet" id="40.0" context="gmd:MD_DataIdentification">
-    <label>Character set</label>
+    <label>Set nodau</label>
     <description>The character encoding used in the dataset</description>
     <_condition>Conditional / ISO 10646-1 not used?</_condition>
   </element>
   <element name="gmd:characterSet" id="4.0">
-    <label>Character set</label>
+    <label>Set nodau</label>
     <description>Full name of the character coding standard used for the metadata
       set
     </description>
@@ -947,7 +947,7 @@
     <condition>mandatory</condition>
   </element>
   <element name="gmd:denominator" id="57.0">
-    <label>Denominator</label>
+    <label>Enwadur</label>
     <description>The number below the line in a vulgar fraction</description>
     <condition>add either a denominator or a distance</condition>
     <helper>
@@ -1045,7 +1045,7 @@
     <condition>mandatory</condition>
   </element>
   <element name="gmd:distance" id="61.0">
-    <label>Distance</label>
+    <label>Pellter</label>
     <description>Ground sample distance</description>
     <condition>Provide a distance if no equivalent Scale is documented</condition>
     <helper relAtt="uom">
@@ -1199,13 +1199,13 @@
     </_condition>
   </element>
   <element name="gmd:extent" id="140.0" context="gmd:DQ_Scope">
-    <label>Extent</label>
+    <label>Rhychwant</label>
     <description>Information about the horizontal, vertical and temporal extent of the data
       specified by the scope
     </description>
   </element>
   <element name="gmd:extent" id="351.0" context="gmd:EX_TemporalExtent">
-    <label>Extent</label>
+    <label>Rhychwant</label>
     <description>Date and time for the content of the dataset</description>
     <condition>mandatory</condition>
   </element>
@@ -1448,7 +1448,7 @@
   </element>
   <element name="gmd:language" context="gmd:MD_DataIdentification"
            id="39.0">
-    <label>Dataset Language</label>
+    <label>Iaith y set ddata</label>
     <description>Language used within the data resource</description>
     <condition>mandatory</condition>
   </element>
@@ -2114,7 +2114,7 @@
     <condition>mandatory</condition>
   </element>
   <element name="gmd:parentIdentifier" id="5.0">
-    <label>Parent identifier</label>
+    <label>Dynodydd Rhiant</label>
     <btnLabel>Add parent record</btnLabel>
     <btnClass>fa fa-sitemap</btnClass>
     <description>File identifier of the metadata that is a parent to this child metadata
@@ -2301,7 +2301,7 @@
     </description>
   </element>
   <element name="gmd:report" id="80.0">
-    <label>Conformity</label>
+    <label>Cydymffurfiad</label>
     <description>Statement of conformity with the product specification or user requirement against which the data is being evaluated
     </description>
     <condition>mandatory</condition>
@@ -3413,10 +3413,10 @@
     <label>Range meaning</label>
   </element>
   <element name="gml:verticalDatum">
-    <label>Vertical datum</label>
+    <label>Dyddiad fertigol</label>
   </element>
   <element name="gml:VerticalDatum">
-    <label>Vertical datum</label>
+    <label>Dyddiad fertigol</label>
   </element>
   <element name="gml:realizationEpoch">
     <label>Realization epoch</label>
@@ -3580,11 +3580,11 @@
   <!-- nrw specific -->
   <element name="nrw:internalInfo">
   <label>Elfennau CNC</label>
-  </element> 
+  </element>
 
   <element name="nrw:internalLocationInfo">
   <label>Lleoliad Mewnol CNC</label>
-  </element> 
+  </element>
 
   <element name="nrw:internalContactInfo">
   <label>Cyswllt Mewnol CNC</label>
