@@ -67,7 +67,6 @@
 
   <!-- Specific schema rendering -->
   <xsl:template mode="getMetadataTitle" match="gmd:MD_Metadata|*[@gco:isoType = 'gmd:MD_Metadata']">
-    <xsl:message>=== permalink template ===</xsl:message>
     <xsl:for-each select="gmd:identificationInfo/*/gmd:citation/*/gmd:title">
       <xsl:call-template name="localised">
         <xsl:with-param name="langId" select="$langId"/>
