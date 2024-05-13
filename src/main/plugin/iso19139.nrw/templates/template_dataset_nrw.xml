@@ -11,6 +11,7 @@
   xmlns:xlink="http://www.w3.org/1999/xlink"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns:nrw="http://naturalresources.wales/nrw">
+  <gmd:fileIdentifier/>
   <gmd:language xmlns:nrw="http://naturalresources.wales/nrw" xmlns:gml="http://www.opengis.net/gml/3.2">
     <gmd:LanguageCode codeList="http://www.loc.gov/standards/iso639-2/" codeListValue="eng">English</gmd:LanguageCode>
   </gmd:language>
