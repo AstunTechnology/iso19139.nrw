@@ -67,8 +67,25 @@
         </xsl:copy>
     </xsl:template>
 
+
     <!-- Remove gco:nilReason attribute from the root element -->
     <xsl:template match="/gmd:MD_Metadata/@gco:nilReason"/>
+    
+    <!-- Add a locale element if there isn't one already -->
+    <xsl:template match="/gmd:MD_Metadata[not(gmd:locale)]">
+        <gmd:MD_Metadata>
+            <xsl:message>=== adding a locale ===</xsl:message>
+            <gmd:locale>
+                <gmd:PT_Locale id="CY">
+                    <gmd:languageCode>
+                        <gmd:LanguageCode codeList="" codeListValue="wel"/>
+                    </gmd:languageCode>
+                    <gmd:characterEncoding/>
+                </gmd:PT_Locale>
+            </gmd:locale>
+            <xsl:apply-templates/>
+        </gmd:MD_Metadata>
+    </xsl:template>
     
     <!-- Fix codelist URL for metadata language element -->
     <xsl:template match="/gmd:MD_Metadata/gmd:language">
@@ -290,5 +307,8 @@
             <xsl:copy-of select="."/>
         </gmd:topicCategory>
     </xsl:template>
+
+    
+
   
 </xsl:stylesheet>
