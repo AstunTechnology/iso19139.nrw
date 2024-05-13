@@ -165,8 +165,8 @@
   <addUseConstraints>Add use contraints</addUseConstraints>
   <accessLimitations>Limitations on Public Access and Use</accessLimitations>
   <addContact>Add contact</addContact>
-  <addVerticalExtentCRS>with CRS</addVerticalExtentCRS>
-  <addVerticalExtentDatum>with Datum</addVerticalExtentDatum>
+  <addVerticalExtentCRS>ODN Height</addVerticalExtentCRS>
+  <addVerticalExtentDatum>Mean Sea Level</addVerticalExtentDatum>
   <verticalExtent>Vertical Extent</verticalExtent>
   <addVerticalExtent>Add Vertical Extent</addVerticalExtent>
   <medinextent>Medin Extent Keyword</medinextent>
