@@ -1271,20 +1271,24 @@
       <xsl:copy-of select="gn-fn-index:add-multilingual-field(
                             $roleField, $organisationName, $languages)"/>
     </xsl:if>
+    
     <xsl:element name="contact{$fieldSuffix}">
       <xsl:attribute name="type" select="'object'"/>{
       <xsl:if test="$organisationName">
         "organisationObject": <xsl:value-of select="gn-fn-index:add-multilingual-field(
-                              'organisation', $organisationName, $languages)"/>,
+                              'organisation', $organisationName, $languages, true())"/>,
       </xsl:if>
       "role":"<xsl:value-of select="$role"/>",
-      "email":"<xsl:value-of select="gn-fn-index:json-escape($email[1])"/>",
-      "website":"<xsl:value-of select="$website"/>",
-      "logo":"<xsl:value-of select="$logo"/>",
-      "individual":"<xsl:value-of select="gn-fn-index:json-escape($individualName)"/>",
-      "position":"<xsl:value-of select="gn-fn-index:json-escape($positionName)"/>",
-      "phone":"<xsl:value-of select="gn-fn-index:json-escape($phone[1])"/>",
-      "address":"<xsl:value-of select="gn-fn-index:json-escape($address)"/>"
+      "email":"<xsl:value-of select="util:escapeForJson($email[1])"/>",
+      "website":"<xsl:value-of select="util:escapeForJson($website)"/>",
+      "logo":"<xsl:value-of select="util:escapeForJson($logo)"/>",
+      "individual":"<xsl:value-of select="util:escapeForJson($individualName)"/>",
+      "position":"<xsl:value-of select="util:escapeForJson($positionName)"/>",
+      "phone":"<xsl:value-of select="util:escapeForJson($phone[1])"/>",
+      "address":"<xsl:value-of select="util:escapeForJson($address)"/>"
+      <xsl:if test="@gco:nilReason">
+        ,"nilReason": "<xsl:value-of select="@gco:nilReason"/>"
+      </xsl:if>
       }
     </xsl:element>
   </xsl:template>
