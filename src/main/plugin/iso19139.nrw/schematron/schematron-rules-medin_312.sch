@@ -223,7 +223,26 @@
      
      2024-01-15 - Version 3.1.2
      ===========================================================================
-          
+	 30/04/2024 COALSH MEDIN - Keywords: Expanded rules around INSPIRE keywords 
+	 to allow at least one INSPIRE keyword to come from either: 
+	 
+	  - http://vocab.nerc.ac.uk/collection/P22/
+	  - https://inspire.ec.europa.eu/theme
+	  - https://www.eionet.europa.eu/gemet/inspire-theme
+	  
+	 Rather than NVS P22 (http://vocab.nerc.ac.uk/collection/P22/) only.
+	 
+	 2024-04-30 - Version 3.1.2
+     ===========================================================================
+	 01/05/2024 COALSH - Unique Resource Identifier: Removed assert test that 
+	 checks to ensure that codeSpace tags are present in Unique Resource Identifier
+	 element. Test is not inline with current schema rules as the inclusion of The
+	 Code Space sub element is conditional on whether the Code sub-element does not 
+	 by itself uniquely identify the resource.
+	 
+	 2024-05-01 - Version 3.1.2
+     ===========================================================================
+	 
 -->
 
 <sch:schema xmlns:sch="http://purl.oclc.org/dsdl/schematron" queryBinding="xslt" schemaVersion="3.1.2">
@@ -249,9 +268,6 @@
 
   <!-- Namespace for ISO 19119 - Metadata Describing Services -->
   <sch:ns prefix="srv" uri="http://www.isotc211.org/2005/srv"/>
-
-  <!-- Namespace for Geonetwork -->
-  <sch:ns prefix="geonet" uri="http://geonetworkopensource.org/geonet"/>
 
   <!-- ========================================================================================== -->
   <!-- Concrete Patterns                                                                          -->
@@ -388,8 +404,7 @@
       sensor malfunction.
     </sch:p>
   </sch:pattern>
-  <!-- <sch:pattern is-a="TypeNotNillablePattern" fpi="MEDIN3-NotNillable"> -->
-  <sch:pattern is-a="TypeNotNillablePattern" id="abstract-NotNillable">
+  <sch:pattern is-a="TypeNotNillablePattern" id="MEDIN3-NotNillable">
     <sch:param name="context"
       value="//gmd:MD_Metadata[1]/gmd:identificationInfo[1]/*[1]/gmd:abstract"/>
   </sch:pattern>
@@ -674,16 +689,6 @@
         count(../../../../../../gmd:hierarchyLevel) = 0"
         > Unique Resource Identifier is mandatory for datasets and series. One or more
         shall be provided. code tag is missing.</sch:assert>
-      <sch:assert
-        test="
-        ((../../../../../../gmd:hierarchyLevel[1]/*[1]/@codeListValue = 'dataset' or
-        ../../../../../../gmd:hierarchyLevel[1]/*[1]/@codeListValue = 'series') and
-        count(gmd:codeSpace) &gt;= 1) or
-        (../../../../../../gmd:hierarchyLevel[1]/*[1]/@codeListValue != 'dataset' and
-        ../../../../../../gmd:hierarchyLevel[1]/*[1]/@codeListValue != 'series') or
-        count(../../../../../../gmd:hierarchyLevel) = 0"
-        > Unique Resource Identifier is mandatory for datasets and series. One or more
-        shall be provided. codeSpace tag is missing.</sch:assert>
     </sch:rule>
   </sch:pattern>
   <!-- Ensure that (Unique) Resource Identifier has a value -->
@@ -1061,8 +1066,9 @@
       <sch:assert test="count(*/gmd:descriptiveKeywords/*/gmd:thesaurusName) &gt;= 1">
         Thesaurus Name is mandatory.
       </sch:assert>
-<sch:assert test="count(*/gmd:descriptiveKeywords/*/gmd:keyword[contains(*/@xlink:href, 'http://vocab.nerc.ac.uk/collection/P22/') or contains(*/@xlink:href, 'http://inspire.ec.europa.eu/theme/')]) &gt;= 1">        At least one INSPIRE keyword from http://vocab.nerc.ac.uk/collection/P22/ or http://inspire.ec.europa.eu/theme/ must be provided.
-      </sch:assert>
+	  <sch:assert test="count(*/gmd:descriptiveKeywords/*/gmd:keyword[(contains(*/@xlink:href, 'http://vocab.nerc.ac.uk/collection/P22/') or contains(*/@xlink:href, 'https://inspire.ec.europa.eu/theme') or contains(*/@xlink:href, 'https://www.eionet.europa.eu/gemet/'))]) &gt;= 1">
+		At least one INSPIRE keyword from either http://vocab.nerc.ac.uk/collection/P22/, https://inspire.ec.europa.eu/theme or https://www.eionet.europa.eu/gemet/inspire-theme must be provided.
+	  </sch:assert> 
       <sch:assert test="(contains(../gmd:hierarchyLevel/*/@codeListValue, 'dataset') or 
         contains(../gmd:hierarchyLevel/*/@codeListValue, 'series')) or
         (contains(../gmd:hierarchyLevel/*/@codeListValue, 'service') and 
@@ -1740,7 +1746,7 @@
       </sch:assert>
     </sch:rule>
     <sch:rule context="/*/gmd:identificationInfo/*/*/*/gmd:temporalElement/*/gmd:extent">
-      <sch:assert test="count(*//gml:beginPosition) >= 1">
+      <sch:assert test="count(*/gml:beginPosition) >= 1">
         Temporal extent: beginPosition is mandatory.
       </sch:assert>
     </sch:rule>
@@ -2657,7 +2663,7 @@
         Data Quality: report: result: pass: must be either true, false or unknown.
       </sch:assert>
     </sch:rule>
-    <sch:rule context="/*/gmd:dataQualityInfo/*/gmd:report/*/gmd:result/*[namespace-uri() != 'http://www.fao.org/geonetwork']">
+    <sch:rule context="/*/gmd:dataQualityInfo/*/gmd:report/*/gmd:result/*">
       <sch:assert test="count(gmd:explanation) &gt; 0 or (count(gmd:explanation[@gco:nilReason = 'inapplicable']) > 0)">
         Data Quality: report: result: existance of explanation tag is mandatory with a character string or with a nil reason of 'inapplicable'.
       </sch:assert>
@@ -3066,7 +3072,7 @@
     </sch:rule>
   </sch:pattern>
   <sch:pattern abstract="true" id="TypeNotNillablePattern">
-    <sch:rule context="$context[namespace-uri() != 'http://www.fao.org/geonetwork']">
+    <sch:rule context="$context">
       <sch:assert test="string-length(normalize-space(.)) &gt; 0 and count(./@gco:nilReason) = 0"> MEDIN: The
         <sch:name/> element is not nillable and shall have a value. This test may be called by the following 
         Metadata Items: Title, Abstract, Keyword, Geographic Bounding
@@ -3076,7 +3082,7 @@
     </sch:rule>
   </sch:pattern>
   <sch:pattern abstract="true" id="IsoCodeListPattern">
-    <sch:rule context="$context[namespace-uri() != 'http://www.fao.org/geonetwork']">
+    <sch:rule context="$context">
       <sch:assert test="string-length(@codeListValue) &gt; 0"> The codeListValue attribute
         does not have a value. This test may be called by the following Metadata Items: Keyword,
         Dataset Reference Date, Responsible Organisation, Frequency of Update,
