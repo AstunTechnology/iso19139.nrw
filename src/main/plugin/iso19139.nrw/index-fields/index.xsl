@@ -338,7 +338,6 @@
               <resourceDate type="object">
                 {"type": "<xsl:value-of select="$dateType"/>", "date": "<xsl:value-of select="$zuluDate"/>"}
               </resourceDate>
-              <!-- <xsl:message>=== ZuluDateTime #2 = <xsl:value-of select="$zuluDate"/> ===</xsl:message> -->
             </xsl:if>
           </xsl:for-each>
 
