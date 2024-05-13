@@ -269,6 +269,9 @@
   <!-- Namespace for ISO 19119 - Metadata Describing Services -->
   <sch:ns prefix="srv" uri="http://www.isotc211.org/2005/srv"/>
 
+    <!-- Include geonetwork namespace -->
+  <sch:ns prefix="geonet" uri="http://www.fao.org/geonetwork"/>
+
   <!-- ========================================================================================== -->
   <!-- Concrete Patterns                                                                          -->
   <!-- ========================================================================================== -->
@@ -602,13 +605,13 @@
     </sch:rule>
   </sch:pattern>
 
-  <sch:pattern is-a="TypeNotNillablePattern" id="MedinResouceLocatorName-NotNillable">
-    <sch:param name="context" value="/*/gmd:distributionInfo/*/gmd:transferOptions/*/gmd:onLine/*/gmd:name"/>
+  <sch:pattern is-a="TypeNotNillablePattern" id="MedinResourceLocatorName-NotNillable">
+    <sch:param name="context" value="/*/gmd:distributionInfo/*/gmd:transferOptions/*/gmd:onLine/*/gmd:name/*[namespace-uri() != 'http://www.fao.org/geonetwork']"/>
   </sch:pattern>
-  <sch:pattern is-a="TypeNotNillablePattern" id="MedinResouceLocatorDescription-NotNillable">
-    <sch:param name="context" value="/*/gmd:distributionInfo/*/gmd:transferOptions/*/gmd:onLine/*/gmd:description"/>
+  <sch:pattern is-a="TypeNotNillablePattern" id="MedinResourceLocatorDescription-NotNillable">
+    <sch:param name="context" value="/*/gmd:distributionInfo/*/gmd:transferOptions/*/gmd:onLine/*/gmd:description/*[namespace-uri() != 'http://www.fao.org/geonetwork']"/>
   </sch:pattern>
-  <sch:pattern is-a="TypeNotNillablePattern" id="MedinResouceLocatorFunction-NotNillable">
+  <sch:pattern is-a="TypeNotNillablePattern" id="MedinResourceLocatorFunction-NotNillable">
     <sch:param name="context" value="/*/gmd:distributionInfo/*/gmd:transferOptions/*/gmd:onLine/*/gmd:function"/>
   </sch:pattern>
   
@@ -1746,7 +1749,7 @@
       </sch:assert>
     </sch:rule>
     <sch:rule context="/*/gmd:identificationInfo/*/*/*/gmd:temporalElement/*/gmd:extent">
-      <sch:assert test="count(*/gml:beginPosition) >= 1">
+      <sch:assert test="count(*//gml:beginPosition) >= 1">
         Temporal extent: beginPosition is mandatory.
       </sch:assert>
     </sch:rule>
@@ -2663,7 +2666,7 @@
         Data Quality: report: result: pass: must be either true, false or unknown.
       </sch:assert>
     </sch:rule>
-    <sch:rule context="/*/gmd:dataQualityInfo/*/gmd:report/*/gmd:result/*">
+    <sch:rule context="/*/gmd:dataQualityInfo/*/gmd:report/*/gmd:result/*[namespace-uri() != 'http://www.fao.org/geonetwork']">
       <sch:assert test="count(gmd:explanation) &gt; 0 or (count(gmd:explanation[@gco:nilReason = 'inapplicable']) > 0)">
         Data Quality: report: result: existance of explanation tag is mandatory with a character string or with a nil reason of 'inapplicable'.
       </sch:assert>
@@ -3072,8 +3075,22 @@
     </sch:rule>
   </sch:pattern>
   <sch:pattern abstract="true" id="TypeNotNillablePattern">
-    <sch:rule context="$context">
-      <sch:assert test="string-length(normalize-space(.)) &gt; 0 and count(./@gco:nilReason) = 0"> MEDIN: The
+    <sch:rule context="$context[namespace-uri() != 'http://www.fao.org/geonetwork']">
+      <sch:assert test="name() = 'geonet:element' or count(*[name()!='geonet:element']) &gt; 0 or
+                    namespace-uri() = 'http://www.isotc211.org/2005/gco' or
+                    namespace-uri() = 'http://www.isotc211.org/2005/gmx' or
+                    namespace-uri() = 'http://www.opengis.net/gml/3.2' or
+                    namespace-uri() = 'http://www.opengis.net/gml' or
+                    @codeList or
+                    @codeListValue or
+                    local-name() = 'MD_TopicCategoryCode' or
+                    local-name() = 'URL' or
+                    (@gco:nilReason = 'inapplicable' or
+                    @gco:nilReason = 'missing' or
+                    @gco:nilReason = 'template' or
+                    @gco:nilReason = 'unknown' or
+                    @gco:nilReason = 'withheld') or
+                    @xlink:href"> MEDIN: The
         <sch:name/> element is not nillable and shall have a value. This test may be called by the following 
         Metadata Items: Title, Abstract, Keyword, Geographic Bounding
         Box, Spatial Reference System, Responsible Organisation, Metadata Date,
@@ -3082,7 +3099,7 @@
     </sch:rule>
   </sch:pattern>
   <sch:pattern abstract="true" id="IsoCodeListPattern">
-    <sch:rule context="$context">
+    <sch:rule context="$context[namespace-uri() != 'http://www.fao.org/geonetwork']">
       <sch:assert test="string-length(@codeListValue) &gt; 0"> The codeListValue attribute
         does not have a value. This test may be called by the following Metadata Items: Keyword,
         Dataset Reference Date, Responsible Organisation, Frequency of Update,
