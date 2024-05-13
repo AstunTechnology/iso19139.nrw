@@ -149,10 +149,19 @@
          </gmd:distributionFormat>
       </xsl:if>
       <xsl:apply-templates select="gmd:transferOptions" />
-
     </xsl:copy>
-
   </xsl:template>
+
+  <!-- add a gmd:protocol element if there isn't one -->
+<xsl:template match="gmd:MD_Distribution/gmd:transferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource[not(gmd:protocol)]" priority="1000">
+  <gmd:CI_OnlineResource>
+  <xsl:message>=== gmd:protocol ===</xsl:message>
+    <xsl:apply-templates/>
+        <gmd:protocol>
+            <gco:CharacterString/>
+        </gmd:protocol>
+  </gmd:CI_OnlineResource>
+</xsl:template>
 
   <!-- add a Medin vertical extent element if missing and remove it with update-fixed-info if it's not used -->
   <xsl:template match="gmd:EX_Extent" priority="1000">

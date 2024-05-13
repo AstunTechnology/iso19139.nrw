@@ -961,6 +961,7 @@
         <for name="nrw:MD_ContentInfo"/>
         <for name="nrw:MD_InternalInfo"/>
         <for name="gmd:code"/>
+        <for name="gmd:protocol"/>
       </flatModeExceptions>
 
     </view>
