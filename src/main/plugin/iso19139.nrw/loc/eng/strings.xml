@@ -609,12 +609,11 @@ E.g. Feingold D. and Evans P.G.H 2014 Bottlenose Dolphin and Harbour Porpoise Mo
 <verticalextent_help>
     <div class="row">
     <div class="col-xs-offset-2 col-xs-8">
-      <p class="help-block">The purpose of this element is to describe the vertical range of the data resource (where relevant).</p>
-      <ol class="help-block">
-        <li>Optional. Delete if not required. Use of nilreasons is not recommended.</li>
-        <li>Provide a minimum value and maximum value in the units of the provided coordinate reference system</li>
-        <li>Identify the coordinate reference system used for vertical extent measurements from the dropdown list.</li>
-        <li>For more guidelines see <a target="_blank" href="https://www.agi.org.uk/40-gemini/1062-gemini-datasets-and-data-series#16">Gemini Guidance</a></li>
+      <p class="help-block">The purpose of this element is to describe the vertical range of the data resource (where relevant). Optional. Delete if not required. Use of nilreasons is not recommended.</p>
+        <ol class="help-block">
+        <li>Pick <b>+ ODN Height</b> if you want to add a vertical extent selected from a map or chart and relative to OS Chart Datum (Newlyn).</li>
+        <li>Pick <b>+ Mean Sea Level</b> if you have recorded vertical extent using an instrument from a vessel e.g. a depth finder or towed sledge.</li>
+        <li>For Marine environments the <b>Maximum Value</b> will be the deepest depth recorded if subtidal, or if intertidal, the highest point recorded. The <b>Minimum Value</b> will be the shallowest depth recorded if subtidal or if intertidal the lowest recorded point.</li>
       </ol>
       </div>
   </div>
