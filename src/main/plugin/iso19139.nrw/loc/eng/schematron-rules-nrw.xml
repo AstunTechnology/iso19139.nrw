@@ -8,6 +8,6 @@
     <NRW101.alert.nocontact>At least one Internal Contact must be provided</NRW101.alert.nocontact>
 
     <NRW200>Vertical Extent</NRW200>
-    <NRW200.alert>There should be at most one vertical extent element, with either a CRS or a Datum, not both</NRW200.alert>
+    <NRW200.alert>There should be zero or one vertical extent element, with either a CRS or a Datum, not both</NRW200.alert>
 
  </strings>

@@ -1069,8 +1069,8 @@
       <sch:assert test="count(*/gmd:descriptiveKeywords/*/gmd:thesaurusName) &gt;= 1">
         Thesaurus Name is mandatory.
       </sch:assert>
-	  <sch:assert test="count(*/gmd:descriptiveKeywords/*/gmd:keyword[(contains(*/@xlink:href, 'http://vocab.nerc.ac.uk/collection/P22/') or contains(*/@xlink:href, 'https://inspire.ec.europa.eu/theme') or contains(*/@xlink:href, 'https://www.eionet.europa.eu/gemet/'))]) &gt;= 1">
-		At least one INSPIRE keyword from either http://vocab.nerc.ac.uk/collection/P22/, https://inspire.ec.europa.eu/theme or https://www.eionet.europa.eu/gemet/inspire-theme must be provided.
+	  <sch:assert test="count(*/gmd:descriptiveKeywords/*/gmd:keyword[(contains(*/@xlink:href, 'http://vocab.nerc.ac.uk/collection/P22/') or contains(*/@xlink:href, 'http://inspire.ec.europa.eu/theme') or contains(*/@xlink:href, 'http://www.eionet.europa.eu/gemet/'))]) &gt;= 1">
+		At least one INSPIRE keyword from either http://vocab.nerc.ac.uk/collection/P22/, http://inspire.ec.europa.eu/theme or http://www.eionet.europa.eu/gemet/inspire-theme must be provided.
 	  </sch:assert> 
       <sch:assert test="(contains(../gmd:hierarchyLevel/*/@codeListValue, 'dataset') or 
         contains(../gmd:hierarchyLevel/*/@codeListValue, 'series')) or

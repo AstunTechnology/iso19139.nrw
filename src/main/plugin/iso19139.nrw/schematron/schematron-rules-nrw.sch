@@ -39,7 +39,7 @@
    <sch:pattern>
         <sch:title>$loc/strings/NRW200</sch:title>
         <sch:rule context="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent">
-            <sch:assert test="count(./gmd:verticalElement)=1">$loc/strings/NRW200.alert</sch:assert>
+            <sch:assert test="count(./gmd:verticalElement)&lt;=1">$loc/strings/NRW200.alert</sch:assert>
      </sch:rule>
     </sch:pattern>
 
