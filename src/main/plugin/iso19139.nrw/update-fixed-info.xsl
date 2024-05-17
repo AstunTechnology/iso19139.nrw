@@ -247,7 +247,6 @@
         <xsl:message>=== Removing Medin vertical extent keyword ===</xsl:message>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:message>=== Copying Medin keyword ===</xsl:message>
         <xsl:copy>
           <xsl:apply-templates select="@*|node()"/>
         </xsl:copy>
@@ -435,7 +434,6 @@
 
              <!-- Resource identifier for services -->
              
-              <xsl:message>=== resource identifier test ===</xsl:message>
                
                 <gmd:identifier>
                     <gmd:MD_Identifier>

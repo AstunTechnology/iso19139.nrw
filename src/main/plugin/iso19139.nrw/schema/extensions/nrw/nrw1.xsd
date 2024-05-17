@@ -11,8 +11,7 @@
 	</xs:annotation>
 	<xs:import namespace="http://www.isotc211.org/2005/gmd" schemaLocation="../../gmd/gmd.xsd"/>
 	<xs:import namespace="http://www.isotc211.org/2005/gco" schemaLocation="../../gco/gco.xsd"/>
-	<xs:import namespace="http://www.isotc211.org/2005/srv" schemaLocation="../../srv/srv.xsd"/>
-	<xs:import namespace="http://www.opengis.net/gml/3.2" schemaLocation="../../gml/gml.xsd"/>
+
 	<!-- =========================================================================== -->
 
 	<xs:annotation>
@@ -21,7 +20,7 @@
 
 	<!-- Define elements for Internal NRW Info. Extends gmd:contentInfo -->
 
-	<xs:element name="MD_ContentInfo" minOccurs="1" maxOccurs="1" type="nrw:MD_ContentInfo_Type" subsitutionGroup="gmd:AbstractMD_ContentInformation"/>
+	<xs:element name="MD_ContentInfo" type="nrw:MD_ContentInfo_Type" substitutionGroup="gmd:AbstractMD_ContentInformation"/>
 
 	<xs:complexType name="MD_ContentInfo_Type">
 		<xs:complexContent>
