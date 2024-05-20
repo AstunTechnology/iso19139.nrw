@@ -721,7 +721,7 @@
         <section name="licence">
              <section name="licence">
           <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints[./gmd:useConstraints]/gmd:otherConstraints[gmx:Anchor]">
-            
+
           </field>
           <action type="add" btnLabel="addlicenceType" name="otherConstraints" or="otherConstraints" in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints[./gmd:useConstraints]/gmd:otherConstraints[gmx:Anchor]) = 0">
             <template>
@@ -869,8 +869,7 @@
                   <gml:usesVerticalCS/>
                   <gml:verticalDatum/>
                   </gml:VerticalCRS>
-                  </gmd:verticalCRS>
-                  </gmd:EX_VerticalExtent>
+                </gmd:EX_VerticalExtent>
               </gmd:verticalElement>
               </snippet>
             </template>
