@@ -206,6 +206,9 @@
   <image>Image</image>
   <movie>Movie</movie>
   <text>Text or Plaintext</text>
+  <!-- missing translation errors in logs -->
+  <nilReason>+ NilReason</nilReason>
+
 
 
 

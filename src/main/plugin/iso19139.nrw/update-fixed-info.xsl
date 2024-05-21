@@ -214,13 +214,14 @@
     </xsl:template>
 
     <!-- override template for updating datestamp to just use date -->
+    <!-- now over-overridden to use dateTime again -->
     <xsl:template match="gmd:dateStamp">
     <xsl:choose>
       <xsl:when test="/root/env/changeDate">
         <xsl:copy>
-          <gco:Date>
-            <xsl:value-of select="substring(/root/env/changeDate,1,10)"/>
-          </gco:Date>
+          <gco:DateTime>
+            <xsl:value-of select="/root/env/changeDate"/>
+          </gco:DateTime>
         </xsl:copy>
       </xsl:when>
       <xsl:otherwise>
@@ -235,11 +236,46 @@
     <xsl:copy>
       <!-- Preserve existing gco:nilReason if empty, but if not defined add a default value unknown -->
       <xsl:apply-templates select="@*"/>
-      <xsl:if test="not(gco:nilReason)">
+      <xsl:if test="not(@gco:nilReason)">
         <xsl:attribute name="gco:nilReason">unknown</xsl:attribute>
       </xsl:if>
     </xsl:copy>
   </xsl:template>
+
+  <xsl:template match="gmd:MD_Format/gmd:specification[not(string(gco:CharacterString))]" priority="10">
+    <xsl:copy>
+      <!-- Preserve existing gco:nilReason if empty, but if not defined add a default value unknown -->
+      <xsl:apply-templates select="@*"/>
+      <xsl:if test="not(@gco:nilReason)">
+        <xsl:attribute name="gco:nilReason">unknown</xsl:attribute>
+      </xsl:if>
+    </xsl:copy>
+  </xsl:template>
+
+  <!-- Template to handle gmd:version with gco:CharacterString -->
+    <xsl:template match="gmd:MD_Format/gmd:version">
+        <xsl:copy>
+            <!-- Copy all children except attributes -->
+            <xsl:apply-templates select="node()"/>
+        </xsl:copy>
+    </xsl:template>
+
+    <!-- Template to handle gmd:specification with gco:CharacterString -->
+    <xsl:template match="gmd:MD_Format/gmd:specification">
+        <xsl:copy>
+            <!-- Copy all children except attributes -->
+            <xsl:apply-templates select="node()"/>
+        </xsl:copy>
+    </xsl:template>
+
+
+    <!-- Template to copy gco:CharacterString without the gco:nilReason attribute -->
+    <xsl:template match="gco:CharacterString">
+        <xsl:element name="gco:CharacterString">
+            <!-- Copy text content if it exists -->
+            <xsl:value-of select="."/>
+        </xsl:element>
+    </xsl:template>
 
   <xsl:template match="gmd:geographicElement[gmd:EX_GeographicDescription/gmd:geographicIdentifier/gmd:MD_Identifier/gmd:authority/gmd:CI_Citation/gmd:title/gco:CharacterString ='SeaVoX Vertical Co-ordinate Coverages']">
     <xsl:choose>
@@ -516,6 +552,8 @@
         </xsl:copy>
       </xsl:template>
 
+    <!-- =============================================================== -->
+
        <!--  Delete empty srv:operateson elements  -->
   <xsl:template match="srv:operatesOn" priority="100">
         <xsl:choose>
@@ -529,5 +567,39 @@
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
+
+    <!-- =============================================================== -->
+
+
+<!-- Remove empty boolean  and set gco:nilReason='unknown' -->
+  <!-- <xsl:template match="*[gco:Boolean and not(string(gco:Boolean))]" priority="1000">
+    <xsl:message>=== Remove empty Boolean and set nilReason===</xsl:message>
+    <xsl:copy>
+      <xsl:copy-of select="@*[name() != 'gco:nilReason']" />
+      <xsl:attribute name="gco:nilReason">unknown</xsl:attribute>
+    </xsl:copy>
+  </xsl:template> -->
+
+  <!-- =============================================================== -->
+
+
+<!-- Remove empty boolean  and set gco:nilReason='unknown' -->
+  <xsl:template match="//gmd:pass[not(node()) and not(@*)]" priority="2000">
+    <!-- <xsl:message>=== If no gco:Boolean, add nilReason unknown ===</xsl:message> -->
+    <xsl:copy>
+      <xsl:attribute name="gco:nilReason">unknown</xsl:attribute>
+    </xsl:copy>
+  </xsl:template>
+
+      <!-- =============================================================== -->
+
+  <!-- Remove gco:nilReason if not empty boolean -->
+  <xsl:template match="*[string(gco:Boolean)]">
+   <!--  <xsl:message>=== Remove empty nilReason in gco:Boolean ===</xsl:message> -->
+    <xsl:copy>
+      <xsl:copy-of select="@*[name() != 'gco:nilReason']" />
+      <xsl:apply-templates select="*" />
+    </xsl:copy>
+  </xsl:template>
 
 </xsl:stylesheet>

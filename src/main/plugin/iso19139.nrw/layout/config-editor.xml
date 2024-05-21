@@ -76,9 +76,9 @@
           </xsl:template>
           Update-fixed-info.xsl already removes gco:Boolean when empty due to nilreason attribute, to avoid xsd errors. No need to change it.
     -->
-    <for name="gco:Boolean" xpath="/gmd:MD_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_DomainConsistency/gmd:result/gmd:DQ_ConformanceResult/gmd:pass" use="data-gn-checkbox-with-nilreason">
-      <directiveAttributes data-tag-name="gmd:pass" data-nilreason="eval#@gco:nilReason" data-labels='{"true": "conformant", "false": "notConformant", "unknown": "notEvaluated"}'/>
-    </for>
+    <!-- <for name="gco:Boolean" xpath="/gmd:MD_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_DomainConsistency/gmd:result/gmd:DQ_ConformanceResult/gmd:pass" use="data-gn-checkbox-with-nilreason">
+      <directiveAttributes data-tag-name="gmd:pass" data-nilreason="eval#@gco:nilReason" data-labels='{"true": "conformant", "false": "notConformant"}'/>
+    </for> -->
 
     <for name="gco:Date" use="data-gn-date-picker"/>
     <for name="gco:DateTime" use="data-gn-date-picker"/>
@@ -276,7 +276,6 @@
       <name ancestor="gmd:thesaurusName">gmd:code</name>
       <name ancestor="gmd:aggregateDataSetIdentifier">gmd:code</name>
       <name ancestor="gmd:CI_Citation">gmd:code</name>
-      <!-- NRW specifics -->
       <name ancestor="gmd:MD_Identifier">gmd:code</name>
       <name ancestor="gmd:RS_Identifier">gmd:code</name>
       <name ancestor="gmd:specification">gmd:title</name>
@@ -286,7 +285,7 @@
       <name>gmd:name</name>
       <name>gmd:deliveryPoint</name>
       <name>gmd:positionName</name>
-      <name>gmd:organisationName</name>
+      <name ancestor="gmd:contact">gmd:organisationName</name>
       <name>gmd:country</name>
       <name>gmd:electronicMailAddress</name>
       <name>gmd:explanation</name>
@@ -483,7 +482,7 @@
                        <gmd:name>
                           <gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/M01/current/BIN">Binary</gmx:Anchor>
                        </gmd:name>
-                       <gmd:version gco:nilReason="unknown">
+                       <gmd:version>
                           <gco:CharacterString/>
                        </gmd:version>
                        <gmd:specification>
@@ -498,7 +497,7 @@
                        <gmd:name>
                           <gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/M01/current/DB">Database</gmx:Anchor>
                        </gmd:name>
-                       <gmd:version gco:nilReason="unknown">
+                       <gmd:version>
                           <gco:CharacterString/>
                        </gmd:version>
                        <gmd:specification>
@@ -513,7 +512,7 @@
                        <gmd:name>
                           <gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/M01/current/DEL">Delimited</gmx:Anchor>
                        </gmd:name>
-                       <gmd:version gco:nilReason="unknown">
+                       <gmd:version>
                           <gco:CharacterString/>
                        </gmd:version>
                        <gmd:specification>
@@ -528,7 +527,7 @@
                        <gmd:name>
                           <gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/M01/current/DOC">Documents</gmx:Anchor>
                        </gmd:name>
-                       <gmd:version gco:nilReason="unknown">
+                       <gmd:version>
                           <gco:CharacterString/>
                        </gmd:version>
                        <gmd:specification>
@@ -543,7 +542,7 @@
                        <gmd:name>
                           <gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/M01/current/GIS">Geographic Information System</gmx:Anchor>
                        </gmd:name>
-                       <gmd:version gco:nilReason="unknown">
+                       <gmd:version>
                           <gco:CharacterString/>
                        </gmd:version>
                        <gmd:specification>
@@ -558,7 +557,7 @@
                        <gmd:name>
                           <gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/M01/current/IMG">Image</gmx:Anchor>
                        </gmd:name>
-                       <gmd:version gco:nilReason="unknown">
+                       <gmd:version>
                           <gco:CharacterString/>
                        </gmd:version>
                        <gmd:specification>
@@ -573,7 +572,7 @@
                        <gmd:name>
                           <gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/M01/current/MOV">Movie</gmx:Anchor>
                        </gmd:name>
-                       <gmd:version gco:nilReason="unknown">
+                       <gmd:version>
                           <gco:CharacterString/>
                        </gmd:version>
                        <gmd:specification>
@@ -588,7 +587,7 @@
                        <gmd:name>
                           <gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/M01/current/TXT">Text or Plaintext</gmx:Anchor>
                        </gmd:name>
-                       <gmd:version gco:nilReason="unknown">
+                       <gmd:version>
                           <gco:CharacterString/>
                        </gmd:version>
                        <gmd:specification>
@@ -823,8 +822,21 @@
           <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:useConstraints"/>
           <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints[./gmd:useConstraints]/gmd:otherConstraints[1]"/>
         </section>
+
+        <section name="attributionstatement">
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints[./gmd:useConstraints]/gmd:otherConstraints[2]"/>
+          <action type="add" btnLabel="addAttributionStatement" name="addAttributionStatement" or="otherConstraints" in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints">
+            <template>
+              <snippet>
+                    <gmd:otherConstraints>
+                      <gco:CharacterString></gco:CharacterString>
+                    </gmd:otherConstraints>
+              </snippet>
+            </template>
+          </action>
+        </section>
+        
         <section name="licence">
-             <section name="licence">
           <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints[./gmd:useConstraints]/gmd:otherConstraints[gmx:Anchor]">
 
           </field>
@@ -858,20 +870,7 @@
             </template>
           </action>
         </section>
-
-        </section>
-        <section name="attributionstatement">
-          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints[./gmd:useConstraints]/gmd:otherConstraints[3]"/>
-          <action type="add" btnLabel="addAttributionStatement" name="addAttributionStatement" or="otherConstraints" in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints">
-            <template>
-              <snippet>
-                    <gmd:otherConstraints>
-                      <gco:CharacterString></gco:CharacterString>
-                    </gmd:otherConstraints>
-              </snippet>
-            </template>
-          </action>
-        </section>
+        
         </section>
 
           <section name="verticalextent" displayIfRecord="contains(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:MD_Identifier/gmd:code/gco:CharacterString, 'NRW_')">
@@ -967,12 +966,38 @@
                   <gmd:maximumValue>
                     <gco:Real/>
                   </gmd:maximumValue>
-                  <gml:VerticalCRS gml:id="ID_vertcs1">
-                  <gml:identifier codeSpace="OGP">urn:ogc:def:datum:EPSG::5100</gml:identifier>
-                  <gml:name>Sea Level</gml:name>
-                  <gml:scope>depth is unadjusted and does not take into account tidal height</gml:scope>
-                  <gml:verticalDatum/>
-                  </gml:VerticalCRS>
+                   <gmd:verticalCRS>
+                <gml:VerticalCRS gml:id='epsg-crs-5701'>
+                  <gml:identifier codeSpace='OGP'>
+                    urn:ogc:def:crs:EPSG::5701</gml:identifier>
+                  <gml:name>ODN height</gml:name>
+                  <gml:scope>Geodetic and engineering surveying.</gml:scope>
+                  <gml:verticalCS>
+                    <gml:VerticalCS gml:id='epsg-cs-6499'>
+                      <gml:identifier codeSpace='OGP'>urn:ogc:def:cs:EPSG::6499</gml:identifier>
+                      <gml:name>Vertical CS. Axis: height (H). Orientation: up. UoM: m.</gml:name>
+                      <gml:remarks>Used in vertical coordinate reference systems.</gml:remarks>
+                      <gml:axis>
+                        <gml:CoordinateSystemAxis gml:id='epsg-axis-114' uom='urn:ogc:def:uom:EPSG::9001'>
+                          <gml:descriptionReference xlink:href='http://www.opengis.net/def/crs/EPSG/0/9904'/>
+                          <gml:identifier codeSpace='OGP'>urn:ogc:def:axis:EPSG::114</gml:identifier>
+                          <gml:axisAbbrev>H</gml:axisAbbrev>
+                          <gml:axisDirection codeSpace='EPSG'>up</gml:axisDirection>
+                        </gml:CoordinateSystemAxis>
+                      </gml:axis>
+                    </gml:VerticalCS>
+                  </gml:verticalCS>
+                  <gml:verticalDatum>
+                    <gml:VerticalDatum gml:id='epsg-datum-5101'>
+                      <gml:identifier codeSpace='OGP'>urn:ogc:def:datum:EPSG::5101</gml:identifier>
+                      <gml:name>Ordnance Datum Newlyn</gml:name>
+                      <gml:remarks>Orthometric heights.</gml:remarks>
+                      <gml:scope>Topographic mapping, geodetic survey.</gml:scope>
+                      <gml:anchorDefinition>Mean Sea Level at Newlyn between 1915 and 1921.</gml:anchorDefinition>
+                    </gml:VerticalDatum>
+                  </gml:verticalDatum>
+                </gml:VerticalCRS>
+              </gmd:verticalCRS>
                   </gmd:EX_VerticalExtent>
               </gmd:verticalElement>
               </snippet>
@@ -1037,7 +1062,7 @@
         <for name="gmd:spatialResolution"/>
         <for name="gmd:referenceSystemInfo"/>
         <for name="gmd:pointOfContact"/>
-        <for name="gmd:distributionFormat"/>
+        <!-- <for name="gmd:distributionFormat"/> -->
         <for name="gmd:contact"/>
         <for name="gmd:processor"/>
         <for name="gmd:specification"/>
@@ -1061,7 +1086,7 @@
         <for name="nrw:MD_ContentInfo"/>
         <for name="nrw:MD_InternalInfo"/>
         <for name="gmd:code"/>
-        <for name="gmd:protocol"/>
+        <!-- <for name="gmd:protocol"/> -->
       </flatModeExceptions>
 
     </view>

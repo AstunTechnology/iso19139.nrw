@@ -3667,4 +3667,15 @@
    <btnLabel>Add a Related Title</btnLabel>
   </element>
 
+  <!-- fixing missing translations in the logs -->
+  <element name="gml:remoteSchema">
+  <label>Remote Schema</label>
+  </element>
+  <element name="gml:anchorDefinition">
+  <label>Anchor Definition</label>
+  </element> 
+  <element name="nilReason">
+  <label>nilReason</label>
+  </element>
+
   </labels>
