@@ -285,14 +285,16 @@
       <name>gmd:name</name>
       <name>gmd:deliveryPoint</name>
       <name>gmd:positionName</name>
-      <name ancestor="gmd:contact">gmd:organisationName</name>
+      <name>gmd:organisationName</name>
       <name>gmd:country</name>
       <name>gmd:electronicMailAddress</name>
       <name>gmd:explanation</name>
       <name>gmd:supplementalInformation</name>
       <name>gmd:keyword</name>
+      <name>gmd:descriptiveKeywords</name>
       <name>gmd:alternateTitle</name>
       <name>gmd:parentIdentifier</name>
+      <name>gmx:Anchor</name>
       <name ancestor="gmd:MD_LegalConstraints">gmd:otherConstraints</name>
       <name ancestor="gmd:CI_OnlineResource">gmd:name</name>
       <name ancestor="gmd:MD_Format">gmd:name</name>

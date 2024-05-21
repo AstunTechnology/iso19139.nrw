@@ -568,6 +568,22 @@
         </xsl:choose>
     </xsl:template>
 
+        <!-- =============================================================== -->
+
+       <!--  Delete empty gmd:LocalisedCharacterString elements  -->
+  <xsl:template match="gmd:textGroup" priority="100">
+        <xsl:choose>
+            <xsl:when test="not(gmd:LocalisedCharacterString/text())">
+                <xsl:message>=== Removing gmd:textGroup ===</xsl:message>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:copy>
+                    <xsl:apply-templates select="@*|node()"/>
+                </xsl:copy>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+
     <!-- =============================================================== -->
 
 
