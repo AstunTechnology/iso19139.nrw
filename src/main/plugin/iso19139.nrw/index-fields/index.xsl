@@ -163,13 +163,13 @@
 
       <!-- Indexing custom NRW elements -->
       <xsl:for-each select="gmd:contentInfo/nrw:MD_ContentInfo/nrw:internalInfo/nrw:MD_InternalInfo">
-        <xsl:for-each select="nrw:internalLocationInfo/*[. != '']">
+        <xsl:for-each select="nrw:internalLocationInfo/gco:CharacterString[. != '']">
           <xsl:copy-of select="gn-fn-index:add-field('NRW_internalLocationInfo', .)" />
         </xsl:for-each>
-        <xsl:for-each select="nrw:internalContactInfo/*[. != '']">
+        <xsl:for-each select="nrw:internalContactInfo/gco:CharacterString[. != '']">
           <xsl:copy-of select="gn-fn-index:add-field('NRW_internalContactInfo', .)"/>
         </xsl:for-each>
-        <xsl:for-each select="nrw:relatedTitle/*[. != '']">
+        <xsl:for-each select="nrw:relatedTitle/gco:CharacterString[. != '']">
           <xsl:copy-of select="gn-fn-index:add-field('NRW_relatedTitle', .)"/>
         </xsl:for-each>
       </xsl:for-each>
@@ -689,7 +689,7 @@
         </xsl:for-each>
 
         <!-- Use constraints text -->
-        <xsl:for-each select="gmd:resourceConstraints/gmd:MD_LegalConstraints[gmd:useConstraints]/gmd:otherConstraints[1]/*/text()">
+        <xsl:for-each select="gmd:resourceConstraints/gmd:MD_LegalConstraints[gmd:useConstraints]/gmd:otherConstraints[1]/gco:CharacterString/text()">
           <xsl:copy-of select="gn-fn-index:add-field('useConstraintsText', .)" />
         </xsl:for-each>
 
@@ -1271,7 +1271,7 @@
       <xsl:copy-of select="gn-fn-index:add-multilingual-field(
                             $roleField, $organisationName, $languages)"/>
     </xsl:if>
-    
+
     <xsl:element name="contact{$fieldSuffix}">
       <xsl:attribute name="type" select="'object'"/>{
       <xsl:if test="$organisationName">
