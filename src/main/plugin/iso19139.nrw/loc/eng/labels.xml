@@ -1677,30 +1677,6 @@
     <condition>mandatory</condition>
   </element>
   <!-- <element name="gmd:name" context="gmd:MD_Format" id="285.0"> -->
-  <element name="gmd:name" context="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributionFormat/gmd:MD_Format/gmd:name" id="285.0" >
-    <label>Data Format Specification</label>
-    <description>Name of the data transfer format(s)</description>
-    <help>name of the data transfer format(s)</help>
-    <condition>mandatory</condition>
-    <!-- <helper rel="gmd:version">
-      <option value="Text">Text</option>
-      <option value="ESRI Shapefile" title="1.0">ESRI Shapefile</option>
-      <option value="Mapinfo MIF/MID" title="4.5">Mapinfo MIF/MID</option>
-      <option value="Mapinfo TAB">Mapinfo TAB</option>
-      <option value="KML">KML</option>
-      <option value="GML" title="3.2.1">GML</option>
-      <option value="GeoTIFF" title="1.0">GeoTIFF</option>
-      <option value="TIFF">TIFF</option>
-      <option value="ECW">ECW</option>
-      <option value="JPEG2000">JPEG2000</option>
-      <option value="ZIP">ZIP</option>
-      <option value="PDF">PDF</option>
-      <option value="PNG">PNG</option>
-      <option value="JPEG">JPEG</option>
-      <option value="OGC:WMC">OGC:WMC</option>
-      <option value="OGC:OWS-C">OGC OWS Context</option>
-    </helper> -->
-  </element>
   <element name="gmd:name" context="gmd:MD_ExtendedElementInformation"
            id="307.0">
     <label>Name</label>
@@ -2548,23 +2524,15 @@
     <description>Brief description of the resource and/or resource series usage</description>
     <condition>mandatory</condition>
   </element>
-  <element name="gmd:specification" id="288.0" context="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributionFormat/gmd:MD_Format/gmd:specification">
+  <element name="gmd:name" id="288.0" context="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributionFormat/gmd:MD_Format/gmd:name">
     <label>Data Format Type</label>
+    <help>name of the data transfer format(s)</help>
+    <condition>mandatory</condition>
     <description>Name of a subset, profile, or product specification of the format</description>
-    <helper rel="gco:CharacterString">
-      <option value="Binary">Binary</option>
-      <option value="Database">Database</option>
-      <option value="Delimited">Delimited</option>
-      <option value="Documents">Documents</option>
-      <option value="Geographic Information System">Geographic Information System</option>
-      <option value="Image">Image</option>
-      <option value="Movie">Movie</option>
-      <option value="Text or Plaintext">Text or Plaintext</option>
-    </helper>
   </element>
-<!--   <element name="gmd:specification">
+  <element name="gmd:specification">
     <label>Specification</label>
-  </element> -->
+  </element>
     <element name="gmd:specification" id="130.0" context="gmd:DQ_ConformanceResult">
     <condition>mandatory</condition>
     <label>Specification</label>

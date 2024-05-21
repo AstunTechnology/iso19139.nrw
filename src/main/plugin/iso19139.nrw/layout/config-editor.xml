@@ -477,11 +477,116 @@
           <text ref="formatspecification_help"/>
           <action type="add" btnLabel="Add a Distribution Format" name="addDistroFormat" or="distributionFormat" in="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution">
               <template>
-                 <snippet>
+                 <snippet label="binary">
                   <gmd:distributionFormat>
                     <gmd:MD_Format>
                        <gmd:name>
+                          <gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/M01/current/BIN">Binary</gmx:Anchor>
+                       </gmd:name>
+                       <gmd:version gco:nilReason="unknown">
                           <gco:CharacterString/>
+                       </gmd:version>
+                       <gmd:specification>
+                          <gco:CharacterString/>
+                       </gmd:specification>
+                    </gmd:MD_Format>
+                 </gmd:distributionFormat>
+                </snippet>
+                <snippet label="database">
+                  <gmd:distributionFormat>
+                    <gmd:MD_Format>
+                       <gmd:name>
+                          <gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/M01/current/DB">Database</gmx:Anchor>
+                       </gmd:name>
+                       <gmd:version gco:nilReason="unknown">
+                          <gco:CharacterString/>
+                       </gmd:version>
+                       <gmd:specification>
+                          <gco:CharacterString/>
+                       </gmd:specification>
+                    </gmd:MD_Format>
+                 </gmd:distributionFormat>
+                </snippet>
+                <snippet label="delimited">
+                  <gmd:distributionFormat>
+                    <gmd:MD_Format>
+                       <gmd:name>
+                          <gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/M01/current/DEL">Delimited</gmx:Anchor>
+                       </gmd:name>
+                       <gmd:version gco:nilReason="unknown">
+                          <gco:CharacterString/>
+                       </gmd:version>
+                       <gmd:specification>
+                          <gco:CharacterString/>
+                       </gmd:specification>
+                    </gmd:MD_Format>
+                 </gmd:distributionFormat>
+                </snippet>
+                <snippet label="documents">
+                  <gmd:distributionFormat>
+                    <gmd:MD_Format>
+                       <gmd:name>
+                          <gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/M01/current/DOC">Documents</gmx:Anchor>
+                       </gmd:name>
+                       <gmd:version gco:nilReason="unknown">
+                          <gco:CharacterString/>
+                       </gmd:version>
+                       <gmd:specification>
+                          <gco:CharacterString/>
+                       </gmd:specification>
+                    </gmd:MD_Format>
+                 </gmd:distributionFormat>
+                </snippet>
+                <snippet label="gis">
+                  <gmd:distributionFormat>
+                    <gmd:MD_Format>
+                       <gmd:name>
+                          <gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/M01/current/GIS">Geographic Information System</gmx:Anchor>
+                       </gmd:name>
+                       <gmd:version gco:nilReason="unknown">
+                          <gco:CharacterString/>
+                       </gmd:version>
+                       <gmd:specification>
+                          <gco:CharacterString/>
+                       </gmd:specification>
+                    </gmd:MD_Format>
+                 </gmd:distributionFormat>
+                </snippet>
+                <snippet label="image">
+                  <gmd:distributionFormat>
+                    <gmd:MD_Format>
+                       <gmd:name>
+                          <gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/M01/current/IMG">Image</gmx:Anchor>
+                       </gmd:name>
+                       <gmd:version gco:nilReason="unknown">
+                          <gco:CharacterString/>
+                       </gmd:version>
+                       <gmd:specification>
+                          <gco:CharacterString/>
+                       </gmd:specification>
+                    </gmd:MD_Format>
+                 </gmd:distributionFormat>
+                </snippet>
+                <snippet label="movie">
+                  <gmd:distributionFormat>
+                    <gmd:MD_Format>
+                       <gmd:name>
+                          <gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/M01/current/MOV">Movie</gmx:Anchor>
+                       </gmd:name>
+                       <gmd:version gco:nilReason="unknown">
+                          <gco:CharacterString/>
+                       </gmd:version>
+                       <gmd:specification>
+                          <gco:CharacterString/>
+                       </gmd:specification>
+                    </gmd:MD_Format>
+                 </gmd:distributionFormat>
+                </snippet>
+                <snippet label="text">
+                  <gmd:distributionFormat>
+                    <gmd:MD_Format>
+                       <gmd:name>
+                          <gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/M01/current/TXT">Text or Plaintext</gmx:Anchor>
                        </gmd:name>
                        <gmd:version gco:nilReason="unknown">
                           <gco:CharacterString/>
@@ -866,10 +971,8 @@
                   <gml:identifier codeSpace="OGP">urn:ogc:def:datum:EPSG::5100</gml:identifier>
                   <gml:name>Sea Level</gml:name>
                   <gml:scope>depth is unadjusted and does not take into account tidal height</gml:scope>
-                  <gml:usesVerticalCS/>
                   <gml:verticalDatum/>
                   </gml:VerticalCRS>
-                  </gmd:verticalCRS>
                   </gmd:EX_VerticalExtent>
               </gmd:verticalElement>
               </snippet>

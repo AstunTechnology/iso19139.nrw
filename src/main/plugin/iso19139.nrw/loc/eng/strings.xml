@@ -197,6 +197,15 @@
   <medincode>MEDIN Keyword</medincode>
   <limitations>Limitations</limitations>
   <addTransferOption>Add a Transfer Option</addTransferOption>
+ <!-- labels for distribution format dropdown -->
+  <binary>Binary</binary>
+  <database>Database</database>
+  <delimited>Delimited</delimited>
+  <documents>Documents</documents>
+  <gis>Geographic Information System</gis>
+  <image>Image</image>
+  <movie>Movie</movie>
+  <text>Text or Plaintext</text>
 
 
 
