@@ -43,6 +43,7 @@
   <!-- ===================================================================== -->
   <xsl:template mode="superBrief" match="gmd:MD_Metadata|*[@gco:isoType='gmd:MD_Metadata']"
                 priority="2">
+    <xsl:message>=== superBrief ===</xsl:message>
     <xsl:variable name="langId" select="gn-fn-iso19139.nrw:getLangId(., $lang)"/>
 
     <id>
@@ -65,12 +66,15 @@
   </xsl:template>
 
   <xsl:template name="iso19139.nrwBrief">
+        <xsl:message>=== iso19139.nrwBrief ===</xsl:message>
+
     <metadata>
       <xsl:call-template name="iso19139.nrw-brief"/>
     </metadata>
   </xsl:template>
 
   <xsl:template name="iso19139.nrw-brief">
+    <xsl:message>=== iso19139.nrw-brief ===</xsl:message>
     <xsl:variable name="download_check">
       <xsl:text>&amp;fname=&amp;access</xsl:text>
     </xsl:variable>
@@ -96,6 +100,7 @@
       select="gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource">
       <xsl:variable name="protocol" select="gmd:protocol[1]/gco:CharacterString"/>
       <xsl:variable name="linkage" select="normalize-space(gmd:linkage/gmd:URL)"/>
+      <xsl:message>=== <xsl:value-of select="$linkage"/> ===</xsl:message>
       <xsl:variable name="name">
         <xsl:for-each select="gmd:name">
           <xsl:call-template name="localised">

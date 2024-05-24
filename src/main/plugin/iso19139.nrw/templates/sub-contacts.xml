@@ -1,0 +1,33 @@
+<gmd:CI_ResponsibleParty xmlns:gml="http://www.opengis.net/gml/3.2"
+                         xmlns:gts="http://www.isotc211.org/2005/gts"
+                         xmlns:gmd="http://www.isotc211.org/2005/gmd"
+                         xmlns:gmx="http://www.isotc211.org/2005/gmx"
+                         xmlns:gco="http://www.isotc211.org/2005/gco"
+                         xmlns:xlink="http://www.w3.org/1999/xlink">
+   <gmd:organisationName>
+      <gco:CharacterString>Name of the responsible organization</gco:CharacterString>
+   </gmd:organisationName>
+   <gmd:positionName>
+      <gco:CharacterString>Function performed by the responsible party</gco:CharacterString>
+   </gmd:positionName>
+   <gmd:contactInfo>
+      <gmd:CI_Contact>
+         <gmd:address>
+            <gmd:CI_Address>
+               <gmd:deliveryPoint>
+                  <gco:CharacterString>Full address of the organisation</gco:CharacterString>
+               </gmd:deliveryPoint>
+               <gmd:postalCode>
+                  <gco:CharacterString>Post code</gco:CharacterString>
+               </gmd:postalCode>
+               <gmd:electronicMailAddress>
+                  <gco:CharacterString>Email address for the responsible organisation or individual</gco:CharacterString>
+               </gmd:electronicMailAddress>
+            </gmd:CI_Address>
+         </gmd:address>
+      </gmd:CI_Contact>
+  </gmd:contactInfo>
+   <gmd:role>
+      <gmd:CI_RoleCode codeList="./resources/codeList.xml#CI_RoleCode" codeListValue="pointOfContact"/>
+  </gmd:role>
+</gmd:CI_ResponsibleParty>

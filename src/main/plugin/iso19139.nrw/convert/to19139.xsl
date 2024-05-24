@@ -10,6 +10,7 @@
                 xmlns:gmd="http://www.isotc211.org/2005/gmd"
                 xmlns:geonet="http://www.fao.org/geonet"
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                xmlns:nrw="http://naturalresources.wales/nrw"
                 exclude-result-prefixes="#all">
 
     <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes" />
@@ -25,6 +26,7 @@
         <xsl:namespace name="gmx" select="'http://www.isotc211.org/2005/gmi'"/>
         <xsl:namespace name="gts" select="'http://www.isotc211.org/2005/gts'"/>
         <xsl:namespace name="gml" select="'http://www.opengis.net/gml/3.2'"/>
+        <xsl:namespace name="nrw" select="'http://naturalresources.wales/nrw'"/>
         <xsl:namespace name="xlink" select="'http://www.w3.org/1999/xlink'"/>
         <xsl:namespace name="xsi" select="'http://www.w3.org/2001/XMLSchema-instance'"/>
         <xsl:namespace name="xs" select="'http://www.w3.org/2001/XMLSchema'"/>
@@ -71,7 +73,21 @@
         </xsl:element>
     </xsl:template>
 
-    <!-- ================================================================= -->
+
+    <!-- Remove NRW internalLocationInfo and internalContactInfo elements. -->
+    <xsl:template match="//nrw:internalLocationInfo" priority="100">
+        <xsl:copy>
+            <nrw:internalLocationInfo gco:nilReason="withheld" />
+        </xsl:copy>
+    </xsl:template>
+
+    <xsl:template match="//nrw:internalContactInfo" priority="100">
+        <xsl:copy>
+            <nrw:internalContactInfo gco:nilReason="withheld" />
+        </xsl:copy>
+    </xsl:template>
+
+        <!-- ================================================================= -->
 
     <!-- Remove geonet:* elements. -->
     <xsl:template match="geonet:*" priority="2"/>
