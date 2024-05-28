@@ -1224,15 +1224,16 @@
         <!-- Insert a new resource language
         Warning: Duplicates may be inserted.
         -->
-        <field name="language"
+        <field name="Dataset Language"
                xpath="gmd:identificationInfo/*/
                         gmd:language"
                use="data-gn-language-picker"
                insertMode="gn_replace"
                removable="true">
           <template>
-            <![CDATA[<gmd:LanguageCode xmlns:gmd='http://www.isotc211.org/2005/gmd' codeListValue='{{value}}'/>]]></template>
+            <![CDATA[<gmd:LanguageCode codeList="http://www.loc.gov/standards/iso639-2/php/code_list.php" codeListValue="eng">English</gmd:LanguageCode>]]></template>
         </field>
+
 
         <!-- Insert, or replace if existing, the parent identifier.
         Warning: Duplicates may be inserted.
@@ -1314,12 +1315,12 @@
       </section>
 
       <section name="metadata">
-        <field name="mdLanguage"
+        <field name="Metadata Language"
                xpath="gmd:language"
                use="data-gn-language-picker"
                removable="true">
           <template>
-            <![CDATA[<gmd:LanguageCode xmlns:gmd='http://www.isotc211.org/2005/gmd' codeListValue='{{value}}'/>]]></template>
+            <![CDATA[<gmd:LanguageCode codeList="http://www.loc.gov/standards/iso639-2/php/code_list.php" codeListValue="eng">English</gmd:LanguageCode>]]></template>
         </field>
       </section>
     </batchEditing>
