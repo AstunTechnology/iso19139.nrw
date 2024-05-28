@@ -1231,7 +1231,7 @@
                insertMode="gn_replace"
                removable="true">
           <template>
-            <![CDATA[<gmd:LanguageCode codeList="http://www.loc.gov/standards/iso639-2/php/code_list.php" codeListValue="eng">English</gmd:LanguageCode>]]></template>
+            <![CDATA[<gmd:LanguageCode xmlns:gmd='http://www.isotc211.org/2005/gmd' codeList="http://www.loc.gov/standards/iso639-2/php/code_list.php" codeListValue="eng">English</gmd:LanguageCode>]]></template>
         </field>
 
 
@@ -1320,7 +1320,7 @@
                use="data-gn-language-picker"
                removable="true">
           <template>
-            <![CDATA[<gmd:LanguageCode codeList="http://www.loc.gov/standards/iso639-2/php/code_list.php" codeListValue="eng">English</gmd:LanguageCode>]]></template>
+            <![CDATA[<gmd:LanguageCode xmlns:gmd='http://www.isotc211.org/2005/gmd' codeList="http://www.loc.gov/standards/iso639-2/php/code_list.php" codeListValue="eng">English</gmd:LanguageCode>]]></template>
         </field>
       </section>
     </batchEditing>
