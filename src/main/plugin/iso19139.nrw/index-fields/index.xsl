@@ -1052,7 +1052,7 @@
       <!-- Indexing format and format specification -->
       <xsl:for-each select="gmd:distributionInfo/*">
         <xsl:for-each
-          select="gmd:distributionFormat/gmd:MD_Format/gmd:name/gmx:Anchor/text()[. != '']">
+          select="gmd:distributionFormat/gmd:MD_Format/gmd:name/gmd:PT_FreeText/gmd:textGroup/gmd:LocalisedCharacterString/text()[. != '']">
           <xsl:copy-of select="gn-fn-index:add-field('format', .)"/>
         </xsl:for-each>
 
