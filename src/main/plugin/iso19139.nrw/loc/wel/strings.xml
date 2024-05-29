@@ -64,7 +64,7 @@
   <shareOnSocialSite>Share on social sites</shareOnSocialSite>
   <viewMode>Views</viewMode>
   <linkToPortal>Mynediad i'r Porth</linkToPortal>
-  <linkToPortal-help>Full access to the portal and metadata.</linkToPortal-help>
+  <linkToPortal-help>Mynediad llawn i'r porth a'r metadata.</linkToPortal-help>
   <citationProposal>Citation proposal</citationProposal>
   <citationProposal-help>This proposal was automatically generated, check if the metadata authors did not specify custom citation requirements.</citationProposal-help>
   <associatedResources>Adnoddau cysylltiedig (os oes rhai)</associatedResources>
@@ -194,6 +194,8 @@
   <useconstraints>Defnyddiwch gyfyngiadau</useconstraints>
   <medincode>Allweddair MEDIN</medincode>
   <limitations>Cyfyngiadau</limitations>
+  <temporalExtent>Maint Tymhorol</temporalExtent>
+  <constraints>Cyfyngiadau</constraints>
 
 
 

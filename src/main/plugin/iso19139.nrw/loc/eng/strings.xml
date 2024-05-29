@@ -208,6 +208,8 @@
   <text>Text or Plaintext</text>
   <!-- missing translation errors in logs -->
   <nilReason>+ NilReason</nilReason>
+  <temporalExtent>Temporal Extent</temporalExtent>
+  <constraints>Constraints</constraints>
 
 
 
