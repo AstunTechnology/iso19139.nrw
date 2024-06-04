@@ -136,7 +136,7 @@
       <xsl:copy-of select="@*" />
       <xsl:apply-templates select="gmd:distributionFormat" />
 
-      <xsl:if test="not(gmd:distributionFormat)" >
+     <!--  <xsl:if test="not(gmd:distributionFormat)" >
         <gmd:distributionFormat>
             <gmd:MD_Format>
                <gmd:name>
@@ -147,7 +147,7 @@
                </gmd:version>
             </gmd:MD_Format>
          </gmd:distributionFormat>
-      </xsl:if>
+      </xsl:if> -->
       <xsl:apply-templates select="gmd:transferOptions" />
     </xsl:copy>
   </xsl:template>
