@@ -152,6 +152,7 @@
   <freeTextKeywords>Other keywords</freeTextKeywords>
   <resource_url>URL</resource_url>
   <resource_protocol>Protocol</resource_protocol>
+  <keywords>Allweddeiriau</keywords>
 
   <addCrs>Add a Spatial Reference System</addCrs>
   <addCrs27700>British National Grid (EPSG:27700)</addCrs27700>

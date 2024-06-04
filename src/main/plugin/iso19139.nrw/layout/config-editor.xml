@@ -1116,7 +1116,7 @@
       <tab id="dataQualityInfo">
         <section xpath="/gmd:MD_Metadata/gmd:dataQualityInfo" or="dataQualityInfo" in="/gmd:MD_Metadata"/>
       </tab>
-      <tab id="Keywords">
+      <tab id="keywords">
       <section xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords" or="gmd:descriptiveKeywords" in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification"/>
       </tab>
       <tab id="spatialRepresentationInfo">
