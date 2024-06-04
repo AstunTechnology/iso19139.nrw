@@ -995,7 +995,7 @@
 
   <!-- Enumeration -->
   <xsl:template mode="render-field"
-                match="gmd:topicCategory[1]|gmd:obligation[1]|gmd:pointInPixel[1]|gmd:alternateTitle[1]"
+                match="gmd:topicCategory[1]|gmd:obligation[1]|gmd:pointInPixel[1]"
                 priority="100">
     <dl class="gn-date">
       <dt>
@@ -1005,7 +1005,7 @@
       </dt>
       <dd>
         <ul>
-          <xsl:for-each select="parent::node()/(gmd:topicCategory|gmd:obligation|gmd:pointInPixel|gmd:alternateTitle)">
+          <xsl:for-each select="parent::node()/(gmd:topicCategory|gmd:obligation|gmd:pointInPixel)">
             <li>
               <xsl:apply-templates mode="render-value"
                                    select="*"/>
@@ -1018,8 +1018,33 @@
   <xsl:template mode="render-field"
                 match="gmd:topicCategory[position() > 1]|
                         gmd:obligation[position() > 1]|
-                        gmd:obligation[position() > 1]|
-                        gmd:alternateTitle[position() > 1]"
+                        gmd:obligation[position() > 1]"
+                priority="100"/>
+
+  <!-- Enumeration of Alternate Title-->
+  <xsl:template mode="render-field"
+                match="gmd:alternateTitle[1]"
+                priority="100">
+    <dl class="gn-date">
+      <dt>
+        <xsl:call-template name="render-field-label">
+          <xsl:with-param name="languages" select="$allLanguages"/>
+        </xsl:call-template>
+      </dt>
+      <dd>
+        <ul>
+          <xsl:for-each select="parent::node()/(gmd:alternateTitle)">
+            <li>
+              <xsl:apply-templates mode="render-value"
+                                   select="gco:CharacterString"/>
+            </li>
+          </xsl:for-each>
+        </ul>
+      </dd>
+    </dl>
+  </xsl:template>
+  <xsl:template mode="render-field"
+                match="gmd:alternateTitle[position() > 1]"
                 priority="100"/>
 
 
