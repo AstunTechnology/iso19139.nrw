@@ -86,7 +86,7 @@
       
        <!-- add a Medin vertical extent element if missing and remove it with update-fixed-info if it's not used -->
       <xsl:copy-of select="gmd:extent" />
-      <xsl:if test="not(gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicDescription/gmd:geographicIdentifier/gmd:MD_Identifier/gmd:authority/gmd:CI_Citation/gmd:title/gco:CharacterString ='SeaVoX Vertical Co-ordinate Coverages')">
+      <!-- <xsl:if test="not(gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicDescription/gmd:geographicIdentifier/gmd:MD_Identifier/gmd:authority/gmd:CI_Citation/gmd:title/gco:CharacterString ='SeaVoX Vertical Co-ordinate Coverages')">
         <gmd:extent>
           <gmd:EX_Extent>
             <gmd:geographicElement>
@@ -119,7 +119,7 @@
                       </gmd:geographicElement>
                     </gmd:EX_Extent>
                   </gmd:extent>
-      </xsl:if>
+      </xsl:if> -->
   
       <!-- Add gmd:supplementalInformation if missing -->
       <xsl:copy-of select="gmd:supplementalInformation" />
@@ -164,7 +164,7 @@
 </xsl:template>
 
   <!-- add a Medin vertical extent element if missing and remove it with update-fixed-info if it's not used -->
-  <xsl:template match="gmd:EX_Extent" priority="1000">
+<!--   <xsl:template match="gmd:EX_Extent" priority="1000">
     <xsl:message>=== gmd:EX_Extent ===</xsl:message>
   <xsl:copy>
     <xsl:copy-of select="@*"/>
@@ -173,7 +173,7 @@
         <xsl:message>=== No seavox ===</xsl:message>
       </xsl:if>
   </xsl:copy>
-  </xsl:template>
+  </xsl:template> -->
 
   <!-- services -->
 

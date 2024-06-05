@@ -186,7 +186,7 @@
 		<xs:complexContent>
 			<xs:extension base="gmd:AbstractEX_GeographicExtent_Type">
 				<xs:sequence>
-					<xs:element name="geographicIdentifier" type="gmd:MD_Identifier_PropertyType"/>
+					<xs:element name="geographicIdentifier" type="gmd:MD_Identifier_PropertyType" minOccurs="0"/>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>

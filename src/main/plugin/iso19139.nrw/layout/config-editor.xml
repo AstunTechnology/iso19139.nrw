@@ -635,7 +635,898 @@
 
           <section name="extent" displayIfRecord="contains(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:MD_Identifier/gmd:code/gco:CharacterString, 'NRW_')">
           <field
-              xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicDescription/gmd:geographicIdentifier[not(gmd:MD_Identifier/gmd:authority/gmd:CI_Citation/gmd:title/gco:CharacterString ='SeaVoX Vertical Co-ordinate Coverages')]" or="geographicIdentifier" in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicDescription"/>
+              xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicDescription/gmd:geographicIdentifier"/>
+              <action type="add"
+                 btnLabel="addGeoIdentifier"
+                 name="geographicElement" or="geographicElement"
+                 in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent">
+           <template>
+             <snippet label="addUK">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>UNITED KINGDOM (GB)</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addEAW">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>England and Wales (EAW)</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addENG">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>England (ENG)</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addNIR">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>Northern Ireland (NIR)</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addSCT">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>Scotland (SCT)</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addWLS">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>Wales (WLS)</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addBrid">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>Bridgwater Bay</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addSwan">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>Swansea Bay</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addCarm">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>Carmarthen Bay</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addSeve">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>Severn Estuary</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addStBr">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>St. Brides Bay</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addStGe">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>St. George's Channel</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addCaer">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>Caernarfon Bay</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addLive">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>Liverpool Bay</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addRibb">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>Ribble Estuary</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addMers">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>Mersey Estuary</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addDeee">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>Dee Estuary</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addCard">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>Cardigan Bay</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addTrem">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>Tremadog Bay</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addMena">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>Menai Strait</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addCelt">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>Celtic Sea</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addEngc">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>English Channel</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addBrist">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>Bristol Channel</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addMore">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>Morecambe Bay</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addNort">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>Northern North Sea</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addSout">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>Southern North Sea</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addEast">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>Eastern Channel</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addWest">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>Western Channel and Celtic Sea</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addIris">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>Irish Sea</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addMinc">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>Minches and Western Scotland</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addScot">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>Scottish Continental Shelf</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addAtla">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>Atlantic North-West Approaches and Rockall Trough</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addShar">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>Shared waters between Northern Ireland and Republic of Ireland</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addBlae">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>BLAENAU GWENT - BLAENAU GWENT</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addCaer">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>CAERFFILI - CAERPHILLY</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addMert">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>MERTHYR TUDFUL - MERTHYR TYDFIL</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addPowy">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>POWYS - POWYS</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addRhon">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>RHONDDA CYNON TAF - RHONDDA CYNON TAF</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addWrec">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>WRECSAM - WREXHAM</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addAber">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>ABERTAWE - SWANSEA</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addBrom">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>BRO MORGANNWG - THE VALE OF GLAMORGAN</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addCasn">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>CASNEWYDD - NEWPORT</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addCast">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>CASTELL-NEDD PORT TALBOT - NEATH PORT TALBOT</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addConw">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>CONWY - CONWY</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addPeny">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>PEN-Y-BONT AR OGWR - BRIDGEND</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addSird">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>SIR DDINBYCH - DENBIGHSHIRE</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addSirg">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>SIR GAERFYRDDIN - CARMARTHENSHIRE</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addSiry">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>SIR Y FFLINT - FLINTSHIRE</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addTorf">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>TORFAEN - TORFAEN</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addAngl">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>SIR YNYS MON - ISLE OF ANGLESEY</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addGwyn">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>GWYNEDD - GWYNEDD</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addCardiff">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>CAERDYDD - CARDIFF</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addSirc">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>SIR CEREDIGION - CEREDIGION</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addSirf">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>SIR FYNWY - MONMOUTHSHIRE</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addSirb">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>SIR BENFRO - PEMBROKESHIRE</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addRadn">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>Radnorshire (43)</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addAngl">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>Anglesey (52)</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addCaern">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>Caernarvonshire (49)</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addDenb">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>Denbighshire (50)</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addFlin">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>Flintshire (51)</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addMeri">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>Merionethshire (48)</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addMont">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>Montgomeryshire (47)</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addCardiganshire">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>Cardiganshire (46)</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addBrec">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>Breconshire (42)</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addPemb">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>Pembrokeshire (45)</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addCarm">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>Carmarthenshire (44)</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addGlam">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>Glamorganshire (41)</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addMonm">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>Monmouthshire (35)</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+           </template>
+         </action>
 
             <text ref="extent_help" />
 
@@ -877,8 +1768,8 @@
           <section name="verticalextent" displayIfRecord="contains(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:MD_Identifier/gmd:code/gco:CharacterString, 'NRW_')">
             <!-- This fails for records that don't already have the SeaVox title element in, eg existing records with no vertical extent or where it has been explicitly removed-->
             <!-- The template record has a section for it already so it works so maybe an inflate/remove approach is best-->
-              <field name="medinextent" xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicDescription/gmd:geographicIdentifier[gmd:MD_Identifier/gmd:authority/gmd:CI_Citation/gmd:title/gco:CharacterString ='SeaVoX Vertical Co-ordinate Coverages']" or="geographicIdentifier" in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicDescription" templateModeOnly="true" del="../../.">
-              <template>
+              <!-- <field name="medinextent" xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicDescription/gmd:geographicIdentifier[gmd:MD_Identifier/gmd:authority/gmd:CI_Citation/gmd:title/gco:CharacterString ='SeaVoX Vertical Co-ordinate Coverages']" or="geographicIdentifier" in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicDescription"> -->
+              <!-- <template>
                 <values>
                   <key label="medincode"
                         xpath="gmd:MD_Identifier/gmd:code"
@@ -919,8 +1810,8 @@
                       </gmd:MD_Identifier>
                   </gmd:geographicIdentifier>
                 </snippet>
-              </template>
-           </field>
+              </template> -->
+           <!-- </field> -->
           <text ref="medinextent_help"/>
 
 
@@ -1072,7 +1963,7 @@
         <for name="gmd:transferOptions"/>
         <!-- <for name="gmd:otherConstraints"/> -->
         <for name="gmd:EX_TemporalExtent"/>
-        <for name="gmd:geographicElement"/>
+        <!-- <for name="gmd:geographicElement"/> -->
         <for name="gmd:geographicIdentifier"/>
         <for name="gmd:report"/>
         <for name="gmd:lineage"/>

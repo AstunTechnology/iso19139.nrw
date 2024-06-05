@@ -715,11 +715,6 @@
     <description>Value uniquely identifying the data resource</description>
     <condition>mandatory</condition>
   </element>
-  <!-- <element name="gmd:code" id="207.0" context="gmd:MD_Identifier">
-    <label>Identifier</label>
-    <description>Value uniquely identifying the data resource</description>
-    <condition>mandatory</condition>
-  </element> -->
   <element name="gmd:code" id="547.0" context="gmd:MD_CodeValue">
     <label>Code</label>
     <description>Value code</description>
@@ -1385,10 +1380,11 @@
       National Stock Number (NSN)
     </description>
   </element>
-  <element name="gmd:code" id="573.0" context="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicDescription/gmd:geographicIdentifier/gmd:MD_Identifier/gmd:code">
+  <element name="gmd:code" id="574.0" context="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicDescription/gmd:geographicIdentifier/gmd:MD_Identifier/gmd:code">
     <label>Geographic Identifier</label>
+    <condition>optional</condition>
     <description>Value identifying the geographic extent of the data resource</description>
-    <helper rel="gco:CharacterString">
+    <!-- <helper>
       <option value="UNITED KINGDOM (GB)" title="UNITED KINGDOM (GB)">UNITED KINGDOM (GB)</option>
       <option value="England and Wales (EAW)" title="England and Wales (EAW)">England and Wales (EAW)</option>
       <option value="England (ENG)" title="England (ENG)">England (ENG)</option>
@@ -1457,7 +1453,7 @@
       <option value="Carmarthenshire (44)" title="Carmarthenshire (44)">Carmarthenshire (44)</option>
       <option value="Glamorganshire (41)" title="Glamorganshire (41)">Glamorganshire (41)</option>
       <option value="Monmouthshire (35)" title="Monmouthshire (35)">Monmouthshire (35)</option>
-    </helper>
+    </helper> -->
     </element>
   <element name="gmd:identifier" id="575.0" context="gmd:MD_Authority">
     <label>Identifier</label>

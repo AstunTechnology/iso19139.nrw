@@ -160,6 +160,76 @@
   <addCrs4277>OSGB 1936 (EPSG:4277)</addCrs4277>
   <addCrs4258>ETRS89 (EPSG:4258)</addCrs4258>
 
+  <addGeoIdentifier>Add a Geographic Identifier</addGeoIdentifier>
+        <addUK>UNITED KINGDOM (GB)</addUK>
+      <addEAW>England and Wales (EAW)</addEAW>
+      <addENG>England (ENG)</addENG>
+      <addNIR>Northern Ireland (NIR)</addNIR>
+      <addSCT>Scotland (SCT)</addSCT>
+      <addWLS>Wales (WLS)</addWLS>
+      <addBrid>Bridgwater Bay</addBrid>
+      <addSwan>Swansea Bay</addSwan>
+      <addCarm>Carmarthen Bay</addCarm>
+      <addSeve>Severn Estuary</addSeve>
+      <addStBr>St. Brides Bay</addStBr>
+      <addStGe>St. George's Channel</addStGe>
+      <addCaer>Caernarfon Bay</addCaer>
+      <addLive>Liverpool Bay</addLive>
+      <addRibb>Ribble Estuary</addRibb>
+      <addMers>Mersey Estuary</addMers>
+      <addDeee>Dee Estuary</addDeee>
+      <addCard>Cardigan Bay</addCard>
+      <addTrem>Tremadog Bay</addTrem>
+      <addMena>Menai Strait</addMena>
+      <addCelt>Celtic Sea</addCelt>
+      <addEngc>English Channel</addEngc>
+      <addBrist>Bristol Channel</addBrist>
+      <addMore>Morecambe Bay</addMore>
+      <addNort>Northern North Sea</addNort>
+      <addSout>Southern North Sea</addSout>
+      <addEast>Eastern Channel</addEast>
+      <addWest>Western Channel and Celtic Sea</addWest>
+      <addIris>Irish Sea</addIris>
+      <addMinc>Minches and Western Scotland</addMinc>
+      <addScot>Scottish Continental Shelf</addScot>
+      <addAtla>Atlantic North-West Approaches and Rockall Trough</addAtla>
+      <addShar>Shared waters between Northern Ireland and Republic of Ireland</addShar>
+      <addBlae>BLAENAU GWENT - BLAENAU GWENT</addBlae>
+      <addCaer>CAERFFILI - CAERPHILLY</addCaer>
+      <addMert>MERTHYR TUDFUL - MERTHYR TYDFIL</addMert>
+      <addPowy>POWYS - POWYS</addPowy>
+      <addRhon>RHONDDA CYNON TAF - RHONDDA CYNON TAF</addRhon>
+      <addWrec>WRECSAM - WREXHAM</addWrec>
+      <addAber>ABERTAWE - SWANSEA</addAber>
+      <addBrom>BRO MORGANNWG - THE VALE OF GLAMORGAN</addBrom>
+      <addCasn>CASNEWYDD - NEWPORT</addCasn>
+      <addCast>CASTELL-NEDD PORT TALBOT - NEATH PORT TALBOT</addCast>
+      <addConw>CONWY - CONWY</addConw>
+      <addPeny>PEN-Y-BONT AR OGWR - BRIDGEND</addPeny>
+      <addSird>SIR DDINBYCH - DENBIGHSHIRE</addSird>
+      <addSirg>SIR GAERFYRDDIN - CARMARTHENSHIRE</addSirg>
+      <addSiry>SIR Y FFLINT - FLINTSHIRE</addSiry>
+      <addTorf>TORFAEN - TORFAEN</addTorf>
+      <addAngl>SIR YNYS MON - ISLE OF ANGLESEY</addAngl>
+      <addGwyn>GWYNEDD - GWYNEDD</addGwyn>
+      <addCardiff>CAERDYDD - CARDIFF</addCardiff>
+      <addSirc>SIR CEREDIGION - CEREDIGION</addSirc>
+      <addSirf>SIR FYNWY - MONMOUTHSHIRE</addSirf>
+      <addSirb>SIR BENFRO - PEMBROKESHIRE</addSirb>
+      <addRadn>Radnorshire (43)</addRadn>
+      <addAngl>Anglesey (52)</addAngl>
+      <addCaern>Caernarvonshire (49)</addCaern>
+      <addDenb>Denbighshire (50)</addDenb>
+      <addFlin>Flintshire (51)</addFlin>
+      <addMeri>Merionethshire (48)</addMeri>
+      <addMont>Montgomeryshire (47)</addMont>
+      <addCardiganshire>Cardiganshire (46)</addCardiganshire>
+      <addBrec>Breconshire (42)</addBrec>
+      <addPemb>Pembrokeshire (45)</addPemb>
+      <addCarm>Carmarthenshire (44)</addCarm>
+      <addGlam>Glamorganshire (41)</addGlam>
+      <addMonm>Monmouthshire (35)</addMonm>
+
 
   <addAccessConstraints>Access constraints</addAccessConstraints>
   <addINSPIRELimitations>Add Limitations</addINSPIRELimitations>
