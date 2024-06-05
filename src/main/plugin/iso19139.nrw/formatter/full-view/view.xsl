@@ -67,7 +67,6 @@
 
   <!-- Specific schema rendering -->
   <xsl:template mode="getMetadataTitle" match="gmd:MD_Metadata|*[@gco:isoType = 'gmd:MD_Metadata']">
-    <xsl:message>=== full view template ===</xsl:message>
     <xsl:for-each select="gmd:identificationInfo/*/gmd:citation/*/gmd:title">
       <xsl:call-template name="localised">
         <xsl:with-param name="langId" select="$langId"/>
@@ -921,7 +920,7 @@
             <xsl:if test="*/gmd:name[. != '']">
               <li>
                 <xsl:apply-templates mode="render-value-no-breaklines"
-                                    select="*/gmd:name"/>
+                                    select="*/gmd:name/gmx:Anchor"/>
                 (<xsl:apply-templates mode="render-value-no-breaklines"
                                       select="*/gmd:version"/>)
                 <p><xsl:comment select="name()"/>
@@ -1458,8 +1457,8 @@
             </dt>
             <dd>
               <xsl:comment select="name()"/>
-              <xsl:apply-templates mode="render-value" select="*|*/@codeListValue"/>
-              <xsl:apply-templates mode="render-value" select="@*"/>
+              <xsl:apply-templates mode="render-value" select="gco:CharacterString"/>
+<!--               <xsl:apply-templates mode="render-value" select="@*"/> -->
             </dd>
           </dl>
 
@@ -1478,8 +1477,8 @@
             </dt>
             <dd>
               <xsl:comment select="name()"/>
-              <xsl:apply-templates mode="render-value" select="*|*/@codeListValue"/>
-              <xsl:apply-templates mode="render-value" select="@*"/>
+              <xsl:apply-templates mode="render-value" select="gco:CharacterString"/>
+<!--               <xsl:apply-templates mode="render-value" select="@*"/> -->
             </dd>
           </dl>
 
