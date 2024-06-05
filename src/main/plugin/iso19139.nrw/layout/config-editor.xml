@@ -199,7 +199,6 @@
     field per language is displayed. -->
     <expanded>
       <name>gmd:title</name>
-      <!-- <name>gmd:abstract</name> -->
       <name>gmd:lineage</name>
     </expanded>
 
