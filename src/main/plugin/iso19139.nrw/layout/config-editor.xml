@@ -635,13 +635,13 @@
 
           <section name="extent" displayIfRecord="contains(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:MD_Identifier/gmd:code/gco:CharacterString, 'NRW_')">
           <field
-              xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicDescription/gmd:geographicIdentifier"/>
+              xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicDescription/gmd:geographicIdentifier[not(gmd:MD_Identifier/gmd:authority/gmd:CI_Citation/gmd:title/gco:CharacterString ='SeaVoX Vertical Co-ordinate Coverages')]"/>
               <action type="add"
                  btnLabel="addGeoIdentifier"
                  name="geographicElement" or="geographicElement"
                  in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent">
            <template>
-             <snippet label="addUK">
+             <snippet label="addUKG">
                      <gmd:geographicElement>
                  <gmd:EX_GeographicDescription>
                    <gmd:geographicIdentifier>
@@ -1766,52 +1766,1116 @@
         </section>
 
           <section name="verticalextent" displayIfRecord="contains(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:MD_Identifier/gmd:code/gco:CharacterString, 'NRW_')">
-            <!-- This fails for records that don't already have the SeaVox title element in, eg existing records with no vertical extent or where it has been explicitly removed-->
-            <!-- The template record has a section for it already so it works so maybe an inflate/remove approach is best-->
-              <!-- <field name="medinextent" xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicDescription/gmd:geographicIdentifier[gmd:MD_Identifier/gmd:authority/gmd:CI_Citation/gmd:title/gco:CharacterString ='SeaVoX Vertical Co-ordinate Coverages']" or="geographicIdentifier" in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicDescription"> -->
-              <!-- <template>
-                <values>
-                  <key label="medincode"
-                        xpath="gmd:MD_Identifier/gmd:code"
-                        use="data-gn-keyword-picker"
-                        tooltip="gmd:code">
-                   <directiveAttributes data-thesaurus-key="external.theme.SeaVoXVerticalCoordinateCoverages"
-                                        data-order-by-id="true"
-                                        data-display-definition="true"
-                                        data-template-field="true"
-                                        data-template-field-element="gmx:Anchor"
-                                        data-template-field-element-with-concept-id="gmx:Anchor"
-                                        data-template-field-value="eval#gmd:MD_Identifier/gmd:code/*/text()"
-                                        data-template-field-concept-id-value="eval#gmd:MD_Identifier/gmd:code/gmx:Anchor/@xlink:href"
-                                        data-thesaurus-concept-id-attribute="xlinkCOLONhref"/>
-                  </key>
-                </values>
-                <snippet>
-                  <gmd:geographicIdentifier>
-                      <gmd:MD_Identifier>
-                         <gmd:authority>
-                          <gmd:CI_Citation>
-                           <gmd:title>
-                            <gco:CharacterString>SeaVoX Vertical Co-ordinate Coverages</gco:CharacterString>
-                           </gmd:title>
-                           <gmd:date>
-                            <gmd:CI_Date>
-                             <gmd:date>
-                              <gco:Date>2021-01-06</gco:Date>
-                             </gmd:date>
-                             <gmd:dateType>
-                              <gmd:CI_DateTypeCode codeList="https://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode" codeListValue="revision">revision</gmd:CI_DateTypeCode>
-                             </gmd:dateType>
-                            </gmd:CI_Date>
-                           </gmd:date>
-                          </gmd:CI_Citation>
-                         </gmd:authority>
-                         <gmd:code>{{medincode}}</gmd:code>
-                      </gmd:MD_Identifier>
-                  </gmd:geographicIdentifier>
-                </snippet>
-              </template> -->
-           <!-- </field> -->
+              <field name="medinextent" xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicDescription/gmd:geographicIdentifier[gmd:MD_Identifier/gmd:authority/gmd:CI_Citation/gmd:title/gco:CharacterString ='SeaVoX Vertical Co-ordinate Coverages']/*/gmd:code" del="../../../.."/>
+                <action type="add"
+                 btnLabel="addMedinIdentifier"
+                 name="geographicElement" or="geographicElement"
+                 in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent">
+              <template>
+  <snippet label="addAY">
+    <gmd:geographicElement>
+        <gmd:EX_GeographicDescription>
+         <gmd:geographicIdentifier>
+          <gmd:MD_Identifier>
+           <gmd:authority>
+            <gmd:CI_Citation>
+             <gmd:title>
+              <gco:CharacterString>SeaVoX Vertical Co-ordinate Coverages</gco:CharacterString>
+             </gmd:title>
+             <gmd:date>
+              <gmd:CI_Date>
+               <gmd:date>
+                <gco:Date>2013-02-05</gco:Date>
+               </gmd:date>
+               <gmd:dateType>
+                <gmd:CI_DateTypeCode codeList="https://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation">creation</gmd:CI_DateTypeCode>
+               </gmd:dateType>
+              </gmd:CI_Date>
+             </gmd:date>
+            </gmd:CI_Citation>
+           </gmd:authority>
+           <gmd:code><gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L13/current/AY/">abyssobenthic</gmx:Anchor>
+           </gmd:code>
+          </gmd:MD_Identifier>
+         </gmd:geographicIdentifier>
+        </gmd:EX_GeographicDescription>
+       </gmd:geographicElement>
+    </snippet>
+  <snippet label="addAP">
+    <gmd:geographicElement>
+        <gmd:EX_GeographicDescription>
+         <gmd:geographicIdentifier>
+          <gmd:MD_Identifier>
+           <gmd:authority>
+            <gmd:CI_Citation>
+             <gmd:title>
+              <gco:CharacterString>SeaVoX Vertical Co-ordinate Coverages</gco:CharacterString>
+             </gmd:title>
+             <gmd:date>
+              <gmd:CI_Date>
+               <gmd:date>
+                <gco:Date>2013-02-05</gco:Date>
+               </gmd:date>
+               <gmd:dateType>
+                <gmd:CI_DateTypeCode codeList="https://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation">creation</gmd:CI_DateTypeCode>
+               </gmd:dateType>
+              </gmd:CI_Date>
+             </gmd:date>
+            </gmd:CI_Citation>
+           </gmd:authority>
+           <gmd:code><gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L13/current/AP/">abyssopelagic water column</gmx:Anchor>
+           </gmd:code>
+          </gmd:MD_Identifier>
+         </gmd:geographicIdentifier>
+        </gmd:EX_GeographicDescription>
+       </gmd:geographicElement>
+    </snippet>
+  <snippet label="addAT">
+    <gmd:geographicElement>
+        <gmd:EX_GeographicDescription>
+         <gmd:geographicIdentifier>
+          <gmd:MD_Identifier>
+           <gmd:authority>
+            <gmd:CI_Citation>
+             <gmd:title>
+              <gco:CharacterString>SeaVoX Vertical Co-ordinate Coverages</gco:CharacterString>
+             </gmd:title>
+             <gmd:date>
+              <gmd:CI_Date>
+               <gmd:date>
+                <gco:Date>2013-02-05</gco:Date>
+               </gmd:date>
+               <gmd:dateType>
+                <gmd:CI_DateTypeCode codeList="https://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation">creation</gmd:CI_DateTypeCode>
+               </gmd:dateType>
+              </gmd:CI_Date>
+             </gmd:date>
+            </gmd:CI_Citation>
+           </gmd:authority>
+           <gmd:code><gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L13/current/AT/">atmosphere</gmx:Anchor>
+           </gmd:code>
+          </gmd:MD_Identifier>
+         </gmd:geographicIdentifier>
+        </gmd:EX_GeographicDescription>
+       </gmd:geographicElement>
+    </snippet>
+  <snippet label="addAB">
+    <gmd:geographicElement>
+        <gmd:EX_GeographicDescription>
+         <gmd:geographicIdentifier>
+          <gmd:MD_Identifier>
+           <gmd:authority>
+            <gmd:CI_Citation>
+             <gmd:title>
+              <gco:CharacterString>SeaVoX Vertical Co-ordinate Coverages</gco:CharacterString>
+             </gmd:title>
+             <gmd:date>
+              <gmd:CI_Date>
+               <gmd:date>
+                <gco:Date>2013-02-05</gco:Date>
+               </gmd:date>
+               <gmd:dateType>
+                <gmd:CI_DateTypeCode codeList="https://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation">creation</gmd:CI_DateTypeCode>
+               </gmd:dateType>
+              </gmd:CI_Date>
+             </gmd:date>
+            </gmd:CI_Citation>
+           </gmd:authority>
+           <gmd:code><gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L13/current/AB/">atmospheric boundary layer</gmx:Anchor>
+           </gmd:code>
+          </gmd:MD_Identifier>
+         </gmd:geographicIdentifier>
+        </gmd:EX_GeographicDescription>
+       </gmd:geographicElement>
+    </snippet>
+  <snippet label="addBB">
+    <gmd:geographicElement>
+        <gmd:EX_GeographicDescription>
+         <gmd:geographicIdentifier>
+          <gmd:MD_Identifier>
+           <gmd:authority>
+            <gmd:CI_Citation>
+             <gmd:title>
+              <gco:CharacterString>SeaVoX Vertical Co-ordinate Coverages</gco:CharacterString>
+             </gmd:title>
+             <gmd:date>
+              <gmd:CI_Date>
+               <gmd:date>
+                <gco:Date>2013-02-05</gco:Date>
+               </gmd:date>
+               <gmd:dateType>
+                <gmd:CI_DateTypeCode codeList="https://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation">creation</gmd:CI_DateTypeCode>
+               </gmd:dateType>
+              </gmd:CI_Date>
+             </gmd:date>
+            </gmd:CI_Citation>
+           </gmd:authority>
+           <gmd:code><gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L13/current/BB/">bathybenthic</gmx:Anchor>
+           </gmd:code>
+          </gmd:MD_Identifier>
+         </gmd:geographicIdentifier>
+        </gmd:EX_GeographicDescription>
+       </gmd:geographicElement>
+    </snippet>
+  <snippet label="addBP">
+    <gmd:geographicElement>
+        <gmd:EX_GeographicDescription>
+         <gmd:geographicIdentifier>
+          <gmd:MD_Identifier>
+           <gmd:authority>
+            <gmd:CI_Citation>
+             <gmd:title>
+              <gco:CharacterString>SeaVoX Vertical Co-ordinate Coverages</gco:CharacterString>
+             </gmd:title>
+             <gmd:date>
+              <gmd:CI_Date>
+               <gmd:date>
+                <gco:Date>2013-02-05</gco:Date>
+               </gmd:date>
+               <gmd:dateType>
+                <gmd:CI_DateTypeCode codeList="https://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation">creation</gmd:CI_DateTypeCode>
+               </gmd:dateType>
+              </gmd:CI_Date>
+             </gmd:date>
+            </gmd:CI_Citation>
+           </gmd:authority>
+           <gmd:code><gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L13/current/BP/">bathypelagic water column</gmx:Anchor>
+           </gmd:code>
+          </gmd:MD_Identifier>
+         </gmd:geographicIdentifier>
+        </gmd:EX_GeographicDescription>
+       </gmd:geographicElement>
+    </snippet>
+  <snippet label="addNB">
+    <gmd:geographicElement>
+        <gmd:EX_GeographicDescription>
+         <gmd:geographicIdentifier>
+          <gmd:MD_Identifier>
+           <gmd:authority>
+            <gmd:CI_Citation>
+             <gmd:title>
+              <gco:CharacterString>SeaVoX Vertical Co-ordinate Coverages</gco:CharacterString>
+             </gmd:title>
+             <gmd:date>
+              <gmd:CI_Date>
+               <gmd:date>
+                <gco:Date>2013-02-05</gco:Date>
+               </gmd:date>
+               <gmd:dateType>
+                <gmd:CI_DateTypeCode codeList="https://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation">creation</gmd:CI_DateTypeCode>
+               </gmd:dateType>
+              </gmd:CI_Date>
+             </gmd:date>
+            </gmd:CI_Citation>
+           </gmd:authority>
+           <gmd:code><gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L13/current/NB/">benthic boundary layer</gmx:Anchor>
+           </gmd:code>
+          </gmd:MD_Identifier>
+         </gmd:geographicIdentifier>
+        </gmd:EX_GeographicDescription>
+       </gmd:geographicElement>
+    </snippet>
+  <snippet label="addCL">
+    <gmd:geographicElement>
+        <gmd:EX_GeographicDescription>
+         <gmd:geographicIdentifier>
+          <gmd:MD_Identifier>
+           <gmd:authority>
+            <gmd:CI_Citation>
+             <gmd:title>
+              <gco:CharacterString>SeaVoX Vertical Co-ordinate Coverages</gco:CharacterString>
+             </gmd:title>
+             <gmd:date>
+              <gmd:CI_Date>
+               <gmd:date>
+                <gco:Date>2013-02-05</gco:Date>
+               </gmd:date>
+               <gmd:dateType>
+                <gmd:CI_DateTypeCode codeList="https://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation">creation</gmd:CI_DateTypeCode>
+               </gmd:dateType>
+              </gmd:CI_Date>
+             </gmd:date>
+            </gmd:CI_Citation>
+           </gmd:authority>
+           <gmd:code><gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L13/current/CL/">circalittoral</gmx:Anchor>
+           </gmd:code>
+          </gmd:MD_Identifier>
+         </gmd:geographicIdentifier>
+        </gmd:EX_GeographicDescription>
+       </gmd:geographicElement>
+    </snippet>
+  <snippet label="addCO">
+    <gmd:geographicElement>
+        <gmd:EX_GeographicDescription>
+         <gmd:geographicIdentifier>
+          <gmd:MD_Identifier>
+           <gmd:authority>
+            <gmd:CI_Citation>
+             <gmd:title>
+              <gco:CharacterString>SeaVoX Vertical Co-ordinate Coverages</gco:CharacterString>
+             </gmd:title>
+             <gmd:date>
+              <gmd:CI_Date>
+               <gmd:date>
+                <gco:Date>2013-02-05</gco:Date>
+               </gmd:date>
+               <gmd:dateType>
+                <gmd:CI_DateTypeCode codeList="https://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation">creation</gmd:CI_DateTypeCode>
+               </gmd:dateType>
+              </gmd:CI_Date>
+             </gmd:date>
+            </gmd:CI_Citation>
+           </gmd:authority>
+           <gmd:code><gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L13/current/CO/">core</gmx:Anchor>
+           </gmd:code>
+          </gmd:MD_Identifier>
+         </gmd:geographicIdentifier>
+        </gmd:EX_GeographicDescription>
+       </gmd:geographicElement>
+    </snippet>
+  <snippet label="addCR">
+    <gmd:geographicElement>
+        <gmd:EX_GeographicDescription>
+         <gmd:geographicIdentifier>
+          <gmd:MD_Identifier>
+           <gmd:authority>
+            <gmd:CI_Citation>
+             <gmd:title>
+              <gco:CharacterString>SeaVoX Vertical Co-ordinate Coverages</gco:CharacterString>
+             </gmd:title>
+             <gmd:date>
+              <gmd:CI_Date>
+               <gmd:date>
+                <gco:Date>2013-02-05</gco:Date>
+               </gmd:date>
+               <gmd:dateType>
+                <gmd:CI_DateTypeCode codeList="https://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation">creation</gmd:CI_DateTypeCode>
+               </gmd:dateType>
+              </gmd:CI_Date>
+             </gmd:date>
+            </gmd:CI_Citation>
+           </gmd:authority>
+           <gmd:code><gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L13/current/CR/">crust</gmx:Anchor>
+           </gmd:code>
+          </gmd:MD_Identifier>
+         </gmd:geographicIdentifier>
+        </gmd:EX_GeographicDescription>
+       </gmd:geographicElement>
+    </snippet>
+  <snippet label="addDC">
+    <gmd:geographicElement>
+        <gmd:EX_GeographicDescription>
+         <gmd:geographicIdentifier>
+          <gmd:MD_Identifier>
+           <gmd:authority>
+            <gmd:CI_Citation>
+             <gmd:title>
+              <gco:CharacterString>SeaVoX Vertical Co-ordinate Coverages</gco:CharacterString>
+             </gmd:title>
+             <gmd:date>
+              <gmd:CI_Date>
+               <gmd:date>
+                <gco:Date>2013-02-05</gco:Date>
+               </gmd:date>
+               <gmd:dateType>
+                <gmd:CI_DateTypeCode codeList="https://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation">creation</gmd:CI_DateTypeCode>
+               </gmd:dateType>
+              </gmd:CI_Date>
+             </gmd:date>
+            </gmd:CI_Citation>
+           </gmd:authority>
+           <gmd:code><gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L13/current/DC/">deep circalittoral</gmx:Anchor>
+           </gmd:code>
+          </gmd:MD_Identifier>
+         </gmd:geographicIdentifier>
+        </gmd:EX_GeographicDescription>
+       </gmd:geographicElement>
+    </snippet>
+  <snippet label="addU2">
+    <gmd:geographicElement>
+        <gmd:EX_GeographicDescription>
+         <gmd:geographicIdentifier>
+          <gmd:MD_Identifier>
+           <gmd:authority>
+            <gmd:CI_Citation>
+             <gmd:title>
+              <gco:CharacterString>SeaVoX Vertical Co-ordinate Coverages</gco:CharacterString>
+             </gmd:title>
+             <gmd:date>
+              <gmd:CI_Date>
+               <gmd:date>
+                <gco:Date>2013-02-05</gco:Date>
+               </gmd:date>
+               <gmd:dateType>
+                <gmd:CI_DateTypeCode codeList="https://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation">creation</gmd:CI_DateTypeCode>
+               </gmd:dateType>
+              </gmd:CI_Date>
+             </gmd:date>
+            </gmd:CI_Citation>
+           </gmd:authority>
+           <gmd:code><gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L13/current/U2/">epipelagic water column</gmx:Anchor>
+           </gmd:code>
+          </gmd:MD_Identifier>
+         </gmd:geographicIdentifier>
+        </gmd:EX_GeographicDescription>
+       </gmd:geographicElement>
+    </snippet>
+  <snippet label="addES">
+    <gmd:geographicElement>
+        <gmd:EX_GeographicDescription>
+         <gmd:geographicIdentifier>
+          <gmd:MD_Identifier>
+           <gmd:authority>
+            <gmd:CI_Citation>
+             <gmd:title>
+              <gco:CharacterString>SeaVoX Vertical Co-ordinate Coverages</gco:CharacterString>
+             </gmd:title>
+             <gmd:date>
+              <gmd:CI_Date>
+               <gmd:date>
+                <gco:Date>2013-02-05</gco:Date>
+               </gmd:date>
+               <gmd:dateType>
+                <gmd:CI_DateTypeCode codeList="https://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation">creation</gmd:CI_DateTypeCode>
+               </gmd:dateType>
+              </gmd:CI_Date>
+             </gmd:date>
+            </gmd:CI_Citation>
+           </gmd:authority>
+           <gmd:code><gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L13/current/ES/">exosphere</gmx:Anchor>
+           </gmd:code>
+          </gmd:MD_Identifier>
+         </gmd:geographicIdentifier>
+        </gmd:EX_GeographicDescription>
+       </gmd:geographicElement>
+    </snippet>
+  <snippet label="addHW">
+    <gmd:geographicElement>
+        <gmd:EX_GeographicDescription>
+         <gmd:geographicIdentifier>
+          <gmd:MD_Identifier>
+           <gmd:authority>
+            <gmd:CI_Citation>
+             <gmd:title>
+              <gco:CharacterString>SeaVoX Vertical Co-ordinate Coverages</gco:CharacterString>
+             </gmd:title>
+             <gmd:date>
+              <gmd:CI_Date>
+               <gmd:date>
+                <gco:Date>2013-02-05</gco:Date>
+               </gmd:date>
+               <gmd:dateType>
+                <gmd:CI_DateTypeCode codeList="https://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation">creation</gmd:CI_DateTypeCode>
+               </gmd:dateType>
+              </gmd:CI_Date>
+             </gmd:date>
+            </gmd:CI_Citation>
+           </gmd:authority>
+           <gmd:code><gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L13/current/HW/">hadopelagic water column</gmx:Anchor>
+           </gmd:code>
+          </gmd:MD_Identifier>
+         </gmd:geographicIdentifier>
+        </gmd:EX_GeographicDescription>
+       </gmd:geographicElement>
+    </snippet>
+  <snippet label="addHX">
+    <gmd:geographicElement>
+        <gmd:EX_GeographicDescription>
+         <gmd:geographicIdentifier>
+          <gmd:MD_Identifier>
+           <gmd:authority>
+            <gmd:CI_Citation>
+             <gmd:title>
+              <gco:CharacterString>SeaVoX Vertical Co-ordinate Coverages</gco:CharacterString>
+             </gmd:title>
+             <gmd:date>
+              <gmd:CI_Date>
+               <gmd:date>
+                <gco:Date>2013-02-05</gco:Date>
+               </gmd:date>
+               <gmd:dateType>
+                <gmd:CI_DateTypeCode codeList="https://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation">creation</gmd:CI_DateTypeCode>
+               </gmd:dateType>
+              </gmd:CI_Date>
+             </gmd:date>
+            </gmd:CI_Citation>
+           </gmd:authority>
+           <gmd:code><gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L13/current/HX/">heterosphere</gmx:Anchor>
+           </gmd:code>
+          </gmd:MD_Identifier>
+         </gmd:geographicIdentifier>
+        </gmd:EX_GeographicDescription>
+       </gmd:geographicElement>
+    </snippet>
+  <snippet label="addHP">
+    <gmd:geographicElement>
+        <gmd:EX_GeographicDescription>
+         <gmd:geographicIdentifier>
+          <gmd:MD_Identifier>
+           <gmd:authority>
+            <gmd:CI_Citation>
+             <gmd:title>
+              <gco:CharacterString>SeaVoX Vertical Co-ordinate Coverages</gco:CharacterString>
+             </gmd:title>
+             <gmd:date>
+              <gmd:CI_Date>
+               <gmd:date>
+                <gco:Date>2013-02-05</gco:Date>
+               </gmd:date>
+               <gmd:dateType>
+                <gmd:CI_DateTypeCode codeList="https://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation">creation</gmd:CI_DateTypeCode>
+               </gmd:dateType>
+              </gmd:CI_Date>
+             </gmd:date>
+            </gmd:CI_Citation>
+           </gmd:authority>
+           <gmd:code><gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L13/current/HP/">homopause</gmx:Anchor>
+           </gmd:code>
+          </gmd:MD_Identifier>
+         </gmd:geographicIdentifier>
+        </gmd:EX_GeographicDescription>
+       </gmd:geographicElement>
+    </snippet>
+  <snippet label="addHS">
+    <gmd:geographicElement>
+        <gmd:EX_GeographicDescription>
+         <gmd:geographicIdentifier>
+          <gmd:MD_Identifier>
+           <gmd:authority>
+            <gmd:CI_Citation>
+             <gmd:title>
+              <gco:CharacterString>SeaVoX Vertical Co-ordinate Coverages</gco:CharacterString>
+             </gmd:title>
+             <gmd:date>
+              <gmd:CI_Date>
+               <gmd:date>
+                <gco:Date>2013-02-05</gco:Date>
+               </gmd:date>
+               <gmd:dateType>
+                <gmd:CI_DateTypeCode codeList="https://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation">creation</gmd:CI_DateTypeCode>
+               </gmd:dateType>
+              </gmd:CI_Date>
+             </gmd:date>
+            </gmd:CI_Citation>
+           </gmd:authority>
+           <gmd:code><gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L13/current/HS/">homosphere</gmx:Anchor>
+           </gmd:code>
+          </gmd:MD_Identifier>
+         </gmd:geographicIdentifier>
+        </gmd:EX_GeographicDescription>
+       </gmd:geographicElement>
+    </snippet>
+  <snippet label="addIA">
+    <gmd:geographicElement>
+        <gmd:EX_GeographicDescription>
+         <gmd:geographicIdentifier>
+          <gmd:MD_Identifier>
+           <gmd:authority>
+            <gmd:CI_Citation>
+             <gmd:title>
+              <gco:CharacterString>SeaVoX Vertical Co-ordinate Coverages</gco:CharacterString>
+             </gmd:title>
+             <gmd:date>
+              <gmd:CI_Date>
+               <gmd:date>
+                <gco:Date>2013-02-05</gco:Date>
+               </gmd:date>
+               <gmd:dateType>
+                <gmd:CI_DateTypeCode codeList="https://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation">creation</gmd:CI_DateTypeCode>
+               </gmd:dateType>
+              </gmd:CI_Date>
+             </gmd:date>
+            </gmd:CI_Citation>
+           </gmd:authority>
+           <gmd:code><gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L13/current/IA/">inapplicable</gmx:Anchor>
+           </gmd:code>
+          </gmd:MD_Identifier>
+         </gmd:geographicIdentifier>
+        </gmd:EX_GeographicDescription>
+       </gmd:geographicElement>
+    </snippet>
+  <snippet label="addIL">
+    <gmd:geographicElement>
+        <gmd:EX_GeographicDescription>
+         <gmd:geographicIdentifier>
+          <gmd:MD_Identifier>
+           <gmd:authority>
+            <gmd:CI_Citation>
+             <gmd:title>
+              <gco:CharacterString>SeaVoX Vertical Co-ordinate Coverages</gco:CharacterString>
+             </gmd:title>
+             <gmd:date>
+              <gmd:CI_Date>
+               <gmd:date>
+                <gco:Date>2013-02-05</gco:Date>
+               </gmd:date>
+               <gmd:dateType>
+                <gmd:CI_DateTypeCode codeList="https://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation">creation</gmd:CI_DateTypeCode>
+               </gmd:dateType>
+              </gmd:CI_Date>
+             </gmd:date>
+            </gmd:CI_Citation>
+           </gmd:authority>
+           <gmd:code><gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L13/current/IL/">infralittoral</gmx:Anchor>
+           </gmd:code>
+          </gmd:MD_Identifier>
+         </gmd:geographicIdentifier>
+        </gmd:EX_GeographicDescription>
+       </gmd:geographicElement>
+    </snippet>
+  <snippet label="addLI">
+    <gmd:geographicElement>
+        <gmd:EX_GeographicDescription>
+         <gmd:geographicIdentifier>
+          <gmd:MD_Identifier>
+           <gmd:authority>
+            <gmd:CI_Citation>
+             <gmd:title>
+              <gco:CharacterString>SeaVoX Vertical Co-ordinate Coverages</gco:CharacterString>
+             </gmd:title>
+             <gmd:date>
+              <gmd:CI_Date>
+               <gmd:date>
+                <gco:Date>2013-02-05</gco:Date>
+               </gmd:date>
+               <gmd:dateType>
+                <gmd:CI_DateTypeCode codeList="https://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation">creation</gmd:CI_DateTypeCode>
+               </gmd:dateType>
+              </gmd:CI_Date>
+             </gmd:date>
+            </gmd:CI_Citation>
+           </gmd:authority>
+           <gmd:code><gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L13/current/LI/">littoral</gmx:Anchor>
+           </gmd:code>
+          </gmd:MD_Identifier>
+         </gmd:geographicIdentifier>
+        </gmd:EX_GeographicDescription>
+       </gmd:geographicElement>
+    </snippet>
+  <snippet label="addMA">
+    <gmd:geographicElement>
+        <gmd:EX_GeographicDescription>
+         <gmd:geographicIdentifier>
+          <gmd:MD_Identifier>
+           <gmd:authority>
+            <gmd:CI_Citation>
+             <gmd:title>
+              <gco:CharacterString>SeaVoX Vertical Co-ordinate Coverages</gco:CharacterString>
+             </gmd:title>
+             <gmd:date>
+              <gmd:CI_Date>
+               <gmd:date>
+                <gco:Date>2013-02-05</gco:Date>
+               </gmd:date>
+               <gmd:dateType>
+                <gmd:CI_DateTypeCode codeList="https://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation">creation</gmd:CI_DateTypeCode>
+               </gmd:dateType>
+              </gmd:CI_Date>
+             </gmd:date>
+            </gmd:CI_Citation>
+           </gmd:authority>
+           <gmd:code><gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L13/current/MA/">mantle</gmx:Anchor>
+           </gmd:code>
+          </gmd:MD_Identifier>
+         </gmd:geographicIdentifier>
+        </gmd:EX_GeographicDescription>
+       </gmd:geographicElement>
+    </snippet>
+  <snippet label="addMP">
+    <gmd:geographicElement>
+        <gmd:EX_GeographicDescription>
+         <gmd:geographicIdentifier>
+          <gmd:MD_Identifier>
+           <gmd:authority>
+            <gmd:CI_Citation>
+             <gmd:title>
+              <gco:CharacterString>SeaVoX Vertical Co-ordinate Coverages</gco:CharacterString>
+             </gmd:title>
+             <gmd:date>
+              <gmd:CI_Date>
+               <gmd:date>
+                <gco:Date>2013-02-05</gco:Date>
+               </gmd:date>
+               <gmd:dateType>
+                <gmd:CI_DateTypeCode codeList="https://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation">creation</gmd:CI_DateTypeCode>
+               </gmd:dateType>
+              </gmd:CI_Date>
+             </gmd:date>
+            </gmd:CI_Citation>
+           </gmd:authority>
+           <gmd:code><gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L13/current/MP/">mesopause</gmx:Anchor>
+           </gmd:code>
+          </gmd:MD_Identifier>
+         </gmd:geographicIdentifier>
+        </gmd:EX_GeographicDescription>
+       </gmd:geographicElement>
+    </snippet>
+  <snippet label="addMW">
+    <gmd:geographicElement>
+        <gmd:EX_GeographicDescription>
+         <gmd:geographicIdentifier>
+          <gmd:MD_Identifier>
+           <gmd:authority>
+            <gmd:CI_Citation>
+             <gmd:title>
+              <gco:CharacterString>SeaVoX Vertical Co-ordinate Coverages</gco:CharacterString>
+             </gmd:title>
+             <gmd:date>
+              <gmd:CI_Date>
+               <gmd:date>
+                <gco:Date>2013-02-05</gco:Date>
+               </gmd:date>
+               <gmd:dateType>
+                <gmd:CI_DateTypeCode codeList="https://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation">creation</gmd:CI_DateTypeCode>
+               </gmd:dateType>
+              </gmd:CI_Date>
+             </gmd:date>
+            </gmd:CI_Citation>
+           </gmd:authority>
+           <gmd:code><gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L13/current/MW/">mesopelagic water column</gmx:Anchor>
+           </gmd:code>
+          </gmd:MD_Identifier>
+         </gmd:geographicIdentifier>
+        </gmd:EX_GeographicDescription>
+       </gmd:geographicElement>
+    </snippet>
+  <snippet label="addMS">
+    <gmd:geographicElement>
+        <gmd:EX_GeographicDescription>
+         <gmd:geographicIdentifier>
+          <gmd:MD_Identifier>
+           <gmd:authority>
+            <gmd:CI_Citation>
+             <gmd:title>
+              <gco:CharacterString>SeaVoX Vertical Co-ordinate Coverages</gco:CharacterString>
+             </gmd:title>
+             <gmd:date>
+              <gmd:CI_Date>
+               <gmd:date>
+                <gco:Date>2013-02-05</gco:Date>
+               </gmd:date>
+               <gmd:dateType>
+                <gmd:CI_DateTypeCode codeList="https://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation">creation</gmd:CI_DateTypeCode>
+               </gmd:dateType>
+              </gmd:CI_Date>
+             </gmd:date>
+            </gmd:CI_Citation>
+           </gmd:authority>
+           <gmd:code><gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L13/current/MS/">mesosphere</gmx:Anchor>
+           </gmd:code>
+          </gmd:MD_Identifier>
+         </gmd:geographicIdentifier>
+        </gmd:EX_GeographicDescription>
+       </gmd:geographicElement>
+    </snippet>
+  <snippet label="addSD">
+    <gmd:geographicElement>
+        <gmd:EX_GeographicDescription>
+         <gmd:geographicIdentifier>
+          <gmd:MD_Identifier>
+           <gmd:authority>
+            <gmd:CI_Citation>
+             <gmd:title>
+              <gco:CharacterString>SeaVoX Vertical Co-ordinate Coverages</gco:CharacterString>
+             </gmd:title>
+             <gmd:date>
+              <gmd:CI_Date>
+               <gmd:date>
+                <gco:Date>2013-02-05</gco:Date>
+               </gmd:date>
+               <gmd:dateType>
+                <gmd:CI_DateTypeCode codeList="https://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation">creation</gmd:CI_DateTypeCode>
+               </gmd:dateType>
+              </gmd:CI_Date>
+             </gmd:date>
+            </gmd:CI_Citation>
+           </gmd:authority>
+           <gmd:code><gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L13/current/SD/">soil and sediment</gmx:Anchor>
+           </gmd:code>
+          </gmd:MD_Identifier>
+         </gmd:geographicIdentifier>
+        </gmd:EX_GeographicDescription>
+       </gmd:geographicElement>
+    </snippet>
+  <snippet label="addSB">
+    <gmd:geographicElement>
+        <gmd:EX_GeographicDescription>
+         <gmd:geographicIdentifier>
+          <gmd:MD_Identifier>
+           <gmd:authority>
+            <gmd:CI_Citation>
+             <gmd:title>
+              <gco:CharacterString>SeaVoX Vertical Co-ordinate Coverages</gco:CharacterString>
+             </gmd:title>
+             <gmd:date>
+              <gmd:CI_Date>
+               <gmd:date>
+                <gco:Date>2013-02-05</gco:Date>
+               </gmd:date>
+               <gmd:dateType>
+                <gmd:CI_DateTypeCode codeList="https://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation">creation</gmd:CI_DateTypeCode>
+               </gmd:dateType>
+              </gmd:CI_Date>
+             </gmd:date>
+            </gmd:CI_Citation>
+           </gmd:authority>
+           <gmd:code><gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L13/current/SB/">soil and sediment boundary layer</gmx:Anchor>
+           </gmd:code>
+          </gmd:MD_Identifier>
+         </gmd:geographicIdentifier>
+        </gmd:EX_GeographicDescription>
+       </gmd:geographicElement>
+    </snippet>
+  <snippet label="addSP">
+    <gmd:geographicElement>
+        <gmd:EX_GeographicDescription>
+         <gmd:geographicIdentifier>
+          <gmd:MD_Identifier>
+           <gmd:authority>
+            <gmd:CI_Citation>
+             <gmd:title>
+              <gco:CharacterString>SeaVoX Vertical Co-ordinate Coverages</gco:CharacterString>
+             </gmd:title>
+             <gmd:date>
+              <gmd:CI_Date>
+               <gmd:date>
+                <gco:Date>2013-02-05</gco:Date>
+               </gmd:date>
+               <gmd:dateType>
+                <gmd:CI_DateTypeCode codeList="https://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation">creation</gmd:CI_DateTypeCode>
+               </gmd:dateType>
+              </gmd:CI_Date>
+             </gmd:date>
+            </gmd:CI_Citation>
+           </gmd:authority>
+           <gmd:code><gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L13/current/SP/">stratopause</gmx:Anchor>
+           </gmd:code>
+          </gmd:MD_Identifier>
+         </gmd:geographicIdentifier>
+        </gmd:EX_GeographicDescription>
+       </gmd:geographicElement>
+    </snippet>
+  <snippet label="addSS">
+    <gmd:geographicElement>
+        <gmd:EX_GeographicDescription>
+         <gmd:geographicIdentifier>
+          <gmd:MD_Identifier>
+           <gmd:authority>
+            <gmd:CI_Citation>
+             <gmd:title>
+              <gco:CharacterString>SeaVoX Vertical Co-ordinate Coverages</gco:CharacterString>
+             </gmd:title>
+             <gmd:date>
+              <gmd:CI_Date>
+               <gmd:date>
+                <gco:Date>2013-02-05</gco:Date>
+               </gmd:date>
+               <gmd:dateType>
+                <gmd:CI_DateTypeCode codeList="https://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation">creation</gmd:CI_DateTypeCode>
+               </gmd:dateType>
+              </gmd:CI_Date>
+             </gmd:date>
+            </gmd:CI_Citation>
+           </gmd:authority>
+           <gmd:code><gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L13/current/SS/">stratosphere</gmx:Anchor>
+           </gmd:code>
+          </gmd:MD_Identifier>
+         </gmd:geographicIdentifier>
+        </gmd:EX_GeographicDescription>
+       </gmd:geographicElement>
+    </snippet>
+  <snippet label="addTZ">
+    <gmd:geographicElement>
+        <gmd:EX_GeographicDescription>
+         <gmd:geographicIdentifier>
+          <gmd:MD_Identifier>
+           <gmd:authority>
+            <gmd:CI_Citation>
+             <gmd:title>
+              <gco:CharacterString>SeaVoX Vertical Co-ordinate Coverages</gco:CharacterString>
+             </gmd:title>
+             <gmd:date>
+              <gmd:CI_Date>
+               <gmd:date>
+                <gco:Date>2013-02-05</gco:Date>
+               </gmd:date>
+               <gmd:dateType>
+                <gmd:CI_DateTypeCode codeList="https://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation">creation</gmd:CI_DateTypeCode>
+               </gmd:dateType>
+              </gmd:CI_Date>
+             </gmd:date>
+            </gmd:CI_Citation>
+           </gmd:authority>
+           <gmd:code><gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L13/current/TZ/">thermopause</gmx:Anchor>
+           </gmd:code>
+          </gmd:MD_Identifier>
+         </gmd:geographicIdentifier>
+        </gmd:EX_GeographicDescription>
+       </gmd:geographicElement>
+    </snippet>
+  <snippet label="addTS">
+    <gmd:geographicElement>
+        <gmd:EX_GeographicDescription>
+         <gmd:geographicIdentifier>
+          <gmd:MD_Identifier>
+           <gmd:authority>
+            <gmd:CI_Citation>
+             <gmd:title>
+              <gco:CharacterString>SeaVoX Vertical Co-ordinate Coverages</gco:CharacterString>
+             </gmd:title>
+             <gmd:date>
+              <gmd:CI_Date>
+               <gmd:date>
+                <gco:Date>2013-02-05</gco:Date>
+               </gmd:date>
+               <gmd:dateType>
+                <gmd:CI_DateTypeCode codeList="https://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation">creation</gmd:CI_DateTypeCode>
+               </gmd:dateType>
+              </gmd:CI_Date>
+             </gmd:date>
+            </gmd:CI_Citation>
+           </gmd:authority>
+           <gmd:code><gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L13/current/TS/">thermosphere</gmx:Anchor>
+           </gmd:code>
+          </gmd:MD_Identifier>
+         </gmd:geographicIdentifier>
+        </gmd:EX_GeographicDescription>
+       </gmd:geographicElement>
+    </snippet>
+  <snippet label="addTP">
+    <gmd:geographicElement>
+        <gmd:EX_GeographicDescription>
+         <gmd:geographicIdentifier>
+          <gmd:MD_Identifier>
+           <gmd:authority>
+            <gmd:CI_Citation>
+             <gmd:title>
+              <gco:CharacterString>SeaVoX Vertical Co-ordinate Coverages</gco:CharacterString>
+             </gmd:title>
+             <gmd:date>
+              <gmd:CI_Date>
+               <gmd:date>
+                <gco:Date>2013-02-05</gco:Date>
+               </gmd:date>
+               <gmd:dateType>
+                <gmd:CI_DateTypeCode codeList="https://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation">creation</gmd:CI_DateTypeCode>
+               </gmd:dateType>
+              </gmd:CI_Date>
+             </gmd:date>
+            </gmd:CI_Citation>
+           </gmd:authority>
+           <gmd:code><gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L13/current/TP/">tropopause</gmx:Anchor>
+           </gmd:code>
+          </gmd:MD_Identifier>
+         </gmd:geographicIdentifier>
+        </gmd:EX_GeographicDescription>
+       </gmd:geographicElement>
+    </snippet>
+  <snippet label="addTH">
+    <gmd:geographicElement>
+        <gmd:EX_GeographicDescription>
+         <gmd:geographicIdentifier>
+          <gmd:MD_Identifier>
+           <gmd:authority>
+            <gmd:CI_Citation>
+             <gmd:title>
+              <gco:CharacterString>SeaVoX Vertical Co-ordinate Coverages</gco:CharacterString>
+             </gmd:title>
+             <gmd:date>
+              <gmd:CI_Date>
+               <gmd:date>
+                <gco:Date>2013-02-05</gco:Date>
+               </gmd:date>
+               <gmd:dateType>
+                <gmd:CI_DateTypeCode codeList="https://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation">creation</gmd:CI_DateTypeCode>
+               </gmd:dateType>
+              </gmd:CI_Date>
+             </gmd:date>
+            </gmd:CI_Citation>
+           </gmd:authority>
+           <gmd:code><gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L13/current/TH/">troposphere</gmx:Anchor>
+           </gmd:code>
+          </gmd:MD_Identifier>
+         </gmd:geographicIdentifier>
+        </gmd:EX_GeographicDescription>
+       </gmd:geographicElement>
+    </snippet>
+  <snippet label="addUK">
+    <gmd:geographicElement>
+        <gmd:EX_GeographicDescription>
+         <gmd:geographicIdentifier>
+          <gmd:MD_Identifier>
+           <gmd:authority>
+            <gmd:CI_Citation>
+             <gmd:title>
+              <gco:CharacterString>SeaVoX Vertical Co-ordinate Coverages</gco:CharacterString>
+             </gmd:title>
+             <gmd:date>
+              <gmd:CI_Date>
+               <gmd:date>
+                <gco:Date>2013-02-05</gco:Date>
+               </gmd:date>
+               <gmd:dateType>
+                <gmd:CI_DateTypeCode codeList="https://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation">creation</gmd:CI_DateTypeCode>
+               </gmd:dateType>
+              </gmd:CI_Date>
+             </gmd:date>
+            </gmd:CI_Citation>
+           </gmd:authority>
+           <gmd:code><gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L13/current/UK/">unknown</gmx:Anchor>
+           </gmd:code>
+          </gmd:MD_Identifier>
+         </gmd:geographicIdentifier>
+        </gmd:EX_GeographicDescription>
+       </gmd:geographicElement>
+    </snippet>
+  <snippet label="addU1">
+    <gmd:geographicElement>
+        <gmd:EX_GeographicDescription>
+         <gmd:geographicIdentifier>
+          <gmd:MD_Identifier>
+           <gmd:authority>
+            <gmd:CI_Citation>
+             <gmd:title>
+              <gco:CharacterString>SeaVoX Vertical Co-ordinate Coverages</gco:CharacterString>
+             </gmd:title>
+             <gmd:date>
+              <gmd:CI_Date>
+               <gmd:date>
+                <gco:Date>2013-02-05</gco:Date>
+               </gmd:date>
+               <gmd:dateType>
+                <gmd:CI_DateTypeCode codeList="https://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation">creation</gmd:CI_DateTypeCode>
+               </gmd:dateType>
+              </gmd:CI_Date>
+             </gmd:date>
+            </gmd:CI_Citation>
+           </gmd:authority>
+           <gmd:code><gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L13/current/U1/">upper epipelagic water column</gmx:Anchor>
+           </gmd:code>
+          </gmd:MD_Identifier>
+         </gmd:geographicIdentifier>
+        </gmd:EX_GeographicDescription>
+       </gmd:geographicElement>
+    </snippet>
+  <snippet label="addUS">
+    <gmd:geographicElement>
+        <gmd:EX_GeographicDescription>
+         <gmd:geographicIdentifier>
+          <gmd:MD_Identifier>
+           <gmd:authority>
+            <gmd:CI_Citation>
+             <gmd:title>
+              <gco:CharacterString>SeaVoX Vertical Co-ordinate Coverages</gco:CharacterString>
+             </gmd:title>
+             <gmd:date>
+              <gmd:CI_Date>
+               <gmd:date>
+                <gco:Date>2013-02-05</gco:Date>
+               </gmd:date>
+               <gmd:dateType>
+                <gmd:CI_DateTypeCode codeList="https://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation">creation</gmd:CI_DateTypeCode>
+               </gmd:dateType>
+              </gmd:CI_Date>
+             </gmd:date>
+            </gmd:CI_Citation>
+           </gmd:authority>
+           <gmd:code><gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L13/current/US/">upper slope</gmx:Anchor>
+           </gmd:code>
+          </gmd:MD_Identifier>
+         </gmd:geographicIdentifier>
+        </gmd:EX_GeographicDescription>
+       </gmd:geographicElement>
+    </snippet>
+  <snippet label="addWC">
+    <gmd:geographicElement>
+        <gmd:EX_GeographicDescription>
+         <gmd:geographicIdentifier>
+          <gmd:MD_Identifier>
+           <gmd:authority>
+            <gmd:CI_Citation>
+             <gmd:title>
+              <gco:CharacterString>SeaVoX Vertical Co-ordinate Coverages</gco:CharacterString>
+             </gmd:title>
+             <gmd:date>
+              <gmd:CI_Date>
+               <gmd:date>
+                <gco:Date>2013-02-05</gco:Date>
+               </gmd:date>
+               <gmd:dateType>
+                <gmd:CI_DateTypeCode codeList="https://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation">creation</gmd:CI_DateTypeCode>
+               </gmd:dateType>
+              </gmd:CI_Date>
+             </gmd:date>
+            </gmd:CI_Citation>
+           </gmd:authority>
+           <gmd:code><gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L13/current/WC/">water column</gmx:Anchor>
+           </gmd:code>
+          </gmd:MD_Identifier>
+         </gmd:geographicIdentifier>
+        </gmd:EX_GeographicDescription>
+       </gmd:geographicElement>
+    </snippet>
+  <snippet label="addNS">
+    <gmd:geographicElement>
+        <gmd:EX_GeographicDescription>
+         <gmd:geographicIdentifier>
+          <gmd:MD_Identifier>
+           <gmd:authority>
+            <gmd:CI_Citation>
+             <gmd:title>
+              <gco:CharacterString>SeaVoX Vertical Co-ordinate Coverages</gco:CharacterString>
+             </gmd:title>
+             <gmd:date>
+              <gmd:CI_Date>
+               <gmd:date>
+                <gco:Date>2013-02-05</gco:Date>
+               </gmd:date>
+               <gmd:dateType>
+                <gmd:CI_DateTypeCode codeList="https://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation">creation</gmd:CI_DateTypeCode>
+               </gmd:dateType>
+              </gmd:CI_Date>
+             </gmd:date>
+            </gmd:CI_Citation>
+           </gmd:authority>
+           <gmd:code><gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L13/current/NS/">water column boundary layer</gmx:Anchor>
+           </gmd:code>
+          </gmd:MD_Identifier>
+         </gmd:geographicIdentifier>
+        </gmd:EX_GeographicDescription>
+       </gmd:geographicElement>
+    </snippet>
+  <snippet label="addWS">
+    <gmd:geographicElement>
+        <gmd:EX_GeographicDescription>
+         <gmd:geographicIdentifier>
+          <gmd:MD_Identifier>
+           <gmd:authority>
+            <gmd:CI_Citation>
+             <gmd:title>
+              <gco:CharacterString>SeaVoX Vertical Co-ordinate Coverages</gco:CharacterString>
+             </gmd:title>
+             <gmd:date>
+              <gmd:CI_Date>
+               <gmd:date>
+                <gco:Date>2013-02-05</gco:Date>
+               </gmd:date>
+               <gmd:dateType>
+                <gmd:CI_DateTypeCode codeList="https://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation">creation</gmd:CI_DateTypeCode>
+               </gmd:dateType>
+              </gmd:CI_Date>
+             </gmd:date>
+            </gmd:CI_Citation>
+           </gmd:authority>
+           <gmd:code><gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L13/current/WS/">water column skin</gmx:Anchor>
+           </gmd:code>
+          </gmd:MD_Identifier>
+         </gmd:geographicIdentifier>
+        </gmd:EX_GeographicDescription>
+       </gmd:geographicElement>
+    </snippet>
+  </template>
+</action>
           <text ref="medinextent_help"/>
 
 
@@ -1963,7 +3027,7 @@
         <for name="gmd:transferOptions"/>
         <!-- <for name="gmd:otherConstraints"/> -->
         <for name="gmd:EX_TemporalExtent"/>
-        <!-- <for name="gmd:geographicElement"/> -->
+        <for name="gmd:geographicElement"/>
         <for name="gmd:geographicIdentifier"/>
         <for name="gmd:report"/>
         <for name="gmd:lineage"/>
