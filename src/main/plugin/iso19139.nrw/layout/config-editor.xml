@@ -1722,12 +1722,45 @@
 
         <section name="useconstraints">
           <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:useConstraints"/>
-          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints[./gmd:useConstraints]/gmd:otherConstraints[1]"/>
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints[gmd:useConstraints]/gmd:otherConstraints[1]"    templateModeOnly="true"
+              notDisplayedIfMissing="true"
+              forceLabel="true"
+              name="useConstraints"
+              del=".">
+
+              <template>
+                <values>
+                  <key label="string"
+                       xpath="gco:CharacterString"/>
+                </values>
+                <snippet>
+                      <gmd:otherConstraints>
+                        <gco:CharacterString>{{string}}</gco:CharacterString>
+                      </gmd:otherConstraints>
+                </snippet>
+              </template>
+            </field>
         </section>
 
         <section name="attributionstatement">
-          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints[./gmd:useConstraints]/gmd:otherConstraints[2]"/>
-          <action type="add" btnLabel="addAttributionStatement" name="addAttributionStatement" or="otherConstraints" in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints">
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints[gmd:useConstraints]/gmd:otherConstraints[2]"    templateModeOnly="true"
+              notDisplayedIfMissing="true"
+              forceLabel="true"
+              name="attributionstatement"
+              del=".">
+              <template>
+                <values>
+                  <key label="string"
+                       xpath="gco:CharacterString"/>
+                </values>
+                <snippet>
+                      <gmd:otherConstraints>
+                        <gco:CharacterString>{{string}}</gco:CharacterString>
+                      </gmd:otherConstraints>
+                </snippet>
+              </template>
+            </field>
+            <action type="add" btnLabel="addAttributionStatement" name="addAttributionStatement" or="otherConstraints" in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints">
             <template>
               <snippet>
                     <gmd:otherConstraints>
