@@ -1419,8 +1419,9 @@
               </xsl:call-template>
             </dt>
             <dd><xsl:comment select="name()"/>
-              <xsl:apply-templates mode="render-value" select="*|*/@codeListValue"/>
-              <xsl:apply-templates mode="render-value" select="@*"/>
+              <!-- <xsl:apply-templates mode="render-value" select="*|*/@codeListValue"/> -->
+              <!-- <xsl:apply-templates mode="render-value" select="@*"/> -->
+              <xsl:apply-templates mode="render-value" select="gco:CharacterString"/>
             </dd>
           </dl>
         </xsl:if>
@@ -1435,8 +1436,8 @@
                 </xsl:call-template>
             </dt>
             <dd><xsl:comment select="name()"/>
-              <xsl:apply-templates mode="render-value" select="*|*/@codeListValue"/>
-              <xsl:apply-templates mode="render-value" select="@*"/>
+              <!-- <xsl:apply-templates mode="render-value" select="*|*/@codeListValue"/> -->
+              <xsl:apply-templates mode="render-value" select="gmx:Anchor"/>
             </dd>
           </dl>
         </xsl:if>
