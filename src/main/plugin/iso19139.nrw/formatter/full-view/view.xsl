@@ -92,7 +92,8 @@
   <xsl:template mode="getTags" match="gmd:MD_Metadata|*[@gco:isoType = 'gmd:MD_Metadata']">
     <xsl:param name="byThesaurus" select="false()"/>
 
-    <section class="gn-md-side-social">
+    <!-- disabled for NRW -->
+    <!-- <section class="gn-md-side-social">
       <h2>
         <i class="fa fa-fw fa-tag"><xsl:comment select="'image'"/></i>
         <span><xsl:comment select="name()"/>
@@ -153,7 +154,7 @@
         </xsl:otherwise>
       </xsl:choose>
 
-    </section>
+    </section> -->
   </xsl:template>
 
   <xsl:template mode="getMetadataHierarchyLevel" match="gmd:MD_Metadata|*[@gco:isoType = 'gmd:MD_Metadata']">
@@ -816,7 +817,7 @@
             <xsl:for-each select="*/gmd:keyword">
               <li>
                 <xsl:apply-templates mode="render-value"
-                                     select="./gco:CharacterString"/>
+                                     select="./gco:CharacterString|gmx:Anchor"/>
               </li>
             </xsl:for-each>
           </ul>
