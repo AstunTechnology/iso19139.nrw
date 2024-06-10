@@ -490,9 +490,9 @@
     or @gco:isoType = $configuration/editor/fieldsWithFieldset/name]|
       gmd:report/*|
       gmd:result/*|
-      gmd:extent[name(..)!='gmd:EX_TemporalExtent']|
+      gmd:extent/*|
       *[$isFlatMode = false() and gmd:* and
-        not(gco:CharacterString) and not(gmd:URL)]">
+        not(gco:CharacterString) and not(gmd:URL) and not(gmd:code)]">
     <div class="entry name">
       <h2>
         <xsl:call-template name="render-field-label">
@@ -565,7 +565,7 @@
 
         <!-- Display any included geographic descriptions separately after displayed map -->
         <xsl:apply-templates mode="render-field"
-                             select="gmd:geographicElement[gmd:EX_GeographicDescription]"/>
+                             select="gmd:geographicElement[gmd:EX_GeographicDescription[not(gmd:geographicIdentifier/gmd:MD_Identifier/gmd:authority/gmd:CI_Citation/gmd:title/gco:CharacterString='SeaVoX Vertical Co-ordinate Coverages')]]"/>
 
         <xsl:apply-templates mode="render-field"
                              select="gmd:temporalElement"/>
@@ -1450,7 +1450,6 @@
 
         <xsl:param name="fieldName" select="''" as="xs:string"/>
           <dl data-ng-if="user.isConnected()">
-            <!-- <dt>NRW Internal Location Info</dt> -->
             <dt>
               <xsl:call-template name="render-field-label">
                   <xsl:with-param name="fieldName" select="$fieldName"/>
@@ -1460,7 +1459,6 @@
             <dd>
               <xsl:comment select="name()"/>
               <xsl:apply-templates mode="render-value" select="gco:CharacterString"/>
-<!--               <xsl:apply-templates mode="render-value" select="@*"/> -->
             </dd>
           </dl>
 
@@ -1470,7 +1468,6 @@
 
         <xsl:param name="fieldName" select="''" as="xs:string"/>
           <dl data-ng-if="user.isConnected()">
-            <!-- <dt>NRW Internal Contact Info</dt> -->
             <dt>
               <xsl:call-template name="render-field-label">
                   <xsl:with-param name="fieldName" select="$fieldName"/>
@@ -1480,7 +1477,39 @@
             <dd>
               <xsl:comment select="name()"/>
               <xsl:apply-templates mode="render-value" select="gco:CharacterString"/>
-<!--               <xsl:apply-templates mode="render-value" select="@*"/> -->
+            </dd>
+          </dl>
+
+    </xsl:template>
+
+    <!-- some specific NRW customisations -->
+
+    <xsl:template mode="render-field" match="gmd:geographicIdentifier[gmd:MD_Identifier/gmd:authority/gmd:CI_Citation/gmd:title/gco:CharacterString='SeaVoX Vertical Co-ordinate Coverages']" priority="2000">
+
+        <xsl:param name="fieldName" select="''" as="xs:string"/>
+          <dl>
+            <dt>Vertical Extent Keyword</dt>
+            <dd>
+              <xsl:comment select="name()"/>
+              <xsl:apply-templates mode="render-value" select="gmd:MD_Identifier/gmd:code"/>
+            </dd>
+          </dl>
+
+    </xsl:template>
+
+    <xsl:template mode="render-field" match="gml:VerticalCRS" priority="2000">
+
+        <xsl:param name="fieldName" select="''" as="xs:string"/>
+          <dl>
+            <dt>
+              <xsl:call-template name="render-field-label">
+                  <xsl:with-param name="fieldName" select="$fieldName"/>
+                  <xsl:with-param name="languages" select="$allLanguages"/>
+                </xsl:call-template>
+            </dt>
+            <dd>
+              <xsl:comment select="name()"/>
+              <xsl:apply-templates mode="render-value" select="*"/>
             </dd>
           </dl>
 

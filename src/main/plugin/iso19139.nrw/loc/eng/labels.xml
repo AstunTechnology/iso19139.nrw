@@ -3465,6 +3465,9 @@
   <element name="gml:VerticalCS">
     <label>Vertical CS</label>
   </element>
+  <element name="gml:VerticalCRS">
+    <label>Vertical CRS</label>
+  </element>
   <element name="gml:CoordinateSystemAxis">
     <label>Coordinate system axis</label>
   </element>
