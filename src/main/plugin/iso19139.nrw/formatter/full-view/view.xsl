@@ -1488,7 +1488,7 @@
 
         <xsl:param name="fieldName" select="''" as="xs:string"/>
           <dl>
-            <dt>Vertical Extent Keyword</dt>
+            <dt>Medin Extent Keyword</dt>
             <dd>
               <xsl:comment select="name()"/>
               <xsl:apply-templates mode="render-value" select="gmd:MD_Identifier/gmd:code"/>

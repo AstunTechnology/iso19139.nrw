@@ -90,70 +90,7 @@
 
 
   <xsl:template mode="getTags" match="gmd:MD_Metadata|*[@gco:isoType = 'gmd:MD_Metadata']">
-    <xsl:param name="byThesaurus" select="false()"/>
     <!-- Disabled for NRW -->
-    <!-- <section class="gn-md-side-social">
-      <h2>
-        <i class="fa fa-fw fa-tag"><xsl:comment select="'image'"/></i>
-        <span><xsl:comment select="name()"/>
-          <xsl:value-of select="$schemaStrings/noThesaurusName"/>
-        </span>
-      </h2>
-      <xsl:variable name="tags">
-        <xsl:for-each select="$metadata/gmd:identificationInfo/*/gmd:descriptiveKeywords/
-                                          *[
-                                          gmd:type/*/@codeListValue != 'place'
-                                            and normalize-space(string-join(gmd:keyword//text(), '')) != ''
-                                            and (not(gmd:thesaurusName/*/gmd:identifier/*/gmd:code)
-                                            or gmd:thesaurusName/*/gmd:identifier/*/gmd:code/*/
-                                                text() != '')]">
-          <xsl:variable name="thesaurusTitle">
-            <xsl:for-each select="gmd:thesaurusName/*/gmd:title">
-              <xsl:call-template name="localised">
-                <xsl:with-param name="langId" select="$langId"/>
-              </xsl:call-template>
-            </xsl:for-each>
-          </xsl:variable>
-          <xsl:for-each select="gmd:keyword">
-            <tag thesaurus="{$thesaurusTitle}">
-              <xsl:call-template name="localised">
-                <xsl:with-param name="langId" select="$langId"/>
-              </xsl:call-template>
-            </tag>
-          </xsl:for-each>
-        </xsl:for-each>
-      </xsl:variable>
-
-      <xsl:choose>
-        <xsl:when test="$byThesaurus">
-          <xsl:for-each-group select="$tags/tag" group-by="@thesaurus">
-            <xsl:sort select="@thesaurus"/>
-            <xsl:if test="current-grouping-key() != ''">
-              <h3 style="color: #58595B;"><xsl:value-of select="current-grouping-key()"/></h3><br/>
-            </xsl:if>
-
-            <xsl:for-each select="current-group()">
-              <xsl:sort select="."/>
-                <a href='#/search?query_string=%7B"tag.\\*":%7B"{.}":true%7D%7D' class="btn btn-default btn-xs better-tags">
-                  <span><xsl:copy-of select="."/></span>
-                </a>
-            </xsl:for-each>
-            <xsl:if test="position() != last()">
-              <hr/>
-            </xsl:if>
-          </xsl:for-each-group>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:for-each select="$tags/tag">
-            <xsl:sort select="."/>
-              <a href='#/search?query_string=%7B"tag.\\*":%7B"{.}":true%7D%7D' class="btn btn-default btn-xs better-tags">
-                <span><xsl:copy-of select="."/></span>
-              </a>
-          </xsl:for-each>
-        </xsl:otherwise>
-      </xsl:choose>
-
-    </section> -->
   </xsl:template>
 
   <xsl:template mode="getMetadataHierarchyLevel" match="gmd:MD_Metadata|*[@gco:isoType = 'gmd:MD_Metadata']">
@@ -166,53 +103,10 @@
 
   <xsl:template mode="getExtent" match="gmd:MD_Metadata|*[@gco:isoType = 'gmd:MD_Metadata']">
     <!-- Disabled for NRW -->
-    <!-- <section class="gn-md-side-extent">
-      <h2>
-        <i class="fa fa-fw fa-map-marker"><xsl:comment select="'image'"/></i>
-        <span><xsl:comment select="name()"/>
-          <xsl:value-of select="$schemaStrings/spatialExtent"/>
-        </span>
-      </h2>
-
-      <xsl:choose>
-        <xsl:when test=".//gmd:EX_BoundingPolygon">
-          <xsl:copy-of select="gn-fn-render:extent($metadataUuid)"/>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:apply-templates mode="render-field"
-                               select=".//gmd:EX_GeographicBoundingBox">
-          </xsl:apply-templates>
-        </xsl:otherwise>
-      </xsl:choose>
-    </section> -->
   </xsl:template>
 
   <xsl:template mode="getOverviews" match="gmd:MD_Metadata|*[@gco:isoType = 'gmd:MD_Metadata']">
     <!-- Disabled for NRW -->
-    <!-- <section class="gn-md-side-overview">
-      <h2>
-        <i class="fa fa-fw fa-image"><xsl:comment select="'image'"/></i>
-        <span><xsl:comment select="name()"/>
-          <xsl:value-of select="$schemaStrings/overviews"/>
-        </span>
-      </h2>
-
-      <xsl:for-each select="gmd:identificationInfo/*/gmd:graphicOverview/*">
-        <img data-gn-img-modal="md"
-             class="gn-img-thumbnail"
-             alt="{$schemaStrings/overview}"
-             src="{gmd:fileName/*}"/>
-
-        <xsl:for-each select="gmd:fileDescription">
-          <div class="gn-img-thumbnail-caption">
-            <xsl:call-template name="localised">
-              <xsl:with-param name="langId" select="$langId"/>
-            </xsl:call-template>
-          </div>
-        </xsl:for-each>
-
-      </xsl:for-each>
-    </section> -->
   </xsl:template>
 
   <xsl:template mode="getMetadataHeader" match="gmd:MD_Metadata|*[@gco:isoType = 'gmd:MD_Metadata']">
@@ -798,123 +692,7 @@
     </dl>
   </xsl:template>
 
- <!-- Display thesaurus name and the list of keywords if at least one keyword is set -->
-  <xsl:template mode="render-field"
-                match="gmd:descriptiveKeywords[*/gmd:thesaurusName/gmd:CI_Citation/gmd:title and
-                count(*/gmd:keyword/*[. != '']) = 0]"
-                priority="100"/>
-  <xsl:template mode="render-field"
-                match="gmd:descriptiveKeywords[*/gmd:thesaurusName/gmd:CI_Citation/gmd:title and
-                count(*/gmd:keyword/*[. != '']) > 0]"
-                priority="100">
-    <xsl:param name="fieldName" select="''" as="xs:string"/>
-
-    <dl class="gn-keyword">
-      <dt>
-        <xsl:choose>
-          <xsl:when test="$fieldName != ''">
-            <xsl:value-of select="$fieldName"/>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:apply-templates mode="render-value"
-                                 select="*/gmd:thesaurusName/gmd:CI_Citation/gmd:title"/>
-          </xsl:otherwise>
-        </xsl:choose>
-      </dt>
-      <dd>
-        <div>
-          <ul>
-            <xsl:for-each select="*/gmd:keyword">
-              <li>
-                <xsl:apply-templates mode="render-value"
-                                     select="./gco:CharacterString"/>
-              </li>
-            </xsl:for-each>
-          </ul>
-        </div>
-      </dd>
-    </dl>
-  </xsl:template>
-
-
-  <xsl:template mode="render-field"
-                match="gmd:descriptiveKeywords[not(*/gmd:thesaurusName/gmd:CI_Citation/gmd:title)]"
-                priority="100">
-    <xsl:param name="fieldName" select="''" as="xs:string"/>
-
-    <dl class="gn-keyword">
-      <dt>
-        <xsl:variable name="thesaurusType">
-          <xsl:apply-templates mode="render-value"
-                               select="*/gmd:type/*/@codeListValue[. != '']"/>
-        </xsl:variable>
-
-        <xsl:choose>
-          <xsl:when test="$fieldName != ''">
-            <xsl:value-of select="$fieldName"/>
-          </xsl:when>
-          <xsl:when test="$thesaurusType != ''">
-            <xsl:copy-of select="$thesaurusType"/>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:value-of select="$schemaStrings/noThesaurusName"/>
-          </xsl:otherwise>
-        </xsl:choose>
-      </dt>
-      <dd>
-        <div>
-          <ul>
-            <xsl:for-each select="*/gmd:keyword">
-              <li>
-                <xsl:apply-templates mode="render-value"
-                                     select="."/>
-              </li>
-            </xsl:for-each>
-          </ul>
-        </div>
-      </dd>
-    </dl>
-  </xsl:template>
-
-
-  <xsl:template mode="render-field"
-                match="gmd:descriptiveKeywords[not(*/gmd:thesaurusName/gmd:CI_Citation/gmd:title)]"
-                priority="100">
-    <xsl:param name="fieldName" select="''" as="xs:string"/>
-
-    <dl class="gn-keyword">
-      <dt>
-        <xsl:variable name="thesaurusType">
-          <xsl:apply-templates mode="render-value"
-                               select="*/gmd:type/*/@codeListValue[. != '']"/>
-        </xsl:variable>
-
-        <xsl:choose>
-          <xsl:when test="$fieldName != ''">
-            <xsl:value-of select="$fieldName"/>
-          </xsl:when>
-          <xsl:when test="$thesaurusType != ''">
-            <xsl:copy-of select="$thesaurusType"/>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:value-of select="$schemaStrings/noThesaurusName"/>
-          </xsl:otherwise>
-        </xsl:choose>
-      </dt>
-      <dd>
-        <div>
-          <ul>
-            <xsl:for-each select="*/gmd:keyword">
-              <li>
-                <xsl:apply-templates mode="render-value"
-                                     select="."/>
-              </li>
-            </xsl:for-each>
-          </ul>
-        </div>
-      </dd>
-    </dl>
-  </xsl:template>
+ 
 
   <xsl:template mode="render-field"
                 match="gmd:distributionFormat[1]"
@@ -1005,8 +783,8 @@
 
   <!-- Enumeration -->
   <xsl:template mode="render-field"
-                match="gmd:topicCategory[1]|gmd:obligation[1]|gmd:pointInPixel[1]|gmd:alternateTitle[1]"
-                priority="100">
+                match="gmd:topicCategory[1]|gmd:obligation[1]|gmd:pointInPixel[1]|gmd:alternateTitle"
+                priority="101">
     <dl class="gn-date">
       <dt>
         <xsl:call-template name="render-field-label">
@@ -1018,7 +796,7 @@
           <xsl:for-each select="parent::node()/(gmd:topicCategory|gmd:obligation|gmd:pointInPixel|gmd:alternateTitle)">
             <li>
               <xsl:apply-templates mode="render-value"
-                                   select="*"/>
+                                   select="gco:CharacterString|gmx:Anchor|gmd:MD_TopicCategoryCode"/>
             </li>
           </xsl:for-each>
         </ul>
@@ -1027,10 +805,9 @@
   </xsl:template>
   <xsl:template mode="render-field"
                 match="gmd:topicCategory[position() > 1]|
-                        gmd:obligation[position() > 1]|
-                        gmd:obligation[position() > 1]|
+                         gmd:obligation[position() > 1]|
                         gmd:alternateTitle[position() > 1]"
-                priority="100"/>
+                priority="101"/>
 
 
   <!-- Link to other metadata records -->
@@ -1095,6 +872,9 @@
     <xsl:when test="contains($nodeUrl,'gemini')">
         <a href="http://vocab.nerc.ac.uk/collection/M25/current/gemini/">Gemini</a>
     </xsl:when>
+    <xsl:otherwise>
+       <a href="http://vocab.nerc.ac.uk/collection/M25/current/NRW/">NRW</a>
+    </xsl:otherwise>
   </xsl:choose>
 </dt>
 </dl>
@@ -1110,7 +890,6 @@
     </xsl:call-template>
   </dt>
   <dt>
-    <xsl:message>=== Match metadata version ===</xsl:message>
     <xsl:choose>
     <xsl:when test="contains($nodeUrl,'medin')">
         <p>3.1.2</p>
@@ -1118,6 +897,9 @@
     <xsl:when test="contains($nodeUrl,'gemini')">
         <p>2.3</p>
     </xsl:when>
+    <xsl:otherwise>
+        <p>1.0</p>
+    </xsl:otherwise>
   </xsl:choose>
   </dt>
 </dl>
@@ -1491,8 +1273,7 @@
             </dt>
             <dd>
               <xsl:comment select="name()"/>
-              <xsl:apply-templates mode="render-value" select="*|*/@codeListValue"/>
-              <xsl:apply-templates mode="render-value" select="@*"/>
+              <xsl:apply-templates mode="render-value" select="gco:CharacterString"/>
             </dd>
           </dl>
 
@@ -1510,12 +1291,46 @@
             </dt>
             <dd>
               <xsl:comment select="name()"/>
-              <xsl:apply-templates mode="render-value" select="*|*/@codeListValue"/>
-              <xsl:apply-templates mode="render-value" select="@*"/>
+              <xsl:apply-templates mode="render-value" select="gco:CharacterString"/>
             </dd>
           </dl>
 
     </xsl:template>
+
+    <!-- Enumeration of keywords-->
+
+    <xsl:template mode="render-field"
+                match="gmd:keyword[@gco:nilReason='missing']"
+                priority="500"/>
+
+    <xsl:template mode="render-field"
+                  match="gmd:MD_Keywords[./gmd:keyword[@gco:nilReason='missing']]"
+                  priority="2000"/>
+    
+    <xsl:template mode="render-field"
+                match="gmd:keyword[not(@gco:nilReason='missing')]"
+                priority="101">
+      <dl class="gn-keyword">
+      <dt>
+        <xsl:apply-templates mode="render-value"
+                                 select="parent::node()/gmd:thesaurusName/gmd:CI_Citation/gmd:title"/>
+      </dt>
+      <dd>
+        <ul>
+          <xsl:for-each select="parent::node()/(gmd:keyword[not(@gco:nilReason='missing')])">
+            <li>
+              <xsl:apply-templates mode="render-value"
+                                   select="gco:CharacterString|gmx:Anchor"/>
+            </li>
+          </xsl:for-each>
+        </ul>
+      </dd>
+    </dl>
+  </xsl:template>
+  <xsl:template mode="render-field"
+                match="gmd:keyword[position() > 1]"
+                priority="101"/>
+
 
   <xsl:template mode="render-value"
                 match="@*"/>
