@@ -1331,6 +1331,24 @@
                 match="gmd:keyword[position() > 1]"
                 priority="101"/>
 
+    <xsl:template mode="render-field" match="gml:VerticalCRS" priority="2000">
+
+        <xsl:param name="fieldName" select="''" as="xs:string"/>
+          <dl>
+            <dt>
+              <xsl:call-template name="render-field-label">
+                  <xsl:with-param name="fieldName" select="$fieldName"/>
+                  <xsl:with-param name="languages" select="$allLanguages"/>
+                </xsl:call-template>
+            </dt>
+            <dd>
+              <xsl:comment select="name()"/>
+              <xsl:apply-templates mode="render-value" select="*"/>
+            </dd>
+          </dl>
+
+    </xsl:template>
+
 
   <xsl:template mode="render-value"
                 match="@*"/>
