@@ -101,7 +101,7 @@
         </xsl:otherwise>
       </xsl:choose>
       </xsl:for-each>
-        
+
       <xsl:choose>
         <xsl:when test="contains($nodeUrl, 'cym')">
           <xsl:element name="categori">
@@ -150,7 +150,7 @@
         </xsl:otherwise>
       </xsl:choose>
       </xsl:for-each>
-      
+
 
     <!-- All keywords not having thesaurus reference -->
       <xsl:for-each select="gmd:identificationInfo/*/gmd:descriptiveKeywords/*[not(gmd:thesaurusName)]/gmd:keyword[not(@gco:nilReason)]">
@@ -200,9 +200,9 @@
       <!-- One column per contact type -->
       <xsl:for-each select="gmd:identificationInfo/*/gmd:pointOfContact">
         <xsl:variable name="key" select="*/gmd:role/*/@codeListValue"/>
-        <xsl:variable name="welkey" select="if ($key = 'owner') then 'perchennog' 
-            else if ($key = 'custodian') then 'ceidwad' 
-            else if ($key = 'originator') then 'cychwynnwr' 
+        <xsl:variable name="welkey" select="if ($key = 'owner') then 'perchennog'
+            else if ($key = 'custodian') then 'ceidwad'
+            else if ($key = 'originator') then 'cychwynnwr'
             else 'dosbarthwr'"/>
         <xsl:choose>
         <xsl:when test="contains($nodeUrl, 'cym')">
@@ -294,18 +294,42 @@
       </xsl:choose>
       </xsl:for-each>
 
-
       <xsl:for-each select="gmd:distributionInfo//gmd:linkage">
-        <link>
-          <xsl:value-of select="*/text()"/>
-        </link>
+        <xsl:choose>
+          <xsl:when test="contains($nodeUrl, 'cym')">
+            <xsl:element name="dolen">
+              <xsl:value-of select="*/text()"/>
+            </xsl:element>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:element name="link">
+              <xsl:value-of select="*/text()"/>
+            </xsl:element>
+          </xsl:otherwise>
+        </xsl:choose>
       </xsl:for-each>
+
       <xsl:for-each select="gmd:distributionInfo//gmd:distributionFormat/*/gmd:name">
-        <format>
-          <xsl:apply-templates mode="localised" select=".">
-            <xsl:with-param name="langId" select="$langId"/>
-          </xsl:apply-templates>
-        </format>
+        <xsl:choose>
+          <xsl:when test="contains($nodeUrl, 'cym')">
+            <xsl:element name="fformat">
+              <format>
+                <xsl:apply-templates mode="localised" select=".">
+                  <xsl:with-param name="langId" select="$langId"/>
+                </xsl:apply-templates>
+              </format>
+            </xsl:element>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:element name="format">
+              <format>
+                <xsl:apply-templates mode="localised" select=".">
+                  <xsl:with-param name="langId" select="$langId"/>
+                </xsl:apply-templates>
+              </format>
+            </xsl:element>
+          </xsl:otherwise>
+        </xsl:choose>
       </xsl:for-each>
 
       <xsl:copy-of select="gn:info"/>
