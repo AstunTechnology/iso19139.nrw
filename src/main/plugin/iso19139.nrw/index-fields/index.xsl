@@ -699,7 +699,7 @@
         </xsl:for-each>
 
         <!-- Attribution statement -->
-        <xsl:for-each select="gmd:resourceConstraints/gmd:MD_LegalConstraints[gmd:useConstraints]/gmd:otherConstraints[3]/gco:CharacterString/text()">
+        <xsl:for-each select="gmd:resourceConstraints/gmd:MD_LegalConstraints[gmd:useConstraints]/gmd:otherConstraints[2]/gco:CharacterString/text()">
           <xsl:copy-of select="gn-fn-index:add-field('attributionStatement', .)" />
         </xsl:for-each>
 
