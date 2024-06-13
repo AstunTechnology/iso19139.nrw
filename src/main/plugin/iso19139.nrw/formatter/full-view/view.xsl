@@ -1358,14 +1358,11 @@
 <xsl:template mode="render-field" match="gmd:resourceConstraints/gmd:MD_LegalConstraints[./gmd:accessConstraints]" priority="1000">
 
   <xsl:param name="fieldName" select="''" as="xs:string"/>
+  <!-- dirty hack for NRW -->
+    <xsl:variable name="accessConstraints" select=" if (contains($nodeUrl, 'cym')) then 'Cyfyngiadau ar Fynediad a Defnydd Cyhoeddus' else 'Limitations on Public Access and Use'"/>
 
   <div class="entry name">
-      <h2>
-        <xsl:call-template name="render-field-label">
-            <xsl:with-param name="fieldName" select="$fieldName"/>
-            <xsl:with-param name="languages" select="$allLanguages"/>
-          </xsl:call-template>
-        </h2>
+      <h2><xsl:value-of select="$accessConstraints"/></h2>
       <div class="target"><xsl:comment select="name()"/>
         <xsl:choose>
           <xsl:when test="count(*) > 0">
@@ -1377,21 +1374,52 @@
         </xsl:choose>
       </div>
     </div>
+
+    </xsl:template>
+
+    <xsl:template mode="render-field" match="gmd:resourceConstraints/gmd:MD_LegalConstraints[./gmd:accessConstraints]/gmd:otherConstraints[./gco:CharacterString]" priority="2000">
+
+        <xsl:param name="fieldName" select="''" as="xs:string"/>
+        <!-- dirty hack for NRW -->
+        <xsl:variable name="accessRestrictions" select=" if (contains($nodeUrl, 'cym')) then 'Cyfyngiadau Mynediad' else 'Access restrictions'"/>
+
+        <xsl:if test="gco:CharacterString and normalize-space(string-join(*, '')) != ''">
+            <dl>
+            <dt><xsl:value-of select="$accessRestrictions"/></dt>
+            <dd><xsl:comment select="name()"/>
+              <xsl:apply-templates mode="render-value" select="gco:CharacterString"/>
+            </dd>
+          </dl>
+        </xsl:if>
+
+      </xsl:template>
+
+       <xsl:template mode="render-field" match="gmd:resourceConstraints/gmd:MD_LegalConstraints[./gmd:accessConstraints]/gmd:otherConstraints[./gmx:Anchor]" priority="2000">
+
+        <xsl:param name="fieldName" select="''" as="xs:string"/>
+        <!-- dirty hack for NRW -->
+        <xsl:variable name="otherConstraints" select=" if (contains($nodeUrl, 'cym')) then 'Cyfyngiadau eraill' else 'Other constraints'"/>
+
+        <xsl:if test="gmx:Anchor and normalize-space(string-join(*, '')) != ''">
+          <dl>
+            <dt><xsl:value-of select="$otherConstraints"/></dt>
+            <dd><xsl:comment select="name()"/>
+              <xsl:apply-templates mode="render-value" select="gmx:Anchor"/>
+            </dd>
+          </dl>
+        </xsl:if>
 
     </xsl:template>
 
   <xsl:template mode="render-field" match="gmd:resourceConstraints/gmd:MD_LegalConstraints[./gmd:useConstraints]" priority="1000">
 
     <xsl:param name="fieldName" select="''" as="xs:string"/>
+     <!-- dirty hack for NRW -->
+    <xsl:variable name="useConstraints" select=" if (contains($nodeUrl, 'cym')) then 'Cyfyngiadau ar Ddefnyddio' else 'Use Constraints'"/>
 
   <div class="entry name">
-      <!-- <h2>Use Constraints</h2> -->
-      <h2>
-        <xsl:call-template name="render-field-label">
-            <xsl:with-param name="fieldName" select="$fieldName"/>
-            <xsl:with-param name="languages" select="$allLanguages"/>
-          </xsl:call-template>
-        </h2>
+       
+      <h2><xsl:value-of select="$useConstraints"/></h2>
       <div class="target"><xsl:comment select="name()"/>
         <xsl:choose>
           <xsl:when test="count(*) > 0">
@@ -1406,38 +1434,51 @@
 
     </xsl:template>
 
-    <xsl:template mode="render-field" match="gmd:resourceConstraints/gmd:MD_LegalConstraints[./gmd:useConstraints]/gmd:otherConstraints" priority="1000">
+    <xsl:template mode="render-field" match="gmd:resourceConstraints/gmd:MD_LegalConstraints[./gmd:useConstraints]/gmd:otherConstraints[./gco:CharacterString][1]" priority="2000">
 
         <xsl:param name="fieldName" select="''" as="xs:string"/>
+        <!-- dirty hack for NRW -->
+        <xsl:variable name="otherConstraints" select=" if (contains($nodeUrl, 'cym')) then 'Cyfyngiadau eraill' else 'Other constraints'"/>
 
         <xsl:if test="gco:CharacterString and normalize-space(string-join(*, '')) != ''">
-          <dl>
-            <!-- <dt>Attribution Statement</dt> -->
-            <dt>
-              <xsl:call-template name="render-field-label">
-              <xsl:with-param name="fieldName" select="$fieldName"/>
-              <xsl:with-param name="languages" select="$allLanguages"/>
-              </xsl:call-template>
-            </dt>
+            <dl>
+            <dt><xsl:value-of select="$otherConstraints"/></dt>
             <dd><xsl:comment select="name()"/>
-              <!-- <xsl:apply-templates mode="render-value" select="*|*/@codeListValue"/> -->
-              <!-- <xsl:apply-templates mode="render-value" select="@*"/> -->
               <xsl:apply-templates mode="render-value" select="gco:CharacterString"/>
             </dd>
           </dl>
         </xsl:if>
 
+      </xsl:template>
+
+    <xsl:template mode="render-field" match="gmd:resourceConstraints/gmd:MD_LegalConstraints[./gmd:useConstraints]/gmd:otherConstraints[./gco:CharacterString][2]" priority="2000">
+
+        <xsl:param name="fieldName" select="''" as="xs:string"/>
+        <!-- dirty hack for NRW -->
+        <xsl:variable name="attrbutionStatement" select=" if (contains($nodeUrl, 'cym')) then 'Datganiad priodoli' else 'Attribution statement'"/>
+
+        <xsl:if test="gco:CharacterString and normalize-space(string-join(*, '')) != ''">
+          <dl>
+            <dt><xsl:value-of select="$attrbutionStatement"/></dt>
+            <dd><xsl:comment select="name()"/>
+              <xsl:apply-templates mode="render-value" select="gco:CharacterString"/>
+            </dd>
+          </dl>
+        </xsl:if>
+          
+        
+    </xsl:template>
+
+    <xsl:template mode="render-field" match="gmd:resourceConstraints/gmd:MD_LegalConstraints[./gmd:useConstraints]/gmd:otherConstraints[./gmx:Anchor]" priority="2000">
+
+        <xsl:param name="fieldName" select="''" as="xs:string"/>
+        <!-- dirty hack for NRW -->
+        <xsl:variable name="licenseType" select=" if (contains($nodeUrl, 'cym')) then 'Math o Drwydded' else 'License type'"/>
+
         <xsl:if test="gmx:Anchor and normalize-space(string-join(*, '')) != ''">
           <dl>
-            <!-- <dt>License Type</dt> -->
-            <dt>
-              <xsl:call-template name="render-field-label">
-                  <xsl:with-param name="fieldName" select="$fieldName"/>
-                  <xsl:with-param name="languages" select="$allLanguages"/>
-                </xsl:call-template>
-            </dt>
+            <dt><xsl:value-of select="$licenseType"/></dt>
             <dd><xsl:comment select="name()"/>
-              <!-- <xsl:apply-templates mode="render-value" select="*|*/@codeListValue"/> -->
               <xsl:apply-templates mode="render-value" select="gmx:Anchor"/>
             </dd>
           </dl>
