@@ -745,7 +745,7 @@
                  </gmd:EX_GeographicDescription>
                  </gmd:geographicElement>
                    </snippet>
-             <snippet label="addCarm">
+             <snippet label="addCarmb">
                      <gmd:geographicElement>
                  <gmd:EX_GeographicDescription>
                    <gmd:geographicIdentifier>
@@ -1083,7 +1083,7 @@
                  </gmd:EX_GeographicDescription>
                  </gmd:geographicElement>
                    </snippet>
-             <snippet label="addCaer">
+             <snippet label="addCaerf">
                      <gmd:geographicElement>
                  <gmd:EX_GeographicDescription>
                    <gmd:geographicIdentifier>
@@ -1278,7 +1278,7 @@
                  </gmd:EX_GeographicDescription>
                  </gmd:geographicElement>
                    </snippet>
-             <snippet label="addAngl">
+             <snippet label="addYnys">
                      <gmd:geographicElement>
                  <gmd:EX_GeographicDescription>
                    <gmd:geographicIdentifier>
