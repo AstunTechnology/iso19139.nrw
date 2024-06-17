@@ -169,7 +169,7 @@
   <addWLS>Wales (WLS)</addWLS>
   <addBrid>Bridgwater Bay</addBrid>
   <addSwan>Swansea Bay</addSwan>
-  <addCarm>Carmarthen Bay</addCarm>
+  <addCarmb>Carmarthen Bay</addCarmb>
   <addSeve>Severn Estuary</addSeve>
   <addStBr>St. Brides Bay</addStBr>
   <addStGe>St. George's Channel</addStGe>
@@ -195,7 +195,7 @@
   <addAtla>Atlantic North-West Approaches and Rockall Trough</addAtla>
   <addShar>Shared waters between Northern Ireland and Republic of Ireland</addShar>
   <addBlae>BLAENAU GWENT - BLAENAU GWENT</addBlae>
-  <addCaer>CAERFFILI - CAERPHILLY</addCaer>
+  <addCaerf>CAERFFILI - CAERPHILLY</addCaerf>
   <addMert>MERTHYR TUDFUL - MERTHYR TYDFIL</addMert>
   <addPowy>POWYS - POWYS</addPowy>
   <addRhon>RHONDDA CYNON TAF - RHONDDA CYNON TAF</addRhon>
@@ -210,7 +210,7 @@
   <addSirg>SIR GAERFYRDDIN - CARMARTHENSHIRE</addSirg>
   <addSiry>SIR Y FFLINT - FLINTSHIRE</addSiry>
   <addTorf>TORFAEN - TORFAEN</addTorf>
-  <addAngl>SIR YNYS MON - ISLE OF ANGLESEY</addAngl>
+  <addYnys>SIR YNYS MON - ISLE OF ANGLESEY</addYnys>
   <addGwyn>GWYNEDD - GWYNEDD</addGwyn>
   <addCardiff>CAERDYDD - CARDIFF</addCardiff>
   <addSirc>SIR CEREDIGION - CEREDIGION</addSirc>
