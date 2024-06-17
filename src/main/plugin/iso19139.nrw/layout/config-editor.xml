@@ -217,6 +217,7 @@
     -->
     <exclude>
       <name>gmd:identifier</name>
+      <name>gmd:fileIdentifier</name>
       <name>gmd:metadataStandardName</name>
       <name>gmd:metadataStandardVersion</name>
       <name>gmd:hierarchyLevelName</name>
