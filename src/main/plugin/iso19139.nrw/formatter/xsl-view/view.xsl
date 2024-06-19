@@ -512,7 +512,7 @@
           </xsl:otherwise>
         </xsl:choose>
       </xsl:if>
-            
+
     </xsl:variable>
 
     <xsl:choose>
@@ -692,7 +692,7 @@
     </dl>
   </xsl:template>
 
- 
+
 
   <xsl:template mode="render-field"
                 match="gmd:distributionFormat[1]"
@@ -857,53 +857,53 @@
   <!-- Change metadata standard name and version dependent on endpoint -->
   <xsl:template mode="render-field" match="gmd:metadataStandardName" priority="1000">
     <xsl:param name="fieldName" select="''" as="xs:string"/>
-      <dl class="gn-md-associated-resources">
+      <dl>
         <dt>
-        <xsl:call-template name="render-field-label">
-                <xsl:with-param name="fieldName" select="$fieldName"/>
-                <xsl:with-param name="languages" select="$allLanguages"/>
-        </xsl:call-template>
-      </dt>
-      <dt>
-  <xsl:choose>
-    <xsl:when test="contains($nodeUrl,'medin')">
-        <a href="http://vocab.nerc.ac.uk/collection/M25/current/medin/">MEDIN</a>
-    </xsl:when>
-    <xsl:when test="contains($nodeUrl,'gemini')">
-        <a href="http://vocab.nerc.ac.uk/collection/M25/current/gemini/">Gemini</a>
-    </xsl:when>
-    <xsl:otherwise>
-       <a href="http://vocab.nerc.ac.uk/collection/M25/current/NRW/">NRW</a>
-    </xsl:otherwise>
-  </xsl:choose>
-</dt>
-</dl>
-</xsl:template>
+          <xsl:call-template name="render-field-label">
+                  <xsl:with-param name="fieldName" select="$fieldName"/>
+                  <xsl:with-param name="languages" select="$allLanguages"/>
+          </xsl:call-template>
+        </dt>
+        <dd>
+          <xsl:choose>
+            <xsl:when test="contains($nodeUrl,'medin')">
+                <a href="http://vocab.nerc.ac.uk/collection/M25/current/medin/">MEDIN</a>
+            </xsl:when>
+            <xsl:when test="contains($nodeUrl,'gemini')">
+                <a href="http://vocab.nerc.ac.uk/collection/M25/current/gemini/">Gemini</a>
+            </xsl:when>
+            <xsl:otherwise>
+              <a href="http://vocab.nerc.ac.uk/collection/M25/current/NRW/">NRW</a>
+            </xsl:otherwise>
+          </xsl:choose>
+        </dd>
+      </dl>
+  </xsl:template>
 
   <xsl:template mode="render-field" match="gmd:metadataStandardVersion" priority="1000">
     <xsl:param name="fieldName" select="''" as="xs:string"/>
-    <dl class="gn-md-associated-resources">
+    <dl>
       <dt>
-    <xsl:call-template name="render-field-label">
-            <xsl:with-param name="fieldName" select="$fieldName"/>
-            <xsl:with-param name="languages" select="$allLanguages"/>
-    </xsl:call-template>
-  </dt>
-  <dt>
-    <xsl:choose>
-    <xsl:when test="contains($nodeUrl,'medin')">
-        <p>3.1.2</p>
-    </xsl:when>
-    <xsl:when test="contains($nodeUrl,'gemini')">
-        <p>2.3</p>
-    </xsl:when>
-    <xsl:otherwise>
-        <p>1.0</p>
-    </xsl:otherwise>
-  </xsl:choose>
-  </dt>
-</dl>
-</xsl:template>
+        <xsl:call-template name="render-field-label">
+          <xsl:with-param name="fieldName" select="$fieldName"/>
+          <xsl:with-param name="languages" select="$allLanguages"/>
+        </xsl:call-template>
+      </dt>
+      <dd>
+        <xsl:choose>
+          <xsl:when test="contains($nodeUrl,'medin')">
+              <p>3.1.2</p>
+          </xsl:when>
+          <xsl:when test="contains($nodeUrl,'gemini')">
+              <p>2.3</p>
+          </xsl:when>
+          <xsl:otherwise>
+              <p>1.0</p>
+          </xsl:otherwise>
+        </xsl:choose>
+      </dd>
+    </dl>
+  </xsl:template>
 
 
   <!-- Traverse the tree -->
@@ -1306,7 +1306,7 @@
     <xsl:template mode="render-field"
                   match="gmd:MD_Keywords[./gmd:keyword[@gco:nilReason='missing']]"
                   priority="2000"/>
-    
+
     <xsl:template mode="render-field"
                 match="gmd:keyword[not(@gco:nilReason='missing')]"
                 priority="101">
