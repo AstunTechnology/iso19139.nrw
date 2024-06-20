@@ -517,22 +517,22 @@
 
     <xsl:choose>
       <xsl:when test="$layout = 'short'">
-        <xsl:copy-of select="$displayName"/>
+        <!-- <xsl:copy-of select="$displayName"/> -->
       </xsl:when>
       <xsl:otherwise>
         <div class="gn-contact">
           <strong>
             <xsl:comment select="'email'"/>
-            <xsl:apply-templates mode="render-value"
-                                 select="*/gmd:role/*/@codeListValue"/>
+            <!-- <xsl:apply-templates mode="render-value"
+                                 select="*/gmd:role/*/@codeListValue"/> -->
           </strong>
           <address>
               <xsl:choose>
                 <xsl:when test="$email">
-                  <i class="fa fa-fw fa-envelope">&#160;</i>
-                  <a href="mailto:{normalize-space($email)}">
+                  <!-- <i class="fa fa-fw fa-envelope">&#160;</i> -->
+                  <!-- <a href="mailto:{normalize-space($email)}">
                     <xsl:copy-of select="$displayName"/><xsl:comment select="'email'"/>
-                  </a>
+                  </a> -->
                 </xsl:when>
                 <xsl:otherwise>
                   <xsl:copy-of select="$displayName"/><xsl:comment select="'name'"/>
@@ -540,7 +540,7 @@
               </xsl:choose>
             <br/>
             <xsl:for-each select="*/gmd:contactInfo/*">
-              <xsl:for-each select="gmd:address/*">
+              <!-- <xsl:for-each select="gmd:address/*">
                 <div>
                 <i class="fa fa-fw fa-map-marker"><xsl:comment select="'address'"/></i>
                   <xsl:for-each select="gmd:deliveryPoint[normalize-space(.) != '']">
@@ -559,10 +559,10 @@
                     ,<xsl:apply-templates mode="render-value-no-breaklines" select="."/>
                   </xsl:for-each>
                 </div>
-              </xsl:for-each>
+              </xsl:for-each> -->
             </xsl:for-each>
             <xsl:for-each select="*/gmd:contactInfo/*">
-              <xsl:for-each select="gmd:phone/*/gmd:voice[normalize-space(.) != '']">
+              <!-- <xsl:for-each select="gmd:phone/*/gmd:voice[normalize-space(.) != '']">
                   <xsl:variable name="phoneNumber">
                     <xsl:apply-templates mode="render-value-no-breaklines" select="."/>
                   </xsl:variable>
@@ -593,15 +593,13 @@
               <xsl:for-each select="gmd:hoursOfService[normalize-space(.) != '']">
                   <xsl:apply-templates mode="render-field"
                                         select="."/>
-              </xsl:for-each>
+              </xsl:for-each> -->
             </xsl:for-each>
           </address>
         </div>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:when>
-      <xsl:otherwise>
-      </xsl:otherwise>
 </xsl:choose>
   </xsl:template>
 
