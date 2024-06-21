@@ -38,15 +38,32 @@
                 xmlns:gn-fn-metadata="http://geonetwork-opensource.org/xsl/functions/metadata"
                 xmlns:gn-fn-iso19139="http://geonetwork-opensource.org/xsl/functions/profiles/iso19139"
                 xmlns:xslUtils="java:org.fao.geonet.util.XslUtil"
+                xmlns:gn-fn-iso19139.nrw="http://geonetwork-opensource.org/xsl/functions/profiles/iso19139.nrw"
                 xmlns:saxon="http://saxon.sf.net/"
                 version="2.0"
                 extension-element-prefixes="saxon"
                 exclude-result-prefixes="#all">
 
-  <xsl:import href="../../layout/evaluate.xsl"/>
-  <xsl:import href="../../layout/utility-tpl-multilingual.xsl"/>
-  <xsl:import href="../../layout/utility-fn.xsl"/>
-  <xsl:import href="../../../iso19139/formatter/xsl-view/view.xsl"/>
+  <xsl:include href="../../layout/evaluate.xsl"/>
+  <xsl:include href="../../layout/utility-tpl-multilingual.xsl"/>
+  <xsl:include href="../../layout/utility-fn.xsl"/>
+  <xsl:include href="../../formatter/jsonld/iso19139.nrw-to-jsonld.xsl"/>
+  <xsl:include href="../../formatter/citation/base.xsl"/>
+  <xsl:include href="../../../iso19115-3.2018/formatter/citation/common.xsl"/>
+
+  <!-- The core formatter XSL layout based on the editor configuration -->
+  <xsl:include href="sharedFormatterDir/xslt/render-layout.xsl"/>
+  <!--<xsl:include href="../../../../../data/formatter/xslt/render-layout.xsl"/>-->
+
+  <!-- Define the metadata to be loaded for this schema plugin-->
+  <xsl:variable name="metadata"
+                select="/root/(gmd:MD_Metadata|*[@gco:isoType = 'gmd:MD_Metadata'])"/>
+
+  <xsl:variable name="langId" select="gn-fn-iso19139.nrw:getLangId($metadata, $language)"/>
+
+  <xsl:variable name="allLanguages">
+    <xsl:call-template name="get-iso19139-other-languages"/>
+  </xsl:variable>
 
   <!-- Load the editor configuration to be able
   to render the different views -->
@@ -56,8 +73,6 @@
   <!-- Required for utility-fn.xsl -->
   <xsl:variable name="editorConfig"
                 select="document('../../layout/config-editor.xml')"/>
-
-  <xsl:variable name="langId" select="gn-fn-iso19139:getLangId($metadata, $language)"/>
 
 
   <!-- Ignore some fields displayed in header or in right column -->
@@ -152,7 +167,7 @@
         <!-- Landing page case -->
         <xsl:when test="$language = 'all'">
           <xsl:variable name="citationInfo">
-            <xsl:call-template name="get-iso19139-citation">
+            <xsl:call-template name="get-iso19139.nrw-citation">
               <xsl:with-param name="metadata" select="$metadata"/>
               <xsl:with-param name="language" select="$language"/>
             </xsl:call-template>
@@ -286,6 +301,7 @@
     </dl>
   </xsl:template>-->
 
+  <!--This seems to be called for gmd:otherConstraints plus contact details -->
   <xsl:template mode="render-field"
                 match="*[gmx:Anchor]|*[normalize-space(gco:CharacterString) != '']|
                        gml:beginPosition[. != '']|gml:endPosition[. != '']|
@@ -294,7 +310,6 @@
                        gml:end[. != '']|gml320:end[. != '']"
                 priority="50">
     <xsl:param name="fieldName" select="''" as="xs:string"/>
-
     <dl>
       <dt>
         <xsl:call-template name="render-field-label">
@@ -369,17 +384,19 @@
 
 
   <!-- Some elements are only containers so bypass them -->
+   <!-- This seems to be called for gmd:lineage, thesaurusName, identifier, referencesysteminfo,scope,linkage -->
   <xsl:template mode="render-field"
                 match="*[
                           count(gmd:*[name() != 'gmd:PT_FreeText']) = 1 and
                           count(*/@codeListValue) = 0
                         ]"
                 priority="50">
-    <xsl:apply-templates mode="render-value" select="@*"/>
+        <xsl:apply-templates mode="render-value" select="@*"/>
     <xsl:apply-templates mode="render-field" select="*"/>
   </xsl:template>
 
   <!-- Some major sections are boxed -->
+  <!-- This seems to be called for gmd:EX_VerticalExtent -->
   <xsl:template mode="render-field"
                 match="*[name() = $configuration/editor/fieldsWithFieldset/name
     or @gco:isoType = $configuration/editor/fieldsWithFieldset/name]|
@@ -388,7 +405,7 @@
       gmd:extent[name(..)!='gmd:EX_TemporalExtent']|
       *[$isFlatMode = false() and gmd:* and
         not(gco:CharacterString) and not(gmd:URL)]">
-    <div class="entry name">
+            <div class="entry name">
       <h2>
         <xsl:call-template name="render-field-label">
           <xsl:with-param name="languages" select="$allLanguages"/>
@@ -410,6 +427,7 @@
 
   </xsl:template>
 
+  
 
   <!-- Bbox is displayed with an overview and the geom displayed on it
   and the coordinates displayed around -->
@@ -517,22 +535,22 @@
 
     <xsl:choose>
       <xsl:when test="$layout = 'short'">
-        <!-- <xsl:copy-of select="$displayName"/> -->
+        <xsl:copy-of select="$displayName"/>
       </xsl:when>
       <xsl:otherwise>
         <div class="gn-contact">
           <strong>
             <xsl:comment select="'email'"/>
-            <!-- <xsl:apply-templates mode="render-value"
-                                 select="*/gmd:role/*/@codeListValue"/> -->
+            <xsl:apply-templates mode="render-value"
+                                 select="*/gmd:role/*/@codeListValue"/>
           </strong>
           <address>
               <xsl:choose>
                 <xsl:when test="$email">
-                  <!-- <i class="fa fa-fw fa-envelope">&#160;</i> -->
-                  <!-- <a href="mailto:{normalize-space($email)}">
+                  <i class="fa fa-fw fa-envelope">&#160;</i>
+                  <a href="mailto:{normalize-space($email)}">
                     <xsl:copy-of select="$displayName"/><xsl:comment select="'email'"/>
-                  </a> -->
+                  </a>
                 </xsl:when>
                 <xsl:otherwise>
                   <xsl:copy-of select="$displayName"/><xsl:comment select="'name'"/>
@@ -540,7 +558,7 @@
               </xsl:choose>
             <br/>
             <xsl:for-each select="*/gmd:contactInfo/*">
-              <!-- <xsl:for-each select="gmd:address/*">
+              <xsl:for-each select="gmd:address/*">
                 <div>
                 <i class="fa fa-fw fa-map-marker"><xsl:comment select="'address'"/></i>
                   <xsl:for-each select="gmd:deliveryPoint[normalize-space(.) != '']">
@@ -559,10 +577,10 @@
                     ,<xsl:apply-templates mode="render-value-no-breaklines" select="."/>
                   </xsl:for-each>
                 </div>
-              </xsl:for-each> -->
+              </xsl:for-each>
             </xsl:for-each>
             <xsl:for-each select="*/gmd:contactInfo/*">
-              <!-- <xsl:for-each select="gmd:phone/*/gmd:voice[normalize-space(.) != '']">
+              <xsl:for-each select="gmd:phone/*/gmd:voice[normalize-space(.) != '']">
                   <xsl:variable name="phoneNumber">
                     <xsl:apply-templates mode="render-value-no-breaklines" select="."/>
                   </xsl:variable>
@@ -593,13 +611,15 @@
               <xsl:for-each select="gmd:hoursOfService[normalize-space(.) != '']">
                   <xsl:apply-templates mode="render-field"
                                         select="."/>
-              </xsl:for-each> -->
+              </xsl:for-each>
             </xsl:for-each>
           </address>
         </div>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:when>
+      <xsl:otherwise>
+      </xsl:otherwise>
 </xsl:choose>
   </xsl:template>
 
@@ -801,6 +821,9 @@
       </dd>
     </dl>
   </xsl:template>
+
+
+  <!-- Don't render subsequent topiccategories, alternate titles etc-->
   <xsl:template mode="render-field"
                 match="gmd:topicCategory[position() > 1]|
                          gmd:obligation[position() > 1]|
@@ -907,12 +930,15 @@
   <!-- Traverse the tree -->
   <xsl:template mode="render-field"
                 match="*">
-    <xsl:apply-templates mode="render-field"/>
+    <xsl:param name="fieldName" select="''" as="xs:string"/>
+    <xsl:apply-templates mode="render-field">
+      <xsl:with-param name="fieldName" select="$fieldName"/>
+    </xsl:apply-templates>
   </xsl:template>
-
 
   <!-- ########################## -->
   <!-- Render values for text ... -->
+  <!-- This seems to be called for gmd:title, gmd:statement, gmd:specification, gmd:code, gmd:organisationName, gmd:deliveryPoint, gmd:electronicMailAddress -->
   <xsl:template mode="render-value"
                 match="*[gco:CharacterString]">
      <xsl:variable name="txt">
@@ -934,6 +960,7 @@
      </span>
   </xsl:template>
 
+  <!-- This seems to be called for gmd:version, gmd:code, gmd:organisationName, gmd:deliveryPoint, gmd:electronicMailAddress -->
   <xsl:template mode="render-value-no-breaklines"
                 match="*[gco:CharacterString]">
     <span>
@@ -951,13 +978,16 @@
   </xsl:template>
 
 
-
+  <!-- This seems to be called for gmd:code, gmd:otherConstraints (with Anchor) -->
   <xsl:template mode="render-value"
                 match="*[gmx:Anchor|gmd:URL]">
+    <!-- <xsl:message>=== OtherConstraint with Anchor ===</xsl:message> -->
     <xsl:apply-templates mode="render-value"
                          select="gmx:Anchor|gmd:URL"/>
   </xsl:template>
 
+
+  <!-- This seems to be called for gmx:Anchor -->
   <xsl:template mode="render-value"
                 match="gmx:Anchor">
     <xsl:variable name="link"
@@ -981,7 +1011,7 @@
   </xsl:template>
 
 
-
+   <!-- This seems to be called for gco:Real -->
   <xsl:template mode="render-value"
                 match="gco:Integer|gco:Decimal|
                        gco:Real|gco:Measure|gco:Length|gco:Distance|gco:Angle|gmx:FileName|
@@ -1168,101 +1198,12 @@
     <i class="fa fa-lock text-warning" title="{{{{'withheld' | translate}}}}"><xsl:comment select="'warning'"/></i>
   </xsl:template>
 
-<xsl:template mode="render-field" match="gmd:resourceConstraints/gmd:MD_LegalConstraints[./gmd:accessConstraints]" priority="1000">
-
-  <xsl:param name="fieldName" select="''" as="xs:string"/>
-
-  <div class="entry name">
-      <h2>
-        <xsl:call-template name="render-field-label">
-            <xsl:with-param name="fieldName" select="$fieldName"/>
-            <xsl:with-param name="languages" select="$allLanguages"/>
-          </xsl:call-template>
-        </h2>
-      <div class="target"><xsl:comment select="name()"/>
-        <xsl:choose>
-          <xsl:when test="count(*) > 0">
-            <xsl:apply-templates mode="render-field" select="*"/>
-          </xsl:when>
-          <xsl:otherwise>
-            No information provided.
-          </xsl:otherwise>
-        </xsl:choose>
-      </div>
-    </div>
-
-    </xsl:template>
-
-  <xsl:template mode="render-field" match="gmd:resourceConstraints/gmd:MD_LegalConstraints[./gmd:useConstraints]" priority="1000">
-
-    <xsl:param name="fieldName" select="''" as="xs:string"/>
-
-  <div class="entry name">
-      <!-- <h2>Use Constraints</h2> -->
-      <h2>
-        <xsl:call-template name="render-field-label">
-            <xsl:with-param name="fieldName" select="$fieldName"/>
-            <xsl:with-param name="languages" select="$allLanguages"/>
-          </xsl:call-template>
-        </h2>
-      <div class="target"><xsl:comment select="name()"/>
-        <xsl:choose>
-          <xsl:when test="count(*) > 0">
-            <xsl:apply-templates mode="render-field" select="*"/>
-          </xsl:when>
-          <xsl:otherwise>
-            No information provided.
-          </xsl:otherwise>
-        </xsl:choose>
-      </div>
-    </div>
-
-    </xsl:template>
-
-    <xsl:template mode="render-field" match="gmd:resourceConstraints/gmd:MD_LegalConstraints[./gmd:useConstraints]/gmd:otherConstraints" priority="1000">
-
-        <xsl:param name="fieldName" select="''" as="xs:string"/>
-
-        <xsl:if test="gco:CharacterString and normalize-space(string-join(*, '')) != ''">
-          <dl>
-            <!-- <dt>Attribution Statement</dt> -->
-            <dt>
-              <xsl:call-template name="render-field-label">
-              <xsl:with-param name="fieldName" select="$fieldName"/>
-              <xsl:with-param name="languages" select="$allLanguages"/>
-              </xsl:call-template>
-            </dt>
-            <dd><xsl:comment select="name()"/>
-              <xsl:apply-templates mode="render-value" select="*|*/@codeListValue"/>
-              <xsl:apply-templates mode="render-value" select="@*"/>
-            </dd>
-          </dl>
-        </xsl:if>
-
-        <xsl:if test="gmx:Anchor and normalize-space(string-join(*, '')) != ''">
-          <dl>
-            <!-- <dt>License Type</dt> -->
-            <dt>
-              <xsl:call-template name="render-field-label">
-                  <xsl:with-param name="fieldName" select="$fieldName"/>
-                  <xsl:with-param name="languages" select="$allLanguages"/>
-                </xsl:call-template>
-            </dt>
-            <dd><xsl:comment select="name()"/>
-              <xsl:apply-templates mode="render-value" select="*|*/@codeListValue"/>
-              <xsl:apply-templates mode="render-value" select="@*"/>
-            </dd>
-          </dl>
-        </xsl:if>
-
-    </xsl:template>
-
 
     <!-- only show NRW internal location and contact elements if the user is logged in -->
     <xsl:template mode="render-field" match="nrw:internalLocationInfo" priority="2000">
-
-        <xsl:param name="fieldName" select="''" as="xs:string"/>
-          <dl data-ng-if="user.isConnected()">
+       <xsl:param name="fieldName" select="''" as="xs:string"/>
+       <xsl:if test="$isLoggedIn">
+          <dl>
             <dt>
               <xsl:call-template name="render-field-label">
                   <xsl:with-param name="fieldName" select="$fieldName"/>
@@ -1274,13 +1215,15 @@
               <xsl:apply-templates mode="render-value" select="gco:CharacterString"/>
             </dd>
           </dl>
+        </xsl:if>
 
     </xsl:template>
 
     <xsl:template mode="render-field" match="nrw:internalContactInfo" priority="2000">
 
         <xsl:param name="fieldName" select="''" as="xs:string"/>
-          <dl data-ng-if="user.isConnected()">
+         <xsl:if test="$isLoggedIn">
+          <dl>
             <dt>
               <xsl:call-template name="render-field-label">
                   <xsl:with-param name="fieldName" select="$fieldName"/>
@@ -1292,6 +1235,7 @@
               <xsl:apply-templates mode="render-value" select="gco:CharacterString"/>
             </dd>
           </dl>
+        </xsl:if>
 
     </xsl:template>
 
