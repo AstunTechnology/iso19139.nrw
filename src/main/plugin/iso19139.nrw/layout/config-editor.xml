@@ -636,7 +636,8 @@
 
           <section name="extent" displayIfRecord="contains(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:MD_Identifier/gmd:code/gco:CharacterString, 'NRW_')">
           <field
-              xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicDescription/gmd:geographicIdentifier[not(gmd:MD_Identifier/gmd:authority/gmd:CI_Citation/gmd:title/gco:CharacterString ='SeaVoX Vertical Co-ordinate Coverages')]"/>
+              xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicDescription/gmd:geographicIdentifier[not(gmd:MD_Identifier/gmd:authority/gmd:CI_Citation/gmd:title/gco:CharacterString ='SeaVoX Vertical Co-ordinate Coverages')]"
+              del="../.."/>
               <action type="add"
                  btnLabel="addGeoIdentifier"
                  name="geographicElement" or="geographicElement"
@@ -1603,34 +1604,34 @@
       </section>
 
         <section name="spatialResolution" displayIfRecord="contains(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:MD_Identifier/gmd:code/gco:CharacterString, 'NRW_')">
-        <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:spatialResolution/*//gmd:distance"/>
-        <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:spatialResolution/*//gmd:denominator"/>
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:spatialResolution/*//gmd:distance" del="../.."/>
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:spatialResolution/*//gmd:denominator" del="../../../.."/>
           <action type="add" btnLabel="addSpatRep" name="addSpatRep" or="spatialResolution" in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification">
-          <template>
-          <snippet label="addDistance">
+            <template>
+              <snippet label="addDistance">
+                    <gmd:spatialResolution>
+                      <gmd:MD_Resolution>
+                        <gmd:distance>
+                            <gco:Distance uom="urn:ogc:def:uom:EPSG::9001"/>
+                        </gmd:distance>
+                      </gmd:MD_Resolution>
+                  </gmd:spatialResolution>
+              </snippet>
+              <snippet label="addEquivScale">
                 <gmd:spatialResolution>
                   <gmd:MD_Resolution>
-                     <gmd:distance>
-                        <gco:Distance uom="urn:ogc:def:uom:EPSG::9001"/>
-                     </gmd:distance>
-                  </gmd:MD_Resolution>
-               </gmd:spatialResolution>
-            </snippet>
-            <snippet label="addEquivScale">
-                <gmd:spatialResolution>
-                  <gmd:MD_Resolution>
-                     <gmd:equivalentScale>
+                    <gmd:equivalentScale>
                         <gmd:MD_RepresentativeFraction>
-                           <gmd:denominator>
+                          <gmd:denominator>
                               <gco:Integer>0</gco:Integer>
-                           </gmd:denominator>
+                          </gmd:denominator>
                         </gmd:MD_RepresentativeFraction>
-                     </gmd:equivalentScale>
+                    </gmd:equivalentScale>
                   </gmd:MD_Resolution>
-               </gmd:spatialResolution>
-            </snippet>
-          </template>
-        </action>
+                </gmd:spatialResolution>
+              </snippet>
+            </template>
+          </action>
         </section>
 
         <section xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:spatialRepresentationType" displayIfRecord="contains(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:MD_Identifier/gmd:code/gco:CharacterString, 'NRW_')"/>
@@ -1771,7 +1772,7 @@
             </template>
           </action>
         </section>
-        
+
         <section name="licence">
           <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints[./gmd:useConstraints]/gmd:otherConstraints[gmx:Anchor]">
 
@@ -1806,7 +1807,7 @@
             </template>
           </action>
         </section>
-        
+
         </section>
 
           <section name="verticalextent" displayIfRecord="contains(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:MD_Identifier/gmd:code/gco:CharacterString, 'NRW_')">
