@@ -257,13 +257,13 @@
       <description>Party who created the resource</description>
     </entry>
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
-<!--     <entry>
+    <entry>
       <code>pointOfContact</code>
-      <label>Point of contact</label>
+      <label>Pwynt Cyswllt</label>
       <description>Party who can be contacted for acquiring knowledge about or acquisition of the
         resource
       </description>
-    </entry> -->
+    </entry>
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
     <!-- <entry>
       <code>principalInvestigator</code>
@@ -283,7 +283,7 @@
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
     <entry>
       <code>publisher</code>
-      <label>Publisher</label>
+      <label>Cyhoeddwr</label>
       <description>Party who published the resource</description>
     </entry>
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - -->
