@@ -404,7 +404,7 @@
     <description>Information about grid spatial objects in the dataset</description>
   </element>
   <element name="gmd:MD_Identifier" id="205.0">
-    <label>Identifier</label>
+    <label>Dynodwr adnoddau</label>
     <description>Value uniquely identifying an object within a namespace</description>
   </element>
   <element name="gmd:MD_ImageDescription" id="243.0">
@@ -3297,7 +3297,7 @@
     <label>Distributed Computing Platforms list</label>
   </element>
   <element name="gmd:verticalCRS">
-    <label>Vertical CRS</label>
+    <label>System Gyfeirio Cydlynu Fertigol</label>
     <description>Provides information about the origin from which the maximum and minimum elevation
       values are measured
     </description>
@@ -3392,7 +3392,7 @@
     <label>Scope</label>
   </element>
   <element name="gml:VerticalCRS">
-    <label>Vertical CRS</label>
+    <label>System Gyfeirio Cydlynu Fertigol</label>
   </element>
   <element name="gml:remarks">
     <label>Remarks</label>
@@ -3593,6 +3593,11 @@
   <element name="nrw:relatedTitle">
   <label>Teitlau cysylltiedig CNC</label>
    <btnLabel>Add a Related Title</btnLabel>
+  </element>
+
+  <element name="nrw:MD_ContentInfo">
+  <label>Proffil CNC</label>
+  <condition>required</condition>
   </element>
 
   </labels>
