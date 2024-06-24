@@ -12,6 +12,7 @@
                 xmlns:gn-fn-render="http://geonetwork-opensource.org/xsl/functions/render"
                 xmlns:gn-fn-metadata="http://geonetwork-opensource.org/xsl/functions/metadata"
                 xmlns:gn-fn-iso19139="http://geonetwork-opensource.org/xsl/functions/profiles/iso19139"
+                xmlns:gn-fn-iso19139.nrw="http://geonetwork-opensource.org/xsl/functions/profiles/iso19139.nrw"
                 xmlns:xslUtils="java:org.fao.geonet.util.XslUtil"
                 xmlns:saxon="http://saxon.sf.net/"
                 version="2.0"
@@ -27,7 +28,7 @@
     <xsl:param name="language" as="xs:string"/>
 
     <xsl:variable name="langId"
-                  select="gn-fn-iso19139:getLangId($metadata, $language)"/>
+                  select="gn-fn-iso19139.nrw:getLangId($metadata, $language)"/>
 
 
     <!-- Who is the creator of the data set?  This can be an individual, a group of individuals, or an organization. -->
