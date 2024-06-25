@@ -317,11 +317,7 @@
     </xsl:for-each>
 
 
-    <!--
-    The overall rating, based on a collection of reviews or ratings, of the item.
-    "aggregateRating": TODO
-    -->
-
+   
     <!--
     A downloadable form of this dataset, at a specific location, in a specific format.
 
@@ -336,7 +332,7 @@
         "contentUrl":"<xsl:value-of select="gmd:linkage/gmd:URL/text()"/>",
         "encodingFormat":"<xsl:value-of select="if ($p != '') then $p else gmd:protocol/*/@xlink:href"/>",
         "name":"<xsl:value-of select="gmd:name/*/text()"/>",
-        "description":"<xsl:value-of select="translate(gmd:description/*/text(),'\&quot;', '')"/>"
+        "description":"<xsl:value-of select="translate(gmd:description/gco:CharacterString/text(),'\&quot;', '')"/>"
         }
         <xsl:if test="position() != last()">,</xsl:if>
       </xsl:for-each>

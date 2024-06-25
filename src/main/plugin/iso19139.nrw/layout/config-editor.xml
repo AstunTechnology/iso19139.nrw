@@ -295,6 +295,7 @@
       <name>gmd:alternateTitle</name>
       <name>gmd:parentIdentifier</name>
       <name>gmx:Anchor</name>
+      <name>gmd:description</name>
       <name ancestor="gmd:MD_LegalConstraints">gmd:otherConstraints</name>
       <name ancestor="gmd:CI_OnlineResource">gmd:name</name>
       <name ancestor="gmd:MD_Format">gmd:name</name>
