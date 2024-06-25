@@ -1490,7 +1490,8 @@
     <xsl:template mode="render-field" match="nrw:internalLocationInfo" priority="2000">
 
         <xsl:param name="fieldName" select="''" as="xs:string"/>
-          <dl data-ng-if="user.isConnected()">
+        <xsl:if test="$isLoggedIn">
+          <dl>
             <dt>
               <xsl:call-template name="render-field-label">
                   <xsl:with-param name="fieldName" select="$fieldName"/>
@@ -1502,13 +1503,16 @@
               <xsl:apply-templates mode="render-value" select="gco:CharacterString"/>
             </dd>
           </dl>
+        </xsl:if>
+
 
     </xsl:template>
 
     <xsl:template mode="render-field" match="nrw:internalContactInfo" priority="2000">
 
         <xsl:param name="fieldName" select="''" as="xs:string"/>
-          <dl data-ng-if="user.isConnected()">
+        <xsl:if test="$isLoggedIn">
+          <dl>
             <dt>
               <xsl:call-template name="render-field-label">
                   <xsl:with-param name="fieldName" select="$fieldName"/>
@@ -1520,6 +1524,7 @@
               <xsl:apply-templates mode="render-value" select="gco:CharacterString"/>
             </dd>
           </dl>
+        </xsl:if>
 
     </xsl:template>
 
