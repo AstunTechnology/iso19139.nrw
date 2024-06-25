@@ -1418,7 +1418,7 @@
     <xsl:variable name="useConstraints" select=" if (contains($nodeUrl, 'cym')) then 'Cyfyngiadau ar Ddefnyddio' else 'Use Constraints'"/>
 
   <div class="entry name">
-       
+
       <h2><xsl:value-of select="$useConstraints"/></h2>
       <div class="target"><xsl:comment select="name()"/>
         <xsl:choose>
@@ -1465,8 +1465,8 @@
             </dd>
           </dl>
         </xsl:if>
-          
-        
+
+
     </xsl:template>
 
     <xsl:template mode="render-field" match="gmd:resourceConstraints/gmd:MD_LegalConstraints[./gmd:useConstraints]/gmd:otherConstraints[./gmx:Anchor]" priority="2000">
@@ -1488,43 +1488,37 @@
 
     <!-- only show NRW internal location and contact elements if the user is logged in -->
     <xsl:template mode="render-field" match="nrw:internalLocationInfo" priority="2000">
-
-        <xsl:param name="fieldName" select="''" as="xs:string"/>
-        <xsl:if test="$isLoggedIn">
-          <dl>
-            <dt>
-              <xsl:call-template name="render-field-label">
-                  <xsl:with-param name="fieldName" select="$fieldName"/>
-                  <xsl:with-param name="languages" select="$allLanguages"/>
-                </xsl:call-template>
-            </dt>
-            <dd>
-              <xsl:comment select="name()"/>
-              <xsl:apply-templates mode="render-value" select="gco:CharacterString"/>
-            </dd>
-          </dl>
-        </xsl:if>
-
+      <xsl:param name="fieldName" select="''" as="xs:string"/>
+        <dl data-ng-if="user.isConnected()">
+          <dt>
+            <xsl:call-template name="render-field-label">
+                <xsl:with-param name="fieldName" select="$fieldName"/>
+                <xsl:with-param name="languages" select="$allLanguages"/>
+              </xsl:call-template>
+          </dt>
+          <dd>
+            <xsl:comment select="name()"/>
+            <xsl:apply-templates mode="render-value" select="gco:CharacterString"/>
+          </dd>
+        </dl>
 
     </xsl:template>
 
     <xsl:template mode="render-field" match="nrw:internalContactInfo" priority="2000">
 
         <xsl:param name="fieldName" select="''" as="xs:string"/>
-        <xsl:if test="$isLoggedIn">
-          <dl>
-            <dt>
-              <xsl:call-template name="render-field-label">
-                  <xsl:with-param name="fieldName" select="$fieldName"/>
-                  <xsl:with-param name="languages" select="$allLanguages"/>
-                </xsl:call-template>
-            </dt>
-            <dd>
-              <xsl:comment select="name()"/>
-              <xsl:apply-templates mode="render-value" select="gco:CharacterString"/>
-            </dd>
-          </dl>
-        </xsl:if>
+        <dl data-ng-if="user.isConnected()">
+          <dt>
+            <xsl:call-template name="render-field-label">
+                <xsl:with-param name="fieldName" select="$fieldName"/>
+                <xsl:with-param name="languages" select="$allLanguages"/>
+              </xsl:call-template>
+          </dt>
+          <dd>
+            <xsl:comment select="name()"/>
+            <xsl:apply-templates mode="render-value" select="gco:CharacterString"/>
+          </dd>
+        </dl>
 
     </xsl:template>
 
