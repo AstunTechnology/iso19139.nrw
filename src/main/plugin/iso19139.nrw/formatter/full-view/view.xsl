@@ -1487,34 +1487,36 @@
     </xsl:template>
 
     <!-- only show NRW internal location and contact elements if the user is logged in -->
+    <!-- NOTE different approach here to what is needed for xsl-view for permalink and pdf -->
     <xsl:template mode="render-field" match="nrw:internalLocationInfo" priority="2000">
       <xsl:param name="fieldName" select="''" as="xs:string"/>
-        <dl data-ng-if="user.isConnected()">
+
+        <dl data-ng-if="user.isConnected">
           <dt>
             <xsl:call-template name="render-field-label">
                 <xsl:with-param name="fieldName" select="$fieldName"/>
                 <xsl:with-param name="languages" select="$allLanguages"/>
               </xsl:call-template>
           </dt>
-          <dd>
+          <dd style="word-break: break-word">
             <xsl:comment select="name()"/>
             <xsl:apply-templates mode="render-value" select="gco:CharacterString"/>
           </dd>
         </dl>
-
+      
     </xsl:template>
 
     <xsl:template mode="render-field" match="nrw:internalContactInfo" priority="2000">
 
         <xsl:param name="fieldName" select="''" as="xs:string"/>
-        <dl data-ng-if="user.isConnected()">
+        <dl data-ng-if="user.isConnected">
           <dt>
-            <xsl:call-template name="render-field-label">
+              <xsl:call-template name="render-field-label">
                 <xsl:with-param name="fieldName" select="$fieldName"/>
                 <xsl:with-param name="languages" select="$allLanguages"/>
               </xsl:call-template>
           </dt>
-          <dd>
+          <dd style="word-break: break-word">
             <xsl:comment select="name()"/>
             <xsl:apply-templates mode="render-value" select="gco:CharacterString"/>
           </dd>

@@ -30,6 +30,7 @@
                 xmlns:gml="http://www.opengis.net/gml/3.2"
                 xmlns:gml320="http://www.opengis.net/gml"
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                xmlns:util="java:org.fao.geonet.util.XslUtil"
                 xmlns:xlink="http://www.w3.org/1999/xlink"
                 xmlns:srv="http://www.isotc211.org/2005/srv"
                 xmlns:nrw="http://naturalresources.wales/nrw"
@@ -1200,29 +1201,35 @@
 
 
     <!-- only show NRW internal location and contact elements if the user is logged in -->
+        <!-- NOTE different approach here to what is needed for full-view  -->
     <xsl:template mode="render-field" match="nrw:internalLocationInfo" priority="2000">
        <xsl:param name="fieldName" select="''" as="xs:string"/>
-       <xsl:if test="$isLoggedIn">
+       <xsl:variable name="isAuthenticated"
+                            select="util:isAuthenticated()"/>
+         <xsl:if test="$isAuthenticated">
           <dl>
-            <dt>
-              <xsl:call-template name="render-field-label">
-                  <xsl:with-param name="fieldName" select="$fieldName"/>
-                  <xsl:with-param name="languages" select="$allLanguages"/>
-                </xsl:call-template>
-            </dt>
-            <dd>
-              <xsl:comment select="name()"/>
-              <xsl:apply-templates mode="render-value" select="gco:CharacterString"/>
-            </dd>
-          </dl>
-        </xsl:if>
+          <dt>
+            <xsl:call-template name="render-field-label">
+                <xsl:with-param name="fieldName" select="$fieldName"/>
+                <xsl:with-param name="languages" select="$allLanguages"/>
+              </xsl:call-template>
+          </dt>
+          <dd>
+            <xsl:comment select="name()"/>
+            <xsl:apply-templates mode="render-value" select="gco:CharacterString"/>
+          </dd>
+        </dl>
+      </xsl:if>
 
     </xsl:template>
 
     <xsl:template mode="render-field" match="nrw:internalContactInfo" priority="2000">
 
         <xsl:param name="fieldName" select="''" as="xs:string"/>
-         <xsl:if test="$isLoggedIn">
+        <xsl:variable name="isAuthenticated"
+                            select="util:isAuthenticated()"/>
+
+         <xsl:if test="$isAuthenticated">
           <dl>
             <dt>
               <xsl:call-template name="render-field-label">
