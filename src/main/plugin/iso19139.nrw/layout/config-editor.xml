@@ -2936,6 +2936,7 @@
           </field>
 
           <!-- add verticalelement datasets -->
+          <!-- THIS IS THE BIT THAT MIGHT NEED CHANGING -->
 
           <action type="add" btnLabel="addVerticalExtentCRS" name="addVerticalExtent" or="verticalElement"
                   in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent" if="count(//gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:verticalElement)=0">
