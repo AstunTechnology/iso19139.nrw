@@ -691,7 +691,7 @@
     </description>
   </element>
   <element name="gmd:city" id="382.0">
-    <label>City</label>
+    <label>Dinas</label>
     <description>City of the location</description>
   </element>
   <element name="gmd:classification" id="74.0">
@@ -824,15 +824,15 @@
     <condition>mandatory</condition>
   </element>
   <element name="gmd:country" id="612.0">
-    <label>Country</label>
+    <label>Gwlad</label>
     <description>Country of the physical address</description>
   </element>
   <element name="gmd:country" id="508.0" context="gmd:MD_Legislation">
-    <label>Country</label>
+    <label>Gwlad</label>
     <description>Country in which the law was issued</description>
   </element>
   <element name="gmd:country" id="605.0" context="PT_Group">
-    <label>Country</label>
+    <label>Gwlad</label>
     <description>Country of language used for documenting a plain text</description>
   </element>
   <element name="gmd:credit" id="27.0">
@@ -1304,7 +1304,7 @@
     </_condition>
   </element>
   <element name="gmd:geographicIdentifier" id="349.0">
-    <label>Extent</label>
+    <label>Hyd</label>
     <description>Extent of the data resource</description>
     <condition>optional</condition>
   </element>
@@ -2180,12 +2180,12 @@
     </description>
   </element>
   <element name="gmd:positionName" id="377.0">
-    <label>Position name</label>
+    <label>Enw swydd</label>
     <description>Role or position of the responsible person</description>
     <condition>conditional</condition>
   </element>
   <element name="gmd:postalCode" id="384.0">
-    <label>Postal code</label>
+    <label>Cod post</label>
     <description>ZIP or other postal code</description>
   </element>
   <element name="gmd:presentationForm" id="368.0">
@@ -2341,7 +2341,7 @@
     <condition>mandatory</condition>
   </element>
   <element name="gmd:role" id="566.0" context="gmd:MD_Association">
-    <label>Role</label>
+    <label>Rol</label>
     <description>Reference to the ends (roles) of a concrete association</description>
   </element>
   <element name="gmd:role" id="379.0">
@@ -2714,7 +2714,7 @@
     <condition>conditional</condition>
   </element>
   <element name="gmd:voice" id="408.0">
-    <label>Voice</label>
+    <label>Llais</label>
     <description>Telephone number by which individuals can speak to the responsible organization
       or individual
     </description>
@@ -3519,7 +3519,7 @@
   <label>Localised Character String</label>
   </element>
  <element name="gmd:Country">
-  <label>Country</label>
+  <label>Gwlad</label>
   </element>
  <element name="srv:SV_OperationModel">
   <label>Service Operation Model</label>
