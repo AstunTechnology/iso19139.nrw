@@ -22,7 +22,7 @@
   ~ Rome - Italy. email: geonetwork@osgeo.org
   -->
 
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:gml="http://www.opengis.net/gml/3.2"
                 xmlns:gml320="http://www.opengis.net/gml"
                 xmlns:srv="http://www.isotc211.org/2005/srv" xmlns:gmx="http://www.isotc211.org/2005/gmx"
@@ -602,8 +602,8 @@
 
         <xsl:copy>
             <xsl:apply-templates select="gmd:title|gmd:alternateTitle|gmd:date|gmd:date|gmd:edition|gmd:editionDate"/>
-         
-               
+
+
                 <gmd:identifier>
                     <gmd:MD_Identifier>
                         <gmd:code>
@@ -671,6 +671,15 @@
         </xsl:otherwise>
         </xsl:choose>
       </xsl:copy>
+    </xsl:template>
+
+    <!-- =============================================================== -->
+    <!-- Match gmd:CI_DateTypeCode elements with an empty codeList attribute -->
+    <xsl:template match="gmd:CI_DateTypeCode[@codeList='']">
+        <xsl:copy>
+            <xsl:apply-templates select="@*|node()"/>
+            <xsl:attribute name="codeList">http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode</xsl:attribute>
+        </xsl:copy>
     </xsl:template>
 
     <!-- =============================================================== -->
