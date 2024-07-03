@@ -1503,7 +1503,7 @@
             <xsl:apply-templates mode="render-value" select="gco:CharacterString"/>
           </dd>
         </dl>
-      
+
     </xsl:template>
 
     <xsl:template mode="render-field" match="nrw:internalContactInfo" priority="2000">
@@ -1539,7 +1539,7 @@
 
     </xsl:template>
 
-    <xsl:template mode="render-field" match="gml:VerticalCRS" priority="2000">
+    <xsl:template mode="render-field" match="gmd:verticalCRS" priority="2000">
 
         <xsl:param name="fieldName" select="''" as="xs:string"/>
           <dl>

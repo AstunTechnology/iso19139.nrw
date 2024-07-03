@@ -428,7 +428,7 @@
 
   </xsl:template>
 
-  
+
 
   <!-- Bbox is displayed with an overview and the geom displayed on it
   and the coordinates displayed around -->
@@ -1280,7 +1280,7 @@
                 match="gmd:keyword[position() > 1]"
                 priority="101"/>
 
-    <xsl:template mode="render-field" match="gml:VerticalCRS" priority="2000">
+    <xsl:template mode="render-field" match="gmd:verticalCRS" priority="2000">
 
         <xsl:param name="fieldName" select="''" as="xs:string"/>
           <dl>
