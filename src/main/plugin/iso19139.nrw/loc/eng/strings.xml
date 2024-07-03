@@ -69,6 +69,16 @@
   <citationProposal-help>This proposal was automatically generated, check if the metadata authors did not specified custom citation requirements.</citationProposal-help>
   <associatedResources>Associated resources (if any)</associatedResources>
 
+  <!-- Custom view tabs (for Pemralink and PDF) -->
+  <keywordsCustom>Keywords</keywordsCustom>
+  <metadataCustom>Metadata</metadataCustom>
+  <identificationInfoCustom>Identification</identificationInfoCustom>
+  <distributionInfoCustom>Distribution</distributionInfoCustom>
+  <dataQualityInfoCustom>Quality</dataQualityInfoCustom>
+  <referenceSystemInfoCustom>Spatial Reference System</referenceSystemInfoCustom>
+  <contentInfoCustom>Content</contentInfoCustom>
+  <metadataMaintenanceCustom>Maintenance</metadataMaintenanceCustom>
+
   <!-- XSD error translation -->
   <invalidElement>Invalid element. Invalid content was found starting with element:</invalidElement>
   <onElementOf>One of the following elements</onElementOf>

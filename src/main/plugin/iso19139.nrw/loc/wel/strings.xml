@@ -69,6 +69,16 @@
   <citationProposal-help>This proposal was automatically generated, check if the metadata authors did not specify custom citation requirements.</citationProposal-help>
   <associatedResources>Adnoddau cysylltiedig (os oes rhai)</associatedResources>
 
+  <!-- Custom view tabs (for Pemralink and PDF) -->
+  <keywordsCustom>Allweddeiriau</keywordsCustom>
+  <metadataCustom>Metadata</metadataCustom>
+  <identificationInfoCustom>Dull adnabod</identificationInfoCustom>
+  <distributionInfoCustom>Dosbarthiad</distributionInfoCustom>
+  <dataQualityInfoCustom>Ansawdd</dataQualityInfoCustom>
+  <referenceSystemInfoCustom>System Cyfeirio Gofodol</referenceSystemInfoCustom>
+  <contentInfoCustom>Cynnwys</contentInfoCustom>
+  <metadataMaintenanceCustom>Cynnal a chadw</metadataMaintenanceCustom>
+
   <!-- XSD error translation -->
   <invalidElement>Invalid element. Invalid content was found starting with element:</invalidElement>
   <onElementOf>One of the following elements</onElementOf>
