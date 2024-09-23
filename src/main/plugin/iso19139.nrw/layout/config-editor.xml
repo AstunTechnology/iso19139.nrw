@@ -3101,7 +3101,7 @@
 
 
     <!-- Advanced View -->
-    <view name="advanced" displayIfServiceInfo="count(session[profile = 'Administrator']) = 1">
+    <view name="advanced">
       <sidePanel>
         <directive data-gn-onlinesrc-list=""/>
         <directive gn-geo-publisher="" data-ng-if="gnCurrentEdit.geoPublisherConfig" data-config="{{gnCurrentEdit.geoPublisherConfig}}" data-lang="lang"/>
