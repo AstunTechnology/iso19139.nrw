@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <!--
   ~ Copyright (C) 2001-2016 Food and Agriculture Organization of the
   ~ United Nations (FAO-UN), United Nations World Food Programme (WFP)
@@ -20,7 +19,7 @@
   ~
   ~ Contact: Jeroen Ticheler - FAO - Viale delle Terme di Caracalla 2,
   ~ Rome - Italy. email: geonetwork@osgeo.org
-  -->
+-->
 
 <!-- for downloading xml in medin endpoint -->
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
@@ -30,8 +29,7 @@
   xmlns:xlink="http://www.w3.org/1999/xlink"
   xmlns:geonet="http://www.fao.org/geonetwork">
   
-<!-- Import base formatter from xsl-view -->
-
+  <!-- Import base formatter from xsl-view -->
   <xsl:import href="../base-xml/view.xsl"/>
   
   
@@ -47,6 +45,64 @@
     <gco:CharacterString>3.1.2</gco:CharacterString>
     </gmd:metadataStandardVersion>
   </xsl:template>
-
+  
+  <!-- Remove empty locale elements -->
+  <xsl:template match="gmd:locale[not(normalize-space())]">
+    <xsl:message>=== Removing empty gmd:locale element ===</xsl:message>
+  </xsl:template>
+  
+  <!-- Shift location of Parent Identifier -->
+  <xsl:template match="/gmd:MD_Metadata">
+    <xsl:choose>
+      <!-- Check if gmd:parentIdentifier is present -->
+      <xsl:when test="gmd:parentIdentifier">
+        <xsl:copy>
+          <!-- Copy everything up to gmd:hierarchyLevel as is -->
+          <xsl:copy-of select="@*|node()[not(self::gmd:parentIdentifier)][following-sibling::gmd:hierarchyLevel]"/>
+          <!-- Copy gmd:hierarchyLevel -->
+          <xsl:copy-of select="gmd:hierarchyLevel"/>
+          <!-- Insert gmd:parentIdentifier after gmd:hierarchyLevel if it exists -->
+          <xsl:copy-of select="gmd:parentIdentifier"/>
+          <!-- Copy remaining elements -->
+          <xsl:copy-of select="gmd:parentIdentifier/following-sibling::*[not(self::gmd:hierarchyLevel)]"/>
+        </xsl:copy>
+      </xsl:when>
+      <!-- If there is no gmd:parentIdentifier, copy everything as-is -->
+      <xsl:otherwise>
+        <xsl:message>=== No parentIdentifier present ===</xsl:message>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+  
+  <!-- Only remove the original gmd:parentIdentifier if it exists -->
+  <xsl:template match="gmd:parentIdentifier"/>
+  
+  <!-- Transform empty codelist elements to include a value -->
+  <xsl:template match="gmd:MD_ScopeCode|gmd:CI_RoleCode|gmd:CI_DateTypeCode|gmd:MD_MaintenanceFrequencyCode|gmd:MD_KeywordTypeCode|gmd:MD_RestrictionCode|gmd:MD_SpatialRepresentationTypeCode|gmd:CI_OnLineFunctionCode">
+    <xsl:copy>
+      <!-- Copy all attributes -->
+      <xsl:copy-of select="@*"/>
+      <!-- Add the text content based on codeListValue attribute -->
+      <xsl:value-of select="@codeListValue"/>
+    </xsl:copy>
+  </xsl:template>
+  
+  <!-- Add characterSetCode value if missing -->
+  <xsl:template match="gmd:MD_CharacterSetCode">
+    <xsl:copy>
+      <!-- Copy all attributes -->
+      <xsl:copy-of select="@*"/>
+      <!-- Check if codeListValue is 'utf8' and set content accordingly -->
+      <xsl:choose>
+        <xsl:when test="@codeListValue = 'utf8'">
+          <xsl:text>UTF-8</xsl:text>
+        </xsl:when>
+        <xsl:otherwise>
+          <!-- Set the content to the value of the codeListValue attribute -->
+          <xsl:value-of select="@codeListValue"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:copy>
+  </xsl:template>
 
 </xsl:stylesheet>
