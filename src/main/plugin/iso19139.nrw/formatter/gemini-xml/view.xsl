@@ -29,24 +29,48 @@
   xmlns:gmx="http://www.isotc211.org/2005/gmx"
   xmlns:xlink="http://www.w3.org/1999/xlink"
   xmlns:geonet="http://www.fao.org/geonetwork">
-  
-<!-- Import base formatter from xsl-view -->
 
+  <!-- Import base formatter from xsl-view -->
   <xsl:import href="../base-xml/view.xsl"/>
-  
-  
+
+
   <!-- Gemini-specific transformations -->
   <xsl:template match="gmd:metadataStandardName">
     <gmd:metadataStandardName>
-    <gmx:Anchor xlink:type="simple" xlink:href="http://vocab.nerc.ac.uk/collection/M25/current/MEDIN/">Gemini</gmx:Anchor>
+      <gmx:Anchor xlink:type="simple" xlink:href="http://vocab.nerc.ac.uk/collection/M25/current/MEDIN/">Gemini</gmx:Anchor>
     </gmd:metadataStandardName>
   </xsl:template>
-  
+
   <xsl:template match="gmd:metadataStandardVersion">
     <gmd:metadataStandardVersion>
-    <gco:CharacterString>2.3</gco:CharacterString>
+      <gco:CharacterString>2.3</gco:CharacterString>
     </gmd:metadataStandardVersion>
   </xsl:template>
 
+  <!-- Limit gmd:dateStamp to full seconds only, stripping out milliseconds and timezone -->
+  <xsl:template match="gmd:dateStamp">
+    <xsl:variable name="datestamp" select="./gco:DateTime"/>
+    <xsl:choose>
+      <!-- Check if the date is in the wrong YYYY-MM-DDTHH:MM:SS.sssZ format -->
+      <xsl:when test="contains($datestamp, '.') and substring($datestamp, string-length($datestamp), 1) = 'Z'">
+        <xsl:message>==== Changing the date format to YYYY-MM-DDTHH:MM:SS ====</xsl:message>
+        <gmd:dateStamp>
+          <gco:DateTime>
+            <xsl:value-of select="concat(substring($datestamp, 1, 10), 'T', substring($datestamp, 12, 8))"/>
+          </gco:DateTime>
+        </gmd:dateStamp>
+      </xsl:when>
+
+      <!-- If the date does not match the problematic format, output the original value -->
+      <xsl:otherwise>
+        <xsl:message>==== Preserving date format ====</xsl:message>
+        <gmd:dateStamp>
+          <gco:DateTime>
+            <xsl:value-of select="$datestamp"/>
+          </gco:DateTime>
+        </gmd:dateStamp>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
 
 </xsl:stylesheet>
