@@ -138,14 +138,14 @@
 
 
 <!-- encode file identifier as a UUID hex encoding of the numeric component of the resource identifier. Prefix with the hex encoding of OLIB-CCWd-ds -->
-   <xsl:template match="gmd:fileIdentifier">
-        <xsl:variable name="foo" select="/root/env/uuid"/>
+   <xsl:template match="gmd:fileIdentifier" priority="100">
+        <xsl:variable name="nrw-uuid" select="/root/env/uuid"/>
         <xsl:variable name="prefix">4f4c4942-4343-5764-6473-</xsl:variable>
         <gmd:fileIdentifier>
             <gco:CharacterString>
                 <xsl:variable name="numericValue">
                     <xsl:call-template name="extractNumeric">
-                        <xsl:with-param name="input" select="$foo"/>
+                        <xsl:with-param name="input" select="$nrw-uuid"/>
                     </xsl:call-template>
                 </xsl:variable>
                 <xsl:value-of select="concat($prefix, $numericValue)"/>
