@@ -836,6 +836,11 @@
     </xsl:call-template>
   </xsl:template>
 
+  <!-- Remove empty locale elements -->
+  <xsl:template match="gmd:locale[not(normalize-space())]">
+    <xsl:message>=== Removing empty gmd:locale element ===</xsl:message>
+  </xsl:template>
+
   <!-- ================================================================= -->
   <!-- copy everything else as is -->
 
