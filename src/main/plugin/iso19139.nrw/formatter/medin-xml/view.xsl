@@ -28,29 +28,23 @@
   xmlns:gmx="http://www.isotc211.org/2005/gmx"
   xmlns:xlink="http://www.w3.org/1999/xlink"
   xmlns:geonet="http://www.fao.org/geonetwork">
-  
+
   <!-- Import base formatter from xsl-view -->
   <xsl:import href="../base-xml/view.xsl"/>
-  
-  
+
   <!-- Medin-specific transformations -->
   <xsl:template match="gmd:metadataStandardName">
     <gmd:metadataStandardName>
     <gmx:Anchor xlink:type="simple" xlink:href="http://vocab.nerc.ac.uk/collection/M25/current/MEDIN/">MEDIN</gmx:Anchor>
     </gmd:metadataStandardName>
   </xsl:template>
-  
+
   <xsl:template match="gmd:metadataStandardVersion">
     <gmd:metadataStandardVersion>
     <gco:CharacterString>3.1.2</gco:CharacterString>
     </gmd:metadataStandardVersion>
   </xsl:template>
-  
-  <!-- Remove empty locale elements -->
-  <xsl:template match="gmd:locale[not(normalize-space())]">
-    <xsl:message>=== Removing empty gmd:locale element ===</xsl:message>
-  </xsl:template>
-  
+
   <!-- Shift location of Parent Identifier -->
   <xsl:template match="/gmd:MD_Metadata">
     <xsl:choose>
@@ -73,10 +67,10 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
-  
+
   <!-- Only remove the original gmd:parentIdentifier if it exists -->
   <xsl:template match="gmd:parentIdentifier"/>
-  
+
   <!-- Transform empty codelist elements to include a value -->
   <xsl:template match="gmd:MD_ScopeCode|gmd:CI_RoleCode|gmd:CI_DateTypeCode|gmd:MD_MaintenanceFrequencyCode|gmd:MD_KeywordTypeCode|gmd:MD_RestrictionCode|gmd:MD_SpatialRepresentationTypeCode|gmd:CI_OnLineFunctionCode">
     <xsl:copy>
@@ -86,7 +80,7 @@
       <xsl:value-of select="@codeListValue"/>
     </xsl:copy>
   </xsl:template>
-  
+
   <!-- Add characterSetCode value if missing -->
   <xsl:template match="gmd:MD_CharacterSetCode">
     <xsl:copy>
@@ -104,5 +98,38 @@
       </xsl:choose>
     </xsl:copy>
   </xsl:template>
+
+  <!-- Add orphan geographic extents to NRW thesaurus-->
+  <xsl:template match="gmd:geographicElement/gmd:EX_GeographicDescription/gmd:geographicIdentifier/gmd:MD_Identifier[not(gmd:authority)]">
+    <gmd:MD_Identifier>
+      <!-- Add authority data for MEDIN validity -->
+      <gmd:authority>
+        <gmd:CI_Citation>
+          <gmd:title>
+            <gco:CharacterString>NRW Geographic Identifiers Collection</gco:CharacterString>
+          </gmd:title>
+          <gmd:date>
+            <gmd:CI_Date>
+              <gmd:date>
+                <gco:Date>2024-01-01</gco:Date>
+              </gmd:date>
+              <gmd:dateType>
+                <gmd:CI_DateTypeCode codeList="http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode"
+                                      codeListValue="publication">publication</gmd:CI_DateTypeCode>
+              </gmd:dateType>
+            </gmd:CI_Date>
+          </gmd:date>
+        </gmd:CI_Citation>
+      </gmd:authority>
+      <!-- Preserve code value -->
+      <xsl:copy-of select="gmd:code"/>
+    </gmd:MD_Identifier>
+  </xsl:template>
+
+  <!-- Remove gmd:description elements which have a nilReason attribute -->
+  <xsl:template match="gmd:MD_Distribution/gmd:transferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource/gmd:description[@gco:nilReason]" />
+
+  <!-- Remove NRW-specific elements -->
+  <xsl:template match="gmd:contentInfo" />
 
 </xsl:stylesheet>

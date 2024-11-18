@@ -29,26 +29,24 @@
   xmlns:xlink="http://www.w3.org/1999/xlink"
   xmlns:nrw="http://naturalresources.wales/nrw"
   xmlns:geonet="http://www.fao.org/geonetwork">
-  
+
   <!-- Identity template to copy all nodes and attributes -->
   <xsl:template match="@*|node()">
     <xsl:copy>
       <xsl:apply-templates select="@*|node()"/>
     </xsl:copy>
   </xsl:template>
-  
+
   <!-- Match the root element and apply templates -->
   <xsl:template match="/">
     <xsl:apply-templates select="//gmd:MD_Metadata"/>
   </xsl:template>
-  
-
 
   <!-- Remove generic elements -->
   <xsl:template match="gmd:PT_Locale" priority="100"/>
+  <xsl:template match="gmd:locale" priority="100"/>
   <xsl:template match="nrw:internalLocationInfo" priority="100"/>
   <xsl:template match="nrw:internalContactInfo" priority="100"/>
-  <xsl:template match="gmd:specification" priority="100"/>
   <xsl:template match="geonet:info" priority="100"/>
 
 

@@ -47,4 +47,7 @@
     </gmd:metadataStandardVersion>
   </xsl:template>
 
+  <!-- Remove NRW-specific elements -->
+  <xsl:template match="gmd:contentInfo" />
+
 </xsl:stylesheet>
