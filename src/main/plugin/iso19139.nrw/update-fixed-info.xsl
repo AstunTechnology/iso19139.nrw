@@ -841,6 +841,17 @@
     <xsl:message>=== Removing empty gmd:locale element ===</xsl:message>
   </xsl:template>
 
+  <!-- Add gmd:positionName if missing -->
+  <xsl:template match="gmd:CI_ResponsibleParty[not(gmd:positionName)]">
+    <xsl:copy>
+      <xsl:apply-templates select="@*|gmd:organisationName"/> <!-- Copy gmd:organisationName -->
+      <gmd:positionName gco:nilReason="missing">
+        <gco:CharacterString/>
+      </gmd:positionName>
+      <xsl:apply-templates select="gmd:contactInfo|node()[not(self::gmd:organisationName)]"/> <!-- Copy remaining elements -->
+    </xsl:copy>
+  </xsl:template>
+
   <!-- ================================================================= -->
   <!-- copy everything else as is -->
 
