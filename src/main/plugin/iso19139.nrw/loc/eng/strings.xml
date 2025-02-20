@@ -909,13 +909,13 @@ E.g. Feingold D. and Evans P.G.H 2014 Bottlenose Dolphin and Harbour Porpoise Mo
       </div>
   </div>
 </dataqualitysrv_help>
-<accessConstraints_help>
+<accessConstraintsText_help>
   <div class="row">
     <div class="col-xs-offset-2 col-xs-8">
       <p class="help-block">This should only be completed once an Open Data Assessment has been completed by Data Services.</p>
     </div>
   </div>
-</accessConstraints_help>
+</accessConstraintsText_help>
 <formatspecification_help>
   <div class="row">
   <div class="col-xs-offset-2 col-xs-8">
