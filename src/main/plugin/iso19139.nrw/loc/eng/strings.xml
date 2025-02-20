@@ -754,7 +754,6 @@ E.g. Feingold D. and Evans P.G.H 2014 Bottlenose Dolphin and Harbour Porpoise Mo
       </div>
   </div>
 </verticalextent_help>
-
 <verticalextentsrv_help>
     <div class="row">
     <div class="col-xs-offset-2 col-xs-8">
@@ -852,14 +851,14 @@ E.g. Feingold D. and Evans P.G.H 2014 Bottlenose Dolphin and Harbour Porpoise Mo
   </div>
 </distributionsrv_help>
 <resourcelocator_help>
-    <div class="row">
+  <div class="row">
     <div class="col-xs-offset-2 col-xs-8">
       <p class="help-block">The purpose of this element is to point to where the dataset or dataset series may be directly accessed online, or to an online resource providing more information about accessing the dataset or dataset series.</p>
       <ol class="help-block">
         <li>Use the associated resource wizard for adding or editing resource locators.</li>
         <li>For more guidelines see <a target="_blank" href="https://www.agi.org.uk/40-gemini/1062-gemini-datasets-and-data-series#19">Gemini Guidance</a></li>
       </ol>
-      </div>
+    </div>
   </div>
 </resourcelocator_help>
 <resourcelocatorsrv_help>
@@ -873,6 +872,17 @@ E.g. Feingold D. and Evans P.G.H 2014 Bottlenose Dolphin and Harbour Porpoise Mo
       </div>
   </div>
 </resourcelocatorsrv_help>
+<transferOption_help>
+  <div class="row">
+    <div class="col-xs-offset-2 col-xs-8">
+      <p class="help-block">The is the web address or where the data is accessible from i.e., it
+        should be a recognized web service or view or data download
+        service, for example, DataMapWales, NRW data download page,
+        NBN Atlas. You should only add the address when the data becomes
+        available.</p>
+    </div>
+  </div>
+</transferOption_help>
 <dataquality_help>
     <div class="row">
     <div class="col-xs-offset-2 col-xs-8">
