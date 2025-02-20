@@ -1641,6 +1641,7 @@
         <section name="constraints">
           <section name="accessLimitations">
           <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:accessConstraints"/>
+          <text ref="accessConstraints_help" />
         </section>
          <section name="accessConstraintsDirective">
           <field name="limitations" xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints[./gmd:accessConstraints]/gmd:otherConstraints[gmx:Anchor]"/>

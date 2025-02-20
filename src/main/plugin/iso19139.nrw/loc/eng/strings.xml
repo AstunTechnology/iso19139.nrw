@@ -610,8 +610,8 @@ E.g. Feingold D. and Evans P.G.H 2014 Bottlenose Dolphin and Harbour Porpoise Mo
     <div class="row">
     <div class="col-xs-offset-2 col-xs-8">
       <p class="help-block">Records to be published as Gemini require at least one keyword from the GEMET INSPIRE themes vocabulary.</p>
-      <p>Records to be published as MEDIN require at least one keyword from the SeaDataNet vocabulary.</p>
-      <p>For NRW keywords, if you can't find a suitable one, in either the standard list or the SMNR list, or need a new one adding, please contact <a href="mailto:opendata@cyfoethnaturiolcymru.gov.uk?subject=Data Discovery Enquiry" target="_blank">opendata@cyfoethnaturiolcymru.gov.uk</a></p>
+      <p class="help-block">Records to be published as MEDIN require at least one keyword from the SeaDataNet vocabulary.</p>
+      <p class="help-block">For NRW keywords, if you can't find a suitable one, in either the standard list or the SMNR list, or need a new one adding, please contact <a href="mailto:opendata@cyfoethnaturiolcymru.gov.uk?subject=Data Discovery Enquiry" target="_blank">opendata@cyfoethnaturiolcymru.gov.uk</a></p>
       </div>
   </div>
 </keyword_help>
@@ -630,7 +630,7 @@ E.g. Feingold D. and Evans P.G.H 2014 Bottlenose Dolphin and Harbour Porpoise Mo
     <div class="row">
     <div class="col-xs-offset-2 col-xs-8">
       <p class="help-block">To add an organisation search in the dropdown list and select the appropriate role in the “+”.</p>
-      <p>If the organisation is not included please contact <a href="mailto:opendata@cyfoethnaturiolcymru.gov.uk?subject=Data Discovery Enquiry" target="_blank">opendata@cyfoethnaturiolcymru.gov.uk</a></p>
+      <p class="help-block">If the organisation is not included please contact <a href="mailto:opendata@cyfoethnaturiolcymru.gov.uk?subject=Data Discovery Enquiry" target="_blank">opendata@cyfoethnaturiolcymru.gov.uk</a></p>
       </div>
   </div>
 </responsibleparty_help>
@@ -909,7 +909,13 @@ E.g. Feingold D. and Evans P.G.H 2014 Bottlenose Dolphin and Harbour Porpoise Mo
       </div>
   </div>
 </dataqualitysrv_help>
-
+<accessConstraints_help>
+  <div class="row">
+    <div class="col-xs-offset-2 col-xs-8">
+      <p class="help-block">This should only be completed once an Open Data Assessment has been completed by Data Services.</p>
+    </div>
+  </div>
+</accessConstraints_help>
 <formatspecification_help>
   <div class="row">
   <div class="col-xs-offset-2 col-xs-8">
@@ -917,7 +923,6 @@ E.g. Feingold D. and Evans P.G.H 2014 Bottlenose Dolphin and Harbour Porpoise Mo
   </div>
 </div>
 </formatspecification_help>
-
 <NRW_InternalLocationInfo_help>
     <div class="row">
     <div class="col-xs-offset-2 col-xs-8">
@@ -939,5 +944,4 @@ E.g. Feingold D. and Evans P.G.H 2014 Bottlenose Dolphin and Harbour Porpoise Mo
       </div>
   </div>
 </NRW_RelatedTitle_help>
-
 </strings>
