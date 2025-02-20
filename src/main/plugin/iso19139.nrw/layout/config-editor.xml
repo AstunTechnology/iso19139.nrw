@@ -1722,8 +1722,8 @@
                 </snippet>
               </template>
             </field>
-        </section>
         <text ref="accessConstraintsText_help" />
+        </section>
 
         <section name="useconstraints">
           <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:useConstraints"/>
