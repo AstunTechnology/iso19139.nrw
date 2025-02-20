@@ -709,7 +709,7 @@ E.g. Feingold D. and Evans P.G.H 2014 Bottlenose Dolphin and Harbour Porpoise Mo
 <alttitle_help>
     <div class="row">
     <div class="col-xs-offset-2 col-xs-8">
-      <p class="help-block">For single GIS datasets please include the layer name used in the corporate store. E.g AONB Area of Outstanding Natural Beauty.lyr</p>
+      <p class="help-block">For single GIS datasets please include the layer name used in the corporate store. E.g <em>AONB Area of Outstanding Natural Beauty.lyr</em></p>
       </div>
   </div>
 </alttitle_help>
@@ -811,14 +811,14 @@ E.g. Feingold D. and Evans P.G.H 2014 Bottlenose Dolphin and Harbour Porpoise Mo
       This date should remain static and not be changed from the original
       date. </p>
 
-      <p>Publication Date is the date that the data resource was published.
+      <p class="help-block">Publication Date is the date that the data resource was published.
       This includes data on DataMapWales, National Biodiversity Network
       or elsewhere. This date should be changed each time the published
       dataset is updated. For data added to DataMapWales the
       publication date should be consistent between Data Discovery and
       DataMapWales.</p>
 
-      <p>For non-published datasets the Publication Date should be included
+      <p class="help-block">For non-published datasets the Publication Date should be included
       when the data has been changed or updated. This date should be
       changed each time there is a change to the data.</p>
     </div>
