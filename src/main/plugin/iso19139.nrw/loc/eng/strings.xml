@@ -709,7 +709,7 @@ E.g. Feingold D. and Evans P.G.H 2014 Bottlenose Dolphin and Harbour Porpoise Mo
 <alttitle_help>
     <div class="row">
     <div class="col-xs-offset-2 col-xs-8">
-      <p class="help-block">For single GIS datasets please include the layer name used in the corporate store. E.g <em>AONB Area of Outstanding Natural Beauty.lyr</em></p>
+      <p class="help-block">For single GIS datasets please include the layer name used in the corporate store. E.g <strong><em>AONB Area of Outstanding Natural Beauty.lyr</em></strong></p>
       </div>
   </div>
 </alttitle_help>
