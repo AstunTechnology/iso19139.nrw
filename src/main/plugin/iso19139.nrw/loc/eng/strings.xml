@@ -629,7 +629,7 @@ E.g. Feingold D. and Evans P.G.H 2014 Bottlenose Dolphin and Harbour Porpoise Mo
 <responsibleparty_help>
     <div class="row">
     <div class="col-xs-offset-2 col-xs-8">
-      <p class="help-block">Select the organisation from the dropdown list and select their role.</p>
+      <p class="help-block">To add an organisation search in the dropdown list and select the appropriate role in the “+”.</p>
       <p>If the organisation is not included please contact <a href="mailto:opendata@cyfoethnaturiolcymru.gov.uk?subject=Data Discovery Enquiry" target="_blank">opendata@cyfoethnaturiolcymru.gov.uk</a></p>
       </div>
   </div>
@@ -709,7 +709,7 @@ E.g. Feingold D. and Evans P.G.H 2014 Bottlenose Dolphin and Harbour Porpoise Mo
 <alttitle_help>
     <div class="row">
     <div class="col-xs-offset-2 col-xs-8">
-      <p class="help-block">Include the welsh translation, and for single datasets include the exact file name used in the corporate store such as the .lyr, .shp</p>
+      <p class="help-block">For single GIS datasets please include the layer name used in the corporate store. E.g AONB Area of Outstanding Natural Beauty.lyr</p>
       </div>
   </div>
 </alttitle_help>
@@ -805,7 +805,22 @@ E.g. Feingold D. and Evans P.G.H 2014 Bottlenose Dolphin and Harbour Porpoise Mo
 <refdate_help>
   <div class="row">
     <div class="col-xs-offset-2 col-xs-8">
-      <p class="help-block">Please restrict to one entry per date type. Creation date is the date the dataset was created or if the creation date is not known use the date it was first made available to staff. Publication date is when the data is published externally for download i.e. on DataMapWales, NBN or other approved NRW publishing mechanism. If the data is updated to create a new version, then you can add a separate revision date (you may also need to update the publication date if the data is republished). You should only add one revision date to reflect the latest version of the data.</p>
+      <p class="help-block">Creation Date will be the date that the data resource was created or
+      if this isn’t known it can be the date the metadata was submitted or
+      for geospatial data this is the date the data is added to the X:Drive.
+      This date should remain static and not be changed from the original
+      date. </p>
+
+      <p>Publication Date is the date that the data resource was published.
+      This includes data on DataMapWales, National Biodiversity Network
+      or elsewhere. This date should be changed each time the published
+      dataset is updated. For data added to DataMapWales the
+      publication date should be consistent between Data Discovery and
+      DataMapWales.</p>
+
+      <p>For non-published datasets the Publication Date should be included
+      when the data has been changed or updated. This date should be
+      changed each time there is a change to the data.</p>
     </div>
   </div>
 </refdate_help>
