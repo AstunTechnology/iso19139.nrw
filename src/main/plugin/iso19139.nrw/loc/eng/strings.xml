@@ -610,8 +610,8 @@ E.g. Feingold D. and Evans P.G.H 2014 Bottlenose Dolphin and Harbour Porpoise Mo
     <div class="row">
     <div class="col-xs-offset-2 col-xs-8">
       <p class="help-block">Records to be published as Gemini require at least one keyword from the GEMET INSPIRE themes vocabulary.</p>
-      <p>Records to be published as MEDIN require at least one keyword from the SeaDataNet vocabulary.</p>
-      <p>For NRW keywords, if you can't find a suitable one, in either the standard list or the SMNR list, or need a new one adding, please contact <a href="mailto:opendata@cyfoethnaturiolcymru.gov.uk?subject=Data Discovery Enquiry" target="_blank">opendata@cyfoethnaturiolcymru.gov.uk</a></p>
+      <p class="help-block">Records to be published as MEDIN require at least one keyword from the SeaDataNet vocabulary.</p>
+      <p class="help-block">For NRW keywords, if you can't find a suitable one, in either the standard list or the SMNR list, or need a new one adding, please contact <a href="mailto:opendata@cyfoethnaturiolcymru.gov.uk?subject=Data Discovery Enquiry" target="_blank">opendata@cyfoethnaturiolcymru.gov.uk</a></p>
       </div>
   </div>
 </keyword_help>
@@ -629,8 +629,8 @@ E.g. Feingold D. and Evans P.G.H 2014 Bottlenose Dolphin and Harbour Porpoise Mo
 <responsibleparty_help>
     <div class="row">
     <div class="col-xs-offset-2 col-xs-8">
-      <p class="help-block">Select the organisation from the dropdown list and select their role.</p>
-      <p>If the organisation is not included please contact <a href="mailto:opendata@cyfoethnaturiolcymru.gov.uk?subject=Data Discovery Enquiry" target="_blank">opendata@cyfoethnaturiolcymru.gov.uk</a></p>
+      <p class="help-block">To add an organisation search in the dropdown list and select the appropriate role in the “+”.</p>
+      <p class="help-block">If the organisation is not included please contact <a href="mailto:opendata@cyfoethnaturiolcymru.gov.uk?subject=Data Discovery Enquiry" target="_blank">opendata@cyfoethnaturiolcymru.gov.uk</a></p>
       </div>
   </div>
 </responsibleparty_help>
@@ -709,7 +709,7 @@ E.g. Feingold D. and Evans P.G.H 2014 Bottlenose Dolphin and Harbour Porpoise Mo
 <alttitle_help>
     <div class="row">
     <div class="col-xs-offset-2 col-xs-8">
-      <p class="help-block">Include the welsh translation, and for single datasets include the exact file name used in the corporate store such as the .lyr, .shp</p>
+      <p class="help-block">For single GIS datasets please include the layer name used in the corporate store. E.g <strong><em>AONB Area of Outstanding Natural Beauty.lyr</em></strong></p>
       </div>
   </div>
 </alttitle_help>
@@ -754,7 +754,6 @@ E.g. Feingold D. and Evans P.G.H 2014 Bottlenose Dolphin and Harbour Porpoise Mo
       </div>
   </div>
 </verticalextent_help>
-
 <verticalextentsrv_help>
     <div class="row">
     <div class="col-xs-offset-2 col-xs-8">
@@ -805,7 +804,22 @@ E.g. Feingold D. and Evans P.G.H 2014 Bottlenose Dolphin and Harbour Porpoise Mo
 <refdate_help>
   <div class="row">
     <div class="col-xs-offset-2 col-xs-8">
-      <p class="help-block">Please restrict to one entry per date type. Creation date is the date the dataset was created or if the creation date is not known use the date it was first made available to staff. Publication date is when the data is published externally for download i.e. on DataMapWales, NBN or other approved NRW publishing mechanism. If the data is updated to create a new version, then you can add a separate revision date (you may also need to update the publication date if the data is republished). You should only add one revision date to reflect the latest version of the data.</p>
+      <p class="help-block">Creation Date will be the date that the data resource was created or
+      if this isn’t known it can be the date the metadata was submitted or
+      for geospatial data this is the date the data is added to the X:Drive.
+      This date should remain static and not be changed from the original
+      date. </p>
+
+      <p class="help-block">Publication Date is the date that the data resource was published.
+      This includes data on DataMapWales, National Biodiversity Network
+      or elsewhere. This date should be changed each time the published
+      dataset is updated. For data added to DataMapWales the
+      publication date should be consistent between Data Discovery and
+      DataMapWales.</p>
+
+      <p class="help-block">For non-published datasets the Publication Date should be included
+      when the data has been changed or updated. This date should be
+      changed each time there is a change to the data.</p>
     </div>
   </div>
 </refdate_help>
@@ -837,14 +851,14 @@ E.g. Feingold D. and Evans P.G.H 2014 Bottlenose Dolphin and Harbour Porpoise Mo
   </div>
 </distributionsrv_help>
 <resourcelocator_help>
-    <div class="row">
+  <div class="row">
     <div class="col-xs-offset-2 col-xs-8">
       <p class="help-block">The purpose of this element is to point to where the dataset or dataset series may be directly accessed online, or to an online resource providing more information about accessing the dataset or dataset series.</p>
       <ol class="help-block">
         <li>Use the associated resource wizard for adding or editing resource locators.</li>
         <li>For more guidelines see <a target="_blank" href="https://www.agi.org.uk/40-gemini/1062-gemini-datasets-and-data-series#19">Gemini Guidance</a></li>
       </ol>
-      </div>
+    </div>
   </div>
 </resourcelocator_help>
 <resourcelocatorsrv_help>
@@ -858,6 +872,17 @@ E.g. Feingold D. and Evans P.G.H 2014 Bottlenose Dolphin and Harbour Porpoise Mo
       </div>
   </div>
 </resourcelocatorsrv_help>
+<transferOption_help>
+  <div class="row">
+    <div class="col-xs-offset-2 col-xs-8">
+      <p class="help-block">The is the web address or where the data is accessible from i.e., it
+        should be a recognized web service or view or data download
+        service, for example, DataMapWales, NRW data download page,
+        NBN Atlas. You should only add the address when the data becomes
+        available.</p>
+    </div>
+  </div>
+</transferOption_help>
 <dataquality_help>
     <div class="row">
     <div class="col-xs-offset-2 col-xs-8">
@@ -884,7 +909,13 @@ E.g. Feingold D. and Evans P.G.H 2014 Bottlenose Dolphin and Harbour Porpoise Mo
       </div>
   </div>
 </dataqualitysrv_help>
-
+<accessConstraintsText_help>
+  <div class="row">
+    <div class="col-xs-offset-2 col-xs-8">
+      <p class="help-block">This should only be completed once an Open Data Assessment has been completed by Data Services.</p>
+    </div>
+  </div>
+</accessConstraintsText_help>
 <formatspecification_help>
   <div class="row">
   <div class="col-xs-offset-2 col-xs-8">
@@ -892,7 +923,6 @@ E.g. Feingold D. and Evans P.G.H 2014 Bottlenose Dolphin and Harbour Porpoise Mo
   </div>
 </div>
 </formatspecification_help>
-
 <NRW_InternalLocationInfo_help>
     <div class="row">
     <div class="col-xs-offset-2 col-xs-8">
@@ -914,5 +944,4 @@ E.g. Feingold D. and Evans P.G.H 2014 Bottlenose Dolphin and Harbour Porpoise Mo
       </div>
   </div>
 </NRW_RelatedTitle_help>
-
 </strings>
