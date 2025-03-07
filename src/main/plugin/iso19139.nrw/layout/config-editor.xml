@@ -274,11 +274,13 @@
       <name>srv:identifier</name>
       <name>srv:serviceType</name>
       <name ancestor="gmd:thesaurusName">gmd:code</name>
+      <name ancestor="gmd:thesaurusName">gmd:title</name>
       <name ancestor="gmd:aggregateDataSetIdentifier">gmd:code</name>
       <name ancestor="gmd:CI_Citation">gmd:code</name>
       <name ancestor="gmd:MD_Identifier">gmd:code</name>
       <name ancestor="gmd:RS_Identifier">gmd:code</name>
       <name ancestor="gmd:specification">gmd:title</name>
+      <name ancestor="gmd:geographicIdentifier">gmd:title</name>
       <name>nrw:internalLocationInfo</name>
       <name>nrw:internalContactInfo</name>
       <name>nrw:relatedTitle</name>
