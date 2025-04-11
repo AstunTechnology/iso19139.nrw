@@ -47,29 +47,32 @@
 
   <!-- Shift location of Parent Identifier -->
   <xsl:template match="/gmd:MD_Metadata">
-    <xsl:choose>
-      <!-- Check if gmd:parentIdentifier is present -->
-      <xsl:when test="gmd:parentIdentifier">
-        <xsl:copy>
-          <!-- Copy everything up to gmd:hierarchyLevel as is -->
-          <xsl:copy-of select="@*|node()[not(self::gmd:parentIdentifier)][following-sibling::gmd:hierarchyLevel]"/>
-          <!-- Copy gmd:hierarchyLevel -->
-          <xsl:copy-of select="gmd:hierarchyLevel"/>
-          <!-- Insert gmd:parentIdentifier after gmd:hierarchyLevel if it exists -->
-          <xsl:copy-of select="gmd:parentIdentifier"/>
-          <!-- Copy remaining elements -->
-          <xsl:copy-of select="gmd:parentIdentifier/following-sibling::*[not(self::gmd:hierarchyLevel)]"/>
-        </xsl:copy>
-      </xsl:when>
-      <!-- If there is no gmd:parentIdentifier, copy everything as-is -->
-      <xsl:otherwise>
-        <xsl:message>=== No parentIdentifier present ===</xsl:message>
-      </xsl:otherwise>
-    </xsl:choose>
+    <!-- Copy everything apart from gmd:parentIdentifier-->
+    <xsl:copy>
+      <xsl:apply-templates select="@*"/>
+      <xsl:apply-templates select="node()[not(self::gmd:parentIdentifier)]"/>
+      <xsl:apply-templates select="gmd:parentIdentifier"/>
+    </xsl:copy>
   </xsl:template>
 
-  <!-- Only remove the original gmd:parentIdentifier if it exists -->
-  <xsl:template match="gmd:parentIdentifier"/>
+  <xsl:template match="gmd:hierarchyLevel">
+    <!-- Add gmd:parentIdentifier after gmd:hierarcyLevel-->
+    <xsl:copy-of select="."/>
+    <xsl:if test="../gmd:parentIdentifier">
+      <xsl:copy-of select="../gmd:parentIdentifier"/>
+    </xsl:if>
+  </xsl:template>
+
+  <!-- Remove previous gmd:parentIdentifier to avoid duplication-->
+  <xsl:template match="gmd:parentIdentifier">
+    </xsl:template>
+
+  <xsl:template match="@* | node()">
+    <!-- Copy everything else as-is -->
+    <xsl:copy>
+      <xsl:apply-templates select="@* | node()"/>
+    </xsl:copy>
+  </xsl:template>
 
   <!-- Transform empty codelist elements to include a value -->
   <xsl:template match="gmd:MD_ScopeCode|gmd:CI_RoleCode|gmd:CI_DateTypeCode|gmd:MD_MaintenanceFrequencyCode|gmd:MD_KeywordTypeCode|gmd:MD_RestrictionCode|gmd:MD_SpatialRepresentationTypeCode|gmd:CI_OnLineFunctionCode">
