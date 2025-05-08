@@ -74,16 +74,6 @@
     </xsl:copy>
   </xsl:template>
 
-  <!-- Transform empty codelist elements to include a value -->
-  <xsl:template match="gmd:MD_ScopeCode|gmd:CI_RoleCode|gmd:CI_DateTypeCode|gmd:MD_MaintenanceFrequencyCode|gmd:MD_KeywordTypeCode|gmd:MD_RestrictionCode|gmd:MD_SpatialRepresentationTypeCode|gmd:CI_OnLineFunctionCode">
-    <xsl:copy>
-      <!-- Copy all attributes -->
-      <xsl:copy-of select="@*"/>
-      <!-- Add the text content based on codeListValue attribute -->
-      <xsl:value-of select="@codeListValue"/>
-    </xsl:copy>
-  </xsl:template>
-
   <!-- Add characterSetCode value if missing -->
   <xsl:template match="gmd:MD_CharacterSetCode">
     <xsl:copy>
