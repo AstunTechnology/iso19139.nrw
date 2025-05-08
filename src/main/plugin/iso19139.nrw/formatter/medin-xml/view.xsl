@@ -47,14 +47,11 @@
 
   <!-- Transform empty codelist elements to include a value -->
   <xsl:template match="gmd:CI_RoleCode|gmd:CI_DateTypeCode|gmd:MD_MaintenanceFrequencyCode|gmd:MD_KeywordTypeCode|gmd:MD_RestrictionCode|gmd:MD_SpatialRepresentationTypeCode|gmd:CI_OnLineFunctionCode|gmd:MD_ScopeCode|gmd:MD_CharacterSetCode|gmd:LanguageCode">
-  <xsl:copy>
-    <xsl:copy-of select="@*"/>
-    <xsl:attribute name="codeListValue">
+    <xsl:copy>
+      <xsl:copy-of select="@*"/>
       <xsl:value-of select="@codeListValue"/>
-    </xsl:attribute>
-    <xsl:value-of select="@codeListValue"/>
-  </xsl:copy>
-</xsl:template>
+    </xsl:copy>
+  </xsl:template>
 
 
   <!-- Shift location of Parent Identifier -->
@@ -69,7 +66,10 @@
 
   <xsl:template match="gmd:hierarchyLevel">
     <!-- Add gmd:parentIdentifier after gmd:hierarcyLevel-->
-    <xsl:copy-of select="."/>
+    <xsl:copy>
+      <xsl:apply-templates select="@*"/>
+      <xsl:apply-templates select="node()"/>
+    </xsl:copy>
     <xsl:if test="../gmd:parentIdentifier">
       <xsl:copy-of select="../gmd:parentIdentifier"/>
     </xsl:if>
