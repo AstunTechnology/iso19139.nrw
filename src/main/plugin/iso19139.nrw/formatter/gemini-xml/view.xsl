@@ -37,7 +37,7 @@
   <!-- Gemini-specific transformations -->
   <xsl:template match="gmd:metadataStandardName">
     <gmd:metadataStandardName>
-      <gmx:Anchor xlink:type="simple" xlink:href="http://vocab.nerc.ac.uk/collection/M25/current/MEDIN/">Gemini</gmx:Anchor>
+      <gmx:Anchor xlink:type="simple" xlink:href="http://vocab.nerc.ac.uk/collection/M25/current/GEMINI/">Gemini</gmx:Anchor>
     </gmd:metadataStandardName>
   </xsl:template>
 
