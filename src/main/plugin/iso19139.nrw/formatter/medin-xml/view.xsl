@@ -124,5 +124,7 @@
 
   <!-- Remove NRW-specific elements -->
   <xsl:template match="gmd:contentInfo" />
+  <xsl:template match="gmd:locale" />
+
 
 </xsl:stylesheet>
