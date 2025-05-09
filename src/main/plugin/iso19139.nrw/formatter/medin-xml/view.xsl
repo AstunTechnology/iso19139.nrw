@@ -45,6 +45,15 @@
     </gmd:metadataStandardVersion>
   </xsl:template>
 
+  <!-- Transform empty codelist elements to include a value -->
+  <xsl:template match="gmd:CI_RoleCode|gmd:CI_DateTypeCode|gmd:MD_MaintenanceFrequencyCode|gmd:MD_KeywordTypeCode|gmd:MD_RestrictionCode|gmd:MD_SpatialRepresentationTypeCode|gmd:CI_OnLineFunctionCode|gmd:MD_ScopeCode|gmd:MD_CharacterSetCode|gmd:LanguageCode">
+    <xsl:copy>
+      <xsl:copy-of select="@*"/>
+      <xsl:value-of select="@codeListValue"/>
+    </xsl:copy>
+  </xsl:template>
+
+
   <!-- Shift location of Parent Identifier -->
   <xsl:template match="/gmd:MD_Metadata">
     <!-- Copy everything apart from gmd:parentIdentifier-->
@@ -57,7 +66,10 @@
 
   <xsl:template match="gmd:hierarchyLevel">
     <!-- Add gmd:parentIdentifier after gmd:hierarcyLevel-->
-    <xsl:copy-of select="."/>
+    <xsl:copy>
+      <xsl:apply-templates select="@*"/>
+      <xsl:apply-templates select="node()"/>
+    </xsl:copy>
     <xsl:if test="../gmd:parentIdentifier">
       <xsl:copy-of select="../gmd:parentIdentifier"/>
     </xsl:if>
@@ -71,16 +83,6 @@
     <!-- Copy everything else as-is -->
     <xsl:copy>
       <xsl:apply-templates select="@* | node()"/>
-    </xsl:copy>
-  </xsl:template>
-
-  <!-- Transform empty codelist elements to include a value -->
-  <xsl:template match="gmd:MD_ScopeCode|gmd:CI_RoleCode|gmd:CI_DateTypeCode|gmd:MD_MaintenanceFrequencyCode|gmd:MD_KeywordTypeCode|gmd:MD_RestrictionCode|gmd:MD_SpatialRepresentationTypeCode|gmd:CI_OnLineFunctionCode">
-    <xsl:copy>
-      <!-- Copy all attributes -->
-      <xsl:copy-of select="@*"/>
-      <!-- Add the text content based on codeListValue attribute -->
-      <xsl:value-of select="@codeListValue"/>
     </xsl:copy>
   </xsl:template>
 
@@ -132,7 +134,10 @@
   <!-- Remove gmd:description elements which have a nilReason attribute -->
   <xsl:template match="gmd:MD_Distribution/gmd:transferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource/gmd:description[@gco:nilReason]" />
 
+
   <!-- Remove NRW-specific elements -->
   <xsl:template match="gmd:contentInfo" />
+  <xsl:template match="gmd:locale" />
+
 
 </xsl:stylesheet>
