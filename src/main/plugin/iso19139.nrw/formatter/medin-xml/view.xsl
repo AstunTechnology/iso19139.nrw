@@ -139,5 +139,32 @@
   <xsl:template match="gmd:contentInfo" />
   <xsl:template match="gmd:locale" />
 
+  <!-- Limit gmd:dateStamp to full seconds only, stripping out milliseconds and timezone -->
+  <xsl:template match="gmd:dateStamp">
+    <xsl:variable name="datestamp" select="./gco:DateTime"/>
+
+    <xsl:choose>
+      <!-- Check if the date is in the wrong YYYY-MM-DDTHH:MM:SS.sssZ format -->
+      <xsl:when test="contains($datestamp, '.') and substring($datestamp, string-length($datestamp), 1) = 'Z'">
+        <xsl:message>==== Changing the date format to YYYY-MM-DDTHH:MM:SS ====</xsl:message>
+        <gmd:dateStamp>
+          <gco:DateTime>
+            <xsl:value-of select="concat(substring($datestamp, 1, 10), 'T', substring($datestamp, 12, 8))"/>
+          </gco:DateTime>
+        </gmd:dateStamp>
+      </xsl:when>
+
+      <!-- If the date does not match the problematic format, output the original value -->
+      <xsl:otherwise>
+        <xsl:message>==== Preserving date format ====</xsl:message>
+        <gmd:dateStamp>
+          <gco:DateTime>
+            <xsl:value-of select="$datestamp"/>
+          </gco:DateTime>
+        </gmd:dateStamp>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
 
 </xsl:stylesheet>
