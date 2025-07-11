@@ -29,9 +29,6 @@
   xmlns:xlink="http://www.w3.org/1999/xlink"
   xmlns:geonet="http://www.fao.org/geonetwork">
 
-  <!-- Import base formatter from xsl-view -->
-  <xsl:import href="../../formatter/base-xml/view.xsl"/>
-
   <!-- Medin-specific transformations -->
   <xsl:template match="gmd:metadataStandardName">
     <gmd:metadataStandardName>
@@ -133,6 +130,16 @@
 
   <!-- Remove gmd:description elements which have a nilReason attribute -->
   <xsl:template match="gmd:MD_Distribution/gmd:transferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource/gmd:description[@gco:nilReason]" />
+
+  <!-- Transform empty codelist elements to include a value -->
+  <xsl:template match="gmd:MD_ScopeCode|gmd:CI_RoleCode|gmd:CI_DateTypeCode|gmd:MD_MaintenanceFrequencyCode|gmd:MD_KeywordTypeCode|gmd:MD_RestrictionCode|gmd:MD_SpatialRepresentationTypeCode|gmd:CI_OnLineFunctionCode|gmd:MD_ScopeCode|gmd:MD_CharacterSetCode|gmd:LanguageCode">
+    <xsl:copy>
+      <!-- Copy all attributes -->
+      <xsl:copy-of select="@*"/>
+      <!-- Add the text content based on codeListValue attribute -->
+      <xsl:value-of select="@codeListValue"/>
+    </xsl:copy>
+  </xsl:template>
 
 
   <!-- Remove NRW-specific elements -->
