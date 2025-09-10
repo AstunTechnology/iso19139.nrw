@@ -139,5 +139,26 @@
   <xsl:template match="gmd:contentInfo" />
   <xsl:template match="gmd:locale" />
 
+  <!-- Switch identifiers -->
+  <xsl:variable name="originalFileIdentifier" select="//gmd:fileIdentifier/gco:CharacterString"/>
+  <xsl:variable name="originalNrwIdentifier" select="//gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:MD_Identifier/gmd:code/gco:CharacterString"/>
+
+  <xsl:template match="@*|node()">
+        <xsl:copy>
+            <xsl:apply-templates select="@*|node()"/>
+        </xsl:copy>
+    </xsl:template>
+
+  <xsl:template match="gmd:fileIdentifier/gco:CharacterString">
+      <xsl:copy>
+          <xsl:value-of select="$originalNrwIdentifier"/>
+      </xsl:copy>
+  </xsl:template>
+
+  <xsl:template match="gmd:identifier/gmd:MD_Identifier/gmd:code/gco:CharacterString">
+      <xsl:copy>
+          <xsl:value-of select="$originalFileIdentifier"/>
+      </xsl:copy>
+  </xsl:template>
 
 </xsl:stylesheet>

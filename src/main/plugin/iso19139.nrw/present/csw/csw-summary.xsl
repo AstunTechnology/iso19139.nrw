@@ -52,11 +52,11 @@
 
     <csw:SummaryRecord>
 
-      <!-- <xsl:for-each select="gmd:fileIdentifier"> -->
+      <xsl:for-each select="gmd:fileIdentifier">
         <dc:identifier>
-          <xsl:value-of select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:MD_Identifier/gmd:code/gco:CharacterString"/>
+          <xsl:value-of select="gco:CharacterString"/>
         </dc:identifier>
-      <!-- </xsl:for-each> -->
+      </xsl:for-each>
 
       <!-- DataIdentification -->
 
