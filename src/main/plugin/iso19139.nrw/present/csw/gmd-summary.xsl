@@ -32,7 +32,7 @@
                 exclude-result-prefixes="#all"
                 version="2.0">
 
- 
+
   <!-- =================================================================== -->
 
   <!-- Convert ISO profile elements to their base type -->
@@ -46,6 +46,7 @@
     <xsl:variable name="info" select="geonet:info"/>
     <xsl:element name="{if (@gco:isoType) then @gco:isoType else name()}">
       <xsl:apply-templates select="gmd:fileIdentifier"/>
+      <xsl:apply-templates select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:MD_Identifier/gmd:code"/>
       <xsl:apply-templates select="gmd:language"/>
       <xsl:apply-templates select="gmd:characterSet"/>
       <xsl:apply-templates select="gmd:parentIdentifier"/>
@@ -64,6 +65,14 @@
     </xsl:element>
   </xsl:template>
 
+  <xsl:template match="gmd:fileIdentifier">
+    <gmd:fileIdentifier>
+      <gco:CharacterString><xsl:copy-of select="//gmd:code/gco:CharacterString[starts-with(text(), 'NRW_DS')]/text()"/></gco:CharacterString>
+    </gmd:fileIdentifier>
+  </xsl:template>
+
+  <xsl:template match="//gmd:code[gco:CharacterString[starts-with(text(), 'NRW_DS')]]"/>
+
   <!-- =================================================================== -->
 
   <xsl:template match="gmd:CI_Citation">
@@ -71,7 +80,6 @@
       <xsl:apply-templates select="gmd:title"/>
       <xsl:apply-templates select="gmd:date[gmd:CI_Date/gmd:dateType/
         gmd:CI_DateTypeCode/@codeListValue='revision']"/>
-      <xsl:apply-templates select="gmd:identifier"/>
       <xsl:apply-templates select="gmd:citedResponsibleParty"/>
     </xsl:copy>
   </xsl:template>

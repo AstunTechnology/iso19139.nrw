@@ -41,6 +41,7 @@
     </xsl:element>
   </xsl:template>
 
+
   <xsl:template match="@*|node()[name(.)!='geonet:info']">
     <xsl:variable name="info" select="geonet:info"/>
     <xsl:copy>
@@ -49,6 +50,22 @@
       <xsl:if test="$displayInfo = 'true'">
         <xsl:copy-of select="$info"/>
       </xsl:if>
+    </xsl:copy>
+  </xsl:template>
+
+  <!-- Switch identifiers -->
+  <xsl:variable name="originalFileIdentifier" select="//gmd:fileIdentifier/gco:CharacterString"/>
+  <xsl:variable name="originalNrwIdentifier" select="//gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:MD_Identifier/gmd:code/gco:CharacterString"/>
+
+  <xsl:template match="gmd:fileIdentifier/gco:CharacterString">
+    <xsl:copy>
+      <xsl:value-of select="$originalNrwIdentifier"/>
+    </xsl:copy>
+  </xsl:template>
+
+  <xsl:template match="gmd:identifier/gmd:MD_Identifier/gmd:code/gco:CharacterString">
+    <xsl:copy>
+      <xsl:value-of select="$originalFileIdentifier"/>
     </xsl:copy>
   </xsl:template>
 

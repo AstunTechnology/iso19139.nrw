@@ -46,6 +46,7 @@
     <xsl:variable name="info" select="geonet:info"/>
     <xsl:element name="{if (@gco:isoType) then @gco:isoType else name()}">
       <xsl:apply-templates select="gmd:fileIdentifier"/>
+      <xsl:apply-templates select="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:MD_Identifier/gmd:code"/>
       <xsl:apply-templates select="gmd:hierarchyLevel"/>
       <xsl:apply-templates select="gmd:identificationInfo"/>
 
@@ -56,6 +57,14 @@
 
     </xsl:element>
   </xsl:template>
+
+  <xsl:template match="gmd:fileIdentifier">
+    <gmd:fileIdentifier>
+      <gco:CharacterString><xsl:copy-of select="//gmd:code/gco:CharacterString[starts-with(text(), 'NRW_DS')]/text()"/></gco:CharacterString>
+    </gmd:fileIdentifier>
+  </xsl:template>
+
+  <xsl:template match="//gmd:code[gco:CharacterString[starts-with(text(), 'NRW_DS')]]"/>
 
   <!-- =================================================================== -->
 
@@ -108,7 +117,7 @@
   <!-- === copy template ================================================= -->
 
   <xsl:template match="@*|node()">
-    <xsl:copy>
+    <xsl:copy copy-namespaces="no">
       <xsl:apply-templates select="@*|node()"/>
     </xsl:copy>
   </xsl:template>
