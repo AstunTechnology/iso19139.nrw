@@ -69,4 +69,85 @@
     </xsl:copy>
   </xsl:template>
 
+  <!-- Fixes for MEDIN harvest: -->
+  
+   <!-- Transform empty codelist elements to include a value -->
+  <xsl:template match="//gmd:CI_RoleCode|//gmd:CI_DateTypeCode|//gmd:MD_MaintenanceFrequencyCode|//gmd:MD_KeywordTypeCode|//gmd:MD_RestrictionCode|//gmd:MD_SpatialRepresentationTypeCode|//gmd:CI_OnLineFunctionCode|//gmd:MD_ScopeCode|//gmd:MD_CharacterSetCode|//gmd:LanguageCode">
+    <xsl:copy>
+      <xsl:copy-of select="@*"/>
+      <xsl:value-of select="@codeListValue"/>
+    </xsl:copy>
+  </xsl:template>
+
+  <!-- Limit gmd:dateStamp to full seconds only, stripping out milliseconds and timezone -->
+  <xsl:template match="//gmd:dateStamp">
+    <xsl:variable name="datestamp" select="./gco:DateTime"/>
+
+    <xsl:choose>
+      <!-- Check if the date is in the wrong YYYY-MM-DDTHH:MM:SS.sssZ format -->
+      <xsl:when test="contains($datestamp, '.') and substring($datestamp, string-length($datestamp), 1) = 'Z'">
+        <xsl:message>==== Changing the date format to YYYY-MM-DDTHH:MM:SS ====</xsl:message>
+        <gmd:dateStamp>
+          <gco:DateTime>
+            <xsl:value-of select="concat(substring($datestamp, 1, 10), 'T', substring($datestamp, 12, 8))"/>
+          </gco:DateTime>
+        </gmd:dateStamp>
+      </xsl:when>
+
+      <!-- If the date does not match the problematic format, output the original value -->
+      <xsl:otherwise>
+        <xsl:message>==== Preserving date format ====</xsl:message>
+        <gmd:dateStamp>
+          <gco:DateTime>
+            <xsl:value-of select="$datestamp"/>
+          </gco:DateTime>
+        </gmd:dateStamp>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
+  <!-- Add orphan geographic extents to NRW thesaurus-->
+  <xsl:template match="//gmd:geographicElement/gmd:EX_GeographicDescription/gmd:geographicIdentifier/gmd:MD_Identifier[not(gmd:authority)]">
+    <gmd:MD_Identifier>
+      <!-- Add authority data for MEDIN validity -->
+      <gmd:authority>
+        <gmd:CI_Citation>
+          <gmd:title>
+            <gco:CharacterString>NRW Geographic Identifiers Collection</gco:CharacterString>
+          </gmd:title>
+          <gmd:date>
+            <gmd:CI_Date>
+              <gmd:date>
+                <gco:Date>2024-01-01</gco:Date>
+              </gmd:date>
+              <gmd:dateType>
+                <gmd:CI_DateTypeCode codeList="http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode"
+                                      codeListValue="publication">publication</gmd:CI_DateTypeCode>
+              </gmd:dateType>
+            </gmd:CI_Date>
+          </gmd:date>
+        </gmd:CI_Citation>
+      </gmd:authority>
+      <!-- Preserve code value -->
+      <xsl:copy-of select="gmd:code"/>
+    </gmd:MD_Identifier>
+  </xsl:template>
+
+  <xsl:template match="//gmd:CI_Citation">
+    <xsl:for-each select="gmd:title">
+	<gmd:title>
+            <xsl:copy-of select="."/>
+        </gmd:title>
+    </xsl:for-each>
+  </xsl:template>
+
+  <xsl:template match="//gmd:CI_Citation">
+    <xsl:for-each select="gmd:date">
+	<gmd:date>
+            <xsl:copy-of select="."/>
+        </gmd:date>
+    </xsl:for-each>
+  </xsl:template>
+
+
 </xsl:stylesheet>
