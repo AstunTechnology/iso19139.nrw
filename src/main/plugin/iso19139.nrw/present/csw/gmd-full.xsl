@@ -70,7 +70,7 @@
   </xsl:template>
 
   <!-- Fixes for MEDIN harvest: -->
-  
+
    <!-- Transform empty codelist elements to include a value -->
   <xsl:template match="//gmd:CI_RoleCode|//gmd:CI_DateTypeCode|//gmd:MD_MaintenanceFrequencyCode|//gmd:MD_KeywordTypeCode|//gmd:MD_RestrictionCode|//gmd:MD_SpatialRepresentationTypeCode|//gmd:CI_OnLineFunctionCode|//gmd:MD_ScopeCode|//gmd:MD_CharacterSetCode|//gmd:LanguageCode">
     <xsl:copy>
@@ -132,22 +132,5 @@
       <xsl:copy-of select="gmd:code"/>
     </gmd:MD_Identifier>
   </xsl:template>
-
-  <xsl:template match="//gmd:CI_Citation">
-    <xsl:for-each select="gmd:title">
-	<gmd:title>
-            <xsl:copy-of select="."/>
-        </gmd:title>
-    </xsl:for-each>
-  </xsl:template>
-
-  <xsl:template match="//gmd:CI_Citation">
-    <xsl:for-each select="gmd:date">
-	<gmd:date>
-            <xsl:copy-of select="."/>
-        </gmd:date>
-    </xsl:for-each>
-  </xsl:template>
-
 
 </xsl:stylesheet>
