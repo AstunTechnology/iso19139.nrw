@@ -60,11 +60,11 @@
 
   <xsl:template match="gmd:fileIdentifier">
     <gmd:fileIdentifier>
-      <gco:CharacterString><xsl:copy-of select="//gmd:code/gco:CharacterString[starts-with(text(), 'NRW_DS')]/text()"/></gco:CharacterString>
+      <gco:CharacterString><xsl:copy-of select="//gmd:code/gco:CharacterString[starts-with(text(), 'NRW_DS') or starts-with(text(), 'EXT_DS')]/text()"/></gco:CharacterString>
     </gmd:fileIdentifier>
   </xsl:template>
 
-  <xsl:template match="//gmd:code[gco:CharacterString[starts-with(text(), 'NRW_DS')]]"/>
+  <xsl:template match="//gmd:code[gco:CharacterString[starts-with(text(), 'NRW_DS') or starts-with(text(), 'EXT_DS')]]"/>
 
   <!-- =================================================================== -->
 
