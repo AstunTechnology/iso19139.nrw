@@ -133,4 +133,6 @@
     </gmd:MD_Identifier>
   </xsl:template>
 
+  <!-- Remove NRW specific element-->
+  <xsl:template match="//gmd:contentInfo" />
 </xsl:stylesheet>
