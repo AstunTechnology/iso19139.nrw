@@ -486,7 +486,7 @@ E.g. Feingold D. and Evans P.G.H 2014 Bottlenose Dolphin and Harbour Porpoise Mo
     <div class="row">
     <div class="col-xs-offset-2 col-xs-8">
       <p class="help-block">Records to be published as Gemini require at least one keyword from the GEMET INSPIRE themes vocabulary.</p>
-      <p>Records to be published as MEDIN require at least one keyword from the SeaDataNet vocabulary.</p>
+      <p class="help-block">Records about marine datasets and to be published to MEDIN require at least <strong>one keyword</strong> from the SeaDataNet vocabulary. Once keywords are added, go to the cog to the right of the box and amend to an anchor.</p>
       <p>For NRW keywords, if you can't find a suitable one, in either the standard list or the SMNR list, or need a new one adding, please contact <a href="mailto:opendata@cyfoethnaturiolcymru.gov.uk?subject=Data Discovery Enquiry" target="_blank">opendata@cyfoethnaturiolcymru.gov.uk</a></p>
       </div>
   </div>
