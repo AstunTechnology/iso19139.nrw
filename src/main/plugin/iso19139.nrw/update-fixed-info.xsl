@@ -596,7 +596,7 @@
 <!-- ========================================================================= -->
 
 
-    <!-- Prefill resource identifier with uuid -->
+    <!-- Prefill resource identifier with uuid and add a codeSpace element -->
 
     <xsl:template match="gmd:identificationInfo/*/gmd:citation/gmd:CI_Citation" >
 
@@ -605,11 +605,14 @@
 
 
                 <gmd:identifier>
-                    <gmd:MD_Identifier>
+                    <gmd:RS_Identifier>
                         <gmd:code>
                             <gco:CharacterString><xsl:value-of select="/root/env/uuid"/></gco:CharacterString>
                         </gmd:code>
-                    </gmd:MD_Identifier>
+                        <gmd:codeSpace>
+                            <gco:CharacterString>http://naturalresources.wales/</gco:CharacterString>
+                        </gmd:codeSpace>
+                    </gmd:RS_Identifier>
                 </gmd:identifier>
 
 
@@ -618,7 +621,8 @@
         </xsl:copy>
     </xsl:template>
 
-    <!-- ================================================================= -->
+<!-- ================================================================= -->
+
   <!-- Set local identifier to the first 2 letters of iso code. Locale ids
         are used for multilingual charcterString using #iso2code for referencing.
     -->

@@ -54,8 +54,14 @@
   </xsl:template>
 
   <!-- Switch identifiers -->
+
   <xsl:variable name="originalFileIdentifier" select="//gmd:fileIdentifier/gco:CharacterString"/>
-  <xsl:variable name="originalNrwIdentifier" select="//gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:MD_Identifier/gmd:code/gco:CharacterString"/>
+
+  <!-- Choose the correct NRW identifier, depending on whether the record has a codeSpace already or not -->
+  <xsl:variable name="originalNrwIdentifier" select="(
+    //gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:RS_Identifier[gmd:codeSpace]/gmd:code/gco:CharacterString |
+    //gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:MD_Identifier/gmd:code/gco:CharacterString
+  )[1]"/>
 
   <xsl:template match="gmd:fileIdentifier/gco:CharacterString">
     <xsl:copy>
@@ -63,7 +69,25 @@
     </xsl:copy>
   </xsl:template>
 
-  <xsl:template match="gmd:identifier/gmd:MD_Identifier/gmd:code/gco:CharacterString">
+  <!-- Add a codeSpace block and switch to using an RS_Identifier if needed -->
+  <xsl:template match="gmd:identifier/gmd:MD_Identifier">
+    <gmd:RS_Identifier>
+
+      <gmd:code>
+        <gco:CharacterString>
+          <xsl:value-of select="$originalFileIdentifier"/>
+        </gco:CharacterString>
+      </gmd:code>
+
+      <gmd:codeSpace>
+        <gco:CharacterString>http://naturalresources.wales/</gco:CharacterString>
+      </gmd:codeSpace>
+
+    </gmd:RS_Identifier>
+  </xsl:template>
+
+  <!-- Switch the identifier as normal if the codeSpace was already added -->
+  <xsl:template match="gmd:identifier/gmd:RS_Identifier/gmd:code/gco:CharacterString">
     <xsl:copy>
       <xsl:value-of select="$originalFileIdentifier"/>
     </xsl:copy>
