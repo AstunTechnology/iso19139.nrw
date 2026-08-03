@@ -1714,8 +1714,10 @@
 
               <template>
                 <values>
+                  <!-- add textarea directive to improve the editing experience for users and allow for resizing the field in the UI. Fixes SUPPORT-28154. -->
                   <key label="string"
-                       xpath="gco:CharacterString"/>
+                       xpath="gco:CharacterString"
+                       use="textarea"/>
                 </values>
                 <snippet>
                       <gmd:otherConstraints>
@@ -1737,8 +1739,10 @@
 
               <template>
                 <values>
+                  <!-- add textarea directive to improve the editing experience for users and allow for resizing the field in the UI. Fixes SUPPORT-28154. -->
                   <key label="string"
-                       xpath="gco:CharacterString"/>
+                       xpath="gco:CharacterString"
+                       use="textarea"/>
                 </values>
                 <snippet>
                       <gmd:otherConstraints>
@@ -1757,8 +1761,10 @@
               del=".">
               <template>
                 <values>
+                  <!-- add textarea directive to improve the editing experience for users and allow for resizing the field in the UI. Fixes SUPPORT-28154. -->
                   <key label="string"
-                       xpath="gco:CharacterString"/>
+                       xpath="gco:CharacterString"
+                       use="textarea"/>
                 </values>
                 <snippet>
                       <gmd:otherConstraints>
