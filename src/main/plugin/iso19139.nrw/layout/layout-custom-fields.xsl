@@ -59,7 +59,10 @@
   </xsl:template>
 
   <!-- Resource Identifier and Codespace are also readonly -->
-  <xsl:template mode="mode-iso19139" priority="2300" match="gmd:identifier/gmd:MD_Identifier/gmd:code|gmd:identifier/gmd:MD_Identifier/gmd:codeSpace">
+  <xsl:template mode="mode-iso19139" priority="5000" match="gmd:identifier/gmd:RS_Identifier/gmd:code|
+                                                            gmd:identifier/gmd:RS_Identifier/gmd:codeSpace|
+                                                            gmd:identifier/gmd:RS_Identifier/gmd:code/gco:CharacterString |
+                                                            gmd:identifier/gmd:RS_Identifier/gmd:codeSpace/gco:CharacterString">
     <xsl:param name="schema" select="$schema" required="no"/>
     <xsl:param name="labels" select="$labels" required="no"/>
     <xsl:param name="overrideLabel" select="''" required="no"/>
@@ -84,8 +87,7 @@
 
 
     <xsl:call-template name="render-element">
-      <xsl:with-param name="label"
-                      select="$labelConfig/*"/>
+      <xsl:with-param name="label" select="$labelConfig/*"/>
       <xsl:with-param name="value" select="*"/>
       <xsl:with-param name="cls" select="local-name()"/>
       <xsl:with-param name="xpath" select="$xpath"/>
@@ -94,6 +96,7 @@
       <xsl:with-param name="editInfo" select="*/gn:element"/>
       <xsl:with-param name="parentEditInfo" select="gn:element"/>
       <xsl:with-param name="isDisabled" select="true()"/>
+      <xsl:with-param name="isReadOnly" select="true()"/>
     </xsl:call-template>
 
   </xsl:template>
