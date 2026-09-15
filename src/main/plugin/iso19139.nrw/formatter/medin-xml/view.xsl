@@ -157,7 +157,7 @@
   </xsl:template>
 
   <!-- Add a codeSpace block and switch to using an RS_Identifier if needed -->
-  <xsl:template match="gmd:identifier/gmd:MD_Identifier">
+  <xsl:template match="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:MD_Identifier">
     <gmd:RS_Identifier>
 
       <gmd:code>
@@ -174,7 +174,7 @@
   </xsl:template>
 
   <!-- Switch the identifier as normal if the codeSpace was already added -->
-  <xsl:template match="gmd:identifier/gmd:RS_Identifier/gmd:code/gco:CharacterString">
+  <xsl:template match="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:RS_Identifier/gmd:code/gco:CharacterString">
     <xsl:copy>
       <xsl:value-of select="$originalFileIdentifier"/>
     </xsl:copy>
