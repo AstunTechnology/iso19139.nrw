@@ -57,29 +57,95 @@
     </xsl:copy>
   </xsl:template>
 
+  <!-- Add characterSetCode value if missing -->
+  <xsl:template match="gmd:MD_CharacterSetCode">
+    <xsl:copy>
+      <!-- Copy all attributes -->
+      <xsl:copy-of select="@*"/>
+      <!-- Check if codeListValue is 'utf8' and set content accordingly -->
+      <xsl:choose>
+        <xsl:when test="@codeListValue = 'utf8'">
+          <xsl:text>UTF-8</xsl:text>
+        </xsl:when>
+        <xsl:otherwise>
+          <!-- Set the content to the value of the codeListValue attribute -->
+          <xsl:value-of select="@codeListValue"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:copy>
+  </xsl:template>
+
+  <!-- Remove gmd:description elements which have a nilReason attribute -->
+  <xsl:template match="gmd:MD_Distribution/gmd:transferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource/gmd:description[@gco:nilReason]" />
+
   <!-- Remove NRW-specific elements -->
   <xsl:template match="gmd:contentInfo" />
 
   <!-- Switch identifiers -->
-  <xsl:variable name="originalFileIdentifier" select="//gmd:fileIdentifier/gco:CharacterString"/>
-  <xsl:variable name="originalNrwIdentifier" select="//gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:MD_Identifier/gmd:code/gco:CharacterString"/>
 
-  <xsl:template match="@*|node()">
-        <xsl:copy>
-            <xsl:apply-templates select="@*|node()"/>
-        </xsl:copy>
-    </xsl:template>
+  <xsl:variable name="originalFileIdentifier" select="//gmd:fileIdentifier/gco:CharacterString"/>
+
+  <!-- Choose the correct NRW identifier, depending on whether the record has a codeSpace already or not -->
+  <xsl:variable name="originalNrwIdentifier" select="(
+    //gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:RS_Identifier[gmd:codeSpace]/gmd:code/gco:CharacterString |
+    //gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:MD_Identifier/gmd:code/gco:CharacterString
+  )[1]"/>
 
   <xsl:template match="gmd:fileIdentifier/gco:CharacterString">
-      <xsl:copy>
-          <xsl:value-of select="$originalNrwIdentifier"/>
-      </xsl:copy>
+    <xsl:copy>
+      <xsl:value-of select="$originalNrwIdentifier"/>
+    </xsl:copy>
   </xsl:template>
 
-  <xsl:template match="gmd:identifier/gmd:MD_Identifier/gmd:code/gco:CharacterString">
-      <xsl:copy>
+  <!-- Add a codeSpace block and switch to using an RS_Identifier if needed -->
+  <xsl:template match="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:MD_Identifier">
+    <gmd:RS_Identifier>
+
+      <gmd:code>
+        <gco:CharacterString>
           <xsl:value-of select="$originalFileIdentifier"/>
-      </xsl:copy>
+        </gco:CharacterString>
+      </gmd:code>
+
+      <gmd:codeSpace>
+        <gco:CharacterString>http://naturalresources.wales/</gco:CharacterString>
+      </gmd:codeSpace>
+
+    </gmd:RS_Identifier>
+  </xsl:template>
+
+  <!-- Switch the identifier as normal if the codeSpace was already added -->
+  <xsl:template match="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:RS_Identifier/gmd:code/gco:CharacterString">
+    <xsl:copy>
+      <xsl:value-of select="$originalFileIdentifier"/>
+    </xsl:copy>
+  </xsl:template>
+
+  <!-- Limit gmd:dateStamp to full seconds only, stripping out milliseconds and timezone -->
+  <xsl:template match="gmd:dateStamp">
+    <xsl:variable name="datestamp" select="./gco:DateTime"/>
+
+    <xsl:choose>
+      <!-- Check if the date is in the wrong YYYY-MM-DDTHH:MM:SS.sssZ format -->
+      <xsl:when test="contains($datestamp, '.') and substring($datestamp, string-length($datestamp), 1) = 'Z'">
+        <xsl:message>==== Changing the date format to YYYY-MM-DDTHH:MM:SS ====</xsl:message>
+        <gmd:dateStamp>
+          <gco:DateTime>
+            <xsl:value-of select="concat(substring($datestamp, 1, 10), 'T', substring($datestamp, 12, 8))"/>
+          </gco:DateTime>
+        </gmd:dateStamp>
+      </xsl:when>
+
+      <!-- If the date does not match the problematic format, output the original value -->
+      <xsl:otherwise>
+        <xsl:message>==== Preserving date format ====</xsl:message>
+        <gmd:dateStamp>
+          <gco:DateTime>
+            <xsl:value-of select="$datestamp"/>
+          </gco:DateTime>
+        </gmd:dateStamp>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:template>
 
 </xsl:stylesheet>
