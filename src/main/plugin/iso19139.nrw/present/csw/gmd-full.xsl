@@ -53,6 +53,28 @@
     </xsl:copy>
   </xsl:template>
 
+  <!-- Match gmd:characterEncoding directly -->
+  <xsl:template match="gmd:characterEncoding" priority="10">
+    <gmd:characterEncoding>
+      <!-- Copy any attributes (e.g., xsi:type or nilReason) -->
+      <xsl:apply-templates select="@*"/>
+
+      <xsl:choose>
+        <!-- If child MD_CharacterSetCode exists, process it -->
+        <xsl:when test="gmd:MD_CharacterSetCode">
+          <xsl:apply-templates select="gmd:MD_CharacterSetCode"/>
+        </xsl:when>
+
+        <!-- If MD_CharacterSetCode is missing or empty, insert the default -->
+        <xsl:otherwise>
+          <gmd:MD_CharacterSetCode
+            codeList="http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#MD_CharacterSetCode"
+            codeListValue="utf8">utf8</gmd:MD_CharacterSetCode>
+        </xsl:otherwise>
+      </xsl:choose>
+    </gmd:characterEncoding>
+  </xsl:template>
+
  <!-- Switch identifiers -->
 
   <xsl:variable name="originalFileIdentifier" select="//gmd:fileIdentifier/gco:CharacterString"/>

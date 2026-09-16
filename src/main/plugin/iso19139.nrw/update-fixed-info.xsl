@@ -649,14 +649,32 @@
       <xsl:choose>
         <xsl:when test="not(gmd:MD_CharacterSetCode/@codeListValue='utf8')">
         <xsl:message>==== Add missing encoding ====</xsl:message>
-            <gmd:MD_CharacterSetCode codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#MD_CharacterSetCode"
-                                     codeListValue="utf8"/>
+            <gmd:MD_CharacterSetCode
+            codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#MD_CharacterSetCode"
+            codeListValue="utf8"/>
         </xsl:when>
         <xsl:otherwise>
           <xsl:apply-templates select="gmd:MD_CharacterSetCode"/>
         </xsl:otherwise>
         </xsl:choose>
       </xsl:copy>
+    </xsl:template>
+
+    <xsl:template match="gmd:locale//gmd:characterEncoding" priority="10">
+      <gmd:characterEncoding>
+        <xsl:apply-templates select="@*"/>
+        <xsl:choose>
+          <xsl:when test="gmd:MD_CharacterSetCode/@codeListValue != ''">
+            <xsl:apply-templates select="gmd:MD_CharacterSetCode"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:message>==== Add missing locale characterEncoding ====</xsl:message>
+            <gmd:MD_CharacterSetCode
+              codeList="http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#MD_CharacterSetCode"
+              codeListValue="utf8">utf8</gmd:MD_CharacterSetCode>
+          </xsl:otherwise>
+        </xsl:choose>
+      </gmd:characterEncoding>
     </xsl:template>
 
     <!-- ================================================================= -->
