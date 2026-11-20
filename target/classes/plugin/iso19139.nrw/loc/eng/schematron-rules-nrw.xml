@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<strings>
+
+    <NRW100>Internal Location Information</NRW100>
+    <NRW100.alert.nolocation>At least one Internal Location must be provided</NRW100.alert.nolocation>
+
+    <NRW101>Internal Contact Information</NRW101>
+    <NRW101.alert.nocontact>At least one Internal Contact must be provided</NRW101.alert.nocontact>
+
+    <NRW200>Vertical Extent</NRW200>
+    <NRW200.alert>There should be zero or one vertical extent element, with either a CRS or a Datum, not both</NRW200.alert>
+
+ </strings>

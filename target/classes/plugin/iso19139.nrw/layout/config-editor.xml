@@ -1,0 +1,3581 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (C) 2001-2016 Food and Agriculture Organization of the
+  ~ United Nations (FAO-UN), United Nations World Food Programme (WFP)
+  ~ and United Nations Environment Programme (UNEP)
+  ~
+  ~ This program is free software; you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation; either version 2 of the License, or (at
+  ~ your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful, but
+  ~ WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+  ~ General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program; if not, write to the Free Software
+  ~ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
+  ~
+  ~ Contact: Jeroen Ticheler - FAO - Viale delle Terme di Caracalla 2,
+  ~ Rome - Italy. email: geonetwork@osgeo.org
+  -->
+
+<editor xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:gn="http://www.fao.org/geonetwork"
+  xmlns:gco="http://www.isotc211.org/2005/gco"
+  xmlns:gmd="http://www.isotc211.org/2005/gmd"
+  xmlns:gmx="http://www.isotc211.org/2005/gmx"
+  xmlns:srv="http://www.isotc211.org/2005/srv"
+  xmlns:gml="http://www.opengis.net/gml/3.2"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  xmlns:nrw="http://naturalresources.wales/nrw"
+  xsi:noNamespaceSchemaLocation="../../../../../../config-editor.xsd">
+
+  <!-- Form field type configuration. Default is text. -->
+  <fields>
+    <for name="gmd:abstract" use="textarea"/>
+    <for name="gmd:name" use="textarea"/>
+    <for name="gmd:checkPointDescription" use="textarea"/>
+    <for name="gmd:credit" use="textarea"/>
+    <for name="gmd:description" use="textarea"/>
+    <for name="gmd:evaluationMethodDescription" use="textarea"/>
+    <for name="gmd:explanation" use="textarea"/>
+    <for name="gmd:handlingDescription" use="textarea"/>
+    <for name="gmd:maintenanceNote" use="textarea"/>
+    <for name="gmd:measureDescription" use="textarea"/>
+    <for name="gmd:purpose" use="textarea"/>
+    <for name="gmd:orderingInstructions" use="textarea"/>
+    <for name="gmd:otherConstraints" use="textarea"/>
+    <for name="gmd:statement" use="textarea"/>
+    <for name="gmd:supplementalInformation" use="textarea"/>
+    <for name="gmd:specificUsage" use="textarea"/>
+    <for name="gmd:userNote" use="textarea"/>
+    <for name="gmd:useLimitation" use="textarea"/>
+    <for name="nrw:internalLocationInfo" use="textarea"/>
+    <for name="nrw:internalContactInfo" use="textarea"/>
+
+
+    <for name="gco:Distance" use="number"/>
+    <for name="gco:Decimal" use="number"/>
+    <for name="gco:Integer" use="number"/>
+    <for name="gco:Real" use="number"/>
+    <for name="gco:Boolean" use="checkbox"/>
+
+    <!-- Use data-gn-checkbox-with-nilreason for INSPIRE conformity, using xpath attribute.Similar configuration can be
+         applied to other boolean fields that require to handle nilreason value.
+         And additional change is required in inflate-metadata.xsl, for the elements to handle with this directive to add gco:Boolean
+         when missing due to nilreason attribute and work nicely with the metadata editor.
+         Example with gmd:pass:
+           <xsl:template match="gmd:pass[@gco:nilReason and not(gco:Boolean)]">
+            <xsl:copy>
+              <xsl:copy-of select="@*" />
+              <gco:Boolean></gco:Boolean>
+            </xsl:copy>
+          </xsl:template>
+          Update-fixed-info.xsl already removes gco:Boolean when empty due to nilreason attribute, to avoid xsd errors. No need to change it.
+    -->
+    <!-- <for name="gco:Boolean" xpath="/gmd:MD_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_DomainConsistency/gmd:result/gmd:DQ_ConformanceResult/gmd:pass" use="data-gn-checkbox-with-nilreason">
+      <directiveAttributes data-tag-name="gmd:pass" data-nilreason="eval#@gco:nilReason" data-labels='{"true": "conformant", "false": "notConformant"}'/>
+    </for> -->
+
+    <for name="gco:Date" use="data-gn-date-picker"/>
+    <for name="gco:DateTime" use="data-gn-date-picker"/>
+
+
+    <!-- gmx:FileName/@src attribute -->
+    <for name="src" use="data-gn-logo-selector"/>
+
+    <for name="gmd:electronicMailAddress" use="email"/>
+
+    <!-- <for name="gmd:language" use="data-gn-language-picker"/> -->
+    <!-- <for name="gmd:languageCode" use="data-gn-language-picker"/> -->
+
+    <for name="gmd:country" use="data-gn-country-picker"/>
+
+    <!-- <for name="gmd:referenceSystemInfo" addDirective="data-gn-crs-selector"/> -->
+
+
+
+
+
+    <!--
+    Enable the following to use subtemplates for format type.
+
+    for formats:
+    <for name="gmd:resourceFormat" addDirective="data-gn-directory-entry-selector">
+      <directiveAttributes data-template-add-action="false" data-search-action="true" data-popup-action="true" data-template-type="format" data-filter='{"_root": "gmd:MD_Format"}' data-insert-modes="xlink"/>
+    </for>     -->
+    <!--     <for name="gmd:distributionFormat" addDirective="data-gn-directory-entry-selector">
+      <directiveAttributes data-template-add-action="false" data-search-action="true" data-popup-action="true" data-template-type="format" data-insert-modes="" data-filter='{"_root": "gmd:MD_Format"}' data-insert-modes="xlink"/>
+    </for> -->
+
+
+    <for name="gmd:contact" addDirective="data-gn-directory-entry-selector">
+      <directiveAttributes data-template-add-action="true" data-search-action="true" data-popup-action="true" data-template-type="contact" data-insert-modes="" data-variables="gmd:role/gmd:CI_RoleCode/@codeListValue~{role}"/>
+    </for>
+    <for name="gmd:pointOfContact" addDirective="data-gn-directory-entry-selector">
+      <directiveAttributes data-template-add-action="false" data-search-action="true" data-popup-action="true" data-template-type="contact" data-insert-modes="" data-variables="gmd:role/gmd:CI_RoleCode/@codeListValue~{role}"/>
+    </for>
+    <for name="gmd:distributorContact" addDirective="data-gn-directory-entry-selector">
+      <directiveAttributes data-template-add-action="true" data-search-action="true" data-popup-action="true" data-template-type="contact" data-insert-modes="" data-variables="gmd:role/gmd:CI_RoleCode/@codeListValue~{role}"/>
+    </for>
+    <for name="gmd:processor" addDirective="data-gn-directory-entry-selector">
+      <directiveAttributes data-template-add-action="true" data-search-action="true" data-popup-action="true" data-template-type="contact" data-insert-modes="" data-variables="gmd:role/gmd:CI_RoleCode/@codeListValue~{role}"/>
+    </for>
+    <for name="gmd:citedResponsibleParty" addDirective="data-gn-directory-entry-selector">
+      <directiveAttributes data-template-add-action="true" data-search-action="true" data-popup-action="true" data-template-type="contact" data-insert-modes="" data-variables="gmd:role/gmd:CI_RoleCode/@codeListValue~{role}"/>
+    </for>
+    <for name="gmd:report" addDirective="data-gn-directory-entry-selector">
+      <directiveAttributes data-template-add-action="true" data-search-action="true" data-popup-action="true" data-filter='{"root": "gmd:DQ_*"}' data-insert-modes="" data-template-type="report"/>
+    </for>
+    <for name="gmd:lineage" addDirective="data-gn-directory-entry-selector">
+      <directiveAttributes data-template-add-action="true" data-search-action="true" data-popup-action="true" data-filter='{"root": "gmd:LI_*"}' data-insert-modes="" data-template-type="lineage"/>
+    </for>
+
+
+
+
+    <for name="gmd:descriptiveKeywords" addDirective="data-gn-thesaurus-selector">
+     <directiveAttributes
+        data-transformation="to-iso19139.nrw-keyword"
+        data-always-create-new-freekeyword-section="false"
+        data-allow-free-text-keywords="false"
+        data-include="-local.place.regions,-local.place.customregions,-external.theme.inspire-service-taxonomy,-external.theme.nrw-licenses,-external.theme.gemet,-external.theme.SeaVoXVerticalCoordinateCoverages,-local.stratum.vertical-crs"/>
+    </for>
+
+
+
+  </fields>
+
+
+  <fieldsWithFieldset>
+    <name>gmd:MD_Metadata</name>
+    <name>gmd:identificationInfo</name>
+    <name>gmd:distributionInfo</name>
+    <name>gmd:portrayalCatalogueInfo</name>
+    <name>gmd:portrayalCatalogueCitation</name>
+    <name>gmd:thesaurusName</name>
+    <name>gmd:descriptiveKeywords</name>
+    <name>gmd:spatialRepresentationInfo</name>
+    <name>gmd:pointOfContact</name>
+    <name>gmd:contact</name>
+    <name>gmd:graphicOverview</name>
+    <name>gmd:citedResponsibleParty</name>
+    <name>gmd:dataQualityInfo</name>
+    <name>gmd:contentInfo</name>
+    <name>gmd:distributionFormat</name>
+    <name>gmd:spatialResolution</name>
+    <name>gmd:offLine</name>
+    <name>gmd:projection</name>
+    <name>gmd:ellipsoid</name>
+    <name>gmd:attributes</name>
+    <name>gmd:EX_TemporalExtent</name>
+    <name>gmd:EX_VerticalExtent</name>
+    <name>gmd:MD_Distributor</name>
+    <name>srv:containsOperations</name>
+    <name>srv:SV_Parameter</name>
+    <name>srv:connectPoint</name>
+    <name>srv:SV_CoupledResource</name>
+    <name>gmd:metadataConstraints</name>
+    <name>gmd:aggregationInfo</name>
+    <name>gmd:processStep</name>
+    <name>gmd:centerPoint</name>
+    <name>gml:verticalCS</name>
+    <name>gml:verticalDatum</name>
+    <name>gmd:axisDimensionProperties</name>
+    <name>gmd:resourceMaintenance</name>
+    <name>srv:serviceType</name>
+    <name>gmd:report</name>
+    <name>gmd:distributionInfo</name>
+    <name>nrw:MD_ContentInfo</name>
+    <name>nrw:internalInfo</name>
+  </fieldsWithFieldset>
+
+  <multilingualFields>
+    <!-- In multilingual mode, define which mode
+    the widget should have. If expanded, then one
+    field per language is displayed. -->
+    <expanded>
+      <name>gmd:title</name>
+      <name>gmd:lineage</name>
+    </expanded>
+
+    <!-- All fields in ISO could be multilingual.
+    Define element to exclude.
+
+      The name element can optionally have ancestor, child or parent attributes to
+      further restrict the exclusion.  For example if some gmd:code elements are
+      multilingual but others are not then adding a parent/child/parent attribute
+      can restrict the exclude to only some elements.
+
+      For example:
+        <name ancestor="gmd:thesaurusName">gmd:code</name>
+        or
+        <name child="gmx:Anchor">gmd:code</name>
+    -->
+    <exclude>
+      <name>gmd:identifier</name>
+      <name>gmd:fileIdentifier</name>
+      <name>gmd:metadataStandardName</name>
+      <name>gmd:metadataStandardVersion</name>
+      <name>gmd:hierarchyLevelName</name>
+      <name>gmd:dataSetURI</name>
+      <name>gmd:postalCode</name>
+      <name>gmd:city</name>
+      <name>gmd:language</name>
+      <name>gmd:administrativeArea</name>
+      <name>gmd:voice</name>
+      <name>gmd:facsimile</name>
+      <name>gmd:dataset</name>
+      <name>gmd:other</name>
+      <name>gmd:hoursOfService</name>
+      <name>gmd:applicationProfile</name>
+      <name>gmd:page</name>
+      <name>gmd:date</name>
+      <name>gmd:linkage</name>
+      <name>gmd:fileName</name>
+      <name>gmd:protocol</name>
+      <name>gmd:fileType</name>
+      <name>gmd:unitsOfDistribution</name>
+      <name>gmd:amendmentNumber</name>
+      <name>gmd:specification</name>
+      <name>gmd:fileDecompressionTechnique</name>
+      <name>gmd:turnaround</name>
+      <name>gmd:fees</name>
+      <name>gmd:userDeterminedLimitations</name>
+      <name>gmd:codeSpace</name>
+      <name>gmd:version</name>
+      <name>gmd:edition</name>
+      <name>gmd:ISBN</name>
+      <name>gmd:ISSN</name>
+      <name>gmd:errorStatistic</name>
+      <name>gmd:schemaAscii</name>
+      <name>gmd:softwareDevelopmentFileFormat</name>
+      <name>gmd:shortName</name>
+      <name>gmd:condition</name>
+      <name>gmd:maximumOccurence</name>
+      <name>gmd:domainValue</name>
+      <name>gmd:minimumValue</name>
+      <name>gmd:maximumValue</name>
+      <name>gmd:densityUnits</name>
+      <name>gmd:descriptor</name>
+      <name>gmd:denominator</name>
+      <name>gmd:classificationSystem</name>
+      <name>gmd:checkPointDescription</name>
+      <name>gmd:transformationDimensionDescription</name>
+      <name>gmd:orientationParameterDescription</name>
+      <name>gmd:distance</name>
+      <name>srv:name</name>
+      <name>srv:invocationName</name>
+      <name>srv:serviceTypeVersion</name>
+      <name>srv:operationName</name>
+      <name>srv:identifier</name>
+      <name>srv:serviceType</name>
+      <name ancestor="gmd:thesaurusName">gmd:code</name>
+      <name ancestor="gmd:thesaurusName">gmd:title</name>
+      <name ancestor="gmd:aggregateDataSetIdentifier">gmd:code</name>
+      <name ancestor="gmd:CI_Citation">gmd:code</name>
+      <name ancestor="gmd:MD_Identifier">gmd:code</name>
+      <name ancestor="gmd:RS_Identifier">gmd:code</name>
+      <name ancestor="gmd:specification">gmd:title</name>
+      <name ancestor="gmd:geographicIdentifier">gmd:title</name>
+      <name>nrw:internalLocationInfo</name>
+      <name>nrw:internalContactInfo</name>
+      <name>nrw:relatedTitle</name>
+      <name>gmd:name</name>
+      <name>gmd:deliveryPoint</name>
+      <name>gmd:positionName</name>
+      <name>gmd:organisationName</name>
+      <name>gmd:country</name>
+      <name>gmd:electronicMailAddress</name>
+      <name>gmd:explanation</name>
+      <name>gmd:supplementalInformation</name>
+      <name>gmd:keyword</name>
+      <name>gmd:descriptiveKeywords</name>
+      <name>gmd:alternateTitle</name>
+      <name>gmd:parentIdentifier</name>
+      <name>gmx:Anchor</name>
+      <name>gmd:description</name>
+      <name ancestor="gmd:MD_LegalConstraints">gmd:otherConstraints</name>
+      <name ancestor="gmd:CI_OnlineResource">gmd:name</name>
+      <name ancestor="gmd:MD_Format">gmd:name</name>
+      <name ancestor="gmd:CI_OnlineResource">gmd:description</name>
+      <name ancestor="gmd:code">gmx:Anchor</name>
+    </exclude>
+  </multilingualFields>
+
+  <tableFields>
+    <table for="gmd:MD_DigitalTransferOptions">
+      <header>
+        <col label="gmd:name"/>
+        <col label="gmd:linkage"/>
+        <col label="gmd:protocol"/>
+        <col/>
+      </header>
+      <row>
+        <col xpath="gmd:onLine/gmd:CI_OnlineResource/gmd:name"/>
+        <col xpath="gmd:onLine/gmd:CI_OnlineResource/gmd:linkage"/>
+        <col xpath="gmd:onLine/gmd:CI_OnlineResource/gmd:protocol"/>
+        <col del=".."/>
+      </row>
+    </table>
+    <table for="srv:SV_OperationMetadata">
+      <header>
+        <col label="srv:operationName"/>
+        <col label="srv:DCP"/>
+        <col label="srv:connectPoint"/>
+        <col/>
+      </header>
+      <row>
+        <col xpath="srv:operationName"/>
+        <col xpath="srv:DCP"/>
+        <col xpath="srv:connectPoint/gmd:CI_OnlineResource/gmd:linkage"/>
+        <col del=".."/>
+        <section xpath="srv:SV_OperationMetadata/srv:parameters" or="parameters" in="srv:SV_OperationMetadata"/>
+      </row>
+    </table>
+    <table for="srv:SV_CoupledResource">
+      <header>
+        <col label="srv:operationName"/>
+        <col label="gco:ScopedName"/>
+        <col label="srv:identifier"/>
+        <col/>
+      </header>
+      <row>
+        <col xpath="srv:operationName"/>
+        <col xpath="gco:ScopedName"/>
+        <col xpath="srv:identifier"/>
+        <col del=".."/>
+      </row>
+    </table>
+<!--     <table for="gmd:MD_Format">
+      <header>
+        <col label="Format Type" class="gn-required"/>
+        <col label="Format Description" class="gn-required"/>
+        <col label="Format Version" class="gn-required"/>
+        <col/>
+      </header>
+      <row>
+        <col xpath="gmd:specification"/>
+        <col xpath="gmd:name"/>
+        <col xpath="gmd:version"/>
+        <col del=".."/>
+      </row>
+    </table> -->
+    <table for="gmd:PT_Locale">
+      <header>
+        <col label="gmd:languageCode"/>
+        <col label="gmd:characterEncoding"/>
+        <col/>
+      </header>
+      <row>
+        <col xpath="gmd:languageCode"/>
+        <col xpath="gmd:characterEncoding"/>
+        <col del=".."/>
+      </row>
+    </table>
+  </tableFields>
+
+  <!-- View configuration -->
+  <views>
+
+    <!-- Default View -->
+    <view name="default" default="true" hideTimeInCalendar="true">
+      <sidePanel>
+        <directive data-gn-validation-report="" data-initial-show-errors="true" data-initial-show-successes="false" data-initial-section-states="open"/>
+        <directive data-gn-associated-resources-panel="gnCurrentEdit.metadata" />
+        <directive gn-geo-publisher=""
+                   data-ng-if="gnCurrentEdit.geoPublisherConfig"
+                   data-config="{{gnCurrentEdit.geoPublisherConfig}}"
+                   data-lang="lang"/>
+        <directive data-gn-distribution-resources-panel="gnCurrentEdit.metadata"
+                   data-mode="viewConfig.distributionConfig.layout || ''"
+                   data-editor-config="default"
+                   data-related-config="[{
+                                title: 'API',
+                                filter: 'protocol:OGC:.*|ESRI:.*|atom.*',
+                                editActions: ['addOnlinesrc']},
+                              {
+                                title: 'download',
+                                filter: 'protocol:.*DOWNLOAD.*|DB:.*|FILE:.*',
+                                editActions: ['addOnlinesrc']},
+                              {
+                                title: 'links',
+                                filter:'-protocol:OGC:.*|ESRI:.*|atom.*|.*DOWNLOAD.*|DB:.*|FILE:.* AND -function:legend|featureCatalogue|dataQualityReport',
+                                editActions: ['addOnlinesrc']}]"
+        />
+        <directive data-gn-overview-manager=""
+                   data-file-types=".png,.gif,.jpeg,.jpg"
+                   data-editable-thumbnail="true"/>
+        <directive data-gn-suggestion-list=""/>
+        <directive data-gn-need-help="creating-metadata"/>
+      </sidePanel>
+
+      <tab id="default" default="true" mode="flat">
+        <section name="gmd:identificationInfo">
+
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier"/>
+          <text ref="resourceidentifier_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
+
+
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:title" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
+          <text ref="title_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
+
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/gmd:citation/gmd:CI_Citation/gmd:title" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
+          <text ref="titlesrv_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
+
+          <section name="alternativeTitle">
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:alternateTitle" or="alternateTitle" in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
+          <text ref="alttitle_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
+
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/gmd:citation/gmd:CI_Citation/gmd:alternateTitle" or="alternateTitle" in="/gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/gmd:citation/gmd:CI_Citation" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
+          <text ref="alttitlesrv_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
+          </section>
+
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:language"/>
+
+<!--           <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:characterSet"/> -->
+
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:abstract" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
+          <text ref="abstract_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
+
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/gmd:abstract" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
+          <text ref="abstractsrv_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
+
+          <field xpath="/gmd:MD_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:lineage" />
+          <text ref="lineage_help" />
+
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:supplementalInformation" or="supplementalInformation" in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification"/>
+          <text ref="supplemental_help" />
+
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:date" or="date" in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
+          <text ref="refdate_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
+
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/gmd:citation/gmd:CI_Citation/gmd:date" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
+          <text ref="refdatesrv_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
+
+          <section name="temporalExtent" displayIfRecord="contains(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:RS_Identifier/gmd:code/gco:CharacterString, 'NRW_')">
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:temporalElement/*//gml:beginPosition"/>
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:temporalElement/*//gml:endPosition"/>
+          <text ref="tempextent_help"/>
+          </section>
+
+          <section name="Resource Maintenance" displayIfRecord="contains(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:RS_Identifier/gmd:code/gco:CharacterString, 'NRW_')">
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceMaintenance/gmd:MD_MaintenanceInformation/gmd:maintenanceAndUpdateFrequency" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
+          <text ref="maintenance_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
+          </section>
+
+          <section name="nrw:internalInfo">
+            <field del="." xpath="/gmd:MD_Metadata/gmd:contentInfo/nrw:MD_ContentInfo/nrw:internalInfo/nrw:MD_InternalInfo/nrw:internalLocationInfo" or="internalLocationInfo" in="/gmd:MD_Metadata/gmd:contentInfo/nrw:MD_ContentInfo/nrw:internalInfo/nrw:MD_InternalInfo"/>
+            <field del="." xpath="/gmd:MD_Metadata/gmd:contentInfo/nrw:MD_ContentInfo/nrw:internalInfo/nrw:MD_InternalInfo/nrw:internalContactInfo" or="internalContactInfo" in="/gmd:MD_Metadata/gmd:contentInfo/nrw:MD_ContentInfo/nrw:internalInfo/nrw:MD_InternalInfo"/>
+            <text ref="NRW_InternalContactInfo_help"/>
+            <field del="." xpath="/gmd:MD_Metadata/gmd:contentInfo/nrw:MD_ContentInfo/nrw:internalInfo/nrw:MD_InternalInfo/nrw:relatedTitle"/>
+            <action type="add" name="relatedTitle" or="relatedTitle" in="/gmd:MD_Metadata/gmd:contentInfo/nrw:MD_ContentInfo/nrw:internalInfo/nrw:MD_InternalInfo">
+              <template>
+                <snippet>
+                  <nrw:relatedTitle>
+                    <gco:CharacterString/>
+                  </nrw:relatedTitle>
+                </snippet>
+              </template>
+            </action>
+            <text ref="NRW_RelatedTitle_help"/>
+          </section>
+
+          <section xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:topicCategory" displayIfRecord="contains(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:RS_Identifier/gmd:code/gco:CharacterString, 'NRW_')"/>
+
+          <section name="gmd:MD_Keywords">
+            <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords/gmd:MD_Keywords"
+                   in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification"
+                   or="descriptiveKeywords"/>
+            <text ref="keyword_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
+          </section>
+
+          <section xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:pointOfContact" or="pointOfContact" in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification"/>
+          <text ref="responsiblepartysrv_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
+          <text ref="responsibleparty_help"/>
+
+          <section name="dataformat" displayIfRecord="contains(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:RS_Identifier/gmd:code/gco:CharacterString, 'NRW_')">
+          <field xpath="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributionFormat"/>
+          <action type="add" btnLabel="Add a Distribution Format" name="addDistroFormat" or="distributionFormat" in="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution">
+              <template>
+                 <snippet label="binary">
+                  <gmd:distributionFormat>
+                    <gmd:MD_Format>
+                       <gmd:name>
+                          <gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/M01/current/BIN">Binary</gmx:Anchor>
+                       </gmd:name>
+                       <gmd:version>
+                          <gco:CharacterString/>
+                       </gmd:version>
+                       <gmd:specification>
+                          <gco:CharacterString/>
+                       </gmd:specification>
+                    </gmd:MD_Format>
+                 </gmd:distributionFormat>
+                </snippet>
+                <snippet label="database">
+                  <gmd:distributionFormat>
+                    <gmd:MD_Format>
+                       <gmd:name>
+                          <gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/M01/current/DB">Database</gmx:Anchor>
+                       </gmd:name>
+                       <gmd:version>
+                          <gco:CharacterString/>
+                       </gmd:version>
+                       <gmd:specification>
+                          <gco:CharacterString/>
+                       </gmd:specification>
+                    </gmd:MD_Format>
+                 </gmd:distributionFormat>
+                </snippet>
+                <snippet label="delimited">
+                  <gmd:distributionFormat>
+                    <gmd:MD_Format>
+                       <gmd:name>
+                          <gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/M01/current/DEL">Delimited</gmx:Anchor>
+                       </gmd:name>
+                       <gmd:version>
+                          <gco:CharacterString/>
+                       </gmd:version>
+                       <gmd:specification>
+                          <gco:CharacterString/>
+                       </gmd:specification>
+                    </gmd:MD_Format>
+                 </gmd:distributionFormat>
+                </snippet>
+                <snippet label="documents">
+                  <gmd:distributionFormat>
+                    <gmd:MD_Format>
+                       <gmd:name>
+                          <gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/M01/current/DOC">Documents</gmx:Anchor>
+                       </gmd:name>
+                       <gmd:version>
+                          <gco:CharacterString/>
+                       </gmd:version>
+                       <gmd:specification>
+                          <gco:CharacterString/>
+                       </gmd:specification>
+                    </gmd:MD_Format>
+                 </gmd:distributionFormat>
+                </snippet>
+                <snippet label="gis">
+                  <gmd:distributionFormat>
+                    <gmd:MD_Format>
+                       <gmd:name>
+                          <gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/M01/current/GIS">Geographic Information System</gmx:Anchor>
+                       </gmd:name>
+                       <gmd:version>
+                          <gco:CharacterString/>
+                       </gmd:version>
+                       <gmd:specification>
+                          <gco:CharacterString/>
+                       </gmd:specification>
+                    </gmd:MD_Format>
+                 </gmd:distributionFormat>
+                </snippet>
+                <snippet label="image">
+                  <gmd:distributionFormat>
+                    <gmd:MD_Format>
+                       <gmd:name>
+                          <gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/M01/current/IMG">Image</gmx:Anchor>
+                       </gmd:name>
+                       <gmd:version>
+                          <gco:CharacterString/>
+                       </gmd:version>
+                       <gmd:specification>
+                          <gco:CharacterString/>
+                       </gmd:specification>
+                    </gmd:MD_Format>
+                 </gmd:distributionFormat>
+                </snippet>
+                <snippet label="movie">
+                  <gmd:distributionFormat>
+                    <gmd:MD_Format>
+                       <gmd:name>
+                          <gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/M01/current/MOV">Movie</gmx:Anchor>
+                       </gmd:name>
+                       <gmd:version>
+                          <gco:CharacterString/>
+                       </gmd:version>
+                       <gmd:specification>
+                          <gco:CharacterString/>
+                       </gmd:specification>
+                    </gmd:MD_Format>
+                 </gmd:distributionFormat>
+                </snippet>
+                <snippet label="text">
+                  <gmd:distributionFormat>
+                    <gmd:MD_Format>
+                       <gmd:name>
+                          <gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/M01/current/TXT">Text or Plaintext</gmx:Anchor>
+                       </gmd:name>
+                       <gmd:version>
+                          <gco:CharacterString/>
+                       </gmd:version>
+                       <gmd:specification>
+                          <gco:CharacterString/>
+                       </gmd:specification>
+                    </gmd:MD_Format>
+                 </gmd:distributionFormat>
+                </snippet>
+              </template>
+            </action>
+            <text ref="formatspecification_help"/>
+          </section>
+
+          <field xpath="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions"/>
+          <action type="add" btnLabel="Add a Transfer Option" name="addTransferOption" or="transferOptions" in="/gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution">
+            <template>
+                <snippet>
+                <gmd:transferOptions>
+                  <gmd:MD_DigitalTransferOptions>
+                      <gmd:onLine>
+                        <gmd:CI_OnlineResource>
+                            <gmd:linkage>
+                              <gmd:URL/>
+                            </gmd:linkage>
+                            <gmd:protocol gco:nilReason="missing">
+                              <gco:CharacterString/>
+                            </gmd:protocol>
+                            <gmd:name gco:nilReason="missing">
+                              <gco:CharacterString/>
+                            </gmd:name>
+                            <gmd:description gco:nilReason="missing">
+                              <gco:CharacterString/>
+                            </gmd:description>
+                            <gmd:function>
+                              <gmd:CI_OnLineFunctionCode codeList="http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_OnLineFunctionCode"
+                                                          codeListValue="information"/>
+                            </gmd:function>
+                        </gmd:CI_OnlineResource>
+                      </gmd:onLine>
+                  </gmd:MD_DigitalTransferOptions>
+                </gmd:transferOptions>
+              </snippet>
+            </template>
+          </action>
+          <text ref="transferOption_help"/>
+
+          <section name="extent" displayIfRecord="contains(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:RS_Identifier/gmd:code/gco:CharacterString, 'NRW_')">
+          <field
+              xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicDescription/gmd:geographicIdentifier[not(gmd:MD_Identifier/gmd:authority/gmd:CI_Citation/gmd:title/gco:CharacterString ='SeaVoX Vertical Co-ordinate Coverages')]"
+              del="../.."/>
+              <action type="add"
+                 btnLabel="addGeoIdentifier"
+                 name="geographicElement" or="geographicElement"
+                 in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent">
+           <template>
+             <snippet label="addUKG">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>UNITED KINGDOM (GB)</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addEAW">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>England and Wales (EAW)</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addENG">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>England (ENG)</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addNIR">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>Northern Ireland (NIR)</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addSCT">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>Scotland (SCT)</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addWLS">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>Wales (WLS)</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addBrid">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>Bridgwater Bay</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addSwan">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>Swansea Bay</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addCarmb">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>Carmarthen Bay</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addSeve">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>Severn Estuary</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addStBr">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>St. Brides Bay</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addStGe">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>St. George's Channel</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addCaer">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>Caernarfon Bay</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addLive">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>Liverpool Bay</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addRibb">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>Ribble Estuary</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addMers">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>Mersey Estuary</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addDeee">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>Dee Estuary</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addCard">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>Cardigan Bay</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addTrem">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>Tremadog Bay</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addMena">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>Menai Strait</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addCelt">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>Celtic Sea</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addEngc">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>English Channel</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addBrist">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>Bristol Channel</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addMore">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>Morecambe Bay</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addNort">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>Northern North Sea</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addSout">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>Southern North Sea</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addEast">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>Eastern Channel</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addWest">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>Western Channel and Celtic Sea</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addIris">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>Irish Sea</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addMinc">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>Minches and Western Scotland</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addScot">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>Scottish Continental Shelf</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addAtla">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>Atlantic North-West Approaches and Rockall Trough</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addShar">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>Shared waters between Northern Ireland and Republic of Ireland</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addBlae">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>BLAENAU GWENT - BLAENAU GWENT</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addCaerf">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>CAERFFILI - CAERPHILLY</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addMert">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>MERTHYR TUDFUL - MERTHYR TYDFIL</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addPowy">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>POWYS - POWYS</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addRhon">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>RHONDDA CYNON TAF - RHONDDA CYNON TAF</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addWrec">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>WRECSAM - WREXHAM</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addAber">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>ABERTAWE - SWANSEA</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addBrom">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>BRO MORGANNWG - THE VALE OF GLAMORGAN</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addCasn">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>CASNEWYDD - NEWPORT</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addCast">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>CASTELL-NEDD PORT TALBOT - NEATH PORT TALBOT</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addConw">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>CONWY - CONWY</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addPeny">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>PEN-Y-BONT AR OGWR - BRIDGEND</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addSird">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>SIR DDINBYCH - DENBIGHSHIRE</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addSirg">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>SIR GAERFYRDDIN - CARMARTHENSHIRE</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addSiry">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>SIR Y FFLINT - FLINTSHIRE</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addTorf">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>TORFAEN - TORFAEN</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addYnys">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>SIR YNYS MON - ISLE OF ANGLESEY</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addGwyn">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>GWYNEDD - GWYNEDD</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addCardiff">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>CAERDYDD - CARDIFF</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addSirc">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>SIR CEREDIGION - CEREDIGION</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addSirf">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>SIR FYNWY - MONMOUTHSHIRE</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addSirb">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>SIR BENFRO - PEMBROKESHIRE</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addRadn">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>Radnorshire (43)</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addAngl">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>Anglesey (52)</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addCaern">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>Caernarvonshire (49)</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addDenb">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>Denbighshire (50)</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addFlin">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>Flintshire (51)</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addMeri">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>Merionethshire (48)</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addMont">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>Montgomeryshire (47)</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addCardiganshire">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>Cardiganshire (46)</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addBrec">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>Breconshire (42)</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addPemb">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>Pembrokeshire (45)</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addCarm">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>Carmarthenshire (44)</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addGlam">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>Glamorganshire (41)</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+             <snippet label="addMonm">
+                     <gmd:geographicElement>
+                 <gmd:EX_GeographicDescription>
+                   <gmd:geographicIdentifier>
+                     <gmd:MD_Identifier>
+                       <gmd:code>
+                         <gco:CharacterString>Monmouthshire (35)</gco:CharacterString>
+                       </gmd:code>
+                     </gmd:MD_Identifier>
+                   </gmd:geographicIdentifier>
+                 </gmd:EX_GeographicDescription>
+                 </gmd:geographicElement>
+                   </snippet>
+           </template>
+         </action>
+
+            <text ref="extent_help" />
+
+            <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicBoundingBox"/>
+            <text ref="bbox_help" />
+
+          </section>
+
+        <section name="gmd:referenceSystemInfo" displayIfRecord="contains(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:RS_Identifier/gmd:code/gco:CharacterString, 'NRW_')">
+        <field xpath="/gmd:MD_Metadata/gmd:referenceSystemInfo"/>
+        <action type="add"
+                 btnLabel="addCrs"
+                 name="referenceSystemInfo" or="referenceSystemInfo"
+                 in="/gmd:MD_Metadata">
+           <template>
+             <snippet label="addCrs27700">
+               <gmd:referenceSystemInfo>
+                 <gmd:MD_ReferenceSystem>
+                   <gmd:referenceSystemIdentifier>
+                     <gmd:RS_Identifier>
+                       <gmd:code>
+                         <gmx:Anchor xlink:href="http://www.opengis.net/def/crs/EPSG/0/27700">British National Grid (EPSG:27700)</gmx:Anchor>
+                       </gmd:code>
+                     </gmd:RS_Identifier>
+                   </gmd:referenceSystemIdentifier>
+                 </gmd:MD_ReferenceSystem>
+               </gmd:referenceSystemInfo>
+             </snippet>
+             <snippet label="addCrs4326">
+               <gmd:referenceSystemInfo>
+                 <gmd:MD_ReferenceSystem>
+                   <gmd:referenceSystemIdentifier>
+                     <gmd:RS_Identifier>
+                       <gmd:code>
+                         <gmx:Anchor xlink:href="http://www.opengis.net/def/crs/EPSG/0/4326">WGS 84 (EPSG:4326)</gmx:Anchor>
+                       </gmd:code>
+                     </gmd:RS_Identifier>
+                   </gmd:referenceSystemIdentifier>
+                 </gmd:MD_ReferenceSystem>
+               </gmd:referenceSystemInfo>
+             </snippet>
+             <snippet label="addCrs4277">
+               <gmd:referenceSystemInfo>
+                 <gmd:MD_ReferenceSystem>
+                   <gmd:referenceSystemIdentifier>
+                     <gmd:RS_Identifier>
+                       <gmd:code>
+                         <gmx:Anchor xlink:href="http://www.opengis.net/def/crs/EPSG/0/4277">OSGB 1936 (EPSG:4277)</gmx:Anchor>
+                       </gmd:code>
+                     </gmd:RS_Identifier>
+                   </gmd:referenceSystemIdentifier>
+                 </gmd:MD_ReferenceSystem>
+               </gmd:referenceSystemInfo>
+             </snippet>
+             <snippet label="addCrs4258">
+               <gmd:referenceSystemInfo>
+                 <gmd:MD_ReferenceSystem>
+                   <gmd:referenceSystemIdentifier>
+                     <gmd:RS_Identifier>
+                       <gmd:code>
+                         <gmx:Anchor xlink:href="http://www.opengis.net/def/crs/EPSG/0/4258">ETRS89 (EPSG:4258)</gmx:Anchor>
+                       </gmd:code>
+                     </gmd:RS_Identifier>
+                   </gmd:referenceSystemIdentifier>
+                 </gmd:MD_ReferenceSystem>
+               </gmd:referenceSystemInfo>
+             </snippet>
+           </template>
+         </action>
+
+        <text ref="spatialref_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
+        <text ref="spatialrefsrv_help" if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
+      </section>
+
+        <section name="spatialResolution" displayIfRecord="contains(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:RS_Identifier/gmd:code/gco:CharacterString, 'NRW_')">
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:spatialResolution/*//gmd:distance" del="../.."/>
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:spatialResolution/*//gmd:denominator" del="../../../.."/>
+          <action type="add" btnLabel="addSpatRep" name="addSpatRep" or="spatialResolution" in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification">
+            <template>
+              <snippet label="addDistance">
+                    <gmd:spatialResolution>
+                      <gmd:MD_Resolution>
+                        <gmd:distance>
+                            <gco:Distance uom="urn:ogc:def:uom:EPSG::9001"/>
+                        </gmd:distance>
+                      </gmd:MD_Resolution>
+                  </gmd:spatialResolution>
+              </snippet>
+              <snippet label="addEquivScale">
+                <gmd:spatialResolution>
+                  <gmd:MD_Resolution>
+                    <gmd:equivalentScale>
+                        <gmd:MD_RepresentativeFraction>
+                          <gmd:denominator>
+                              <gco:Integer>0</gco:Integer>
+                          </gmd:denominator>
+                        </gmd:MD_RepresentativeFraction>
+                    </gmd:equivalentScale>
+                  </gmd:MD_Resolution>
+                </gmd:spatialResolution>
+              </snippet>
+            </template>
+          </action>
+        </section>
+
+        <section xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:spatialRepresentationType" displayIfRecord="contains(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:RS_Identifier/gmd:code/gco:CharacterString, 'NRW_')"/>
+
+        <section name="constraints">
+          <section name="accessLimitations">
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:accessConstraints"/>
+        </section>
+         <section name="accessConstraintsDirective">
+          <field name="limitations" xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints[./gmd:accessConstraints]/gmd:otherConstraints[gmx:Anchor]"/>
+            <action type="add" btnLabel="addINSPIRELimitations" name="addAccessConstraints" or="otherConstraints"
+                  in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints[./gmd:accessConstraints]" if="count(//gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints[./gmd:accessConstraints]/gmd:otherConstraints/gmx:Anchor) = 0">
+            <template>
+              <snippet label="addINSPIRE13_nolimitations">
+                    <gmd:otherConstraints>
+                      <gmx:Anchor xlink:href="http://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/noLimitations">noLimitations</gmx:Anchor>
+                    </gmd:otherConstraints>
+              </snippet>
+              <snippet label="addINSPIRE13_1a">
+                    <gmd:otherConstraints>
+                      <gmx:Anchor xlink:href="http://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/INSPIRE_Directive_Article13_1a">INSPIRE_Directive_Article13_1a</gmx:Anchor>
+                    </gmd:otherConstraints>
+              </snippet>
+              <snippet label="addINSPIRE13_1b">
+                    <gmd:otherConstraints>
+                      <gmx:Anchor xlink:href="http://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/INSPIRE_Directive_Article13_1b">INSPIRE_Directive_Article13_1b</gmx:Anchor>
+                    </gmd:otherConstraints>
+              </snippet>
+              <snippet label="addINSPIRE13_1c">
+                    <gmd:otherConstraints>
+                      <gmx:Anchor xlink:href="http://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/INSPIRE_Directive_Article13_1c">INSPIRE_Directive_Article13_1c</gmx:Anchor>
+                    </gmd:otherConstraints>
+              </snippet>
+              <snippet label="addINSPIRE13_1c">
+                    <gmd:otherConstraints>
+                      <gmx:Anchor xlink:href="http://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/INSPIRE_Directive_Article13_1c">INSPIRE_Directive_Article13_1c</gmx:Anchor>
+                    </gmd:otherConstraints>
+              </snippet>
+              <snippet label="addINSPIRE13_1d">
+                    <gmd:otherConstraints>
+                      <gmx:Anchor xlink:href="http://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/INSPIRE_Directive_Article13_1d">INSPIRE_Directive_Article13_1d</gmx:Anchor>
+                    </gmd:otherConstraints>
+              </snippet>
+              <snippet label="addINSPIRE13_1e">
+                    <gmd:otherConstraints>
+                      <gmx:Anchor xlink:href="http://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/INSPIRE_Directive_Article13_1e">INSPIRE_Directive_Article13_1e</gmx:Anchor>
+                    </gmd:otherConstraints>
+              </snippet>
+              <snippet label="addINSPIRE13_1f">
+                    <gmd:otherConstraints>
+                      <gmx:Anchor xlink:href="http://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/INSPIRE_Directive_Article13_1f">INSPIRE_Directive_Article13_1f</gmx:Anchor>
+                    </gmd:otherConstraints>
+              </snippet>
+              <snippet label="addINSPIRE13_1g">
+                    <gmd:otherConstraints>
+                      <gmx:Anchor xlink:href="http://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/INSPIRE_Directive_Article13_1g">INSPIRE_Directive_Article13_1g</gmx:Anchor>
+                    </gmd:otherConstraints>
+              </snippet>
+              <snippet label="addINSPIRE13_1h">
+                    <gmd:otherConstraints>
+                      <gmx:Anchor xlink:href="http://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/INSPIRE_Directive_Article13_1h">INSPIRE_Directive_Article13_1h</gmx:Anchor>
+                    </gmd:otherConstraints>
+              </snippet>
+              </template>
+          </action>
+          <text ref="limitations_help"/>
+        </section>
+        <section name="accessconstraintsText">
+          <field
+              xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints[gmd:accessConstraints]/gmd:otherConstraints[gco:CharacterString]"
+              templateModeOnly="true"
+              notDisplayedIfMissing="true"
+              forceLabel="true"
+              name="accessConstraints"
+              del=".">
+
+              <template>
+                <values>
+                  <!-- add textarea directive to improve the editing experience for users and allow for resizing the field in the UI. Fixes SUPPORT-28154. -->
+                  <key label="string"
+                       xpath="gco:CharacterString"
+                       use="textarea"/>
+                </values>
+                <snippet>
+                      <gmd:otherConstraints>
+                        <gco:CharacterString>{{string}}</gco:CharacterString>
+                      </gmd:otherConstraints>
+                </snippet>
+              </template>
+            </field>
+        <text ref="accessConstraintsText_help" />
+        </section>
+
+        <section name="useconstraints">
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:useConstraints"/>
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints[gmd:useConstraints]/gmd:otherConstraints[1]"    templateModeOnly="true"
+              notDisplayedIfMissing="true"
+              forceLabel="true"
+              name="useConstraints"
+              del=".">
+
+              <template>
+                <values>
+                  <!-- add textarea directive to improve the editing experience for users and allow for resizing the field in the UI. Fixes SUPPORT-28154. -->
+                  <key label="string"
+                       xpath="gco:CharacterString"
+                       use="textarea"/>
+                </values>
+                <snippet>
+                      <gmd:otherConstraints>
+                        <gco:CharacterString>{{string}}</gco:CharacterString>
+                      </gmd:otherConstraints>
+                </snippet>
+              </template>
+            </field>
+        </section>
+
+        <section name="attributionstatement">
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints[gmd:useConstraints]/gmd:otherConstraints[2]"    templateModeOnly="true"
+              notDisplayedIfMissing="true"
+              forceLabel="true"
+              name="attributionstatement"
+              del=".">
+              <template>
+                <values>
+                  <!-- add textarea directive to improve the editing experience for users and allow for resizing the field in the UI. Fixes SUPPORT-28154. -->
+                  <key label="string"
+                       xpath="gco:CharacterString"
+                       use="textarea"/>
+                </values>
+                <snippet>
+                      <gmd:otherConstraints>
+                        <gco:CharacterString>{{string}}</gco:CharacterString>
+                      </gmd:otherConstraints>
+                </snippet>
+              </template>
+            </field>
+            <action type="add" btnLabel="addAttributionStatement" name="addAttributionStatement" or="otherConstraints" in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints">
+            <template>
+              <snippet>
+                    <gmd:otherConstraints>
+                      <gco:CharacterString></gco:CharacterString>
+                    </gmd:otherConstraints>
+              </snippet>
+            </template>
+          </action>
+        </section>
+
+        <section name="licence">
+          <field xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints[./gmd:useConstraints]/gmd:otherConstraints[gmx:Anchor]">
+
+          </field>
+          <action type="add" btnLabel="addlicenceType" name="otherConstraints" or="otherConstraints" in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints[./gmd:useConstraints]/gmd:otherConstraints[gmx:Anchor]) = 0">
+            <template>
+              <snippet label="OGL">
+                    <gmd:otherConstraints>
+                      <gmx:Anchor xlink:href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/">Open Government Licence</gmx:Anchor>
+                    </gmd:otherConstraints>
+              </snippet>
+              <snippet label="thirdpartyconditional">
+                    <gmd:otherConstraints>
+                      <gmx:Anchor>Third Party Conditional</gmx:Anchor>
+                    </gmd:otherConstraints>
+              </snippet>
+              <snippet label="thirdpartyopen">
+                    <gmd:otherConstraints>
+                      <gmx:Anchor>Third Party Open</gmx:Anchor>
+                    </gmd:otherConstraints>
+              </snippet>
+              <snippet label="nrwconditional">
+                    <gmd:otherConstraints>
+                      <gmx:Anchor>NRW Conditional</gmx:Anchor>
+                    </gmd:otherConstraints>
+              </snippet>
+              <snippet label="notlicenced">
+                    <gmd:otherConstraints>
+                      <gmx:Anchor>Not Licenced for Re-use</gmx:Anchor>
+                    </gmd:otherConstraints>
+              </snippet>
+            </template>
+          </action>
+        </section>
+
+        </section>
+
+          <section name="verticalextent" displayIfRecord="contains(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:RS_Identifier/gmd:code/gco:CharacterString, 'NRW_')">
+              <field name="medinextent" xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicDescription/gmd:geographicIdentifier[gmd:MD_Identifier/gmd:authority/gmd:CI_Citation/gmd:title/gco:CharacterString ='SeaVoX Vertical Co-ordinate Coverages']/*/gmd:code" del="../../../.."/>
+                <action type="add"
+                 btnLabel="addMedinIdentifier"
+                 name="geographicElement" or="geographicElement"
+                 in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent">
+              <template>
+  <snippet label="addAY">
+    <gmd:geographicElement>
+        <gmd:EX_GeographicDescription>
+         <gmd:geographicIdentifier>
+          <gmd:MD_Identifier>
+           <gmd:authority>
+            <gmd:CI_Citation>
+             <gmd:title>
+              <gco:CharacterString>SeaVoX Vertical Co-ordinate Coverages</gco:CharacterString>
+             </gmd:title>
+             <gmd:date>
+              <gmd:CI_Date>
+               <gmd:date>
+                <gco:Date>2013-02-05</gco:Date>
+               </gmd:date>
+               <gmd:dateType>
+                <gmd:CI_DateTypeCode codeList="https://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation">creation</gmd:CI_DateTypeCode>
+               </gmd:dateType>
+              </gmd:CI_Date>
+             </gmd:date>
+            </gmd:CI_Citation>
+           </gmd:authority>
+           <gmd:code><gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L13/current/AY/">abyssobenthic</gmx:Anchor>
+           </gmd:code>
+          </gmd:MD_Identifier>
+         </gmd:geographicIdentifier>
+        </gmd:EX_GeographicDescription>
+       </gmd:geographicElement>
+    </snippet>
+  <snippet label="addAP">
+    <gmd:geographicElement>
+        <gmd:EX_GeographicDescription>
+         <gmd:geographicIdentifier>
+          <gmd:MD_Identifier>
+           <gmd:authority>
+            <gmd:CI_Citation>
+             <gmd:title>
+              <gco:CharacterString>SeaVoX Vertical Co-ordinate Coverages</gco:CharacterString>
+             </gmd:title>
+             <gmd:date>
+              <gmd:CI_Date>
+               <gmd:date>
+                <gco:Date>2013-02-05</gco:Date>
+               </gmd:date>
+               <gmd:dateType>
+                <gmd:CI_DateTypeCode codeList="https://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation">creation</gmd:CI_DateTypeCode>
+               </gmd:dateType>
+              </gmd:CI_Date>
+             </gmd:date>
+            </gmd:CI_Citation>
+           </gmd:authority>
+           <gmd:code><gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L13/current/AP/">abyssopelagic water column</gmx:Anchor>
+           </gmd:code>
+          </gmd:MD_Identifier>
+         </gmd:geographicIdentifier>
+        </gmd:EX_GeographicDescription>
+       </gmd:geographicElement>
+    </snippet>
+  <snippet label="addAT">
+    <gmd:geographicElement>
+        <gmd:EX_GeographicDescription>
+         <gmd:geographicIdentifier>
+          <gmd:MD_Identifier>
+           <gmd:authority>
+            <gmd:CI_Citation>
+             <gmd:title>
+              <gco:CharacterString>SeaVoX Vertical Co-ordinate Coverages</gco:CharacterString>
+             </gmd:title>
+             <gmd:date>
+              <gmd:CI_Date>
+               <gmd:date>
+                <gco:Date>2013-02-05</gco:Date>
+               </gmd:date>
+               <gmd:dateType>
+                <gmd:CI_DateTypeCode codeList="https://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation">creation</gmd:CI_DateTypeCode>
+               </gmd:dateType>
+              </gmd:CI_Date>
+             </gmd:date>
+            </gmd:CI_Citation>
+           </gmd:authority>
+           <gmd:code><gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L13/current/AT/">atmosphere</gmx:Anchor>
+           </gmd:code>
+          </gmd:MD_Identifier>
+         </gmd:geographicIdentifier>
+        </gmd:EX_GeographicDescription>
+       </gmd:geographicElement>
+    </snippet>
+  <snippet label="addAB">
+    <gmd:geographicElement>
+        <gmd:EX_GeographicDescription>
+         <gmd:geographicIdentifier>
+          <gmd:MD_Identifier>
+           <gmd:authority>
+            <gmd:CI_Citation>
+             <gmd:title>
+              <gco:CharacterString>SeaVoX Vertical Co-ordinate Coverages</gco:CharacterString>
+             </gmd:title>
+             <gmd:date>
+              <gmd:CI_Date>
+               <gmd:date>
+                <gco:Date>2013-02-05</gco:Date>
+               </gmd:date>
+               <gmd:dateType>
+                <gmd:CI_DateTypeCode codeList="https://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation">creation</gmd:CI_DateTypeCode>
+               </gmd:dateType>
+              </gmd:CI_Date>
+             </gmd:date>
+            </gmd:CI_Citation>
+           </gmd:authority>
+           <gmd:code><gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L13/current/AB/">atmospheric boundary layer</gmx:Anchor>
+           </gmd:code>
+          </gmd:MD_Identifier>
+         </gmd:geographicIdentifier>
+        </gmd:EX_GeographicDescription>
+       </gmd:geographicElement>
+    </snippet>
+  <snippet label="addBB">
+    <gmd:geographicElement>
+        <gmd:EX_GeographicDescription>
+         <gmd:geographicIdentifier>
+          <gmd:MD_Identifier>
+           <gmd:authority>
+            <gmd:CI_Citation>
+             <gmd:title>
+              <gco:CharacterString>SeaVoX Vertical Co-ordinate Coverages</gco:CharacterString>
+             </gmd:title>
+             <gmd:date>
+              <gmd:CI_Date>
+               <gmd:date>
+                <gco:Date>2013-02-05</gco:Date>
+               </gmd:date>
+               <gmd:dateType>
+                <gmd:CI_DateTypeCode codeList="https://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation">creation</gmd:CI_DateTypeCode>
+               </gmd:dateType>
+              </gmd:CI_Date>
+             </gmd:date>
+            </gmd:CI_Citation>
+           </gmd:authority>
+           <gmd:code><gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L13/current/BB/">bathybenthic</gmx:Anchor>
+           </gmd:code>
+          </gmd:MD_Identifier>
+         </gmd:geographicIdentifier>
+        </gmd:EX_GeographicDescription>
+       </gmd:geographicElement>
+    </snippet>
+  <snippet label="addBP">
+    <gmd:geographicElement>
+        <gmd:EX_GeographicDescription>
+         <gmd:geographicIdentifier>
+          <gmd:MD_Identifier>
+           <gmd:authority>
+            <gmd:CI_Citation>
+             <gmd:title>
+              <gco:CharacterString>SeaVoX Vertical Co-ordinate Coverages</gco:CharacterString>
+             </gmd:title>
+             <gmd:date>
+              <gmd:CI_Date>
+               <gmd:date>
+                <gco:Date>2013-02-05</gco:Date>
+               </gmd:date>
+               <gmd:dateType>
+                <gmd:CI_DateTypeCode codeList="https://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation">creation</gmd:CI_DateTypeCode>
+               </gmd:dateType>
+              </gmd:CI_Date>
+             </gmd:date>
+            </gmd:CI_Citation>
+           </gmd:authority>
+           <gmd:code><gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L13/current/BP/">bathypelagic water column</gmx:Anchor>
+           </gmd:code>
+          </gmd:MD_Identifier>
+         </gmd:geographicIdentifier>
+        </gmd:EX_GeographicDescription>
+       </gmd:geographicElement>
+    </snippet>
+  <snippet label="addNB">
+    <gmd:geographicElement>
+        <gmd:EX_GeographicDescription>
+         <gmd:geographicIdentifier>
+          <gmd:MD_Identifier>
+           <gmd:authority>
+            <gmd:CI_Citation>
+             <gmd:title>
+              <gco:CharacterString>SeaVoX Vertical Co-ordinate Coverages</gco:CharacterString>
+             </gmd:title>
+             <gmd:date>
+              <gmd:CI_Date>
+               <gmd:date>
+                <gco:Date>2013-02-05</gco:Date>
+               </gmd:date>
+               <gmd:dateType>
+                <gmd:CI_DateTypeCode codeList="https://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation">creation</gmd:CI_DateTypeCode>
+               </gmd:dateType>
+              </gmd:CI_Date>
+             </gmd:date>
+            </gmd:CI_Citation>
+           </gmd:authority>
+           <gmd:code><gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L13/current/NB/">benthic boundary layer</gmx:Anchor>
+           </gmd:code>
+          </gmd:MD_Identifier>
+         </gmd:geographicIdentifier>
+        </gmd:EX_GeographicDescription>
+       </gmd:geographicElement>
+    </snippet>
+  <snippet label="addCL">
+    <gmd:geographicElement>
+        <gmd:EX_GeographicDescription>
+         <gmd:geographicIdentifier>
+          <gmd:MD_Identifier>
+           <gmd:authority>
+            <gmd:CI_Citation>
+             <gmd:title>
+              <gco:CharacterString>SeaVoX Vertical Co-ordinate Coverages</gco:CharacterString>
+             </gmd:title>
+             <gmd:date>
+              <gmd:CI_Date>
+               <gmd:date>
+                <gco:Date>2013-02-05</gco:Date>
+               </gmd:date>
+               <gmd:dateType>
+                <gmd:CI_DateTypeCode codeList="https://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation">creation</gmd:CI_DateTypeCode>
+               </gmd:dateType>
+              </gmd:CI_Date>
+             </gmd:date>
+            </gmd:CI_Citation>
+           </gmd:authority>
+           <gmd:code><gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L13/current/CL/">circalittoral</gmx:Anchor>
+           </gmd:code>
+          </gmd:MD_Identifier>
+         </gmd:geographicIdentifier>
+        </gmd:EX_GeographicDescription>
+       </gmd:geographicElement>
+    </snippet>
+  <snippet label="addCO">
+    <gmd:geographicElement>
+        <gmd:EX_GeographicDescription>
+         <gmd:geographicIdentifier>
+          <gmd:MD_Identifier>
+           <gmd:authority>
+            <gmd:CI_Citation>
+             <gmd:title>
+              <gco:CharacterString>SeaVoX Vertical Co-ordinate Coverages</gco:CharacterString>
+             </gmd:title>
+             <gmd:date>
+              <gmd:CI_Date>
+               <gmd:date>
+                <gco:Date>2013-02-05</gco:Date>
+               </gmd:date>
+               <gmd:dateType>
+                <gmd:CI_DateTypeCode codeList="https://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation">creation</gmd:CI_DateTypeCode>
+               </gmd:dateType>
+              </gmd:CI_Date>
+             </gmd:date>
+            </gmd:CI_Citation>
+           </gmd:authority>
+           <gmd:code><gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L13/current/CO/">core</gmx:Anchor>
+           </gmd:code>
+          </gmd:MD_Identifier>
+         </gmd:geographicIdentifier>
+        </gmd:EX_GeographicDescription>
+       </gmd:geographicElement>
+    </snippet>
+  <snippet label="addCR">
+    <gmd:geographicElement>
+        <gmd:EX_GeographicDescription>
+         <gmd:geographicIdentifier>
+          <gmd:MD_Identifier>
+           <gmd:authority>
+            <gmd:CI_Citation>
+             <gmd:title>
+              <gco:CharacterString>SeaVoX Vertical Co-ordinate Coverages</gco:CharacterString>
+             </gmd:title>
+             <gmd:date>
+              <gmd:CI_Date>
+               <gmd:date>
+                <gco:Date>2013-02-05</gco:Date>
+               </gmd:date>
+               <gmd:dateType>
+                <gmd:CI_DateTypeCode codeList="https://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation">creation</gmd:CI_DateTypeCode>
+               </gmd:dateType>
+              </gmd:CI_Date>
+             </gmd:date>
+            </gmd:CI_Citation>
+           </gmd:authority>
+           <gmd:code><gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L13/current/CR/">crust</gmx:Anchor>
+           </gmd:code>
+          </gmd:MD_Identifier>
+         </gmd:geographicIdentifier>
+        </gmd:EX_GeographicDescription>
+       </gmd:geographicElement>
+    </snippet>
+  <snippet label="addDC">
+    <gmd:geographicElement>
+        <gmd:EX_GeographicDescription>
+         <gmd:geographicIdentifier>
+          <gmd:MD_Identifier>
+           <gmd:authority>
+            <gmd:CI_Citation>
+             <gmd:title>
+              <gco:CharacterString>SeaVoX Vertical Co-ordinate Coverages</gco:CharacterString>
+             </gmd:title>
+             <gmd:date>
+              <gmd:CI_Date>
+               <gmd:date>
+                <gco:Date>2013-02-05</gco:Date>
+               </gmd:date>
+               <gmd:dateType>
+                <gmd:CI_DateTypeCode codeList="https://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation">creation</gmd:CI_DateTypeCode>
+               </gmd:dateType>
+              </gmd:CI_Date>
+             </gmd:date>
+            </gmd:CI_Citation>
+           </gmd:authority>
+           <gmd:code><gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L13/current/DC/">deep circalittoral</gmx:Anchor>
+           </gmd:code>
+          </gmd:MD_Identifier>
+         </gmd:geographicIdentifier>
+        </gmd:EX_GeographicDescription>
+       </gmd:geographicElement>
+    </snippet>
+  <snippet label="addU2">
+    <gmd:geographicElement>
+        <gmd:EX_GeographicDescription>
+         <gmd:geographicIdentifier>
+          <gmd:MD_Identifier>
+           <gmd:authority>
+            <gmd:CI_Citation>
+             <gmd:title>
+              <gco:CharacterString>SeaVoX Vertical Co-ordinate Coverages</gco:CharacterString>
+             </gmd:title>
+             <gmd:date>
+              <gmd:CI_Date>
+               <gmd:date>
+                <gco:Date>2013-02-05</gco:Date>
+               </gmd:date>
+               <gmd:dateType>
+                <gmd:CI_DateTypeCode codeList="https://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation">creation</gmd:CI_DateTypeCode>
+               </gmd:dateType>
+              </gmd:CI_Date>
+             </gmd:date>
+            </gmd:CI_Citation>
+           </gmd:authority>
+           <gmd:code><gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L13/current/U2/">epipelagic water column</gmx:Anchor>
+           </gmd:code>
+          </gmd:MD_Identifier>
+         </gmd:geographicIdentifier>
+        </gmd:EX_GeographicDescription>
+       </gmd:geographicElement>
+    </snippet>
+  <snippet label="addES">
+    <gmd:geographicElement>
+        <gmd:EX_GeographicDescription>
+         <gmd:geographicIdentifier>
+          <gmd:MD_Identifier>
+           <gmd:authority>
+            <gmd:CI_Citation>
+             <gmd:title>
+              <gco:CharacterString>SeaVoX Vertical Co-ordinate Coverages</gco:CharacterString>
+             </gmd:title>
+             <gmd:date>
+              <gmd:CI_Date>
+               <gmd:date>
+                <gco:Date>2013-02-05</gco:Date>
+               </gmd:date>
+               <gmd:dateType>
+                <gmd:CI_DateTypeCode codeList="https://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation">creation</gmd:CI_DateTypeCode>
+               </gmd:dateType>
+              </gmd:CI_Date>
+             </gmd:date>
+            </gmd:CI_Citation>
+           </gmd:authority>
+           <gmd:code><gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L13/current/ES/">exosphere</gmx:Anchor>
+           </gmd:code>
+          </gmd:MD_Identifier>
+         </gmd:geographicIdentifier>
+        </gmd:EX_GeographicDescription>
+       </gmd:geographicElement>
+    </snippet>
+  <snippet label="addHW">
+    <gmd:geographicElement>
+        <gmd:EX_GeographicDescription>
+         <gmd:geographicIdentifier>
+          <gmd:MD_Identifier>
+           <gmd:authority>
+            <gmd:CI_Citation>
+             <gmd:title>
+              <gco:CharacterString>SeaVoX Vertical Co-ordinate Coverages</gco:CharacterString>
+             </gmd:title>
+             <gmd:date>
+              <gmd:CI_Date>
+               <gmd:date>
+                <gco:Date>2013-02-05</gco:Date>
+               </gmd:date>
+               <gmd:dateType>
+                <gmd:CI_DateTypeCode codeList="https://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation">creation</gmd:CI_DateTypeCode>
+               </gmd:dateType>
+              </gmd:CI_Date>
+             </gmd:date>
+            </gmd:CI_Citation>
+           </gmd:authority>
+           <gmd:code><gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L13/current/HW/">hadopelagic water column</gmx:Anchor>
+           </gmd:code>
+          </gmd:MD_Identifier>
+         </gmd:geographicIdentifier>
+        </gmd:EX_GeographicDescription>
+       </gmd:geographicElement>
+    </snippet>
+  <snippet label="addHX">
+    <gmd:geographicElement>
+        <gmd:EX_GeographicDescription>
+         <gmd:geographicIdentifier>
+          <gmd:MD_Identifier>
+           <gmd:authority>
+            <gmd:CI_Citation>
+             <gmd:title>
+              <gco:CharacterString>SeaVoX Vertical Co-ordinate Coverages</gco:CharacterString>
+             </gmd:title>
+             <gmd:date>
+              <gmd:CI_Date>
+               <gmd:date>
+                <gco:Date>2013-02-05</gco:Date>
+               </gmd:date>
+               <gmd:dateType>
+                <gmd:CI_DateTypeCode codeList="https://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation">creation</gmd:CI_DateTypeCode>
+               </gmd:dateType>
+              </gmd:CI_Date>
+             </gmd:date>
+            </gmd:CI_Citation>
+           </gmd:authority>
+           <gmd:code><gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L13/current/HX/">heterosphere</gmx:Anchor>
+           </gmd:code>
+          </gmd:MD_Identifier>
+         </gmd:geographicIdentifier>
+        </gmd:EX_GeographicDescription>
+       </gmd:geographicElement>
+    </snippet>
+  <snippet label="addHP">
+    <gmd:geographicElement>
+        <gmd:EX_GeographicDescription>
+         <gmd:geographicIdentifier>
+          <gmd:MD_Identifier>
+           <gmd:authority>
+            <gmd:CI_Citation>
+             <gmd:title>
+              <gco:CharacterString>SeaVoX Vertical Co-ordinate Coverages</gco:CharacterString>
+             </gmd:title>
+             <gmd:date>
+              <gmd:CI_Date>
+               <gmd:date>
+                <gco:Date>2013-02-05</gco:Date>
+               </gmd:date>
+               <gmd:dateType>
+                <gmd:CI_DateTypeCode codeList="https://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation">creation</gmd:CI_DateTypeCode>
+               </gmd:dateType>
+              </gmd:CI_Date>
+             </gmd:date>
+            </gmd:CI_Citation>
+           </gmd:authority>
+           <gmd:code><gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L13/current/HP/">homopause</gmx:Anchor>
+           </gmd:code>
+          </gmd:MD_Identifier>
+         </gmd:geographicIdentifier>
+        </gmd:EX_GeographicDescription>
+       </gmd:geographicElement>
+    </snippet>
+  <snippet label="addHS">
+    <gmd:geographicElement>
+        <gmd:EX_GeographicDescription>
+         <gmd:geographicIdentifier>
+          <gmd:MD_Identifier>
+           <gmd:authority>
+            <gmd:CI_Citation>
+             <gmd:title>
+              <gco:CharacterString>SeaVoX Vertical Co-ordinate Coverages</gco:CharacterString>
+             </gmd:title>
+             <gmd:date>
+              <gmd:CI_Date>
+               <gmd:date>
+                <gco:Date>2013-02-05</gco:Date>
+               </gmd:date>
+               <gmd:dateType>
+                <gmd:CI_DateTypeCode codeList="https://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation">creation</gmd:CI_DateTypeCode>
+               </gmd:dateType>
+              </gmd:CI_Date>
+             </gmd:date>
+            </gmd:CI_Citation>
+           </gmd:authority>
+           <gmd:code><gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L13/current/HS/">homosphere</gmx:Anchor>
+           </gmd:code>
+          </gmd:MD_Identifier>
+         </gmd:geographicIdentifier>
+        </gmd:EX_GeographicDescription>
+       </gmd:geographicElement>
+    </snippet>
+  <snippet label="addIA">
+    <gmd:geographicElement>
+        <gmd:EX_GeographicDescription>
+         <gmd:geographicIdentifier>
+          <gmd:MD_Identifier>
+           <gmd:authority>
+            <gmd:CI_Citation>
+             <gmd:title>
+              <gco:CharacterString>SeaVoX Vertical Co-ordinate Coverages</gco:CharacterString>
+             </gmd:title>
+             <gmd:date>
+              <gmd:CI_Date>
+               <gmd:date>
+                <gco:Date>2013-02-05</gco:Date>
+               </gmd:date>
+               <gmd:dateType>
+                <gmd:CI_DateTypeCode codeList="https://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation">creation</gmd:CI_DateTypeCode>
+               </gmd:dateType>
+              </gmd:CI_Date>
+             </gmd:date>
+            </gmd:CI_Citation>
+           </gmd:authority>
+           <gmd:code><gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L13/current/IA/">inapplicable</gmx:Anchor>
+           </gmd:code>
+          </gmd:MD_Identifier>
+         </gmd:geographicIdentifier>
+        </gmd:EX_GeographicDescription>
+       </gmd:geographicElement>
+    </snippet>
+  <snippet label="addIL">
+    <gmd:geographicElement>
+        <gmd:EX_GeographicDescription>
+         <gmd:geographicIdentifier>
+          <gmd:MD_Identifier>
+           <gmd:authority>
+            <gmd:CI_Citation>
+             <gmd:title>
+              <gco:CharacterString>SeaVoX Vertical Co-ordinate Coverages</gco:CharacterString>
+             </gmd:title>
+             <gmd:date>
+              <gmd:CI_Date>
+               <gmd:date>
+                <gco:Date>2013-02-05</gco:Date>
+               </gmd:date>
+               <gmd:dateType>
+                <gmd:CI_DateTypeCode codeList="https://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation">creation</gmd:CI_DateTypeCode>
+               </gmd:dateType>
+              </gmd:CI_Date>
+             </gmd:date>
+            </gmd:CI_Citation>
+           </gmd:authority>
+           <gmd:code><gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L13/current/IL/">infralittoral</gmx:Anchor>
+           </gmd:code>
+          </gmd:MD_Identifier>
+         </gmd:geographicIdentifier>
+        </gmd:EX_GeographicDescription>
+       </gmd:geographicElement>
+    </snippet>
+  <snippet label="addLI">
+    <gmd:geographicElement>
+        <gmd:EX_GeographicDescription>
+         <gmd:geographicIdentifier>
+          <gmd:MD_Identifier>
+           <gmd:authority>
+            <gmd:CI_Citation>
+             <gmd:title>
+              <gco:CharacterString>SeaVoX Vertical Co-ordinate Coverages</gco:CharacterString>
+             </gmd:title>
+             <gmd:date>
+              <gmd:CI_Date>
+               <gmd:date>
+                <gco:Date>2013-02-05</gco:Date>
+               </gmd:date>
+               <gmd:dateType>
+                <gmd:CI_DateTypeCode codeList="https://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation">creation</gmd:CI_DateTypeCode>
+               </gmd:dateType>
+              </gmd:CI_Date>
+             </gmd:date>
+            </gmd:CI_Citation>
+           </gmd:authority>
+           <gmd:code><gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L13/current/LI/">littoral</gmx:Anchor>
+           </gmd:code>
+          </gmd:MD_Identifier>
+         </gmd:geographicIdentifier>
+        </gmd:EX_GeographicDescription>
+       </gmd:geographicElement>
+    </snippet>
+  <snippet label="addMA">
+    <gmd:geographicElement>
+        <gmd:EX_GeographicDescription>
+         <gmd:geographicIdentifier>
+          <gmd:MD_Identifier>
+           <gmd:authority>
+            <gmd:CI_Citation>
+             <gmd:title>
+              <gco:CharacterString>SeaVoX Vertical Co-ordinate Coverages</gco:CharacterString>
+             </gmd:title>
+             <gmd:date>
+              <gmd:CI_Date>
+               <gmd:date>
+                <gco:Date>2013-02-05</gco:Date>
+               </gmd:date>
+               <gmd:dateType>
+                <gmd:CI_DateTypeCode codeList="https://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation">creation</gmd:CI_DateTypeCode>
+               </gmd:dateType>
+              </gmd:CI_Date>
+             </gmd:date>
+            </gmd:CI_Citation>
+           </gmd:authority>
+           <gmd:code><gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L13/current/MA/">mantle</gmx:Anchor>
+           </gmd:code>
+          </gmd:MD_Identifier>
+         </gmd:geographicIdentifier>
+        </gmd:EX_GeographicDescription>
+       </gmd:geographicElement>
+    </snippet>
+  <snippet label="addMP">
+    <gmd:geographicElement>
+        <gmd:EX_GeographicDescription>
+         <gmd:geographicIdentifier>
+          <gmd:MD_Identifier>
+           <gmd:authority>
+            <gmd:CI_Citation>
+             <gmd:title>
+              <gco:CharacterString>SeaVoX Vertical Co-ordinate Coverages</gco:CharacterString>
+             </gmd:title>
+             <gmd:date>
+              <gmd:CI_Date>
+               <gmd:date>
+                <gco:Date>2013-02-05</gco:Date>
+               </gmd:date>
+               <gmd:dateType>
+                <gmd:CI_DateTypeCode codeList="https://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation">creation</gmd:CI_DateTypeCode>
+               </gmd:dateType>
+              </gmd:CI_Date>
+             </gmd:date>
+            </gmd:CI_Citation>
+           </gmd:authority>
+           <gmd:code><gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L13/current/MP/">mesopause</gmx:Anchor>
+           </gmd:code>
+          </gmd:MD_Identifier>
+         </gmd:geographicIdentifier>
+        </gmd:EX_GeographicDescription>
+       </gmd:geographicElement>
+    </snippet>
+  <snippet label="addMW">
+    <gmd:geographicElement>
+        <gmd:EX_GeographicDescription>
+         <gmd:geographicIdentifier>
+          <gmd:MD_Identifier>
+           <gmd:authority>
+            <gmd:CI_Citation>
+             <gmd:title>
+              <gco:CharacterString>SeaVoX Vertical Co-ordinate Coverages</gco:CharacterString>
+             </gmd:title>
+             <gmd:date>
+              <gmd:CI_Date>
+               <gmd:date>
+                <gco:Date>2013-02-05</gco:Date>
+               </gmd:date>
+               <gmd:dateType>
+                <gmd:CI_DateTypeCode codeList="https://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation">creation</gmd:CI_DateTypeCode>
+               </gmd:dateType>
+              </gmd:CI_Date>
+             </gmd:date>
+            </gmd:CI_Citation>
+           </gmd:authority>
+           <gmd:code><gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L13/current/MW/">mesopelagic water column</gmx:Anchor>
+           </gmd:code>
+          </gmd:MD_Identifier>
+         </gmd:geographicIdentifier>
+        </gmd:EX_GeographicDescription>
+       </gmd:geographicElement>
+    </snippet>
+  <snippet label="addMS">
+    <gmd:geographicElement>
+        <gmd:EX_GeographicDescription>
+         <gmd:geographicIdentifier>
+          <gmd:MD_Identifier>
+           <gmd:authority>
+            <gmd:CI_Citation>
+             <gmd:title>
+              <gco:CharacterString>SeaVoX Vertical Co-ordinate Coverages</gco:CharacterString>
+             </gmd:title>
+             <gmd:date>
+              <gmd:CI_Date>
+               <gmd:date>
+                <gco:Date>2013-02-05</gco:Date>
+               </gmd:date>
+               <gmd:dateType>
+                <gmd:CI_DateTypeCode codeList="https://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation">creation</gmd:CI_DateTypeCode>
+               </gmd:dateType>
+              </gmd:CI_Date>
+             </gmd:date>
+            </gmd:CI_Citation>
+           </gmd:authority>
+           <gmd:code><gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L13/current/MS/">mesosphere</gmx:Anchor>
+           </gmd:code>
+          </gmd:MD_Identifier>
+         </gmd:geographicIdentifier>
+        </gmd:EX_GeographicDescription>
+       </gmd:geographicElement>
+    </snippet>
+  <snippet label="addSD">
+    <gmd:geographicElement>
+        <gmd:EX_GeographicDescription>
+         <gmd:geographicIdentifier>
+          <gmd:MD_Identifier>
+           <gmd:authority>
+            <gmd:CI_Citation>
+             <gmd:title>
+              <gco:CharacterString>SeaVoX Vertical Co-ordinate Coverages</gco:CharacterString>
+             </gmd:title>
+             <gmd:date>
+              <gmd:CI_Date>
+               <gmd:date>
+                <gco:Date>2013-02-05</gco:Date>
+               </gmd:date>
+               <gmd:dateType>
+                <gmd:CI_DateTypeCode codeList="https://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation">creation</gmd:CI_DateTypeCode>
+               </gmd:dateType>
+              </gmd:CI_Date>
+             </gmd:date>
+            </gmd:CI_Citation>
+           </gmd:authority>
+           <gmd:code><gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L13/current/SD/">soil and sediment</gmx:Anchor>
+           </gmd:code>
+          </gmd:MD_Identifier>
+         </gmd:geographicIdentifier>
+        </gmd:EX_GeographicDescription>
+       </gmd:geographicElement>
+    </snippet>
+  <snippet label="addSB">
+    <gmd:geographicElement>
+        <gmd:EX_GeographicDescription>
+         <gmd:geographicIdentifier>
+          <gmd:MD_Identifier>
+           <gmd:authority>
+            <gmd:CI_Citation>
+             <gmd:title>
+              <gco:CharacterString>SeaVoX Vertical Co-ordinate Coverages</gco:CharacterString>
+             </gmd:title>
+             <gmd:date>
+              <gmd:CI_Date>
+               <gmd:date>
+                <gco:Date>2013-02-05</gco:Date>
+               </gmd:date>
+               <gmd:dateType>
+                <gmd:CI_DateTypeCode codeList="https://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation">creation</gmd:CI_DateTypeCode>
+               </gmd:dateType>
+              </gmd:CI_Date>
+             </gmd:date>
+            </gmd:CI_Citation>
+           </gmd:authority>
+           <gmd:code><gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L13/current/SB/">soil and sediment boundary layer</gmx:Anchor>
+           </gmd:code>
+          </gmd:MD_Identifier>
+         </gmd:geographicIdentifier>
+        </gmd:EX_GeographicDescription>
+       </gmd:geographicElement>
+    </snippet>
+  <snippet label="addSP">
+    <gmd:geographicElement>
+        <gmd:EX_GeographicDescription>
+         <gmd:geographicIdentifier>
+          <gmd:MD_Identifier>
+           <gmd:authority>
+            <gmd:CI_Citation>
+             <gmd:title>
+              <gco:CharacterString>SeaVoX Vertical Co-ordinate Coverages</gco:CharacterString>
+             </gmd:title>
+             <gmd:date>
+              <gmd:CI_Date>
+               <gmd:date>
+                <gco:Date>2013-02-05</gco:Date>
+               </gmd:date>
+               <gmd:dateType>
+                <gmd:CI_DateTypeCode codeList="https://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation">creation</gmd:CI_DateTypeCode>
+               </gmd:dateType>
+              </gmd:CI_Date>
+             </gmd:date>
+            </gmd:CI_Citation>
+           </gmd:authority>
+           <gmd:code><gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L13/current/SP/">stratopause</gmx:Anchor>
+           </gmd:code>
+          </gmd:MD_Identifier>
+         </gmd:geographicIdentifier>
+        </gmd:EX_GeographicDescription>
+       </gmd:geographicElement>
+    </snippet>
+  <snippet label="addSS">
+    <gmd:geographicElement>
+        <gmd:EX_GeographicDescription>
+         <gmd:geographicIdentifier>
+          <gmd:MD_Identifier>
+           <gmd:authority>
+            <gmd:CI_Citation>
+             <gmd:title>
+              <gco:CharacterString>SeaVoX Vertical Co-ordinate Coverages</gco:CharacterString>
+             </gmd:title>
+             <gmd:date>
+              <gmd:CI_Date>
+               <gmd:date>
+                <gco:Date>2013-02-05</gco:Date>
+               </gmd:date>
+               <gmd:dateType>
+                <gmd:CI_DateTypeCode codeList="https://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation">creation</gmd:CI_DateTypeCode>
+               </gmd:dateType>
+              </gmd:CI_Date>
+             </gmd:date>
+            </gmd:CI_Citation>
+           </gmd:authority>
+           <gmd:code><gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L13/current/SS/">stratosphere</gmx:Anchor>
+           </gmd:code>
+          </gmd:MD_Identifier>
+         </gmd:geographicIdentifier>
+        </gmd:EX_GeographicDescription>
+       </gmd:geographicElement>
+    </snippet>
+  <snippet label="addTZ">
+    <gmd:geographicElement>
+        <gmd:EX_GeographicDescription>
+         <gmd:geographicIdentifier>
+          <gmd:MD_Identifier>
+           <gmd:authority>
+            <gmd:CI_Citation>
+             <gmd:title>
+              <gco:CharacterString>SeaVoX Vertical Co-ordinate Coverages</gco:CharacterString>
+             </gmd:title>
+             <gmd:date>
+              <gmd:CI_Date>
+               <gmd:date>
+                <gco:Date>2013-02-05</gco:Date>
+               </gmd:date>
+               <gmd:dateType>
+                <gmd:CI_DateTypeCode codeList="https://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation">creation</gmd:CI_DateTypeCode>
+               </gmd:dateType>
+              </gmd:CI_Date>
+             </gmd:date>
+            </gmd:CI_Citation>
+           </gmd:authority>
+           <gmd:code><gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L13/current/TZ/">thermopause</gmx:Anchor>
+           </gmd:code>
+          </gmd:MD_Identifier>
+         </gmd:geographicIdentifier>
+        </gmd:EX_GeographicDescription>
+       </gmd:geographicElement>
+    </snippet>
+  <snippet label="addTS">
+    <gmd:geographicElement>
+        <gmd:EX_GeographicDescription>
+         <gmd:geographicIdentifier>
+          <gmd:MD_Identifier>
+           <gmd:authority>
+            <gmd:CI_Citation>
+             <gmd:title>
+              <gco:CharacterString>SeaVoX Vertical Co-ordinate Coverages</gco:CharacterString>
+             </gmd:title>
+             <gmd:date>
+              <gmd:CI_Date>
+               <gmd:date>
+                <gco:Date>2013-02-05</gco:Date>
+               </gmd:date>
+               <gmd:dateType>
+                <gmd:CI_DateTypeCode codeList="https://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation">creation</gmd:CI_DateTypeCode>
+               </gmd:dateType>
+              </gmd:CI_Date>
+             </gmd:date>
+            </gmd:CI_Citation>
+           </gmd:authority>
+           <gmd:code><gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L13/current/TS/">thermosphere</gmx:Anchor>
+           </gmd:code>
+          </gmd:MD_Identifier>
+         </gmd:geographicIdentifier>
+        </gmd:EX_GeographicDescription>
+       </gmd:geographicElement>
+    </snippet>
+  <snippet label="addTP">
+    <gmd:geographicElement>
+        <gmd:EX_GeographicDescription>
+         <gmd:geographicIdentifier>
+          <gmd:MD_Identifier>
+           <gmd:authority>
+            <gmd:CI_Citation>
+             <gmd:title>
+              <gco:CharacterString>SeaVoX Vertical Co-ordinate Coverages</gco:CharacterString>
+             </gmd:title>
+             <gmd:date>
+              <gmd:CI_Date>
+               <gmd:date>
+                <gco:Date>2013-02-05</gco:Date>
+               </gmd:date>
+               <gmd:dateType>
+                <gmd:CI_DateTypeCode codeList="https://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation">creation</gmd:CI_DateTypeCode>
+               </gmd:dateType>
+              </gmd:CI_Date>
+             </gmd:date>
+            </gmd:CI_Citation>
+           </gmd:authority>
+           <gmd:code><gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L13/current/TP/">tropopause</gmx:Anchor>
+           </gmd:code>
+          </gmd:MD_Identifier>
+         </gmd:geographicIdentifier>
+        </gmd:EX_GeographicDescription>
+       </gmd:geographicElement>
+    </snippet>
+  <snippet label="addTH">
+    <gmd:geographicElement>
+        <gmd:EX_GeographicDescription>
+         <gmd:geographicIdentifier>
+          <gmd:MD_Identifier>
+           <gmd:authority>
+            <gmd:CI_Citation>
+             <gmd:title>
+              <gco:CharacterString>SeaVoX Vertical Co-ordinate Coverages</gco:CharacterString>
+             </gmd:title>
+             <gmd:date>
+              <gmd:CI_Date>
+               <gmd:date>
+                <gco:Date>2013-02-05</gco:Date>
+               </gmd:date>
+               <gmd:dateType>
+                <gmd:CI_DateTypeCode codeList="https://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation">creation</gmd:CI_DateTypeCode>
+               </gmd:dateType>
+              </gmd:CI_Date>
+             </gmd:date>
+            </gmd:CI_Citation>
+           </gmd:authority>
+           <gmd:code><gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L13/current/TH/">troposphere</gmx:Anchor>
+           </gmd:code>
+          </gmd:MD_Identifier>
+         </gmd:geographicIdentifier>
+        </gmd:EX_GeographicDescription>
+       </gmd:geographicElement>
+    </snippet>
+  <snippet label="addUK">
+    <gmd:geographicElement>
+        <gmd:EX_GeographicDescription>
+         <gmd:geographicIdentifier>
+          <gmd:MD_Identifier>
+           <gmd:authority>
+            <gmd:CI_Citation>
+             <gmd:title>
+              <gco:CharacterString>SeaVoX Vertical Co-ordinate Coverages</gco:CharacterString>
+             </gmd:title>
+             <gmd:date>
+              <gmd:CI_Date>
+               <gmd:date>
+                <gco:Date>2013-02-05</gco:Date>
+               </gmd:date>
+               <gmd:dateType>
+                <gmd:CI_DateTypeCode codeList="https://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation">creation</gmd:CI_DateTypeCode>
+               </gmd:dateType>
+              </gmd:CI_Date>
+             </gmd:date>
+            </gmd:CI_Citation>
+           </gmd:authority>
+           <gmd:code><gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L13/current/UK/">unknown</gmx:Anchor>
+           </gmd:code>
+          </gmd:MD_Identifier>
+         </gmd:geographicIdentifier>
+        </gmd:EX_GeographicDescription>
+       </gmd:geographicElement>
+    </snippet>
+  <snippet label="addU1">
+    <gmd:geographicElement>
+        <gmd:EX_GeographicDescription>
+         <gmd:geographicIdentifier>
+          <gmd:MD_Identifier>
+           <gmd:authority>
+            <gmd:CI_Citation>
+             <gmd:title>
+              <gco:CharacterString>SeaVoX Vertical Co-ordinate Coverages</gco:CharacterString>
+             </gmd:title>
+             <gmd:date>
+              <gmd:CI_Date>
+               <gmd:date>
+                <gco:Date>2013-02-05</gco:Date>
+               </gmd:date>
+               <gmd:dateType>
+                <gmd:CI_DateTypeCode codeList="https://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation">creation</gmd:CI_DateTypeCode>
+               </gmd:dateType>
+              </gmd:CI_Date>
+             </gmd:date>
+            </gmd:CI_Citation>
+           </gmd:authority>
+           <gmd:code><gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L13/current/U1/">upper epipelagic water column</gmx:Anchor>
+           </gmd:code>
+          </gmd:MD_Identifier>
+         </gmd:geographicIdentifier>
+        </gmd:EX_GeographicDescription>
+       </gmd:geographicElement>
+    </snippet>
+  <snippet label="addUS">
+    <gmd:geographicElement>
+        <gmd:EX_GeographicDescription>
+         <gmd:geographicIdentifier>
+          <gmd:MD_Identifier>
+           <gmd:authority>
+            <gmd:CI_Citation>
+             <gmd:title>
+              <gco:CharacterString>SeaVoX Vertical Co-ordinate Coverages</gco:CharacterString>
+             </gmd:title>
+             <gmd:date>
+              <gmd:CI_Date>
+               <gmd:date>
+                <gco:Date>2013-02-05</gco:Date>
+               </gmd:date>
+               <gmd:dateType>
+                <gmd:CI_DateTypeCode codeList="https://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation">creation</gmd:CI_DateTypeCode>
+               </gmd:dateType>
+              </gmd:CI_Date>
+             </gmd:date>
+            </gmd:CI_Citation>
+           </gmd:authority>
+           <gmd:code><gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L13/current/US/">upper slope</gmx:Anchor>
+           </gmd:code>
+          </gmd:MD_Identifier>
+         </gmd:geographicIdentifier>
+        </gmd:EX_GeographicDescription>
+       </gmd:geographicElement>
+    </snippet>
+  <snippet label="addWC">
+    <gmd:geographicElement>
+        <gmd:EX_GeographicDescription>
+         <gmd:geographicIdentifier>
+          <gmd:MD_Identifier>
+           <gmd:authority>
+            <gmd:CI_Citation>
+             <gmd:title>
+              <gco:CharacterString>SeaVoX Vertical Co-ordinate Coverages</gco:CharacterString>
+             </gmd:title>
+             <gmd:date>
+              <gmd:CI_Date>
+               <gmd:date>
+                <gco:Date>2013-02-05</gco:Date>
+               </gmd:date>
+               <gmd:dateType>
+                <gmd:CI_DateTypeCode codeList="https://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation">creation</gmd:CI_DateTypeCode>
+               </gmd:dateType>
+              </gmd:CI_Date>
+             </gmd:date>
+            </gmd:CI_Citation>
+           </gmd:authority>
+           <gmd:code><gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L13/current/WC/">water column</gmx:Anchor>
+           </gmd:code>
+          </gmd:MD_Identifier>
+         </gmd:geographicIdentifier>
+        </gmd:EX_GeographicDescription>
+       </gmd:geographicElement>
+    </snippet>
+  <snippet label="addNS">
+    <gmd:geographicElement>
+        <gmd:EX_GeographicDescription>
+         <gmd:geographicIdentifier>
+          <gmd:MD_Identifier>
+           <gmd:authority>
+            <gmd:CI_Citation>
+             <gmd:title>
+              <gco:CharacterString>SeaVoX Vertical Co-ordinate Coverages</gco:CharacterString>
+             </gmd:title>
+             <gmd:date>
+              <gmd:CI_Date>
+               <gmd:date>
+                <gco:Date>2013-02-05</gco:Date>
+               </gmd:date>
+               <gmd:dateType>
+                <gmd:CI_DateTypeCode codeList="https://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation">creation</gmd:CI_DateTypeCode>
+               </gmd:dateType>
+              </gmd:CI_Date>
+             </gmd:date>
+            </gmd:CI_Citation>
+           </gmd:authority>
+           <gmd:code><gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L13/current/NS/">water column boundary layer</gmx:Anchor>
+           </gmd:code>
+          </gmd:MD_Identifier>
+         </gmd:geographicIdentifier>
+        </gmd:EX_GeographicDescription>
+       </gmd:geographicElement>
+    </snippet>
+  <snippet label="addWS">
+    <gmd:geographicElement>
+        <gmd:EX_GeographicDescription>
+         <gmd:geographicIdentifier>
+          <gmd:MD_Identifier>
+           <gmd:authority>
+            <gmd:CI_Citation>
+             <gmd:title>
+              <gco:CharacterString>SeaVoX Vertical Co-ordinate Coverages</gco:CharacterString>
+             </gmd:title>
+             <gmd:date>
+              <gmd:CI_Date>
+               <gmd:date>
+                <gco:Date>2013-02-05</gco:Date>
+               </gmd:date>
+               <gmd:dateType>
+                <gmd:CI_DateTypeCode codeList="https://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode" codeListValue="creation">creation</gmd:CI_DateTypeCode>
+               </gmd:dateType>
+              </gmd:CI_Date>
+             </gmd:date>
+            </gmd:CI_Citation>
+           </gmd:authority>
+           <gmd:code><gmx:Anchor xlink:href="http://vocab.nerc.ac.uk/collection/L13/current/WS/">water column skin</gmx:Anchor>
+           </gmd:code>
+          </gmd:MD_Identifier>
+         </gmd:geographicIdentifier>
+        </gmd:EX_GeographicDescription>
+       </gmd:geographicElement>
+    </snippet>
+  </template>
+</action>
+          <text ref="medinextent_help"/>
+
+
+          <field
+            xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:verticalElement"
+            or="verticalElement" in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent" if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0">
+          </field>
+
+          <field
+            xpath="/gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/srv:extent/gmd:EX_Extent/gmd:verticalElement"
+            if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0">
+          </field>
+
+          <!-- add verticalelement datasets -->
+          <!-- THIS IS THE BIT THAT MIGHT NEED CHANGING -->
+
+          <action type="add" btnLabel="addVerticalExtentCRS" name="addVerticalExtent" or="verticalElement"
+                  in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent" if="count(//gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:verticalElement)=0">
+            <template>
+              <snippet label="ODN Height">
+                <gmd:verticalElement>
+                <gmd:EX_VerticalExtent>
+                  <gmd:minimumValue>
+                    <gco:Real/>
+                  </gmd:minimumValue>
+                  <gmd:maximumValue>
+                    <gco:Real/>
+                  </gmd:maximumValue>
+                  <gmd:verticalCRS xlink:href='http://www.opengis.net/def/crs/EPSG/0/5701'>EPSG:5701</gmd:verticalCRS>
+                </gmd:EX_VerticalExtent>
+              </gmd:verticalElement>
+              </snippet>
+            </template>
+          </action>
+
+          <action type="add" btnLabel="addVerticalExtentDatum" name="addVerticalExtent" or="verticalElement"
+                  in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent" if="count(//gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:verticalElement)=0">
+            <template>
+              <snippet label="Mean Sea Level">
+              <gmd:verticalElement>
+                <gmd:EX_VerticalExtent>
+                  <gmd:minimumValue>
+                    <gco:Real/>
+                  </gmd:minimumValue>
+                  <gmd:maximumValue>
+                    <gco:Real/>
+                  </gmd:maximumValue>
+                   <gmd:verticalCRS>
+                <gml:VerticalCRS gml:id='epsg-crs-5701'>
+                  <gml:identifier codeSpace='OGP'>
+                    urn:ogc:def:crs:EPSG::5701</gml:identifier>
+                  <gml:name>ODN height</gml:name>
+                  <gml:scope>Geodetic and engineering surveying.</gml:scope>
+                  <gml:verticalCS>
+                    <gml:VerticalCS gml:id='epsg-cs-6499'>
+                      <gml:identifier codeSpace='OGP'>urn:ogc:def:cs:EPSG::6499</gml:identifier>
+                      <gml:name>Vertical CS. Axis: height (H). Orientation: up. UoM: m.</gml:name>
+                      <gml:remarks>Used in vertical coordinate reference systems.</gml:remarks>
+                      <gml:axis>
+                        <gml:CoordinateSystemAxis gml:id='epsg-axis-114' uom='urn:ogc:def:uom:EPSG::9001'>
+                          <gml:descriptionReference xlink:href='http://www.opengis.net/def/crs/EPSG/0/9904'/>
+                          <gml:identifier codeSpace='OGP'>urn:ogc:def:axis:EPSG::114</gml:identifier>
+                          <gml:axisAbbrev>H</gml:axisAbbrev>
+                          <gml:axisDirection codeSpace='EPSG'>up</gml:axisDirection>
+                        </gml:CoordinateSystemAxis>
+                      </gml:axis>
+                    </gml:VerticalCS>
+                  </gml:verticalCS>
+                  <gml:verticalDatum>
+                    <gml:VerticalDatum gml:id='epsg-datum-5101'>
+                      <gml:identifier codeSpace='OGP'>urn:ogc:def:datum:EPSG::5101</gml:identifier>
+                      <gml:name>Ordnance Datum Newlyn</gml:name>
+                      <gml:remarks>Orthometric heights.</gml:remarks>
+                      <gml:scope>Topographic mapping, geodetic survey.</gml:scope>
+                      <gml:anchorDefinition>Mean Sea Level at Newlyn between 1915 and 1921.</gml:anchorDefinition>
+                    </gml:VerticalDatum>
+                  </gml:verticalDatum>
+                </gml:VerticalCRS>
+              </gmd:verticalCRS>
+                  </gmd:EX_VerticalExtent>
+              </gmd:verticalElement>
+              </snippet>
+            </template>
+          </action>
+
+          <text ref="verticalextent_help" />
+
+          </section>
+
+        </section> <!--  end identification info section -->
+
+
+
+
+        <section name="gmd:DQ_DataQuality" collapsed="true" displayIfRecord="contains(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:RS_Identifier/gmd:code/gco:CharacterString, 'NRW_')">
+          <field xpath="/gmd:MD_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:scope" />
+          <field xpath="/gmd:MD_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report" />
+
+        </section>
+
+        <section name="gmd:MD_Metadata" collapsed="true">
+          <field xpath="/gmd:MD_Metadata/gmd:fileIdentifier"/>
+
+          <field xpath="/gmd:MD_Metadata/gmd:language" or="language" in="/gmd:MD_Metadata"/>
+
+          <field xpath="/gmd:MD_Metadata/gmd:parentIdentifier" or="parentIdentifier" in="/gmd:MD_Metadata"/>
+
+          <field xpath="/gmd:MD_Metadata/gmd:hierarchyLevel" or="hierarchyLevel" in="/gmd:MD_Metadata"/>
+
+          <field xpath="/gmd:MD_Metadata/gmd:hierarchyLevelName" or="hierarchyLevelName" in="/gmd:MD_Metadata"/>
+          <field xpath="/gmd:MD_Metadata/gmd:dateStamp"/>
+          <field xpath="/gmd:MD_Metadata/gmd:metadataStandardName"/>
+          <field xpath="/gmd:MD_Metadata/gmd:metadataStandardVersion"/>
+
+          <section name="gmd:contact">
+            <field xpath="/gmd:MD_Metadata/gmd:contact/*/gmd:individualName"  or="individualName"  in="/gmd:MD_Metadata/gmd:contact/*" />
+            <field xpath="/gmd:MD_Metadata/gmd:contact/*/gmd:organisationName"  or="organisationName" in="/gmd:MD_Metadata/gmd:contact/*"/>
+            <field xpath="/gmd:MD_Metadata/gmd:contact/*/gmd:positionName"  or="positionName" in="/gmd:MD_Metadata/gmd:contact/*"/>
+            <field xpath="/gmd:MD_Metadata/gmd:contact/*/gmd:contactInfo/*/gmd:phone/*/gmd:voice"  or="voice" in="/gmd:MD_Metadata/gmd:contact/*/gmd:contactInfo/*/gmd:phone/*" del="../.."/>
+            <field xpath="/gmd:MD_Metadata/gmd:contact/*/gmd:contactInfo/*/gmd:address/*/gmd:deliveryPoint"  or="deliveryPoint" in="/gmd:MD_Metadata/gmd:contact/*/gmd:contactInfo/*/gmd:address/*"/>
+            <field xpath="/gmd:MD_Metadata/gmd:contact/*/gmd:contactInfo/*/gmd:address/*/gmd:city"  or="city" in="/gmd:MD_Metadata/gmd:contact/*/gmd:contactInfo/*/gmd:address/*"/>
+            <field xpath="/gmd:MD_Metadata/gmd:contact/*/gmd:contactInfo/*/gmd:address/*/gmd:administrativeArea"  or="administrativeArea" in="/gmd:MD_Metadata/gmd:contact/*/gmd:contactInfo/*/gmd:address/*"/>
+            <field xpath="/gmd:MD_Metadata/gmd:contact/*/gmd:contactInfo/*/gmd:address/*/gmd:postalCode"  or="postalCode" in="/gmd:MD_Metadata/gmd:contact/*/gmd:contactInfo/*/gmd:address/*"/>
+            <field xpath="/gmd:MD_Metadata/gmd:contact/*/gmd:contactInfo/*/gmd:address/*/gmd:country"  or="country" in="/gmd:MD_Metadata/gmd:contact/*/gmd:contactInfo/*/gmd:address/*"/>
+            <field xpath="/gmd:MD_Metadata/gmd:contact/*/gmd:contactInfo/*/gmd:address/*/gmd:electronicMailAddress"  or="electronicMailAddress" in="/gmd:MD_Metadata/gmd:contact/*/gmd:contactInfo/*/gmd:address/*"/>
+            <field xpath="/gmd:MD_Metadata/gmd:contact/*/gmd:contactInfo/*/gmd:onlineResource/gmd:CI_OnlineResource/gmd:linkage"  or="linkage" in="/gmd:MD_Metadata/gmd:contact/*/gmd:contactInfo/*/gmd:onlineResource/*" del="../.."/>
+            <field xpath="/gmd:MD_Metadata/gmd:contact/*/gmd:role"  or="role" in="/gmd:MD_Metadata/gmd:contact/*"/>
+            <field xpath="/gmd:MD_Metadata/gmd:contact" or="contact" in="/gmd:MD_Metadata" if="count(gmd:MD_Metadata/gmd:contact) = 0"/>
+          </section>
+
+        </section>
+      </tab>
+
+      <!-- Elements that should not use the "flat" mode -->
+      <flatModeExceptions>
+        <for name="gmd:alternateTitle" excludeFrom="/gmd:MD_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:report/gmd:DQ_DomainConsistency/gmd:result/gmd:DQ_ConformanceResult/gmd:specification/gmd:CI_Citation"/>
+        <for name="gmd:parentIdentifier" />
+        <for name="gmd:geographicIdentifier" />
+        <for name="gmd:descriptiveKeywords"/>
+        <for name="gmd:keyword"/>
+        <for name="gmd:spatialResolution"/>
+        <for name="gmd:referenceSystemInfo"/>
+        <for name="gmd:pointOfContact"/>
+        <!-- <for name="gmd:distributionFormat"/> -->
+        <for name="gmd:contact"/>
+        <for name="gmd:processor"/>
+        <for name="gmd:specification"/>
+        <for name="gmd:topicCategory"/>
+        <for name="srv:parameters"/>
+        <for name="gmd:transferOptions"/>
+        <!-- <for name="gmd:otherConstraints"/> -->
+        <for name="gmd:EX_TemporalExtent"/>
+        <for name="gmd:geographicElement"/>
+        <for name="gmd:geographicIdentifier"/>
+        <for name="gmd:report"/>
+        <for name="gmd:lineage"/>
+        <for name="gmd:linkage"/>
+        <for name="gmd:date"/>
+        <for name="gmd:contentInfo"/>
+        <for name="gmd:supplementalInformation"/>
+        <for name="nrw:internalContactInfo"/>
+        <for name="nrw:internalLocationInfo"/>
+        <for name="nrw:relatedTitle"/>
+        <for name="nrw:internalInfo"/>
+        <for name="nrw:MD_ContentInfo"/>
+        <for name="nrw:MD_InternalInfo"/>
+        <for name="gmd:code"/>
+        <for name="gmd:verticalCRS"/>
+        <!-- <for name="gmd:protocol"/> -->
+      </flatModeExceptions>
+
+    <!-- End of Default View -->
+    </view>
+
+    <!-- third party view for records with an identifier starting with EXT_ -->
+    <!-- <view name="thirdparty" hideTimeInCalendar="true" displayIfRecord="starts-with(/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:MD_Identifier/gmd:code/gco:CharacterString, 'EXT_')"> -->
+
+
+    <!-- Advanced View -->
+    <view name="advanced">
+      <sidePanel>
+        <directive data-gn-validation-report=""/>
+        <directive data-gn-associated-resources-panel="gnCurrentEdit.metadata" />
+        <directive gn-geo-publisher=""
+                   data-ng-if="gnCurrentEdit.geoPublisherConfig"
+                   data-config="{{gnCurrentEdit.geoPublisherConfig}}"
+                   data-lang="lang"/>
+        <directive data-gn-distribution-resources-panel="gnCurrentEdit.metadata"
+                   data-mode="viewConfig.distributionConfig.layout || ''"
+                   data-editor-config="default"
+                   data-related-config="[{
+                                title: 'API',
+                                filter: 'protocol:OGC:.*|ESRI:.*|atom.*',
+                                editActions: ['addOnlinesrc']},
+                              {
+                                title: 'download',
+                                filter: 'protocol:.*DOWNLOAD.*|DB:.*|FILE:.*',
+                                editActions: ['addOnlinesrc']},
+                              {
+                                title: 'links',
+                                filter:'-protocol:OGC:.*|ESRI:.*|atom.*|.*DOWNLOAD.*|DB:.*|FILE:.* AND -function:legend|featureCatalogue|dataQualityReport',
+                                editActions: ['addOnlinesrc']}]"
+        />
+        <directive data-gn-overview-manager=""
+                   data-file-types=".png,.gif,.jpeg,.jpg"
+                   data-editable-thumbnail="true"/>
+        <directive data-gn-suggestion-list=""/>
+        <directive data-gn-need-help="creating-metadata"/>
+      </sidePanel>
+
+      <tab id="identificationInfo" default="true">
+        <section xpath="/gmd:MD_Metadata/gmd:identificationInfo" or="identificationInfo" in="/gmd:MD_Metadata"/>
+      </tab>
+      <tab id="distributionInfo">
+        <section xpath="/gmd:MD_Metadata/gmd:distributionInfo" or="distributionInfo" in="/gmd:MD_Metadata"/>
+      </tab>
+      <tab id="dataQualityInfo">
+        <section xpath="/gmd:MD_Metadata/gmd:dataQualityInfo" or="dataQualityInfo" in="/gmd:MD_Metadata"/>
+      </tab>
+      <tab id="keywords">
+      <section xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords" or="gmd:descriptiveKeywords" in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification"/>
+      </tab>
+      <tab id="spatialRepresentationInfo">
+        <section xpath="/gmd:MD_Metadata/gmd:spatialRepresentationInfo" or="spatialRepresentationInfo" in="/gmd:MD_Metadata"/>
+      </tab>
+      <tab id="referenceSystemInfo">
+        <section xpath="/gmd:MD_Metadata/gmd:referenceSystemInfo" or="referenceSystemInfo" in="/gmd:MD_Metadata"/>
+      </tab>
+      <tab id="contentInfo" toggle="true">
+        <section xpath="/gmd:MD_Metadata/gmd:contentInfo"/>
+      </tab>
+      <tab id="portrayalCatalogueInfo" toggle="true">
+        <section xpath="/gmd:MD_Metadata/gmd:portrayalCatalogueInfo" or="portrayalCatalogueInfo" in="/gmd:MD_Metadata"/>
+      </tab>
+      <tab id="metadata">
+        <section name="metadata">
+          <field xpath="/gmd:MD_Metadata/gmd:fileIdentifier"/>
+          <field xpath="/gmd:MD_Metadata/gmd:language" or="language" in="/gmd:MD_Metadata"/>
+          <field xpath="/gmd:MD_Metadata/gmd:locale" or="locale" in="/gmd:MD_Metadata"/>
+          <field xpath="/gmd:MD_Metadata/gmd:characterSet"/>
+          <field xpath="/gmd:MD_Metadata/gmd:parentIdentifier" or="parentIdentifier" in="/gmd:MD_Metadata"/>
+          <field xpath="/gmd:MD_Metadata/gmd:hierarchyLevel" or="hierarchyLevel" in="/gmd:MD_Metadata"/>
+          <field xpath="/gmd:MD_Metadata/gmd:hierarchyLevelName" or="hierarchyLevelName" in="/gmd:MD_Metadata"/>
+          <field xpath="/gmd:MD_Metadata/gmd:dateStamp"/>
+          <field xpath="/gmd:MD_Metadata/gmd:metadataStandardName"/>
+          <field xpath="/gmd:MD_Metadata/gmd:metadataStandardVersion"/>
+          <field xpath="/gmd:MD_Metadata/gmd:contact" or="contact" in="/gmd:MD_Metadata"/>
+          <field xpath="/gmd:MD_Metadata/gmd:dataSetURI" or="dataSetURI" in="/gmd:MD_Metadata"/>
+          <field xpath="/gmd:MD_Metadata/gmd:series"/>
+          <field xpath="/gmd:MD_Metadata/gmd:describes"/>
+          <field xpath="/gmd:MD_Metadata/gmd:propertyType"/>
+          <field xpath="/gmd:MD_Metadata/gmd:featureType"/>
+          <field xpath="/gmd:MD_Metadata/gmd:featureAttribute"/>
+        </section>
+      </tab>
+      <tab id="metadataConstraints" toggle="true">
+        <section xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints" or="resourceConstraints" in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification"/>
+      </tab>
+      <tab id="metadataMaintenance" toggle="true">
+        <section xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceMaintenance" or="gmd:resourceMaintenance" in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification"/>
+      </tab>
+      <tab id="applicationSchemaInfo" toggle="true">
+        <section xpath="/gmd:MD_Metadata/gmd:applicationSchemaInfo" or="applicationSchemaInfo" in="/gmd:MD_Metadata"/>
+      </tab>
+    </view>
+
+    <!-- XML View -->
+    <view name="xml">
+      <sidePanel>
+        <directive data-gn-associated-resources-panel="gnCurrentEdit.metadata" />
+        <directive gn-geo-publisher=""
+                   data-ng-if="gnCurrentEdit.geoPublisherConfig"
+                   data-config="{{gnCurrentEdit.geoPublisherConfig}}"
+                   data-lang="lang"/>
+        <directive data-gn-distribution-resources-panel="gnCurrentEdit.metadata"
+                   data-mode="viewConfig.distributionConfig.layout || ''"
+                   data-editor-config="default"
+                   data-related-config="[{
+                                title: 'API',
+                                filter: 'protocol:OGC:.*|ESRI:.*|atom.*',
+                                editActions: ['addOnlinesrc']},
+                              {
+                                title: 'download',
+                                filter: 'protocol:.*DOWNLOAD.*|DB:.*|FILE:.*',
+                                editActions: ['addOnlinesrc']},
+                              {
+                                title: 'links',
+                                filter:'-protocol:OGC:.*|ESRI:.*|atom.*|.*DOWNLOAD.*|DB:.*|FILE:.* AND -function:legend|featureCatalogue|dataQualityReport',
+                                editActions: ['addOnlinesrc']}]"
+        />
+        <directive data-gn-validation-report=""/>
+<!--         <directive data-gn-suggestion-list=""/> -->
+        <directive data-gn-need-help="creating-metadata"/>
+      </sidePanel>
+      <tab id="xml" default="true"/>
+    </view>
+
+    <view name="custom" disabled="true">
+      <tab id="identificationInfoCustom" default="true">
+          <field
+              xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier"/>
+          <field
+              xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:title"
+              if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
+          <field
+              xpath="/gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/gmd:citation/gmd:CI_Citation/gmd:title"
+              if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
+          <field
+              xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:alternateTitle"
+              or="alternateTitle"
+              in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation"
+              if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
+          <field
+              xpath="/gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/gmd:citation/gmd:CI_Citation/gmd:alternateTitle"
+              or="alternateTitle"
+              in="/gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/gmd:citation/gmd:CI_Citation"
+              if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
+          <field
+              xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:language"/>
+          <field
+              xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:abstract"
+              if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
+          <field
+              xpath="/gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/gmd:abstract"
+              if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
+          <field xpath="/gmd:MD_Metadata/gmd:dataQualityInfo/gmd:DQ_DataQuality/gmd:lineage"/>
+          <field
+              xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:supplementalInformation"/>
+          <field
+              xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:date"
+              if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
+          <field
+              xpath="/gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification/gmd:citation/gmd:CI_Citation/gmd:date"
+              if="count(gmd:MD_Metadata/gmd:identificationInfo/srv:SV_ServiceIdentification) > 0"/>
+          <section name="temporalExtent"
+              displayIfRecord="contains(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:RS_Identifier/gmd:code/gco:CharacterString, 'NRW_')">
+              <field
+                  xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:temporalElement/*//gml:beginPosition"/>
+              <field
+                  xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:temporalElement/*//gml:endPosition"
+              />
+          </section>
+          <section name="Resource Maintenance"
+              displayIfRecord="contains(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:RS_Identifier/gmd:code/gco:CharacterString, 'NRW_')">
+              <field
+                  xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceMaintenance/gmd:MD_MaintenanceInformation/gmd:maintenanceAndUpdateFrequency"
+                  if="count(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification) > 0"/>
+          </section>
+          <section
+              xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:topicCategory"
+              displayIfRecord="contains(gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:RS_Identifier/gmd:code/gco:CharacterString, 'NRW_')"/>
+          <section
+              xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:pointOfContact"
+              or="pointOfContact"
+              in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification"/>
+      </tab>
+      <tab id="extent" toggle="true">
+          <section name="extent">
+              <field
+                  xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicDescription/gmd:geographicIdentifier[not(gmd:MD_Identifier/gmd:authority/gmd:CI_Citation/gmd:title/gco:CharacterString ='SeaVoX Vertical Co-ordinate Coverages')]"/>
+              <field
+                  xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicBoundingBox"
+              />
+          </section>
+          <section name="verticalExtent">
+              <field name="medinextent"
+                  xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicDescription/gmd:geographicIdentifier[gmd:MD_Identifier/gmd:authority/gmd:CI_Citation/gmd:title/gco:CharacterString ='SeaVoX Vertical Co-ordinate Coverages']/*/gmd:code"/>
+              <field
+                  xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:verticalElement"
+              />
+          </section>
+      </tab>
+
+      <tab id="distributionInfoCustom">
+          <section xpath="/gmd:MD_Metadata/gmd:distributionInfo" or="distributionInfo"
+              in="/gmd:MD_Metadata"/>
+      </tab>
+      <tab id="dataQualityInfoCustom">
+          <section xpath="/gmd:MD_Metadata/gmd:dataQualityInfo" or="dataQualityInfo"
+              in="/gmd:MD_Metadata"/>
+      </tab>
+      <tab id="keywordsCustom">
+          <section
+              xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:descriptiveKeywords"
+              or="gmd:descriptiveKeywords"
+              in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification"/>
+      </tab>
+      <!--       <tab id="spatialRepresentationInfo">
+          <section xpath="/gmd:MD_Metadata/gmd:spatialRepresentationInfo" or="spatialRepresentationInfo" in="/gmd:MD_Metadata"/>
+        </tab> -->
+      <tab id="referenceSystemInfoCustom">
+          <section xpath="/gmd:MD_Metadata/gmd:referenceSystemInfo" or="referenceSystemInfo"
+              in="/gmd:MD_Metadata"/>
+      </tab>
+      <tab id="contentInfoCustom" toggle="true">
+          <section xpath="/gmd:MD_Metadata/gmd:contentInfo"/>
+      </tab>
+      <!--       <tab id="portrayalCatalogueInfo" toggle="true">
+          <section xpath="/gmd:MD_Metadata/gmd:portrayalCatalogueInfo" or="portrayalCatalogueInfo" in="/gmd:MD_Metadata"/>
+        </tab> -->
+      <tab id="constraints" toggle="true">
+          <section name="constraints">
+              <section name="accessLimitations">
+                  <field
+                      xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:accessConstraints"
+                  />
+              </section>
+              <section name="accessConstraintsDirective">
+                  <field name="limitations"
+                      xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints[./gmd:accessConstraints]/gmd:otherConstraints[gmx:Anchor]"
+                  />
+              </section>
+
+              <section name="accessconstraintsText">
+                  <field
+                      xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints[gmd:accessConstraints]/gmd:otherConstraints[gco:CharacterString]"
+                  />
+              </section>
+
+              <section name="useconstraints">
+                  <field
+                      xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:useConstraints"/>
+                  <field
+                      xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints[gmd:useConstraints]/gmd:otherConstraints[1]"
+                  />
+              </section>
+
+              <section name="attributionstatement">
+                  <field
+                      xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints[gmd:useConstraints]/gmd:otherConstraints[2]"
+                  />
+              </section>
+
+              <section name="licence">
+                  <field
+                      xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceConstraints/gmd:MD_LegalConstraints[./gmd:useConstraints]/gmd:otherConstraints[gmx:Anchor]"
+                  />
+              </section>
+          </section>
+      </tab>
+      <tab id="metadataMaintenanceCustom" toggle="true">
+          <section
+              xpath="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:resourceMaintenance"
+              or="gmd:resourceMaintenance"
+              in="/gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification"/>
+      </tab>
+      <!--       <tab id="applicationSchemaInfo" toggle="true">
+          <section xpath="/gmd:MD_Metadata/gmd:applicationSchemaInfo" or="applicationSchemaInfo" in="/gmd:MD_Metadata"/>
+        </tab> -->
+      <tab id="metadataCustom">
+          <section name="metadata">
+              <field xpath="/gmd:MD_Metadata/gmd:fileIdentifier"/>
+              <field xpath="/gmd:MD_Metadata/gmd:language" or="language" in="/gmd:MD_Metadata"/>
+              <field xpath="/gmd:MD_Metadata/gmd:locale" or="locale" in="/gmd:MD_Metadata"/>
+              <field xpath="/gmd:MD_Metadata/gmd:characterSet"/>
+              <field xpath="/gmd:MD_Metadata/gmd:parentIdentifier" or="parentIdentifier"
+                  in="/gmd:MD_Metadata"/>
+              <field xpath="/gmd:MD_Metadata/gmd:hierarchyLevel" or="hierarchyLevel"
+                  in="/gmd:MD_Metadata"/>
+              <field xpath="/gmd:MD_Metadata/gmd:hierarchyLevelName" or="hierarchyLevelName"
+                  in="/gmd:MD_Metadata"/>
+              <field xpath="/gmd:MD_Metadata/gmd:dateStamp"/>
+              <field xpath="/gmd:MD_Metadata/gmd:metadataStandardName"/>
+              <field xpath="/gmd:MD_Metadata/gmd:metadataStandardVersion"/>
+              <field xpath="/gmd:MD_Metadata/gmd:contact" or="contact" in="/gmd:MD_Metadata"/>
+              <field xpath="/gmd:MD_Metadata/gmd:dataSetURI" or="dataSetURI" in="/gmd:MD_Metadata"/>
+              <field xpath="/gmd:MD_Metadata/gmd:series"/>
+              <field xpath="/gmd:MD_Metadata/gmd:describes"/>
+              <field xpath="/gmd:MD_Metadata/gmd:propertyType"/>
+              <field xpath="/gmd:MD_Metadata/gmd:featureType"/>
+              <field xpath="/gmd:MD_Metadata/gmd:featureAttribute"/>
+          </section>
+      </tab>
+  </view>
+
+  </views>
+
+  <batchEditing>
+      <section name="identification">
+        <!-- Update existing title in metadata record -->
+        <!-- <field name="title"
+               xpath="gmd:identificationInfo/*/gmd:citation/*/gmd:title"
+               insertMode="gn_replace"
+               indexField="title">
+          <template><![CDATA[<gco:CharacterString xmlns:gco='http://www.isotc211.org/2005/gco'>{{value}}</gco:CharacterString>]]></template>
+        </field> -->
+
+        <!-- Insert a new keyword in the first gmd:descriptiveKeywords found.
+        Warning: The section may contains a thesaurusName reference and
+        the keyword may not be part of it.
+        Warning: Duplicates may be inserted.
+        -->
+<!--         <field name="keyword"
+               xpath="gmd:identificationInfo/gmd:MD_DataIdentification/
+                        gmd:descriptiveKeywords/gmd:MD_Keywords/gmd:keyword"
+               indexField="keyword"
+               insertMode="gn_create">
+          <template>
+            <![CDATA[<gco:CharacterString xmlns:gco='http://www.isotc211.org/2005/gco'>{{value}}</gco:CharacterString>]]></template>
+        </field> -->
+        <!-- Insert a new topic category
+        Warning: Duplicates may be inserted.
+        -->
+        <!-- <field name="topicCats"
+               xpath="gmd:identificationInfo/*/
+                        gmd:topicCategory"
+               use="data-gn-codelist-picker"
+               codelist="gmd:MD_TopicCategoryCode"
+               indexField="topicCat"
+               insertMode="gn_create">
+          <template>
+            <![CDATA[<gmd:MD_TopicCategoryCode xmlns:gmd='http://www.isotc211.org/2005/gmd'>{{value}}</gmd:MD_TopicCategoryCode>]]></template>
+        </field> -->
+
+        <!-- Insert a new extent
+        Warning: Duplicates may be inserted.
+        -->
+        <!-- <field name="extent"
+               xpath="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:extent"
+               use="data-gn-draw-bbox"
+               insertMode="gn_create"/> -->
+
+        <!-- Insert a new resource language
+        Warning: Duplicates may be inserted.
+        -->
+        <field name="Dataset Language"
+               xpath="gmd:identificationInfo/*/
+                        gmd:language"
+               use="data-gn-language-picker"
+               insertMode="gn_replace"
+               removable="true">
+          <template>
+            <![CDATA[<gmd:LanguageCode xmlns:gmd='http://www.isotc211.org/2005/gmd' codeList="http://www.loc.gov/standards/iso639-2/php/code_list.php" codeListValue="eng">English</gmd:LanguageCode>]]></template>
+        </field>
+
+
+        <!-- Insert, or replace if existing, the parent identifier.
+        Warning: Duplicates may be inserted.
+        -->
+        <!-- <field name="parentIdentifier"
+               xpath="gmd:parentIdentifier"
+               use="data-gn-metadata-picker"
+               insertMode="gn_replace"
+               removable="true">
+          <template>
+            <![CDATA[<gco:CharacterString xmlns:gco='http://www.isotc211.org/2005/gco'>{{value}}</gco:CharacterString>]]></template>
+        </field> -->
+
+       <!--  <field name="resourceStatus"
+               xpath="gmd:identificationInfo/*/
+                        gmd:status"
+               use="data-gn-codelist-picker"
+               codelist="gmd:MD_ProgressCode"
+               insertMode="gn_replace"
+               removable="true">
+          <template>
+            <![CDATA[<gmd:MD_ProgressCode xmlns:gmd='http://www.isotc211.org/2005/gmd' codeListValue='{{value}}'/>]]></template>
+        </field> -->
+      </section>
+
+      <!-- <section name="resourceConstraints"> -->
+        <!-- <field name="legalConstraints"
+               xpath="gmd:identificationInfo/*/
+                        gmd:resourceConstraints/gmd:MD_LegalConstraints/
+                          gmd:accessConstraints"
+               use="data-gn-codelist-picker"
+               codelist="gmd:MD_RestrictionCode"
+               insertMode="gn_create"
+               removable="true">
+          <template>
+            <![CDATA[<gmd:MD_RestrictionCode xmlns:gmd='http://www.isotc211.org/2005/gmd' codeListValue='{{value}}'/>]]></template>
+        </field> -->
+
+        <!-- Insert a new other contraints
+              Warning: Duplicates may be inserted.
+        -->
+        <!-- <field name="otherConstraints"
+               xpath="gmd:identificationInfo/*/
+                        gmd:resourceConstraints/gmd:MD_LegalConstraints/
+                          gmd:otherConstraints"
+               use="textarea"
+               insertMode="gn_create"
+               removable="true">
+          <template>
+            <![CDATA[<gco:CharacterString xmlns:gco='http://www.isotc211.org/2005/gco'>{{value}}</gco:CharacterString>]]></template>
+        </field> -->
+      <!-- </section> -->
+
+
+      <!-- Replace current lineage or insert a new one.
+            Warning: Duplicates may be inserted.
+      -->
+      <!-- <section name="quality">
+        <field name="lineage"
+               xpath="gmd:dataQualityInfo/gmd:DQ_DataQuality/
+                        gmd:lineage/gmd:LI_Lineage/gmd:statement"
+               use="textarea"
+               insertMode="gn_replace"
+               removable="true">
+          <template>
+            <![CDATA[<gco:CharacterString xmlns:gco='http://www.isotc211.org/2005/gco'>{{value}}</gco:CharacterString>]]></template>
+        </field>
+      </section> -->
+
+      <section name="contact">
+        <field name="resourceContact"
+               xpath="gmd:identificationInfo/gmd:MD_DataIdentification/gmd:pointOfContact"
+               use="data-gn-directory-entry-selector"
+               insertMode="gn_create"/>
+        <field name="mdContact"
+               xpath="gmd:contact"
+               use="data-gn-directory-entry-selector"
+               insertMode="gn_create"/>
+      </section>
+
+      <section name="metadata">
+        <field name="Metadata Language"
+               xpath="gmd:language"
+               use="data-gn-language-picker"
+               removable="true">
+          <template>
+            <![CDATA[<gmd:LanguageCode xmlns:gmd='http://www.isotc211.org/2005/gmd' codeList="http://www.loc.gov/standards/iso639-2/php/code_list.php" codeListValue="eng">English</gmd:LanguageCode>]]></template>
+        </field>
+      </section>
+    </batchEditing>
+  </editor>
